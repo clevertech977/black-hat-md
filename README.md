@@ -42,11 +42,26 @@
 ### 𝟐. 𝐋𝐈𝐍𝐊 𝐖𝐈𝐓𝐇 𝐖𝐇𝐀𝐓𝐒𝐀𝐏𝐏
 
 <details>
-<summary>GET YOUR SESSION_ID</summary>
-<a href="https://clevertech97.qzz.io"><img src="https://img.shields.io/badge/Pairing%20Code%20SERVER𝟏-green" alt="Pairing Code" width="150"></a>
-<a href="https://clevertech9977.qzz.io/"><img src="https://img.shields.io/badge/Pairing%20Code%20SERVER𝟐-green" alt="Pairing Code" width="150"></a>
+<summary><b>🔐 GET YOUR SESSION_ID</b></summary>
 
-- Session ID must start with **BlackHat~**
+<br>
+
+<p align="center">
+
+<a href="https://clevertech97.qzz.io">
+<img src="https://img.shields.io/badge/PAIRING_CODE_SERVER_1-25D366?style=for-the-badge&logo=whatsapp&logoColor=white">
+</a>
+
+&nbsp;&nbsp;&nbsp;
+
+<a href="https://clevertech9977.qzz.io/">
+<img src="https://img.shields.io/badge/PAIRING_CODE_SERVER_2-25D366?style=for-the-badge&logo=whatsapp&logoColor=white">
+</a>
+</p>
+<p align="center">
+⚠️ Session ID must start with  
+<b>BlackHat~</b>
+</p>
 </details>
 
 ### 𝟑. 𝐃𝐄𝐏𝐋𝐎𝐘𝐌𝐄𝐍𝐓 𝐒𝐄𝐂𝐓𝐈𝐎𝐍:
