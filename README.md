@@ -43,7 +43,8 @@
 
 <details>
 <summary>GET YOUR SESSION_ID</summary>
-<a href="https://clevertech97.qzz.io"><img src="https://img.shields.io/badge/CLICK%20HERE-green" alt="Pairing Code" width="150"></a>
+<a href="https://clevertech97.qzz.io"><img src="https://img.shields.io/badge/Pairing%20Code%20SERVER𝟏-green" alt="Pairing Code" width="150"></a>
+<a href="https://clevertech9977.qzz.io/"><img src="https://img.shields.io/badge/Pairing%20Code%20SERVER𝟐-green" alt="Pairing Code" width="150"></a>
 
 - Session ID must start with **BlackHat~**
 </details>
