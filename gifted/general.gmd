@@ -407,17 +407,21 @@ gmd(
 ┃❍ *Sᴇʀᴠᴇʀ Rᴀᴍ:*  ${monospace(ram)}
 ╰═════════════════⊷\n${readmore}\n`;
 
-      const formatCategory = (category, gmds) => {
-        const title = `╭━━━━❮ *${monospace(category.toUpperCase())}* ❯━⊷ \n`;
-        const body = gmds
-          .map((gmd) => {
-            const prefix = gmd.isBody ? "" : botPrefix;
-            return `┃◇ ${monospace(prefix + gmd.pattern)}`;
-          })
-          .join("\n");
-        const footer = `╰━━━━━━━━━━━━━━━━━⊷\n`;
-        return `${title}${body}\n${footer}\n`;
-      };
+const formatCategory = (category, gmds) => {
+  const headerLine = `╭━━━━━━━━━━━━━━━❍ \n`;
+  const categoryTitle  = `┃ *${monospace(category.toUpperCase())}* \n`;
+  const separator  = `╰━━━━━━━━━━━━━━━⬣ \n`;
+  const body = gmds
+    .map((gmd) => {
+      const prefix = gmd.isBody ? "" : botPrefix;
+      return `┃◇ ${monospace(prefix + gmd.pattern)}`;
+    })
+    .join("\n");
+  const footer = `╰━━━━━━━━━━━━━━━⬣\n`;
+
+  // Badilisha `title` isiyojulikana kwa muunganiko wa headerLine + categoryTitle + separator
+  return `${headerLine}${categoryTitle}${separator}${body}\n${footer}\n`;
+};
 
       let menu = header;
       for (const category of sortedCategories) {
