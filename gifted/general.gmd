@@ -414,7 +414,7 @@ const formatCategory = (category, gmds) => {
   const body = gmds
     .map((gmd) => {
       const prefix = gmd.isBody ? "" : botPrefix;
-      return `│ ➜ ${monospace(prefix + gmd.pattern)}`;
+      return `┃ ➜ ${monospace(prefix + gmd.pattern)}`;
     })
     .join("\n");
   const footer = `╰━━━━━━━━━━━━━━━⬣\n`;
