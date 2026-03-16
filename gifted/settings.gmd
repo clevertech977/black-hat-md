@@ -97,7 +97,7 @@ gmd(
 
       msg += `\n▸ *SUDO_USERS:* ${sudoList.length > 0 ? sudoList.join(", ") : "None"}\n`;
 
-      msg += `\n╭━━━━━━━━━━━━━━━❍╮\n`;
+      msg += `\n╭━━━━━━━━━━━━━━━❍\n`;
       msg += `│ *📋 GROUP SETTINGS*\n`;
       msg += `╰━━━━━━━━━━━━━━━⬣\n\n`;
 
