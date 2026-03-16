@@ -410,11 +410,11 @@ gmd(
 const formatCategory = (category, gmds) => {
   const headerLine = `╭━━━━━━━━━━━━━━━❍ \n`;
   const categoryTitle  = `┃ *${monospace(category.toUpperCase())}* \n`;
-  const separator  = `╰━━━━━━━━━━━━━━━⬣ \n`;
+  const separator  = `┃━━━━━━━━━━━━━━━⬣ \n`;
   const body = gmds
     .map((gmd) => {
       const prefix = gmd.isBody ? "" : botPrefix;
-      return `┃◇ ${monospace(prefix + gmd.pattern)}`;
+      return `│ ➜ ${monospace(prefix + gmd.pattern)}`;
     })
     .join("\n");
   const footer = `╰━━━━━━━━━━━━━━━⬣\n`;
