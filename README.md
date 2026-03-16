@@ -45,18 +45,14 @@
 <summary><b>🔐 GET YOUR SESSION_ID</b></summary>
 
 <br>
-
 <p align="center">
-
-<a href="https://clevertech97.qzz.io">
+<a href="https://clevertech9977.qzz.io">
 <img src="https://img.shields.io/badge/PAIRING_CODE_SERVER_1-25D366?style=for-the-badge&logo=whatsapp&logoColor=white">
 </a>
 
 &nbsp;&nbsp;&nbsp;
 
-<a href="https://clevertech9977.qzz.io/">
-<img src="https://img.shields.io/badge/PAIRING_CODE_SERVER_2-25D366?style=for-the-badge&logo=whatsapp&logoColor=white">
-</a>
+
 </p>
 <p align="center">
 ⚠️ Session ID must start with  
