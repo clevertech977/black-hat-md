@@ -58,7 +58,7 @@
     "test": {
       "addons": [],
       "env": {
-        "DATABASE_URL": "mongodb+srv://clever:1234@clevertech977.pchfowc.mongodb.net/?appName=clevertech977"
+        "DATABASE_URL": ""
       }
     }
   }
