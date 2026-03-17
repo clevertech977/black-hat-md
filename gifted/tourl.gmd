@@ -4,10 +4,10 @@ const fs = require('fs').promises;
 const { sendButtons } = require('gifted-btns');
 
 gmd({
-    pattern: "giftedcdn",
+    pattern: "blackhatcdn",
     react: "⬆️",
     category: "uploader",
-    description: "Upload any file to GiftedCDN",
+    description: "Upload any file to blackhatcdn",
 }, async (from, Gifted, conText) => {
     await handleUpload(from, Gifted, conText, 'giftedcdn');
 });
