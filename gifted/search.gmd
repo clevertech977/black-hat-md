@@ -615,7 +615,7 @@ gmd(
 gmd(
   {
     pattern: "stickersearch",
-    aliases: ["searchsticker", "findsticker"],
+    aliases: ["searchsticker", "findsticker", "sts"],
     category: "search",
     react: "🎨",
     description: "Search and send stickers",
