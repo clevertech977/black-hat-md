@@ -123,7 +123,7 @@ gmd(
     description: "Remove background from an image (reply to image)",
   },
   async (from, Gifted, conText) => {
-    const { reply, mek, react } = conText;
+    const { reply, mek, react, sender, botName, newsletterJid } = conText;
 
     try {
       const msg = mek;
@@ -188,6 +188,15 @@ form.append("image_file", buffer, {
       await Gifted.sendMessage(from, {
         image: outputBuffer,
         caption: "✅ Background removed",
+        contextInfo: {
+                        forwardingScore: 1,
+                        isForwarded: true,
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: newsletterJid,
+                            newsletterName: botName,
+                            serverMessageId: 143,
+                        },
+                    },
       });
 
     } catch (err) {
@@ -206,7 +215,7 @@ gmd(
     description: "Make someone look WASTED 💀",
   },
   async (from, Gifted, conText) => {
-    const { reply, mek, react } = conText;
+    const { reply, mek, react, sender, botName, newsletterJid } = conText;
 
     try {
       const msg = mek;
@@ -257,6 +266,15 @@ gmd(
         image: Buffer.from(res.data),
         caption: `⚰️ *Wasted* : @${userToWaste.split("@")[0]} 💀\nRest in pieces!`,
         mentions: [userToWaste],
+        contextInfo: {
+                        forwardingScore: 1,
+                        isForwarded: true,
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: newsletterJid,
+                            newsletterName: botName,
+                            serverMessageId: 143,
+                        },
+                    },
       });
 
     } catch (err) {
