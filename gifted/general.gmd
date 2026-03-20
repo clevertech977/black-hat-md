@@ -408,7 +408,7 @@ gmd(
 ╰═════════════════⊷\n${readmore}\n`;
 
 const formatCategory = (category, gmds) => {
-  const headerLine = `╭━━━━━━━━━━━━━━━❍ \n`;
+  const headerLine = `╭━━━━━━━━━━━━━━━⬣ \n`;
   const categoryTitle  = `┃ *${monospace(category.toUpperCase())}* \n`;
   const separator  = `┃━━━━━━━━━━━━━━━⬣ \n`;
   const body = gmds
