@@ -197,3 +197,72 @@ form.append("image_file", buffer, {
     }
   }
 );
+
+gmd(
+  {
+    pattern: "wasted",
+    category: "owner",
+    react: "💀",
+    description: "Make someone look WASTED 💀",
+  },
+  async (from, Gifted, conText) => {
+    const { reply, mek, react } = conText;
+
+    try {
+      const msg = mek;
+
+      let userToWaste;
+
+      // ✅ Mention
+      const mentioned =
+        msg?.message?.extendedTextMessage?.contextInfo?.mentionedJid;
+
+      if (mentioned && mentioned.length > 0) {
+        userToWaste = mentioned[0];
+      }
+
+      // ✅ Reply
+      else {
+        const quoted =
+          msg?.message?.extendedTextMessage?.contextInfo?.participant;
+
+        if (quoted) {
+          userToWaste = quoted;
+        }
+      }
+
+      if (!userToWaste) {
+        return reply("⚠️ Mention or reply to a user to use .wasted");
+      }
+
+      await react("⏳");
+
+      // Get profile picture
+      let profilePic;
+      try {
+        profilePic = await Gifted.profilePictureUrl(userToWaste, "image");
+      } catch {
+        profilePic = "https://i.imgur.com/2wzGhpF.jpeg";
+      }
+
+      // Call API
+      const res = await axios.get(
+        `https://some-random-api.com/canvas/overlay/wasted?avatar=${encodeURIComponent(profilePic)}`,
+        { responseType: "arraybuffer" }
+      );
+
+      await react("💀");
+
+      await Gifted.sendMessage(from, {
+        image: Buffer.from(res.data),
+        caption: `⚰️ *Wasted* : @${userToWaste.split("@")[0]} 💀\nRest in pieces!`,
+        mentions: [userToWaste],
+      });
+
+    } catch (err) {
+      console.error(err);
+      await react("❌");
+      reply("❌ Failed to generate wasted image");
+    }
+  }
+);
