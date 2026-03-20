@@ -28,7 +28,7 @@ function extractButtonId(msg) {
 gmd(
   {
     pattern: "ggleimage",
-    aliases: ["googleimage", "gimage", "ggleimagesearch", "googleimagesearch"],
+    aliases: ["googleimage", "gimage", "ggleimagesearch", "googleimagesearch", "gm"],
     category: "search",
     react: "🖼️",
     description: "Search Google Images and send first 10 images",
@@ -87,7 +87,7 @@ gmd(
 gmd(
   {
     pattern: "unsplash",
-    aliases: ["unsplashphotos", "unsplashsearch"],
+    aliases: ["unsplashphotos", "unsplashsearch", "uns"],
     category: "search",
     react: "📷",
     description: "Search Unsplash and send first 10 photos",
@@ -149,6 +149,7 @@ gmd(
   {
     pattern: "wallpapers",
     aliases: [
+      "wl",
       "wallpaper",
       "hdwallpaper",
       "hdwallpapers",
@@ -400,7 +401,7 @@ gmd(
 gmd(
   {
     pattern: "wattpad",
-    aliases: ["watt", "wattsearch", "wattpadsearch"],
+    aliases: ["watt", "wattsearch", "wattpadsearch", "str"],
     category: "search",
     react: "📚",
     description: "Search Wattpad stories",
@@ -498,7 +499,7 @@ gmd(
 gmd(
   {
     pattern: "spotifysearch",
-    aliases: ["spotisearch"],
+    aliases: ["spotisearch", "sp"],
     category: "search",
     react: "🎵",
     description: "Search Spotify for tracks",
