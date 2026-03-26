@@ -1,1 +1,161 @@
-const _0x29f6a3=_0x14be;function _0x28d2(){const _0x29c5bd=['exit','error','open',',\x20attempting\x20reconnection...','138zykZHy','28116209pBQlMQ','Unknown\x20disconnect\x20reason:\x20','162743XumScU','newsletterFollow','Bad\x20session\x20file,\x20automatically\x20deleted...please\x20scan\x20again','8402032SQoiuu','32098DzdPdX','Failed\x20to\x20remove\x20session:','Device\x20logged\x20out,\x20session\x20file\x20automatically\x20deleted...please\x20scan\x20again','🕗\x20Reconnecting...','754976GNSfyL','12bDRmxu','remove','🕗\x20Connecting\x20Bot...','Connection\x20closed\x20due\x20to:\x20','❌\x20Group\x20join\x20failed\x20for\x20','log','ℹ️\x20Already\x20in\x20group:\x20','timedOut','statusCode','output','path','connectionReplaced','5495930wzcRdc','close','ms...','54lpvaSx','Connection\x20timed\x20out,\x20reconnecting...','restartRequired','⚠️\x20Invalid\x20invite\x20code\x20for\x20group:\x20','❌\x20Channel\x20follow\x20failed\x20for\x20','🕗\x20Reconnection\x20attempt\x20','fs-extra','\x20in\x20','❌\x20Failed\x20to\x20remove\x20session:','data','5383160BOZBiY','connection.update','connectionClosed','message','loggedOut','min','✅\x20Connection\x20Instance\x20is\x20Online','onOpen','Connection\x20replaced,\x20another\x20new\x20session\x20opened','9nElFlA','exports','./groupCache'];_0x28d2=function(){return _0x29c5bd;};return _0x28d2();}(function(_0x1c0388,_0x2067c0){const _0x162af4=_0x14be,_0x31b277=_0x1c0388();while(!![]){try{const _0x1d6b95=-parseInt(_0x162af4(0x132))/0x1*(parseInt(_0x162af4(0x11e))/0x2)+parseInt(_0x162af4(0x123))/0x3*(parseInt(_0x162af4(0x122))/0x4)+parseInt(_0x162af4(0x13c))/0x5+-parseInt(_0x162af4(0x117))/0x6*(-parseInt(_0x162af4(0x11a))/0x7)+parseInt(_0x162af4(0x11d))/0x8+-parseInt(_0x162af4(0x110))/0x9*(-parseInt(_0x162af4(0x12f))/0xa)+-parseInt(_0x162af4(0x118))/0xb;if(_0x1d6b95===_0x2067c0)break;else _0x31b277['push'](_0x31b277['shift']());}catch(_0x2c99ec){_0x31b277['push'](_0x31b277['shift']());}}}(_0x28d2,0x84b1d));function _0x14be(_0x1fac51,_0x409b2e){_0x1fac51=_0x1fac51-0x10a;const _0x28d270=_0x28d2();let _0x14bef2=_0x28d270[_0x1fac51];return _0x14bef2;}const {Boom}=require('@hapi/boom'),{DisconnectReason}=require('gifted-baileys'),fs=require(_0x29f6a3(0x138)),path=require(_0x29f6a3(0x12d)),{setupGroupCacheListeners}=require(_0x29f6a3(0x112)),RECONNECT_DELAY=0x1388,MAX_RECONNECT_ATTEMPTS=0x32;let reconnectAttempts=0x0;const safeNewsletterFollow=async(_0x3411ef,_0x1c41cc)=>{const _0x286741=_0x29f6a3;if(!_0x1c41cc)return![];try{return await _0x3411ef[_0x286741(0x11b)](_0x1c41cc),!![];}catch(_0x1c2e3d){return console[_0x286741(0x114)](_0x286741(0x136)+_0x1c41cc+':',_0x1c2e3d['message']),![];}},safeGroupAcceptInvite=async(_0x2a1d25,_0x10a331)=>{const _0x2e829b=_0x29f6a3;if(!_0x10a331)return![];try{return await _0x2a1d25['groupAcceptInvite'](_0x10a331),!![];}catch(_0x1eee0a){switch(_0x1eee0a[_0x2e829b(0x13b)]){case 0x199:console['log'](_0x2e829b(0x129)+_0x10a331);break;case 0x190:console[_0x2e829b(0x128)](_0x2e829b(0x135)+_0x10a331);break;case 0x193:console[_0x2e829b(0x128)]('⚠️\x20No\x20permission\x20to\x20join\x20group:\x20'+_0x10a331);break;default:console['error'](_0x2e829b(0x127)+_0x10a331+':',_0x1eee0a[_0x2e829b(0x10a)]);}return![];}},setupConnectionHandler=(_0x3cfd05,_0x5de6fe,_0x5df3cb,_0x23ab65={})=>{const _0x47fccc=_0x29f6a3;setupGroupCacheListeners(_0x3cfd05),_0x3cfd05['ev']['on'](_0x47fccc(0x13d),async _0xafcfa6=>{const _0x26ed46=_0x47fccc,{connection:_0x1450ca,lastDisconnect:_0x58c023}=_0xafcfa6;_0x1450ca==='connecting'&&(console[_0x26ed46(0x128)](_0x26ed46(0x125)),reconnectAttempts=0x0);_0x1450ca===_0x26ed46(0x115)&&(console[_0x26ed46(0x128)](_0x26ed46(0x10d)),reconnectAttempts=0x0,_0x23ab65[_0x26ed46(0x10e)]&&await _0x23ab65[_0x26ed46(0x10e)](_0x3cfd05));if(_0x1450ca===_0x26ed46(0x130)){const _0x385912=new Boom(_0x58c023?.[_0x26ed46(0x114)])?.[_0x26ed46(0x12c)]?.[_0x26ed46(0x12b)];console[_0x26ed46(0x128)](_0x26ed46(0x126)+_0x385912);const _0x48b10d=()=>{const _0x242d35=_0x26ed46;reconnectAttempts>=MAX_RECONNECT_ATTEMPTS&&(console[_0x242d35(0x114)]('Max\x20reconnection\x20attempts\x20reached.\x20Exiting...'),process['exit'](0x1));reconnectAttempts++;const _0x4f60f1=Math[_0x242d35(0x10c)](RECONNECT_DELAY*Math['pow'](0x2,reconnectAttempts-0x1),0x493e0);console[_0x242d35(0x128)](_0x242d35(0x137)+reconnectAttempts+'/'+MAX_RECONNECT_ATTEMPTS+_0x242d35(0x139)+_0x4f60f1+_0x242d35(0x131)),setTimeout(()=>_0x5df3cb(),_0x4f60f1);};switch(_0x385912){case DisconnectReason['badSession']:console[_0x26ed46(0x128)](_0x26ed46(0x11c));try{await fs[_0x26ed46(0x124)](_0x5de6fe);}catch(_0x3ed8dc){console['error'](_0x26ed46(0x11f),_0x3ed8dc);}process[_0x26ed46(0x113)](0x1);break;case DisconnectReason[_0x26ed46(0x12e)]:console[_0x26ed46(0x128)](_0x26ed46(0x10f)),process[_0x26ed46(0x113)](0x1);break;case DisconnectReason[_0x26ed46(0x10b)]:console[_0x26ed46(0x128)](_0x26ed46(0x120));try{await fs[_0x26ed46(0x124)](_0x5de6fe);}catch(_0x35b897){console[_0x26ed46(0x114)](_0x26ed46(0x13a),_0x35b897);}process['exit'](0x1);break;case DisconnectReason[_0x26ed46(0x13e)]:case DisconnectReason['connectionLost']:case DisconnectReason[_0x26ed46(0x134)]:console[_0x26ed46(0x128)](_0x26ed46(0x121)),_0x48b10d();break;case DisconnectReason[_0x26ed46(0x12a)]:console[_0x26ed46(0x128)](_0x26ed46(0x133)),setTimeout(()=>_0x48b10d(),RECONNECT_DELAY*0x2);break;default:console[_0x26ed46(0x128)](_0x26ed46(0x119)+_0x385912+_0x26ed46(0x116)),_0x48b10d();}}});};module[_0x29f6a3(0x111)]={'safeNewsletterFollow':safeNewsletterFollow,'safeGroupAcceptInvite':safeGroupAcceptInvite,'setupConnectionHandler':setupConnectionHandler,'RECONNECT_DELAY':RECONNECT_DELAY,'MAX_RECONNECT_ATTEMPTS':MAX_RECONNECT_ATTEMPTS};
+const { Boom } = require("@hapi/boom");
+const { DisconnectReason } = require("gifted-baileys");
+const fs = require("fs-extra");
+const path = require("path");
+const { setupGroupCacheListeners } = require("./groupCache");
+
+const RECONNECT_DELAY = 5000;
+const MAX_RECONNECT_ATTEMPTS = 50;
+
+let reconnectAttempts = 0;
+
+const safeNewsletterFollow = async (Gifted, newsletterJid) => {
+    if (!newsletterJid) return false;
+    try {
+        await Gifted.newsletterFollow(newsletterJid);
+        // console.log(`✅ Followed Channel: ${newsletterJid}`);
+        return true;
+    } catch (error) {
+        console.error(
+            `❌ Channel follow failed for ${newsletterJid}:`,
+            error.message,
+        );
+        return false;
+    }
+};
+
+const safeGroupAcceptInvite = async (Gifted, groupJid) => {
+    if (!groupJid) return false;
+    try {
+        await Gifted.groupAcceptInvite(groupJid);
+        // console.log(`✅ Joined group: ${groupJid}`);
+        return true;
+    } catch (error) {
+        switch (error.data) {
+            case 409:
+                console.log(`ℹ️ Already in group: ${groupJid}`);
+                break;
+            case 400:
+                console.log(`⚠️ Invalid invite code for group: ${groupJid}`);
+                break;
+            case 403:
+                console.log(`⚠️ No permission to join group: ${groupJid}`);
+                break;
+            default:
+                console.error(
+                    `❌ Group join failed for ${groupJid}:`,
+                    error.message,
+                );
+        }
+        return false;
+    }
+};
+
+const setupConnectionHandler = (
+    Gifted,
+    sessionDir,
+    startGifted,
+    callbacks = {},
+) => {
+    setupGroupCacheListeners(Gifted);
+
+    Gifted.ev.on("connection.update", async (update) => {
+        const { connection, lastDisconnect } = update;
+
+        if (connection === "connecting") {
+            console.log("🕗 Connecting Bot...");
+            reconnectAttempts = 0;
+        }
+
+        if (connection === "open") {
+            console.log("✅ Connection Instance is Online");
+            reconnectAttempts = 0;
+
+            if (callbacks.onOpen) {
+                await callbacks.onOpen(Gifted);
+            }
+        }
+
+        if (connection === "close") {
+            const reason = new Boom(lastDisconnect?.error)?.output?.statusCode;
+            console.log(`Connection closed due to: ${reason}`);
+
+            const handleReconnect = () => {
+                if (reconnectAttempts >= MAX_RECONNECT_ATTEMPTS) {
+                    console.error(
+                        "Max reconnection attempts reached. Exiting...",
+                    );
+                    process.exit(1);
+                }
+                reconnectAttempts++;
+                const delay = Math.min(
+                    RECONNECT_DELAY * Math.pow(2, reconnectAttempts - 1),
+                    300000,
+                );
+                console.log(
+                    `🕗 Reconnection attempt ${reconnectAttempts}/${MAX_RECONNECT_ATTEMPTS} in ${delay}ms...`,
+                );
+                setTimeout(() => startGifted(), delay);
+            };
+
+            switch (reason) {
+                case DisconnectReason.badSession:
+                    console.log(
+                        "Bad session file, automatically deleted...please scan again",
+                    );
+                    try {
+                        await fs.remove(sessionDir);
+                    } catch (e) {
+                        console.error("Failed to remove session:", e);
+                    }
+                    process.exit(1);
+                    break;
+
+                case DisconnectReason.connectionReplaced:
+                    console.log(
+                        "Connection replaced, another new session opened",
+                    );
+                    process.exit(1);
+                    break;
+
+                case DisconnectReason.loggedOut:
+                    console.log(
+                        "Device logged out, session file automatically deleted...please scan again",
+                    );
+                    try {
+                        await fs.remove(sessionDir);
+                    } catch (e) {
+                        console.error("❌ Failed to remove session:", e);
+                    }
+                    process.exit(1);
+                    break;
+
+                case DisconnectReason.connectionClosed:
+                case DisconnectReason.connectionLost:
+                case DisconnectReason.restartRequired:
+                    console.log("🕗 Reconnecting...");
+                    handleReconnect();
+                    break;
+
+                case DisconnectReason.timedOut:
+                    console.log("Connection timed out, reconnecting...");
+                    setTimeout(() => handleReconnect(), RECONNECT_DELAY * 2);
+                    break;
+
+                default:
+                    console.log(
+                        `Unknown disconnect reason: ${reason}, attempting reconnection...`,
+                    );
+                    handleReconnect();
+            }
+        }
+    });
+};
+
+module.exports = {
+    safeNewsletterFollow,
+    safeGroupAcceptInvite,
+    setupConnectionHandler,
+    RECONNECT_DELAY,
+    MAX_RECONNECT_ATTEMPTS,
+};

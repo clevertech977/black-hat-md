@@ -1,1 +1,242 @@
-const _0x2f22e0=_0x7b45;(function(_0x26d3ff,_0x581264){const _0x475235=_0x7b45,_0x486b13=_0x26d3ff();while(!![]){try{const _0x2b1eca=parseInt(_0x475235(0x1a6))/0x1*(-parseInt(_0x475235(0x1a3))/0x2)+parseInt(_0x475235(0x1c5))/0x3*(parseInt(_0x475235(0x19d))/0x4)+parseInt(_0x475235(0x1b3))/0x5*(-parseInt(_0x475235(0x19b))/0x6)+-parseInt(_0x475235(0x1ab))/0x7+parseInt(_0x475235(0x1b4))/0x8+-parseInt(_0x475235(0x1aa))/0x9*(parseInt(_0x475235(0x1b1))/0xa)+parseInt(_0x475235(0x1a4))/0xb;if(_0x2b1eca===_0x581264)break;else _0x486b13['push'](_0x486b13['shift']());}catch(_0x94df71){_0x486b13['push'](_0x486b13['shift']());}}}(_0x2474,0xc37e6));const {DATABASE}=require(_0x2f22e0(0x19f)),{DataTypes}=require(_0x2f22e0(0x1c1)),DiceDB=DATABASE['define'](_0x2f22e0(0x1a0),{'id':{'type':DataTypes[_0x2f22e0(0x1be)],'primaryKey':!![],'autoIncrement':!![]},'chatJid':{'type':DataTypes[_0x2f22e0(0x19e)],'allowNull':![],'unique':!![]},'player1':{'type':DataTypes[_0x2f22e0(0x19e)],'allowNull':![]},'player2':{'type':DataTypes[_0x2f22e0(0x19e)],'allowNull':!![]},'player1Roll':{'type':DataTypes[_0x2f22e0(0x1be)],'allowNull':!![]},'player2Roll':{'type':DataTypes[_0x2f22e0(0x1be)],'allowNull':!![]},'currentTurn':{'type':DataTypes[_0x2f22e0(0x19e)],'allowNull':!![]},'rounds':{'type':DataTypes[_0x2f22e0(0x1be)],'defaultValue':0x3},'currentRound':{'type':DataTypes['INTEGER'],'defaultValue':0x1},'player1Score':{'type':DataTypes[_0x2f22e0(0x1be)],'defaultValue':0x0},'player2Score':{'type':DataTypes[_0x2f22e0(0x1be)],'defaultValue':0x0},'status':{'type':DataTypes[_0x2f22e0(0x1bb)](_0x2f22e0(0x1a1),'active',_0x2f22e0(0x1c7),'finished'),'defaultValue':_0x2f22e0(0x1a1)},'isAiGame':{'type':DataTypes[_0x2f22e0(0x1b0)],'defaultValue':![]}},{'tableName':'dice_games','timestamps':!![]});let diceDbInitialized=![];async function initDiceDB(){const _0x44d63=_0x2f22e0;if(diceDbInitialized)return;try{await DiceDB[_0x44d63(0x1c4)](),diceDbInitialized=!![];}catch(_0x2291f1){console[_0x44d63(0x1ae)](_0x44d63(0x1a7),_0x2291f1[_0x44d63(0x1bc)]);}}async function createDiceGame(_0x4cef78,_0x4205e0,_0x17c019=0x3){const _0x58d263=_0x2f22e0;await initDiceDB(),await DiceDB[_0x58d263(0x1c6)]({'where':{'chatJid':_0x4cef78}});const _0x2e1e3f=await DiceDB[_0x58d263(0x1c2)]({'chatJid':_0x4cef78,'player1':_0x4205e0,'player2':null,'player1Roll':null,'player2Roll':null,'currentTurn':null,'rounds':Math[_0x58d263(0x1a2)](Math[_0x58d263(0x1b8)](_0x17c019,0x1),0xa),'currentRound':0x1,'player1Score':0x0,'player2Score':0x0,'status':'waiting'});return _0x2e1e3f;}async function joinDiceGame(_0x40828f,_0x2470a5){const _0x2694cb=_0x2f22e0;await initDiceDB();const _0x5ec012=await DiceDB[_0x2694cb(0x199)]({'where':{'chatJid':_0x40828f,'status':_0x2694cb(0x1a1)}});if(!_0x5ec012)return{'error':'no_game'};if(_0x5ec012['player1']===_0x2470a5)return{'error':_0x2694cb(0x1ac)};return _0x5ec012[_0x2694cb(0x1ad)]=_0x2470a5,_0x5ec012[_0x2694cb(0x1a8)]='active',_0x5ec012[_0x2694cb(0x1c0)]=_0x5ec012[_0x2694cb(0x19a)],await _0x5ec012[_0x2694cb(0x1b5)](),{'player1':_0x5ec012['player1'],'player2':_0x5ec012[_0x2694cb(0x1ad)],'rounds':_0x5ec012[_0x2694cb(0x1b6)],'game':_0x5ec012};}async function getDiceGame(_0x5d266e){const _0x5e6966=_0x2f22e0;return await initDiceDB(),await DiceDB[_0x5e6966(0x199)]({'where':{'chatJid':_0x5d266e}});}async function getActiveDiceGame(_0x7e15cd){const _0x28898f=_0x2f22e0;return await initDiceDB(),await DiceDB['findOne']({'where':{'chatJid':_0x7e15cd,'status':_0x28898f(0x1bf)}});}function _0x2474(){const _0x3040f8=['1762859nAIwhx','same_player','player2','error','player1Roll','BOOLEAN','8031330wkyxPb','finished','865TsceWr','2796376yfsceY','save','rounds','player1Score','max','exports','floor','ENUM','message','random','INTEGER','active','currentTurn','sequelize','create','player2Roll','sync','3xpamWa','destroy','rolling','not_your_turn','findOne','player1','40938aIsZyq','no_game','6149612UkmNgN','STRING','./database','DiceGame','waiting','min','6UvdAgz','23604834ZQPVjx','player2Score','332251QeMfoe','DiceDB\x20sync\x20error:','status','currentRound','9nvViKa'];_0x2474=function(){return _0x3040f8;};return _0x2474();}async function getWaitingDiceGame(_0x4b8f5d){const _0xd543fe=_0x2f22e0;return await initDiceDB(),await DiceDB[_0xd543fe(0x199)]({'where':{'chatJid':_0x4b8f5d,'status':_0xd543fe(0x1a1)}});}function rollDice(){const _0x53195f=_0x2f22e0;return Math[_0x53195f(0x1ba)](Math[_0x53195f(0x1bd)]()*0x6)+0x1;}async function playerRoll(_0x413eac,_0x308b2b){const _0x52ed41=_0x2f22e0;await initDiceDB();const _0x4454c0=await DiceDB[_0x52ed41(0x199)]({'where':{'chatJid':_0x413eac,'status':'active'}});if(!_0x4454c0)return{'error':_0x52ed41(0x19c)};if(_0x4454c0[_0x52ed41(0x1c0)]!==_0x308b2b)return{'error':_0x52ed41(0x198)};const _0x2c0c73=rollDice(),_0x16a88a=_0x308b2b===_0x4454c0['player1'];_0x16a88a?(_0x4454c0[_0x52ed41(0x1af)]=_0x2c0c73,_0x4454c0['currentTurn']=_0x4454c0['player2']):_0x4454c0['player2Roll']=_0x2c0c73;await _0x4454c0[_0x52ed41(0x1b5)]();if(_0x4454c0['player1Roll']!==null&&_0x4454c0[_0x52ed41(0x1c3)]!==null){let _0x13fcdc=null;if(_0x4454c0[_0x52ed41(0x1af)]>_0x4454c0[_0x52ed41(0x1c3)])_0x4454c0[_0x52ed41(0x1b7)]+=0x1,_0x13fcdc=_0x4454c0[_0x52ed41(0x19a)];else _0x4454c0[_0x52ed41(0x1c3)]>_0x4454c0['player1Roll']&&(_0x4454c0[_0x52ed41(0x1a5)]+=0x1,_0x13fcdc=_0x4454c0['player2']);const _0x41bde1={'roll':_0x2c0c73,'player1Roll':_0x4454c0[_0x52ed41(0x1af)],'player2Roll':_0x4454c0[_0x52ed41(0x1c3)],'roundWinner':_0x13fcdc,'player1Score':_0x4454c0['player1Score'],'player2Score':_0x4454c0[_0x52ed41(0x1a5)],'currentRound':_0x4454c0['currentRound'],'player1':_0x4454c0[_0x52ed41(0x19a)],'player2':_0x4454c0[_0x52ed41(0x1ad)]};if(_0x4454c0[_0x52ed41(0x1a9)]>=_0x4454c0[_0x52ed41(0x1b6)]){_0x4454c0[_0x52ed41(0x1a8)]=_0x52ed41(0x1b2),await _0x4454c0['save']();let _0xda1364=null;if(_0x4454c0[_0x52ed41(0x1b7)]>_0x4454c0[_0x52ed41(0x1a5)])_0xda1364=_0x4454c0[_0x52ed41(0x19a)];else _0x4454c0[_0x52ed41(0x1a5)]>_0x4454c0[_0x52ed41(0x1b7)]&&(_0xda1364=_0x4454c0[_0x52ed41(0x1ad)]);return{..._0x41bde1,'gameFinished':!![],'gameWinner':_0xda1364,'finalScore':{[_0x4454c0[_0x52ed41(0x19a)]]:_0x4454c0[_0x52ed41(0x1b7)],[_0x4454c0[_0x52ed41(0x1ad)]]:_0x4454c0['player2Score']}};}return _0x4454c0[_0x52ed41(0x1a9)]+=0x1,_0x4454c0[_0x52ed41(0x1af)]=null,_0x4454c0[_0x52ed41(0x1c3)]=null,_0x4454c0['currentTurn']=_0x4454c0['player1'],await _0x4454c0[_0x52ed41(0x1b5)](),{..._0x41bde1,'nextRound':_0x4454c0[_0x52ed41(0x1a9)],'roundComplete':!![]};}return{'roll':_0x2c0c73,'waitingFor':_0x4454c0[_0x52ed41(0x1c0)],'player1':_0x4454c0['player1'],'player2':_0x4454c0[_0x52ed41(0x1ad)]};}function _0x7b45(_0x3ee667,_0x165267){_0x3ee667=_0x3ee667-0x198;const _0x2474b0=_0x2474();let _0x7b451d=_0x2474b0[_0x3ee667];return _0x7b451d;}async function endDiceGame(_0x18b5f4){const _0x348742=_0x2f22e0;await initDiceDB(),await DiceDB[_0x348742(0x1c6)]({'where':{'chatJid':_0x18b5f4}});}module[_0x2f22e0(0x1b9)]={'initDiceDB':initDiceDB,'createDiceGame':createDiceGame,'joinDiceGame':joinDiceGame,'getDiceGame':getDiceGame,'getActiveDiceGame':getActiveDiceGame,'getWaitingDiceGame':getWaitingDiceGame,'playerRoll':playerRoll,'endDiceGame':endDiceGame,'rollDice':rollDice,'DiceDB':DiceDB};
+const { DATABASE } = require('./database');
+const { DataTypes } = require('sequelize');
+
+const DiceDB = DATABASE.define('DiceGame', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    chatJid: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+    },
+    player1: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    player2: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
+    player1Roll: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+    },
+    player2Roll: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+    },
+    currentTurn: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
+    rounds: {
+        type: DataTypes.INTEGER,
+        defaultValue: 3,
+    },
+    currentRound: {
+        type: DataTypes.INTEGER,
+        defaultValue: 1,
+    },
+    player1Score: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+    },
+    player2Score: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+    },
+    status: {
+        type: DataTypes.ENUM('waiting', 'active', 'rolling', 'finished'),
+        defaultValue: 'waiting',
+    },
+    isAiGame: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+    },
+}, {
+    tableName: 'dice_games',
+    timestamps: true,
+});
+
+let diceDbInitialized = false;
+async function initDiceDB() {
+    if (diceDbInitialized) return;
+    try {
+        await DiceDB.sync();
+        diceDbInitialized = true;
+    } catch (error) {
+        console.error('DiceDB sync error:', error.message);
+    }
+}
+
+async function createDiceGame(chatJid, player1, rounds = 3) {
+    await initDiceDB();
+    await DiceDB.destroy({ where: { chatJid } });
+    
+    const game = await DiceDB.create({
+        chatJid,
+        player1,
+        player2: null,
+        player1Roll: null,
+        player2Roll: null,
+        currentTurn: null,
+        rounds: Math.min(Math.max(rounds, 1), 10),
+        currentRound: 1,
+        player1Score: 0,
+        player2Score: 0,
+        status: 'waiting',
+    });
+    return game;
+}
+
+async function joinDiceGame(chatJid, player2) {
+    await initDiceDB();
+    const game = await DiceDB.findOne({
+        where: { chatJid, status: 'waiting' }
+    });
+    
+    if (!game) return { error: 'no_game' };
+    if (game.player1 === player2) return { error: 'same_player' };
+    
+    game.player2 = player2;
+    game.status = 'active';
+    game.currentTurn = game.player1;
+    await game.save();
+    
+    return {
+        player1: game.player1,
+        player2: game.player2,
+        rounds: game.rounds,
+        game
+    };
+}
+
+async function getDiceGame(chatJid) {
+    await initDiceDB();
+    return await DiceDB.findOne({ where: { chatJid } });
+}
+
+async function getActiveDiceGame(chatJid) {
+    await initDiceDB();
+    return await DiceDB.findOne({
+        where: { chatJid, status: 'active' }
+    });
+}
+
+async function getWaitingDiceGame(chatJid) {
+    await initDiceDB();
+    return await DiceDB.findOne({
+        where: { chatJid, status: 'waiting' }
+    });
+}
+
+function rollDice() {
+    return Math.floor(Math.random() * 6) + 1;
+}
+
+async function playerRoll(chatJid, player) {
+    await initDiceDB();
+    const game = await DiceDB.findOne({
+        where: { chatJid, status: 'active' }
+    });
+    
+    if (!game) return { error: 'no_game' };
+    if (game.currentTurn !== player) return { error: 'not_your_turn' };
+    
+    const roll = rollDice();
+    const isPlayer1 = player === game.player1;
+    
+    if (isPlayer1) {
+        game.player1Roll = roll;
+        game.currentTurn = game.player2;
+    } else {
+        game.player2Roll = roll;
+    }
+    
+    await game.save();
+    
+    if (game.player1Roll !== null && game.player2Roll !== null) {
+        let roundWinner = null;
+        if (game.player1Roll > game.player2Roll) {
+            game.player1Score += 1;
+            roundWinner = game.player1;
+        } else if (game.player2Roll > game.player1Roll) {
+            game.player2Score += 1;
+            roundWinner = game.player2;
+        }
+        
+        const roundResult = {
+            roll,
+            player1Roll: game.player1Roll,
+            player2Roll: game.player2Roll,
+            roundWinner,
+            player1Score: game.player1Score,
+            player2Score: game.player2Score,
+            currentRound: game.currentRound,
+            player1: game.player1,
+            player2: game.player2,
+        };
+        
+        if (game.currentRound >= game.rounds) {
+            game.status = 'finished';
+            await game.save();
+            
+            let gameWinner = null;
+            if (game.player1Score > game.player2Score) {
+                gameWinner = game.player1;
+            } else if (game.player2Score > game.player1Score) {
+                gameWinner = game.player2;
+            }
+            
+            return {
+                ...roundResult,
+                gameFinished: true,
+                gameWinner,
+                finalScore: {
+                    [game.player1]: game.player1Score,
+                    [game.player2]: game.player2Score,
+                }
+            };
+        }
+        
+        game.currentRound += 1;
+        game.player1Roll = null;
+        game.player2Roll = null;
+        game.currentTurn = game.player1;
+        await game.save();
+        
+        return {
+            ...roundResult,
+            nextRound: game.currentRound,
+            roundComplete: true,
+        };
+    }
+    
+    return {
+        roll,
+        waitingFor: game.currentTurn,
+        player1: game.player1,
+        player2: game.player2,
+    };
+}
+
+async function endDiceGame(chatJid) {
+    await initDiceDB();
+    await DiceDB.destroy({ where: { chatJid } });
+}
+
+module.exports = {
+    initDiceDB,
+    createDiceGame,
+    joinDiceGame,
+    getDiceGame,
+    getActiveDiceGame,
+    getWaitingDiceGame,
+    playerRoll,
+    endDiceGame,
+    rollDice,
+    DiceDB,
+};

@@ -1,1 +1,496 @@
-function _0x40e2(_0x39b658,_0x2c9496){_0x39b658=_0x39b658-0x1b9;const _0x398ef7=_0x398e();let _0x40e23d=_0x398ef7[_0x39b658];return _0x40e23d;}const _0x4593b7=_0x40e2;(function(_0x22b2a7,_0xd5b34c){const _0x520676=_0x40e2,_0x3b4b48=_0x22b2a7();while(!![]){try{const _0x58ad03=-parseInt(_0x520676(0x1cc))/0x1+-parseInt(_0x520676(0x233))/0x2+-parseInt(_0x520676(0x1ff))/0x3*(parseInt(_0x520676(0x247))/0x4)+-parseInt(_0x520676(0x200))/0x5+-parseInt(_0x520676(0x1ee))/0x6+-parseInt(_0x520676(0x231))/0x7*(parseInt(_0x520676(0x219))/0x8)+parseInt(_0x520676(0x222))/0x9;if(_0x58ad03===_0xd5b34c)break;else _0x3b4b48['push'](_0x3b4b48['shift']());}catch(_0x42b464){_0x3b4b48['push'](_0x3b4b48['shift']());}}}(_0x398e,0x83bed));const {joinGame,getActiveGame,getWaitingGame,makeMove,endGame}=require(_0x4593b7(0x1fe)),{getActiveWcgGame,getWaitingWcgGame,joinWcgGame,submitWord,eliminatePlayer,endWcgGame}=require(_0x4593b7(0x24b)),{getActiveDiceGame,getWaitingDiceGame,joinDiceGame,playerRoll,endDiceGame}=require(_0x4593b7(0x1e7)),{findBestTttMove,findWcgWord,BOT_JID}=require(_0x4593b7(0x23e)),{wcgTimeouts,clearWcgTimeout,formatScores,getDiceEmoji}=require(_0x4593b7(0x220)),gameTimeouts=new Map(),diceTimeouts=new Map(),getPlayerName=_0xf4b5bf=>_0xf4b5bf[_0x4593b7(0x229)]('@')[0x0],renderBoard=_0x44c24f=>{const _0x3d3f82=_0x4593b7,_0x58cb22=_0x20afd1=>{if(_0x20afd1==='X')return'❌';if(_0x20afd1==='O')return'⭕';return _0x20afd1+'️⃣';};return _0x58cb22(_0x44c24f[0x0])+_0x3d3f82(0x214)+_0x58cb22(_0x44c24f[0x1])+_0x3d3f82(0x214)+_0x58cb22(_0x44c24f[0x2])+'\x0a——+——+——\x0a'+_0x58cb22(_0x44c24f[0x3])+'\x20|\x20'+_0x58cb22(_0x44c24f[0x4])+'\x20|\x20'+_0x58cb22(_0x44c24f[0x5])+_0x3d3f82(0x209)+_0x58cb22(_0x44c24f[0x6])+'\x20|\x20'+_0x58cb22(_0x44c24f[0x7])+_0x3d3f82(0x214)+_0x58cb22(_0x44c24f[0x8]);},clearGameTimeout=_0x53b4df=>{const _0x2b5f1f=_0x4593b7,_0x241f0f=gameTimeouts['get'](_0x53b4df);_0x241f0f&&(clearTimeout(_0x241f0f),gameTimeouts[_0x2b5f1f(0x245)](_0x53b4df));},clearDiceTimeout=_0x5d722f=>{const _0x46a951=_0x4593b7;diceTimeouts[_0x46a951(0x1eb)](_0x5d722f)&&(clearTimeout(diceTimeouts[_0x46a951(0x1d9)](_0x5d722f)),diceTimeouts[_0x46a951(0x245)](_0x5d722f));},setMoveTimeout=(_0xe891da,_0x5553f1,_0x33f9eb,_0x390ce6,_0x1fc306)=>{clearGameTimeout(_0xe891da);const _0x2f6e77=setTimeout(async()=>{const _0x1295b7=_0x40e2,_0x4ed52c=await getActiveGame(_0xe891da);if(_0x4ed52c&&_0x4ed52c[_0x1295b7(0x226)]===_0x33f9eb){await endGame(_0xe891da);const _0x1ea784=_0x33f9eb===_0x4ed52c[_0x1295b7(0x1ea)]?'❌':'⭕';await _0x5553f1[_0x1295b7(0x1d7)](_0xe891da,{'text':_0x1295b7(0x1e1)+getPlayerName(_0x33f9eb)+'\x20('+_0x1ea784+_0x1295b7(0x237)+getPlayerName(_0x390ce6)+_0x1295b7(0x1c9),'mentions':[_0x33f9eb,_0x390ce6]});}gameTimeouts[_0x1295b7(0x245)](_0xe891da);},0x7530);gameTimeouts['set'](_0xe891da,_0x2f6e77);},setWcgTurnTimeout=(_0x19468a,_0x2db1ab,_0x47a279,_0x218b73)=>{const _0x525fe7=_0x4593b7;clearWcgTimeout(_0x19468a);const _0x260a97=setTimeout(async()=>{const _0x5da917=_0x40e2,_0x48cd66=await getActiveWcgGame(_0x19468a);if(_0x48cd66&&_0x48cd66['currentTurn']===_0x47a279){const _0x57e0a6=await eliminatePlayer(_0x19468a,_0x47a279);_0x57e0a6[_0x5da917(0x238)]?(await endWcgGame(_0x19468a),_0x57e0a6[_0x5da917(0x21b)]||!_0x57e0a6['winner']?await _0x2db1ab[_0x5da917(0x1d7)](_0x19468a,{'text':'⏰\x20*WORD\x20CHAIN\x20-\x20GAME\x20OVER*\x0a\x0a@'+getPlayerName(_0x47a279)+_0x5da917(0x203)+formatScores(_0x57e0a6['scores']),'mentions':[_0x47a279]}):await _0x2db1ab[_0x5da917(0x1d7)](_0x19468a,{'text':_0x5da917(0x218)+getPlayerName(_0x47a279)+'\x20ran\x20out\x20of\x20time!\x0a\x0a🏆\x20*WINNER:*\x20@'+getPlayerName(_0x57e0a6['winner'])+_0x5da917(0x23b)+formatScores(_0x57e0a6[_0x5da917(0x21a)]),'mentions':[_0x47a279,_0x57e0a6[_0x5da917(0x1b9)]]})):(await _0x2db1ab[_0x5da917(0x1d7)](_0x19468a,{'text':_0x5da917(0x217)+getPlayerName(_0x47a279)+_0x5da917(0x1f5)+getPlayerName(_0x57e0a6[_0x5da917(0x204)])+_0x5da917(0x22b)+(_0x48cd66['lastWord']||'None')+'*\x0a'+(_0x48cd66[_0x5da917(0x1e0)]?_0x5da917(0x1ef)+_0x48cd66['lastWord'][_0x5da917(0x1e8)](-0x1)[_0x5da917(0x1c6)]()+'*':_0x5da917(0x1f4))+_0x5da917(0x206),'mentions':[_0x47a279,_0x57e0a6[_0x5da917(0x204)]]}),setWcgTurnTimeout(_0x19468a,_0x2db1ab,_0x57e0a6['nextPlayer'],_0x48cd66));}wcgTimeouts[_0x5da917(0x245)](_0x19468a);},0x7530);wcgTimeouts[_0x525fe7(0x210)](_0x19468a,_0x260a97);},setDiceTurnTimeout=(_0x3053b1,_0x1171b0,_0x1680d2,_0x3045ac)=>{const _0x58c0ae=_0x4593b7;clearDiceTimeout(_0x3053b1);const _0x26985f=setTimeout(async()=>{const _0x23c0ae=_0x40e2,_0x78de2=await getActiveDiceGame(_0x3053b1);if(_0x78de2&&_0x78de2['currentTurn']===_0x1680d2){await endDiceGame(_0x3053b1);const _0x417334=_0x1680d2===_0x78de2[_0x23c0ae(0x1ea)]?_0x78de2[_0x23c0ae(0x23d)]:_0x78de2[_0x23c0ae(0x1ea)];await _0x1171b0[_0x23c0ae(0x1d7)](_0x3053b1,{'text':_0x23c0ae(0x1e6)+getPlayerName(_0x1680d2)+_0x23c0ae(0x249)+getPlayerName(_0x417334)+'\x20wins\x20by\x20default!','mentions':[_0x1680d2,_0x417334]});}diceTimeouts['delete'](_0x3053b1);},0x7530);diceTimeouts[_0x58c0ae(0x210)](_0x3053b1,_0x26985f);};async function handleAiTttMove(_0x42910c,_0x2c3353,_0x5610f7){const _0x4a3988=_0x4593b7,_0xecfe54=JSON[_0x4a3988(0x1cb)](_0x5610f7[_0x4a3988(0x1f8)]),_0x1c692b=findBestTttMove(_0xecfe54);if(_0x1c692b===-0x1)return;await new Promise(_0x499a1b=>setTimeout(_0x499a1b,0x3e8));const _0x4b799b=await makeMove(_0x42910c,BOT_JID,_0x1c692b+0x1);if(_0x4b799b[_0x4a3988(0x1b9)]){clearGameTimeout(_0x42910c),await _0x2c3353[_0x4a3988(0x1d7)](_0x42910c,{'text':'🎮\x20*TIC\x20TAC\x20TOE\x20-\x20AI\x20WINS!*\x0a\x0a'+renderBoard(JSON['parse'](_0x4b799b['game'][_0x4a3988(0x1f8)]))+_0x4a3988(0x1d1)});return;}if(_0x4b799b[_0x4a3988(0x1cf)]){clearGameTimeout(_0x42910c),await _0x2c3353[_0x4a3988(0x1d7)](_0x42910c,{'text':_0x4a3988(0x201)+renderBoard(JSON[_0x4a3988(0x1cb)](_0x4b799b[_0x4a3988(0x224)][_0x4a3988(0x1f8)]))+_0x4a3988(0x215)});return;}const _0x47678=JSON[_0x4a3988(0x1cb)](_0x4b799b[_0x4a3988(0x224)][_0x4a3988(0x1f8)]);await _0x2c3353[_0x4a3988(0x1d7)](_0x42910c,{'text':'🤖\x20AI\x20played\x20position\x20'+(_0x1c692b+0x1)+'\x0a\x0a'+renderBoard(_0x47678)+_0x4a3988(0x1f1)+getPlayerName(_0x4b799b[_0x4a3988(0x224)]['currentTurn'])+'\x27s\x20turn\x20(❌)\x0a\x0a⏰\x20_30\x20seconds_','mentions':[_0x4b799b[_0x4a3988(0x224)][_0x4a3988(0x226)]]}),setMoveTimeout(_0x42910c,_0x2c3353,_0x4b799b[_0x4a3988(0x224)][_0x4a3988(0x226)],BOT_JID,_0x4b799b[_0x4a3988(0x224)][_0x4a3988(0x1ea)]);}async function handleAiWcgMove(_0x112e46,_0x45751b,_0x3c25e9){const _0x442148=_0x4593b7;await new Promise(_0x22839a=>setTimeout(_0x22839a,0x5dc));const _0x2a7ba9=await getActiveWcgGame(_0x112e46);if(!_0x2a7ba9)return;const _0x17badc=JSON['parse'](_0x2a7ba9['usedWords']||'[]'),_0x57865b=await findWcgWord(_0x2a7ba9[_0x442148(0x1e0)],_0x17badc),_0x3b01db=_0x2a7ba9['lastWord']?_0x2a7ba9[_0x442148(0x1e0)][_0x442148(0x1e8)](-0x1)[_0x442148(0x1c6)]():_0x442148(0x1bb);if(!_0x57865b){const _0x1c1694=_0x2a7ba9[_0x442148(0x1ea)]===BOT_JID?_0x2a7ba9['player2']:_0x2a7ba9[_0x442148(0x1ea)],_0x879fdb=JSON[_0x442148(0x1cb)](_0x2a7ba9[_0x442148(0x21a)]||'{}');await _0x45751b[_0x442148(0x1d7)](_0x112e46,{'text':_0x442148(0x208)+_0x3b01db+_0x442148(0x207)+getPlayerName(_0x1c1694)+'\x0a\x0a📊\x20*Final\x20Scores:*\x0a'+formatScores(_0x879fdb),'mentions':[_0x1c1694]}),await endWcgGame(_0x112e46);return;}const _0x3d3d85=await submitWord(_0x112e46,BOT_JID,_0x57865b);if(_0x3d3d85['error'])return;clearWcgTimeout(_0x112e46);const _0x8c1bf3=_0x3d3d85[_0x442148(0x1c8)][_0x442148(0x1e8)](-0x1)[_0x442148(0x1c6)]();await _0x45751b[_0x442148(0x1d7)](_0x112e46,{'text':_0x442148(0x1f9)+_0x3d3d85[_0x442148(0x1c8)]+_0x442148(0x1fc)+_0x3d3d85[_0x442148(0x1c8)][_0x442148(0x205)]+_0x442148(0x1fb)+getPlayerName(_0x3d3d85['nextPlayer'])+_0x442148(0x213)+_0x8c1bf3+_0x442148(0x1ba)+_0x3d3d85[_0x442148(0x1e2)]+_0x442148(0x1bc),'mentions':[_0x3d3d85[_0x442148(0x204)]]}),setWcgTurnTimeout(_0x112e46,_0x45751b,_0x3d3d85['nextPlayer'],_0x3d3d85[_0x442148(0x224)]);}async function handleAiDiceRoll(_0x16b7fa,_0x260958,_0x5742d9){const _0x99b242=_0x4593b7;clearDiceTimeout(_0x16b7fa),await new Promise(_0x4146c7=>setTimeout(_0x4146c7,0x3e8));const _0x2b73a8=await playerRoll(_0x16b7fa,BOT_JID);if(_0x2b73a8[_0x99b242(0x1c1)]){await _0x260958[_0x99b242(0x1d7)](_0x16b7fa,{'text':_0x99b242(0x24a)}),await endDiceGame(_0x16b7fa);return;}let _0xfb6f5d='🎲\x20*Round\x20'+_0x2b73a8[_0x99b242(0x1bd)]+'\x20Results*\x0a\x0a';_0xfb6f5d+=getDiceEmoji(_0x2b73a8[_0x99b242(0x1f7)])+'\x20@'+getPlayerName(_0x2b73a8[_0x99b242(0x1ea)])+':\x20'+_0x2b73a8[_0x99b242(0x1f7)]+'\x0a',_0xfb6f5d+=getDiceEmoji(_0x2b73a8[_0x99b242(0x1c0)])+_0x99b242(0x1f2)+_0x2b73a8[_0x99b242(0x1c0)]+'\x0a\x0a';if(_0x2b73a8[_0x99b242(0x1da)]){const _0x20b371=_0x2b73a8[_0x99b242(0x1da)]===BOT_JID?_0x99b242(0x1d2):'@'+getPlayerName(_0x2b73a8[_0x99b242(0x1da)]);_0xfb6f5d+=_0x99b242(0x248)+_0x20b371+_0x99b242(0x21c);}else _0xfb6f5d+=_0x99b242(0x20b);_0xfb6f5d+='\x0a📊\x20*Score:*\x20'+_0x2b73a8[_0x99b242(0x1e5)]+'\x20-\x20'+_0x2b73a8['player2Score'];if(_0x2b73a8[_0x99b242(0x1ec)]){_0xfb6f5d+=_0x99b242(0x1dd);if(_0x2b73a8[_0x99b242(0x1f3)]){const _0x311a50=_0x2b73a8[_0x99b242(0x1f3)]===BOT_JID?_0x99b242(0x1f0):'🏆\x20@'+getPlayerName(_0x2b73a8[_0x99b242(0x1f3)])+_0x99b242(0x21e);_0xfb6f5d+=_0x311a50;}else _0xfb6f5d+='🤝\x20*It\x27s\x20a\x20tie!*';await endDiceGame(_0x16b7fa);}else{_0xfb6f5d+=_0x99b242(0x216)+_0x2b73a8[_0x99b242(0x1db)]+_0x99b242(0x1e4)+getPlayerName(_0x2b73a8[_0x99b242(0x1ea)])+_0x99b242(0x1d5);const _0x5540e0=await getActiveDiceGame(_0x16b7fa);setDiceTurnTimeout(_0x16b7fa,_0x260958,_0x2b73a8[_0x99b242(0x1ea)],_0x5540e0);}await _0x260958['sendMessage'](_0x16b7fa,{'text':_0xfb6f5d,'mentions':[_0x2b73a8[_0x99b242(0x1ea)]]});}const handleGameMessage=async(_0x491708,_0x518f75)=>{const _0x182374=_0x4593b7;try{if(!_0x518f75?.[_0x182374(0x243)])return;const _0x4565fa=_0x518f75[_0x182374(0x1d6)][_0x182374(0x240)],_0xf4c1f1=!_0x4565fa[_0x182374(0x211)](_0x182374(0x22c));if(_0x518f75['key']['fromMe']&&!_0xf4c1f1)return;const _0x335428=_0x518f75[_0x182374(0x1d6)][_0x182374(0x20d)]||_0x518f75[_0x182374(0x1d6)][_0x182374(0x221)]||_0x518f75[_0x182374(0x1d6)][_0x182374(0x1c4)]||_0x518f75['key']['participantAlt']||_0x518f75[_0x182374(0x1d6)][_0x182374(0x22a)]||_0x518f75[_0x182374(0x1d6)][_0x182374(0x240)];if(!_0x335428||_0x335428[_0x182374(0x211)](_0x182374(0x22c)))return;const _0x2432d7=Object[_0x182374(0x242)](_0x518f75[_0x182374(0x243)])[0x0],_0xfb691c=(_0x2432d7===_0x182374(0x230)?_0x518f75[_0x182374(0x243)][_0x182374(0x230)]:_0x518f75[_0x182374(0x243)][_0x2432d7]?.['text']||_0x518f75[_0x182374(0x243)][_0x2432d7]?.['caption']||'')['trim']();if(!_0xfb691c)return;const _0x1755d2=_0xfb691c['toLowerCase']();if(_0x1755d2===_0x182374(0x223)){const _0x87188b=await getWaitingGame(_0x4565fa);if(_0x87188b){const _0x14d058=await joinGame(_0x4565fa,_0x335428);if(_0x14d058&&!_0x14d058[_0x182374(0x1c1)]){clearGameTimeout(_0x4565fa);const _0x3b2c18=JSON['parse'](_0x14d058[_0x182374(0x1f8)]);await _0x491708[_0x182374(0x1d7)](_0x4565fa,{'text':_0x182374(0x202)+getPlayerName(_0x14d058[_0x182374(0x1ea)])+_0x182374(0x1be)+getPlayerName(_0x14d058[_0x182374(0x23d)])+_0x182374(0x21f)+renderBoard(_0x3b2c18)+_0x182374(0x1f1)+getPlayerName(_0x14d058['currentTurn'])+_0x182374(0x1d8),'mentions':[_0x14d058[_0x182374(0x1ea)],_0x14d058[_0x182374(0x23d)],_0x14d058[_0x182374(0x226)]]}),setMoveTimeout(_0x4565fa,_0x491708,_0x14d058[_0x182374(0x226)],_0x14d058[_0x182374(0x23d)],_0x14d058[_0x182374(0x1ea)]);return;}}const _0x5f3517=await getWaitingWcgGame(_0x4565fa);if(_0x5f3517){const _0x1374a2=await joinWcgGame(_0x4565fa,_0x335428);if(_0x1374a2&&!_0x1374a2['error']){await _0x491708[_0x182374(0x1d7)](_0x4565fa,{'text':_0x182374(0x234)+getPlayerName(_0x335428)+'\x20joined\x20the\x20Word\x20Chain\x20game!\x0a\x0a👥\x20Players:\x20'+(_0x1374a2[_0x182374(0x1c7)]?.[_0x182374(0x205)]||0x0)+_0x182374(0x1d3),'mentions':[_0x335428]});return;}}const _0x31e761=await getWaitingDiceGame(_0x4565fa);if(_0x31e761){const _0x5e83dc=await joinDiceGame(_0x4565fa,_0x335428);if(_0x5e83dc&&!_0x5e83dc[_0x182374(0x1c1)]){clearDiceTimeout(_0x4565fa),await _0x491708[_0x182374(0x1d7)](_0x4565fa,{'text':_0x182374(0x246)+getPlayerName(_0x5e83dc[_0x182374(0x1ea)])+'\x20vs\x20@'+getPlayerName(_0x5e83dc[_0x182374(0x23d)])+_0x182374(0x1e9)+_0x5e83dc[_0x182374(0x1f6)]+'\x0a\x0a@'+getPlayerName(_0x5e83dc[_0x182374(0x1ea)])+_0x182374(0x236),'mentions':[_0x5e83dc[_0x182374(0x1ea)],_0x5e83dc['player2']]}),setDiceTurnTimeout(_0x4565fa,_0x491708,_0x5e83dc[_0x182374(0x1ea)],_0x5e83dc['game']);return;}}return;}const _0x5048d1=parseInt(_0xfb691c);if(!isNaN(_0x5048d1)&&_0x5048d1>=0x1&&_0x5048d1<=0x9){const _0x12316c=await getActiveGame(_0x4565fa);if(!_0x12316c)return;if(_0x12316c[_0x182374(0x1ea)]!==_0x335428&&_0x12316c[_0x182374(0x23d)]!==_0x335428)return;const _0x5b33be=await makeMove(_0x4565fa,_0x335428,_0x5048d1);if(_0x5b33be[_0x182374(0x1c1)])return;const _0x4151e3=JSON['parse'](_0x5b33be[_0x182374(0x224)]['board']);if(_0x5b33be[_0x182374(0x1b9)]){clearGameTimeout(_0x4565fa);const _0x1d4431=_0x5b33be[_0x182374(0x1c5)]==='X'?'❌':'⭕';await _0x491708['sendMessage'](_0x4565fa,{'text':'🎮\x20*TIC\x20TAC\x20TOE\x20-\x20GAME\x20OVER!*\x0a\x0a'+renderBoard(_0x4151e3)+_0x182374(0x23f)+getPlayerName(_0x5b33be['winner'])+'*\x20'+_0x1d4431+_0x182374(0x235),'mentions':[_0x5b33be[_0x182374(0x1b9)]]});return;}if(_0x5b33be['draw']){clearGameTimeout(_0x4565fa),await _0x491708[_0x182374(0x1d7)](_0x4565fa,{'text':_0x182374(0x20a)+renderBoard(_0x4151e3)+_0x182374(0x225)});return;}const _0x3cbeb3=_0x5b33be['game'][_0x182374(0x226)]===_0x5b33be[_0x182374(0x224)][_0x182374(0x1ea)]?'❌':'⭕',_0x5ba0ae=_0x5b33be[_0x182374(0x224)]['currentTurn']===_0x5b33be['game']['player1']?_0x5b33be[_0x182374(0x224)][_0x182374(0x23d)]:_0x5b33be[_0x182374(0x224)][_0x182374(0x1ea)];if(_0x12316c[_0x182374(0x212)]&&_0x5b33be[_0x182374(0x224)][_0x182374(0x226)]===BOT_JID){await _0x491708[_0x182374(0x1d7)](_0x4565fa,{'text':_0x182374(0x1cd)+renderBoard(_0x4151e3)+_0x182374(0x23c)}),await handleAiTttMove(_0x4565fa,_0x491708,_0x5b33be[_0x182374(0x224)]);return;}await _0x491708[_0x182374(0x1d7)](_0x4565fa,{'text':_0x182374(0x1ed)+getPlayerName(_0x5b33be[_0x182374(0x224)][_0x182374(0x1ea)])+_0x182374(0x1be)+getPlayerName(_0x5b33be[_0x182374(0x224)][_0x182374(0x23d)])+_0x182374(0x21f)+renderBoard(_0x4151e3)+_0x182374(0x1f1)+getPlayerName(_0x5b33be[_0x182374(0x224)][_0x182374(0x226)])+_0x182374(0x227)+_0x3cbeb3+')\x0a\x0a*Reply\x201-9\x20to\x20move*\x0a⏰\x20_30\x20seconds_','mentions':[_0x5b33be[_0x182374(0x224)]['player1'],_0x5b33be[_0x182374(0x224)]['player2'],_0x5b33be['game'][_0x182374(0x226)]]}),setMoveTimeout(_0x4565fa,_0x491708,_0x5b33be[_0x182374(0x224)]['currentTurn'],_0x5ba0ae,_0x5b33be[_0x182374(0x224)]['player1']);return;}if(_0x1755d2===_0x182374(0x1df)){const _0x3f8c42=await getActiveDiceGame(_0x4565fa);if(!_0x3f8c42)return;if(_0x3f8c42[_0x182374(0x1ea)]!==_0x335428&&_0x3f8c42[_0x182374(0x23d)]!==_0x335428)return;clearDiceTimeout(_0x4565fa);const _0x22ddb0=await playerRoll(_0x4565fa,_0x335428);if(_0x22ddb0['error']===_0x182374(0x1ca))return;if(_0x22ddb0[_0x182374(0x1c1)])return;if(_0x22ddb0[_0x182374(0x1c2)]||_0x22ddb0[_0x182374(0x1ec)]){let _0x3d0a5e='🎲\x20*Round\x20'+_0x22ddb0[_0x182374(0x1bd)]+_0x182374(0x23a);_0x3d0a5e+=getDiceEmoji(_0x22ddb0[_0x182374(0x1f7)])+'\x20@'+getPlayerName(_0x22ddb0[_0x182374(0x1ea)])+':\x20'+_0x22ddb0[_0x182374(0x1f7)]+'\x0a',_0x3d0a5e+=getDiceEmoji(_0x22ddb0[_0x182374(0x1c0)])+'\x20@'+getPlayerName(_0x22ddb0[_0x182374(0x23d)])+':\x20'+_0x22ddb0[_0x182374(0x1c0)]+'\x0a\x0a',_0x22ddb0['roundWinner']?_0x3d0a5e+='🏆\x20@'+getPlayerName(_0x22ddb0['roundWinner'])+_0x182374(0x21c):_0x3d0a5e+=_0x182374(0x20b),_0x3d0a5e+='\x0a📊\x20*Score:*\x20'+_0x22ddb0['player1Score']+_0x182374(0x1c3)+_0x22ddb0[_0x182374(0x232)],_0x22ddb0[_0x182374(0x1ec)]?(_0x3d0a5e+=_0x182374(0x1dd),_0x22ddb0[_0x182374(0x1f3)]?_0x3d0a5e+=_0x182374(0x20f)+getPlayerName(_0x22ddb0[_0x182374(0x1f3)])+'!':_0x3d0a5e+=_0x182374(0x1de),await endDiceGame(_0x4565fa)):(_0x3d0a5e+=_0x182374(0x216)+_0x22ddb0['nextRound']+_0x182374(0x1e4)+getPlayerName(_0x22ddb0[_0x182374(0x1ea)])+_0x182374(0x1d5),setDiceTurnTimeout(_0x4565fa,_0x491708,_0x22ddb0[_0x182374(0x1ea)],_0x3f8c42)),await _0x491708[_0x182374(0x1d7)](_0x4565fa,{'text':_0x3d0a5e,'mentions':[_0x22ddb0['player1'],_0x22ddb0['player2'],_0x22ddb0[_0x182374(0x1da)],_0x22ddb0['gameWinner']][_0x182374(0x21d)](Boolean)});}else{if(_0x3f8c42['isAiGame']&&_0x22ddb0[_0x182374(0x1d0)]===BOT_JID){await _0x491708['sendMessage'](_0x4565fa,{'text':_0x182374(0x22f)+getPlayerName(_0x335428)+'\x20rolled:\x20'+getDiceEmoji(_0x22ddb0['roll'])+'\x20*'+_0x22ddb0[_0x182374(0x1df)]+'*\x0a\x0a🤖\x20AI\x20is\x20rolling...','mentions':[_0x335428]}),await handleAiDiceRoll(_0x4565fa,_0x491708,_0x3f8c42);return;}await _0x491708['sendMessage'](_0x4565fa,{'text':_0x182374(0x22f)+getPlayerName(_0x335428)+_0x182374(0x1d4)+getDiceEmoji(_0x22ddb0[_0x182374(0x1df)])+'\x20*'+_0x22ddb0[_0x182374(0x1df)]+'*\x0a\x0a@'+getPlayerName(_0x22ddb0[_0x182374(0x1d0)])+_0x182374(0x1d5),'mentions':[_0x335428,_0x22ddb0[_0x182374(0x1d0)]]}),setDiceTurnTimeout(_0x4565fa,_0x491708,_0x22ddb0[_0x182374(0x1d0)],_0x3f8c42);}return;}const _0x8fe365=await getActiveWcgGame(_0x4565fa);if(_0x8fe365){const _0xea6821=JSON[_0x182374(0x1cb)](_0x8fe365[_0x182374(0x1c7)]||'[]');if(!_0xea6821[_0x182374(0x20c)](_0x335428))return;const _0x1e60cd=_0xfb691c[_0x182374(0x229)](/\s+/)[0x0][_0x182374(0x228)]();if(!_0x1e60cd||_0x1e60cd[_0x182374(0x205)]<0x2||!/^[a-z]+$/[_0x182374(0x239)](_0x1e60cd))return;const _0x58649f=await submitWord(_0x4565fa,_0x335428,_0x1e60cd);if(_0x58649f[_0x182374(0x1c1)]===_0x182374(0x1ca))return;if(_0x58649f[_0x182374(0x1c1)]===_0x182374(0x1fd)){await _0x491708[_0x182374(0x1d7)](_0x4565fa,{'text':_0x182374(0x1e3)+_0x1e60cd+'\x22\x20has\x20already\x20been\x20used!'});return;}if(_0x58649f['error']===_0x182374(0x1fa)){await _0x491708[_0x182374(0x1d7)](_0x4565fa,{'text':_0x182374(0x241)+_0x58649f[_0x182374(0x22d)][_0x182374(0x1c6)]()+'*!'});return;}if(_0x58649f['error']===_0x182374(0x22e)){await _0x491708['sendMessage'](_0x4565fa,{'text':_0x182374(0x1dc)});return;}if(_0x58649f['error']===_0x182374(0x244)){await _0x491708[_0x182374(0x1d7)](_0x4565fa,{'text':_0x182374(0x1e3)+_0x1e60cd+'\x22\x20is\x20not\x20a\x20valid\x20English\x20word!'});return;}if(_0x58649f[_0x182374(0x1c1)])return;clearWcgTimeout(_0x4565fa);const _0x176bbf=_0x58649f[_0x182374(0x1c8)][_0x182374(0x1e8)](-0x1)[_0x182374(0x1c6)](),_0x3bb69f=await getActiveWcgGame(_0x4565fa);if(_0x3bb69f&&_0x3bb69f[_0x182374(0x212)]&&_0x58649f[_0x182374(0x204)]===BOT_JID){await _0x491708[_0x182374(0x1d7)](_0x4565fa,{'text':_0x182374(0x20e)+_0x58649f[_0x182374(0x1c8)]+_0x182374(0x1fc)+_0x58649f[_0x182374(0x1c8)]['length']+'\x20pts)\x0a\x0a🤖\x20AI\x20is\x20thinking...'}),await handleAiWcgMove(_0x4565fa,_0x491708,_0x3bb69f);return;}await _0x491708[_0x182374(0x1d7)](_0x4565fa,{'text':_0x182374(0x20e)+_0x58649f[_0x182374(0x1c8)]+_0x182374(0x1fc)+_0x58649f[_0x182374(0x1c8)][_0x182374(0x205)]+_0x182374(0x1fb)+getPlayerName(_0x58649f['nextPlayer'])+_0x182374(0x213)+_0x176bbf+_0x182374(0x1ba)+_0x58649f[_0x182374(0x1e2)]+'\x20|\x20⏰\x2030s','mentions':[_0x58649f[_0x182374(0x204)]]}),setWcgTurnTimeout(_0x4565fa,_0x491708,_0x58649f[_0x182374(0x204)],_0x58649f['game']);return;}}catch(_0x900e5){console[_0x182374(0x1c1)](_0x182374(0x1bf),_0x900e5);}};module[_0x4593b7(0x1ce)]={'handleGameMessage':handleGameMessage,'clearGameTimeout':clearGameTimeout,'clearDiceTimeout':clearDiceTimeout,'setMoveTimeout':setMoveTimeout,'setWcgTurnTimeout':setWcgTurnTimeout,'setDiceTurnTimeout':setDiceTurnTimeout,'renderBoard':renderBoard,'getPlayerName':getPlayerName,'handleAiTttMove':handleAiTttMove,'handleAiWcgMove':handleAiWcgMove,'handleAiDiceRoll':handleAiDiceRoll,'gameTimeouts':gameTimeouts,'diceTimeouts':diceTimeouts};function _0x398e(){const _0x42de55=['includes','participantPn','✅\x20*','🏆\x20*WINNER:*\x20@','set','endsWith','isAiGame','\x27s\x20turn\x0aNext\x20word\x20starts\x20with:\x20*','\x20|\x20','\x0a\x0a🤝\x20It\x27s\x20a\x20tie!\x20Good\x20game!','\x0a\x0a*Round\x20','⏰\x20@','⏰\x20*WORD\x20CHAIN\x20-\x20TIMEOUT*\x0a\x0a@','488AKfiws','scores','noWinner','\x20wins\x20this\x20round!\x0a','filter','\x20wins!','\x20(⭕)\x0a\x0a','./wcg','senderPn','32741073sfWgPW','join','game','\x0a\x0a🤝\x20*IT\x27S\x20A\x20DRAW!*\x0a\x0aGood\x20game!\x20Start\x20a\x20new\x20one\x20with\x20*.ttt*','currentTurn','\x27s\x20turn\x20(','toLowerCase','split','remoteJidAlt','\x27s\x20turn\x0aLast\x20word:\x20*','@g.us','expected','too_short','🎲\x20@','conversation','87647aWgVzN','player2Score','727108NAzkYc','✅\x20@','\x0a\x0aCongratulations!\x20🎉',',\x20type\x20*roll*\x20to\x20start!',')\x20took\x20too\x20long\x20to\x20move!\x0a\x0a🏆\x20*WINNER:\x20@','finished','test','\x20Results*\x0a\x0a','\x0a\x0a📊\x20*Final\x20Scores:*\x0a','\x0a\x0a🤖\x20AI\x20is\x20thinking...','player2','./gameAI','\x0a\x0a🏆\x20*WINNER:\x20@','remoteJid','❌\x20Word\x20must\x20start\x20with\x20*','keys','message','invalid_word','delete','🎲\x20*DICE\x20GAME\x20STARTED!*\x0a\x0a@','4IXuTDi','🏆\x20','\x20took\x20too\x20long!\x0a🏆\x20@','❌\x20AI\x20roll\x20error.\x20Game\x20ended.','./database/wcgGame','winner','*\x0a\x0a📊\x20Words:\x20','any\x20letter','\x20|\x20⏰\x2030s','currentRound','\x20(❌)\x0aPlayer\x202:\x20@','Game\x20handler\x20error:','player2Roll','error','roundComplete','\x20-\x20','participant','symbol','toUpperCase','players','word','*\x20by\x20timeout!\x0a\x0aStart\x20a\x20new\x20game\x20with\x20*.ttt*','not_your_turn','parse','761611iQzUMg','🎮\x20*TIC\x20TAC\x20TOE\x20vs\x20AI*\x0a\x0a','exports','draw','waitingFor','\x0a\x0a🤖\x20AI\x20wins!\x20Better\x20luck\x20next\x20time!','🤖\x20AI','\x0aHost\x20can\x20type\x20*.wcgbegin*\x20to\x20start!','\x20rolled:\x20',',\x20type\x20*roll*!','key','sendMessage','\x27s\x20turn\x20(❌)\x0a\x0a*Reply\x20with\x20a\x20number\x20(1-9)\x20to\x20move!*\x0a⏰\x20_30\x20seconds\x20per\x20move_','get','roundWinner','nextRound','❌\x20Word\x20must\x20be\x20at\x20least\x202\x20letters!','\x0a\x0a🎮\x20*GAME\x20OVER!*\x0a','🤝\x20*It\x27s\x20a\x20tie!*','roll','lastWord','⏰\x20*TIC\x20TAC\x20TOE\x20-\x20TIMEOUT*\x0a\x0a@','wordCount','❌\x20\x22','*\x0a@','player1Score','⏰\x20*DICE\x20GAME\x20-\x20TIMEOUT*\x0a\x0a@','./database/diceGame','slice','\x0aRounds:\x20','player1','has','gameFinished','🎮\x20*TIC\x20TAC\x20TOE*\x0a\x0aPlayer\x201:\x20@','242400xBTKSd','Start\x20with:\x20*','🤖\x20AI\x20wins!','\x0a\x0a@','\x20🤖\x20AI:\x20','gameWinner','Any\x20word\x20to\x20start!','\x20ran\x20out\x20of\x20time\x20and\x20is\x20eliminated!\x0a\x0a🔄\x20@','totalRounds','player1Roll','board','🤖\x20AI:\x20*','wrong_letter','\x20pts)\x0a\x0a🔄\x20@','*\x20(+','word_used','./database/games','2444802wukOww','1769940oQFRGY','🎮\x20*TIC\x20TAC\x20TOE\x20-\x20DRAW!*\x0a\x0a','🎮\x20*TIC\x20TAC\x20TOE\x20-\x20GAME\x20STARTED!*\x0a\x0aPlayer\x201:\x20@','\x20ran\x20out\x20of\x20time!\x0a\x0a📊\x20*Final\x20Scores:*\x0a','nextPlayer','length','\x0a\x0a⏰\x20_30\x20seconds\x20to\x20respond_','*!\x0a\x0a🏆\x20*WINNER:*\x20@','🤖\x20AI\x20couldn\x27t\x20find\x20a\x20word\x20starting\x20with\x20*','\x0a——+——+——\x0a','🎮\x20*TIC\x20TAC\x20TOE\x20-\x20GAME\x20OVER!*\x0a\x0a','🤝\x20It\x27s\x20a\x20tie!\x0a'];_0x398e=function(){return _0x42de55;};return _0x398e();}
+const {
+    joinGame,
+    getActiveGame,
+    getWaitingGame,
+    makeMove,
+    endGame,
+} = require("./database/games");
+
+const {
+    getActiveWcgGame,
+    getWaitingWcgGame,
+    joinWcgGame,
+    submitWord,
+    eliminatePlayer,
+    endWcgGame,
+} = require("./database/wcgGame");
+
+const {
+    getActiveDiceGame,
+    getWaitingDiceGame,
+    joinDiceGame,
+    playerRoll,
+    endDiceGame,
+} = require("./database/diceGame");
+
+const { findBestTttMove, findWcgWord, BOT_JID } = require("./gameAI");
+const { wcgTimeouts, clearWcgTimeout, formatScores, getDiceEmoji } = require("./wcg");
+
+const gameTimeouts = new Map();
+const diceTimeouts = new Map();
+
+const getPlayerName = (jid) => jid.split("@")[0];
+
+const renderBoard = (board) => {
+    const cell = (val) => {
+        if (val === "X") return "❌";
+        if (val === "O") return "⭕";
+        return `${val}️⃣`;
+    };
+    return `${cell(board[0])} | ${cell(board[1])} | ${cell(board[2])}
+——+——+——
+${cell(board[3])} | ${cell(board[4])} | ${cell(board[5])}
+——+——+——
+${cell(board[6])} | ${cell(board[7])} | ${cell(board[8])}`;
+};
+
+const clearGameTimeout = (chatJid) => {
+    const timeout = gameTimeouts.get(chatJid);
+    if (timeout) {
+        clearTimeout(timeout);
+        gameTimeouts.delete(chatJid);
+    }
+};
+
+const clearDiceTimeout = (chatJid) => {
+    if (diceTimeouts.has(chatJid)) {
+        clearTimeout(diceTimeouts.get(chatJid));
+        diceTimeouts.delete(chatJid);
+    }
+};
+
+const setMoveTimeout = (chatJid, Gifted, currentPlayer, otherPlayer, player1) => {
+    clearGameTimeout(chatJid);
+    const timeout = setTimeout(async () => {
+        const active = await getActiveGame(chatJid);
+        if (active && active.currentTurn === currentPlayer) {
+            await endGame(chatJid);
+            const currentSymbol = currentPlayer === active.player1 ? "❌" : "⭕";
+            await Gifted.sendMessage(chatJid, {
+                text: `⏰ *TIC TAC TOE - TIMEOUT*\n\n@${getPlayerName(currentPlayer)} (${currentSymbol}) took too long to move!\n\n🏆 *WINNER: @${getPlayerName(otherPlayer)}* by timeout!\n\nStart a new game with *.ttt*`,
+                mentions: [currentPlayer, otherPlayer],
+            });
+        }
+        gameTimeouts.delete(chatJid);
+    }, 30000);
+    gameTimeouts.set(chatJid, timeout);
+};
+
+const setWcgTurnTimeout = (chatJid, Gifted, currentPlayer, game) => {
+    clearWcgTimeout(chatJid);
+    const timeout = setTimeout(async () => {
+        const activeGame = await getActiveWcgGame(chatJid);
+        if (activeGame && activeGame.currentTurn === currentPlayer) {
+            const result = await eliminatePlayer(chatJid, currentPlayer);
+            if (result.finished) {
+                await endWcgGame(chatJid);
+                if (result.noWinner || !result.winner) {
+                    await Gifted.sendMessage(chatJid, {
+                        text: `⏰ *WORD CHAIN - GAME OVER*\n\n@${getPlayerName(currentPlayer)} ran out of time!\n\n📊 *Final Scores:*\n${formatScores(result.scores)}`,
+                        mentions: [currentPlayer],
+                    });
+                } else {
+                    await Gifted.sendMessage(chatJid, {
+                        text: `⏰ *WORD CHAIN - TIMEOUT*\n\n@${getPlayerName(currentPlayer)} ran out of time!\n\n🏆 *WINNER:* @${getPlayerName(result.winner)}\n\n📊 *Final Scores:*\n${formatScores(result.scores)}`,
+                        mentions: [currentPlayer, result.winner],
+                    });
+                }
+            } else {
+                await Gifted.sendMessage(chatJid, {
+                    text: `⏰ @${getPlayerName(currentPlayer)} ran out of time and is eliminated!\n\n🔄 @${getPlayerName(result.nextPlayer)}'s turn\nLast word: *${activeGame.lastWord || 'None'}*\n${activeGame.lastWord ? `Start with: *${activeGame.lastWord.slice(-1).toUpperCase()}*` : 'Any word to start!'}\n\n⏰ _30 seconds to respond_`,
+                    mentions: [currentPlayer, result.nextPlayer],
+                });
+                setWcgTurnTimeout(chatJid, Gifted, result.nextPlayer, activeGame);
+            }
+        }
+        wcgTimeouts.delete(chatJid);
+    }, 30000);
+    wcgTimeouts.set(chatJid, timeout);
+};
+
+const setDiceTurnTimeout = (chatJid, Gifted, currentPlayer, game) => {
+    clearDiceTimeout(chatJid);
+    const timeout = setTimeout(async () => {
+        const activeGame = await getActiveDiceGame(chatJid);
+        if (activeGame && activeGame.currentTurn === currentPlayer) {
+            await endDiceGame(chatJid);
+            const otherPlayer = currentPlayer === activeGame.player1 ? activeGame.player2 : activeGame.player1;
+            await Gifted.sendMessage(chatJid, {
+                text: `⏰ *DICE GAME - TIMEOUT*\n\n@${getPlayerName(currentPlayer)} took too long!\n🏆 @${getPlayerName(otherPlayer)} wins by default!`,
+                mentions: [currentPlayer, otherPlayer],
+            });
+        }
+        diceTimeouts.delete(chatJid);
+    }, 30000);
+    diceTimeouts.set(chatJid, timeout);
+};
+
+async function handleAiTttMove(from, Gifted, game) {
+    const board = JSON.parse(game.board);
+    const aiMove = findBestTttMove(board);
+    if (aiMove === -1) return;
+    
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    const result = await makeMove(from, BOT_JID, aiMove + 1);
+    
+    if (result.winner) {
+        clearGameTimeout(from);
+        await Gifted.sendMessage(from, {
+            text: `🎮 *TIC TAC TOE - AI WINS!*\n\n${renderBoard(JSON.parse(result.game.board))}\n\n🤖 AI wins! Better luck next time!`,
+        });
+        return;
+    }
+    
+    if (result.draw) {
+        clearGameTimeout(from);
+        await Gifted.sendMessage(from, {
+            text: `🎮 *TIC TAC TOE - DRAW!*\n\n${renderBoard(JSON.parse(result.game.board))}\n\n🤝 It's a tie! Good game!`,
+        });
+        return;
+    }
+    
+    const newBoard = JSON.parse(result.game.board);
+    await Gifted.sendMessage(from, {
+        text: `🤖 AI played position ${aiMove + 1}\n\n${renderBoard(newBoard)}\n\n@${getPlayerName(result.game.currentTurn)}'s turn (❌)\n\n⏰ _30 seconds_`,
+        mentions: [result.game.currentTurn],
+    });
+    
+    setMoveTimeout(from, Gifted, result.game.currentTurn, BOT_JID, result.game.player1);
+}
+
+async function handleAiWcgMove(from, Gifted, gameRef) {
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    const freshGame = await getActiveWcgGame(from);
+    if (!freshGame) return;
+    
+    const usedWords = JSON.parse(freshGame.usedWords || '[]');
+    const aiWord = await findWcgWord(freshGame.lastWord, usedWords);
+    
+    const lastLetter = freshGame.lastWord ? freshGame.lastWord.slice(-1).toUpperCase() : 'any letter';
+    
+    if (!aiWord) {
+        const humanPlayer = freshGame.player1 === BOT_JID ? freshGame.player2 : freshGame.player1;
+        const scores = JSON.parse(freshGame.scores || '{}');
+        await Gifted.sendMessage(from, {
+            text: `🤖 AI couldn't find a word starting with *${lastLetter}*!\n\n🏆 *WINNER:* @${getPlayerName(humanPlayer)}\n\n📊 *Final Scores:*\n${formatScores(scores)}`,
+            mentions: [humanPlayer],
+        });
+        await endWcgGame(from);
+        return;
+    }
+    
+    const result = await submitWord(from, BOT_JID, aiWord);
+    if (result.error) return;
+    
+    clearWcgTimeout(from);
+    const nextLetter = result.word.slice(-1).toUpperCase();
+    
+    await Gifted.sendMessage(from, {
+        text: `🤖 AI: *${result.word}* (+${result.word.length} pts)\n\n🔄 @${getPlayerName(result.nextPlayer)}'s turn\nNext word starts with: *${nextLetter}*\n\n📊 Words: ${result.wordCount} | ⏰ 30s`,
+        mentions: [result.nextPlayer],
+    });
+    
+    setWcgTurnTimeout(from, Gifted, result.nextPlayer, result.game);
+}
+
+async function handleAiDiceRoll(from, Gifted, gameRef) {
+    clearDiceTimeout(from);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    const result = await playerRoll(from, BOT_JID);
+    
+    if (result.error) {
+        await Gifted.sendMessage(from, {
+            text: `❌ AI roll error. Game ended.`,
+        });
+        await endDiceGame(from);
+        return;
+    }
+    
+    let text = `🎲 *Round ${result.currentRound} Results*\n\n`;
+    text += `${getDiceEmoji(result.player1Roll)} @${getPlayerName(result.player1)}: ${result.player1Roll}\n`;
+    text += `${getDiceEmoji(result.player2Roll)} 🤖 AI: ${result.player2Roll}\n\n`;
+    
+    if (result.roundWinner) {
+        const winnerName = result.roundWinner === BOT_JID ? '🤖 AI' : `@${getPlayerName(result.roundWinner)}`;
+        text += `🏆 ${winnerName} wins this round!\n`;
+    } else {
+        text += `🤝 It's a tie!\n`;
+    }
+    
+    text += `\n📊 *Score:* ${result.player1Score} - ${result.player2Score}`;
+    
+    if (result.gameFinished) {
+        text += `\n\n🎮 *GAME OVER!*\n`;
+        if (result.gameWinner) {
+            const winnerName = result.gameWinner === BOT_JID ? '🤖 AI wins!' : `🏆 @${getPlayerName(result.gameWinner)} wins!`;
+            text += winnerName;
+        } else {
+            text += `🤝 *It's a tie!*`;
+        }
+        await endDiceGame(from);
+    } else {
+        text += `\n\n*Round ${result.nextRound}*\n@${getPlayerName(result.player1)}, type *roll*!`;
+        const freshGame = await getActiveDiceGame(from);
+        setDiceTurnTimeout(from, Gifted, result.player1, freshGame);
+    }
+    
+    await Gifted.sendMessage(from, {
+        text,
+        mentions: [result.player1],
+    });
+}
+
+const handleGameMessage = async (Gifted, message) => {
+    try {
+        if (!message?.message) return;
+        
+        const from = message.key.remoteJid;
+        const isPrivateChat = !from.endsWith('@g.us');
+        
+        if (message.key.fromMe && !isPrivateChat) return;
+        
+        const sender = message.key.participantPn || message.key.senderPn || message.key.participant || message.key.participantAlt || message.key.remoteJidAlt || message.key.remoteJid;
+        
+        if (!sender || sender.endsWith('@g.us')) return;
+        
+        const messageType = Object.keys(message.message)[0];
+        const body = (messageType === 'conversation'
+            ? message.message.conversation
+            : message.message[messageType]?.text || message.message[messageType]?.caption || '').trim();
+        
+        if (!body) return;
+        
+        const lowerBody = body.toLowerCase();
+        
+        if (lowerBody === 'join') {
+            const tttWaiting = await getWaitingGame(from);
+            if (tttWaiting) {
+                const result = await joinGame(from, sender);
+                if (result && !result.error) {
+                    clearGameTimeout(from);
+                    const board = JSON.parse(result.board);
+                    await Gifted.sendMessage(from, {
+                        text: `🎮 *TIC TAC TOE - GAME STARTED!*\n\nPlayer 1: @${getPlayerName(result.player1)} (❌)\nPlayer 2: @${getPlayerName(result.player2)} (⭕)\n\n${renderBoard(board)}\n\n@${getPlayerName(result.currentTurn)}'s turn (❌)\n\n*Reply with a number (1-9) to move!*\n⏰ _30 seconds per move_`,
+                        mentions: [result.player1, result.player2, result.currentTurn],
+                    });
+                    setMoveTimeout(from, Gifted, result.currentTurn, result.player2, result.player1);
+                    return;
+                }
+            }
+            
+            const wcgWaiting = await getWaitingWcgGame(from);
+            if (wcgWaiting) {
+                const result = await joinWcgGame(from, sender);
+                if (result && !result.error) {
+                    await Gifted.sendMessage(from, {
+                        text: `✅ @${getPlayerName(sender)} joined the Word Chain game!\n\n👥 Players: ${result.players?.length || 0}\nHost can type *.wcgbegin* to start!`,
+                        mentions: [sender],
+                    });
+                    return;
+                }
+            }
+            
+            const diceWaiting = await getWaitingDiceGame(from);
+            if (diceWaiting) {
+                const result = await joinDiceGame(from, sender);
+                if (result && !result.error) {
+                    clearDiceTimeout(from);
+                    await Gifted.sendMessage(from, {
+                        text: `🎲 *DICE GAME STARTED!*\n\n@${getPlayerName(result.player1)} vs @${getPlayerName(result.player2)}\nRounds: ${result.totalRounds}\n\n@${getPlayerName(result.player1)}, type *roll* to start!`,
+                        mentions: [result.player1, result.player2],
+                    });
+                    setDiceTurnTimeout(from, Gifted, result.player1, result.game);
+                    return;
+                }
+            }
+            return;
+        }
+        
+        const num = parseInt(body);
+        if (!isNaN(num) && num >= 1 && num <= 9) {
+            const game = await getActiveGame(from);
+            if (!game) return;
+            if (game.player1 !== sender && game.player2 !== sender) return;
+            
+            const result = await makeMove(from, sender, num);
+            if (result.error) return;
+            
+            const board = JSON.parse(result.game.board);
+            
+            if (result.winner) {
+                clearGameTimeout(from);
+                const winnerSymbol = result.symbol === "X" ? "❌" : "⭕";
+                await Gifted.sendMessage(from, {
+                    text: `🎮 *TIC TAC TOE - GAME OVER!*\n\n${renderBoard(board)}\n\n🏆 *WINNER: @${getPlayerName(result.winner)}* ${winnerSymbol}\n\nCongratulations! 🎉`,
+                    mentions: [result.winner],
+                });
+                return;
+            }
+            
+            if (result.draw) {
+                clearGameTimeout(from);
+                await Gifted.sendMessage(from, {
+                    text: `🎮 *TIC TAC TOE - GAME OVER!*\n\n${renderBoard(board)}\n\n🤝 *IT'S A DRAW!*\n\nGood game! Start a new one with *.ttt*`,
+                });
+                return;
+            }
+            
+            const currentSymbol = result.game.currentTurn === result.game.player1 ? "❌" : "⭕";
+            const otherPlayer = result.game.currentTurn === result.game.player1 ? result.game.player2 : result.game.player1;
+            
+            if (game.isAiGame && result.game.currentTurn === BOT_JID) {
+                await Gifted.sendMessage(from, {
+                    text: `🎮 *TIC TAC TOE vs AI*\n\n${renderBoard(board)}\n\n🤖 AI is thinking...`,
+                });
+                await handleAiTttMove(from, Gifted, result.game);
+                return;
+            }
+            
+            await Gifted.sendMessage(from, {
+                text: `🎮 *TIC TAC TOE*\n\nPlayer 1: @${getPlayerName(result.game.player1)} (❌)\nPlayer 2: @${getPlayerName(result.game.player2)} (⭕)\n\n${renderBoard(board)}\n\n@${getPlayerName(result.game.currentTurn)}'s turn (${currentSymbol})\n\n*Reply 1-9 to move*\n⏰ _30 seconds_`,
+                mentions: [result.game.player1, result.game.player2, result.game.currentTurn],
+            });
+            
+            setMoveTimeout(from, Gifted, result.game.currentTurn, otherPlayer, result.game.player1);
+            return;
+        }
+        
+        if (lowerBody === 'roll') {
+            const game = await getActiveDiceGame(from);
+            if (!game) return;
+            if (game.player1 !== sender && game.player2 !== sender) return;
+            
+            clearDiceTimeout(from);
+            const result = await playerRoll(from, sender);
+            
+            if (result.error === 'not_your_turn') return;
+            if (result.error) return;
+            
+            if (result.roundComplete || result.gameFinished) {
+                let text = `🎲 *Round ${result.currentRound} Results*\n\n`;
+                text += `${getDiceEmoji(result.player1Roll)} @${getPlayerName(result.player1)}: ${result.player1Roll}\n`;
+                text += `${getDiceEmoji(result.player2Roll)} @${getPlayerName(result.player2)}: ${result.player2Roll}\n\n`;
+                
+                if (result.roundWinner) {
+                    text += `🏆 @${getPlayerName(result.roundWinner)} wins this round!\n`;
+                } else {
+                    text += `🤝 It's a tie!\n`;
+                }
+                
+                text += `\n📊 *Score:* ${result.player1Score} - ${result.player2Score}`;
+                
+                if (result.gameFinished) {
+                    text += `\n\n🎮 *GAME OVER!*\n`;
+                    if (result.gameWinner) {
+                        text += `🏆 *WINNER:* @${getPlayerName(result.gameWinner)}!`;
+                    } else {
+                        text += `🤝 *It's a tie!*`;
+                    }
+                    await endDiceGame(from);
+                } else {
+                    text += `\n\n*Round ${result.nextRound}*\n@${getPlayerName(result.player1)}, type *roll*!`;
+                    setDiceTurnTimeout(from, Gifted, result.player1, game);
+                }
+                
+                await Gifted.sendMessage(from, {
+                    text,
+                    mentions: [result.player1, result.player2, result.roundWinner, result.gameWinner].filter(Boolean),
+                });
+            } else {
+                if (game.isAiGame && result.waitingFor === BOT_JID) {
+                    await Gifted.sendMessage(from, {
+                        text: `🎲 @${getPlayerName(sender)} rolled: ${getDiceEmoji(result.roll)} *${result.roll}*\n\n🤖 AI is rolling...`,
+                        mentions: [sender],
+                    });
+                    await handleAiDiceRoll(from, Gifted, game);
+                    return;
+                }
+                
+                await Gifted.sendMessage(from, {
+                    text: `🎲 @${getPlayerName(sender)} rolled: ${getDiceEmoji(result.roll)} *${result.roll}*\n\n@${getPlayerName(result.waitingFor)}, type *roll*!`,
+                    mentions: [sender, result.waitingFor],
+                });
+                setDiceTurnTimeout(from, Gifted, result.waitingFor, game);
+            }
+            return;
+        }
+        
+        const wcgGame = await getActiveWcgGame(from);
+        if (wcgGame) {
+            const players = JSON.parse(wcgGame.players || '[]');
+            if (!players.includes(sender)) return;
+            
+            const word = body.split(/\s+/)[0].toLowerCase();
+            if (!word || word.length < 2 || !/^[a-z]+$/.test(word)) return;
+            
+            const result = await submitWord(from, sender, word);
+            
+            if (result.error === 'not_your_turn') return;
+            if (result.error === 'word_used') {
+                await Gifted.sendMessage(from, {
+                    text: `❌ "${word}" has already been used!`,
+                });
+                return;
+            }
+            if (result.error === 'wrong_letter') {
+                await Gifted.sendMessage(from, {
+                    text: `❌ Word must start with *${result.expected.toUpperCase()}*!`,
+                });
+                return;
+            }
+            if (result.error === 'too_short') {
+                await Gifted.sendMessage(from, {
+                    text: "❌ Word must be at least 2 letters!",
+                });
+                return;
+            }
+            if (result.error === 'invalid_word') {
+                await Gifted.sendMessage(from, {
+                    text: `❌ "${word}" is not a valid English word!`,
+                });
+                return;
+            }
+            if (result.error) return;
+            
+            clearWcgTimeout(from);
+            const nextLetter = result.word.slice(-1).toUpperCase();
+            
+            const updatedGame = await getActiveWcgGame(from);
+            if (updatedGame && updatedGame.isAiGame && result.nextPlayer === BOT_JID) {
+                await Gifted.sendMessage(from, {
+                    text: `✅ *${result.word}* (+${result.word.length} pts)\n\n🤖 AI is thinking...`,
+                });
+                await handleAiWcgMove(from, Gifted, updatedGame);
+                return;
+            }
+            
+            await Gifted.sendMessage(from, {
+                text: `✅ *${result.word}* (+${result.word.length} pts)\n\n🔄 @${getPlayerName(result.nextPlayer)}'s turn\nNext word starts with: *${nextLetter}*\n\n📊 Words: ${result.wordCount} | ⏰ 30s`,
+                mentions: [result.nextPlayer],
+            });
+            
+            setWcgTurnTimeout(from, Gifted, result.nextPlayer, result.game);
+            return;
+        }
+    } catch (err) {
+        console.error('Game handler error:', err);
+    }
+};
+
+module.exports = { 
+    handleGameMessage,
+    clearGameTimeout,
+    clearDiceTimeout,
+    setMoveTimeout,
+    setWcgTurnTimeout,
+    setDiceTurnTimeout,
+    renderBoard,
+    getPlayerName,
+    handleAiTttMove,
+    handleAiWcgMove,
+    handleAiDiceRoll,
+    gameTimeouts,
+    diceTimeouts,
+};

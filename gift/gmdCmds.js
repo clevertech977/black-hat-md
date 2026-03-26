@@ -1,1 +1,36 @@
-function _0x5c6e(){const _0x1126e2=['exports','25UQySiu','121dUXLgV','62NYOrES','events','670NVcqJD','138692NfJPgl','forEach','dontAddCommandList','42672rwxKlk','10083ywiucM','451308koRlrK','general','stack','88247TMgJzK','split','match','react','147591hCudBw','push','576gIwTuq','category','5687632gJcjiI','filename'];_0x5c6e=function(){return _0x1126e2;};return _0x5c6e();}function _0x2967(_0x5d91cc,_0x12e7ae){_0x5d91cc=_0x5d91cc-0x87;const _0x5c6e2f=_0x5c6e();let _0x29672b=_0x5c6e2f[_0x5d91cc];return _0x29672b;}const _0x50c456=_0x2967;(function(_0x4bae92,_0x28328e){const _0x21ae5d=_0x2967,_0x2489a8=_0x4bae92();while(!![]){try{const _0x1b9b96=parseInt(_0x21ae5d(0x92))/0x1+-parseInt(_0x21ae5d(0x87))/0x2*(-parseInt(_0x21ae5d(0x8e))/0x3)+-parseInt(_0x21ae5d(0x8a))/0x4*(-parseInt(_0x21ae5d(0x9d))/0x5)+-parseInt(_0x21ae5d(0x98))/0x6*(parseInt(_0x21ae5d(0x8d))/0x7)+-parseInt(_0x21ae5d(0x9a))/0x8+parseInt(_0x21ae5d(0x96))/0x9*(parseInt(_0x21ae5d(0x89))/0xa)+-parseInt(_0x21ae5d(0x9e))/0xb*(-parseInt(_0x21ae5d(0x8f))/0xc);if(_0x1b9b96===_0x28328e)break;else _0x2489a8['push'](_0x2489a8['shift']());}catch(_0x142b19){_0x2489a8['push'](_0x2489a8['shift']());}}}(_0x5c6e,0x8e1b1));let commands=[];const tabCmds=[],evt={'events':{},'on'(_0x52b0bb,_0x1dfa58){const _0x41b168=_0x2967;!this[_0x41b168(0x88)][_0x52b0bb]&&(this['events'][_0x52b0bb]=[]),this['events'][_0x52b0bb][_0x41b168(0x97)](_0x1dfa58);},'emit'(_0x4ea199,_0x1c76e5){const _0xcbcdba=_0x2967;this['events'][_0x4ea199]&&this[_0xcbcdba(0x88)][_0x4ea199][_0xcbcdba(0x8b)](_0x21d9e0=>_0x21d9e0(_0x1c76e5));}};function gmd(_0x31a0d7,_0x544995){const _0xe8f717=_0x2967;let _0x368713=_0x31a0d7;if(!_0x31a0d7[_0xe8f717(0x99)])_0x368713[_0xe8f717(0x99)]=_0xe8f717(0x90);if(!_0x31a0d7[_0xe8f717(0x95)])_0x368713[_0xe8f717(0x95)]='🚀';if(!_0x31a0d7[_0xe8f717(0x8c)])_0x368713[_0xe8f717(0x8c)]=![];_0x368713['function']=_0x544995;const _0x1b01ba=new Error()[_0xe8f717(0x91)],_0x1c168b=_0x1b01ba[_0xe8f717(0x93)]('\x0a')[0x2][_0xe8f717(0x94)](/\((.*):\d+:\d+\)/)[0x1];return _0x368713[_0xe8f717(0x9b)]=_0x1c168b,commands[_0xe8f717(0x97)](_0x368713),_0x368713;}module[_0x50c456(0x9c)]={'gmd':gmd,'commands':commands,'evt':evt},evt['commands']=commands;
+let commands = [];
+const tabCmds = [];
+
+const evt = {
+    events: {},
+    on(event, callback) {
+        if (!this.events[event]) {
+            this.events[event] = [];
+        }
+        this.events[event].push(callback);
+    },
+    emit(event, data) {
+        if (this.events[event]) {
+            this.events[event].forEach((callback) => callback(data));
+        }
+    },
+};
+
+function gmd(obj, functions) {
+    let infoComs = obj;
+    if (!obj.category) infoComs.category = "general"; 
+    if (!obj.react) infoComs.react = "🚀";
+    if (!obj.dontAddCommandList) infoComs.dontAddCommandList = false; 
+    infoComs.function = functions;
+    
+    const stack = new Error().stack;
+    const filePath = stack.split('\n')[2].match(/\((.*):\d+:\d+\)/)[1];
+    infoComs.filename = filePath;
+    
+    commands.push(infoComs);
+    return infoComs;
+}
+
+module.exports = { gmd, commands, evt };
+
+evt.commands = commands;  // this was hell and it took me 3 hours to fix since bot wasn't responding to commands after i had changed more bot structure logic

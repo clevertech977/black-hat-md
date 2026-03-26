@@ -1,1 +1,457 @@
-const _0x2fb66f=_0x3665;(function(_0x3b7abc,_0x527633){const _0x19e7f1=_0x3665,_0x3e26c4=_0x3b7abc();while(!![]){try{const _0x5f4f34=-parseInt(_0x19e7f1(0x12f))/0x1*(-parseInt(_0x19e7f1(0x12b))/0x2)+-parseInt(_0x19e7f1(0x114))/0x3*(-parseInt(_0x19e7f1(0x105))/0x4)+parseInt(_0x19e7f1(0xe4))/0x5+parseInt(_0x19e7f1(0xed))/0x6*(-parseInt(_0x19e7f1(0x110))/0x7)+-parseInt(_0x19e7f1(0xfb))/0x8*(parseInt(_0x19e7f1(0xec))/0x9)+parseInt(_0x19e7f1(0x102))/0xa*(parseInt(_0x19e7f1(0xe6))/0xb)+-parseInt(_0x19e7f1(0x11f))/0xc;if(_0x5f4f34===_0x527633)break;else _0x3e26c4['push'](_0x3e26c4['shift']());}catch(_0x21d0e5){_0x3e26c4['push'](_0x3e26c4['shift']());}}}(_0x301f,0x542fa));const {DATABASE}=require(_0x2fb66f(0xe7)),{DataTypes}=require(_0x2fb66f(0x10c)),GroupSettingsDB=DATABASE[_0x2fb66f(0xf7)](_0x2fb66f(0xe8),{'id':{'type':DataTypes[_0x2fb66f(0xfe)],'primaryKey':!![],'autoIncrement':!![]},'groupJid':{'type':DataTypes['STRING'],'allowNull':![],'unique':![]},'key':{'type':DataTypes[_0x2fb66f(0xf3)],'allowNull':![],'unique':![]},'value':{'type':DataTypes[_0x2fb66f(0xf4)],'allowNull':!![]}},{'tableName':'group_settings','timestamps':!![]}),GROUP_SETTING_DEFAULTS={'WELCOME_MESSAGE':_0x2fb66f(0x124),'GOODBYE_MESSAGE':_0x2fb66f(0x124),'GROUP_EVENTS':_0x2fb66f(0x124),'ANTILINK':_0x2fb66f(0x124),'ANTILINK_WARN_COUNT':'5','WELCOME_MESSAGE_TEXT':'','GOODBYE_MESSAGE_TEXT':'','ANTIBAD':'false','ANTIBAD_WARN_COUNT':'5','ANTIGROUPMENTION':'false','ANTIGROUPMENTION_WARN_COUNT':'3','ANTIPROMOTE':_0x2fb66f(0x124),'ANTIDEMOTE':'false'},AntilinkWarningsDB=DATABASE[_0x2fb66f(0xf7)](_0x2fb66f(0x100),{'id':{'type':DataTypes[_0x2fb66f(0xfe)],'primaryKey':!![],'autoIncrement':!![]},'groupJid':{'type':DataTypes[_0x2fb66f(0xf3)],'allowNull':![]},'userJid':{'type':DataTypes[_0x2fb66f(0xf3)],'allowNull':![]},'warnCount':{'type':DataTypes[_0x2fb66f(0xfe)],'defaultValue':0x0}},{'tableName':_0x2fb66f(0xe2),'timestamps':!![],'indexes':[{'unique':!![],'fields':[_0x2fb66f(0xe1),'userJid']}]});async function getAntilinkWarnings(_0x5d85b5,_0x575c2e){const _0x5b27d3=_0x2fb66f,_0x1e9ba6=await AntilinkWarningsDB[_0x5b27d3(0x115)]({'where':{'groupJid':_0x5d85b5,'userJid':_0x575c2e}});return _0x1e9ba6?_0x1e9ba6[_0x5b27d3(0x126)]:0x0;}async function addAntilinkWarning(_0xd252e5,_0x49e1fd){const _0x343d90=_0x2fb66f,[_0x2d4974,_0x5c23a8]=await AntilinkWarningsDB[_0x343d90(0xfa)]({'where':{'groupJid':_0xd252e5,'userJid':_0x49e1fd},'defaults':{'groupJid':_0xd252e5,'userJid':_0x49e1fd,'warnCount':0x1}});return!_0x5c23a8&&(_0x2d4974[_0x343d90(0x126)]+=0x1,await _0x2d4974[_0x343d90(0x11d)]()),_0x2d4974[_0x343d90(0x126)];}async function resetAntilinkWarnings(_0x97e774,_0x54e3ea){const _0x1a0f7e=_0x2fb66f;await AntilinkWarningsDB[_0x1a0f7e(0x127)]({'where':{'groupJid':_0x97e774,'userJid':_0x54e3ea}});}const AntibadWarningsDB=DATABASE['define'](_0x2fb66f(0xe0),{'id':{'type':DataTypes['INTEGER'],'primaryKey':!![],'autoIncrement':!![]},'groupJid':{'type':DataTypes[_0x2fb66f(0xf3)],'allowNull':![]},'userJid':{'type':DataTypes[_0x2fb66f(0xf3)],'allowNull':![]},'warnCount':{'type':DataTypes[_0x2fb66f(0xfe)],'defaultValue':0x0}},{'tableName':_0x2fb66f(0x122),'timestamps':!![],'indexes':[{'unique':!![],'fields':['groupJid',_0x2fb66f(0xf9)]}]}),BadWordsDB=DATABASE['define'](_0x2fb66f(0x125),{'id':{'type':DataTypes[_0x2fb66f(0xfe)],'primaryKey':!![],'autoIncrement':!![]},'groupJid':{'type':DataTypes[_0x2fb66f(0xf3)],'allowNull':![]},'word':{'type':DataTypes['STRING'],'allowNull':![]}},{'tableName':_0x2fb66f(0x103),'timestamps':!![],'indexes':[{'unique':!![],'fields':[_0x2fb66f(0xe1),_0x2fb66f(0x119)]}]});async function getAntibadWarnings(_0x5de394,_0x5749ad){const _0x34b947=_0x2fb66f,_0x139ef5=await AntibadWarningsDB[_0x34b947(0x115)]({'where':{'groupJid':_0x5de394,'userJid':_0x5749ad}});return _0x139ef5?_0x139ef5[_0x34b947(0x126)]:0x0;}async function addAntibadWarning(_0x3d748e,_0x268ff5){const _0x430b9b=_0x2fb66f,[_0x4f2cd7,_0x9bf685]=await AntibadWarningsDB[_0x430b9b(0xfa)]({'where':{'groupJid':_0x3d748e,'userJid':_0x268ff5},'defaults':{'groupJid':_0x3d748e,'userJid':_0x268ff5,'warnCount':0x1}});return!_0x9bf685&&(_0x4f2cd7[_0x430b9b(0x126)]+=0x1,await _0x4f2cd7[_0x430b9b(0x11d)]()),_0x4f2cd7['warnCount'];}async function resetAntibadWarnings(_0x3cfe40,_0x1cb571){const _0x25c6ea=_0x2fb66f;await AntibadWarningsDB[_0x25c6ea(0x127)]({'where':{'groupJid':_0x3cfe40,'userJid':_0x1cb571}});}const AntiGroupMentionWarningsDB=DATABASE['define'](_0x2fb66f(0x106),{'id':{'type':DataTypes[_0x2fb66f(0xfe)],'primaryKey':!![],'autoIncrement':!![]},'groupJid':{'type':DataTypes[_0x2fb66f(0xf3)],'allowNull':![]},'userJid':{'type':DataTypes[_0x2fb66f(0xf3)],'allowNull':![]},'warnCount':{'type':DataTypes[_0x2fb66f(0xfe)],'defaultValue':0x0}},{'tableName':_0x2fb66f(0x121),'timestamps':!![],'indexes':[{'unique':!![],'fields':[_0x2fb66f(0xe1),'userJid']}]});async function getAntiGroupMentionWarnings(_0x9560c0,_0x312c8a){const _0x40be76=await AntiGroupMentionWarningsDB['findOne']({'where':{'groupJid':_0x9560c0,'userJid':_0x312c8a}});return _0x40be76?_0x40be76['warnCount']:0x0;}async function addAntiGroupMentionWarning(_0x50930c,_0x1b31de){const _0x488e79=_0x2fb66f,[_0x282bc3,_0x223668]=await AntiGroupMentionWarningsDB[_0x488e79(0xfa)]({'where':{'groupJid':_0x50930c,'userJid':_0x1b31de},'defaults':{'groupJid':_0x50930c,'userJid':_0x1b31de,'warnCount':0x1}});return!_0x223668&&(_0x282bc3[_0x488e79(0x126)]+=0x1,await _0x282bc3[_0x488e79(0x11d)]()),_0x282bc3['warnCount'];}async function resetAntiGroupMentionWarnings(_0x420267,_0x10b600){const _0x4a4afe=_0x2fb66f;await AntiGroupMentionWarningsDB[_0x4a4afe(0x127)]({'where':{'groupJid':_0x420267,'userJid':_0x10b600}});}function _0x301f(){const _0x5ed755=['antilink_warnings','exports','2978585ShPBby','motherfucker','11rUbhyn','./database','GroupSettings','slut','already\x20exists','✅\x20Group\x20Settings\x20Initialized.','234918aMlVMp','37002XgpcFL','[GROUP_SETTINGS][RESET_ALL_ERROR]:','toLowerCase','findAll','sync','off','STRING','TEXT','fuck','nigga','define','cunt','userJid','findOrCreate','8LDYUNw','code','whore','INTEGER','value','AntilinkWarnings','damn','3710380vhmjQo','bad_words','bastard','4myMEfX','AntiGroupMentionWarnings','ass','dick','original','cock','matako','sequelize','true','message','bitch','343wkEJBW','prick','pumbavu','fag','212709bWMDPn','findOne','shit','mjinga','malaya','word','SQLITE_ERROR','idiot','error','save','kumamako','8570496ERneCA','map','antigroupmention_warnings','antibad_warnings','log','false','BadWords','warnCount','destroy','push','create','dumbass','53794gZmTlV','trim','[setGroupSetting]\x20Error:\x20','retard','13RBVdoc','includes','AntibadWarnings','groupJid'];_0x301f=function(){return _0x5ed755;};return _0x301f();}const DEFAULT_BAD_WORDS=[_0x2fb66f(0xf5),_0x2fb66f(0x116),_0x2fb66f(0x10f),_0x2fb66f(0x107),'asshole',_0x2fb66f(0x104),_0x2fb66f(0x101),_0x2fb66f(0x108),'pussy',_0x2fb66f(0xf8),_0x2fb66f(0xfd),_0x2fb66f(0xe9),_0x2fb66f(0x113),_0x2fb66f(0xf6),'nigger',_0x2fb66f(0x12e),_0x2fb66f(0xe5),_0x2fb66f(0x10a),_0x2fb66f(0x111),'bullshit','jackass',_0x2fb66f(0x12a),_0x2fb66f(0x11b),'stupid',_0x2fb66f(0x118),'mkundu',_0x2fb66f(0x10b),_0x2fb66f(0x11e),'kuma','fala',_0x2fb66f(0x117),_0x2fb66f(0x112)];async function getBadWords(_0x5b0002){const _0x5bd090=_0x2fb66f,_0x193568=await BadWordsDB[_0x5bd090(0xf0)]({'where':{'groupJid':_0x5b0002}});return _0x193568[_0x5bd090(0x120)](_0x5d3ad2=>_0x5d3ad2[_0x5bd090(0x119)][_0x5bd090(0xef)]());}async function initializeDefaultBadWords(_0x8c3f37){const _0x568481=_0x2fb66f;let _0x2b37f4=0x0;for(const _0x24d8fc of DEFAULT_BAD_WORDS){try{const [_0x5db901,_0x5942c4]=await BadWordsDB[_0x568481(0xfa)]({'where':{'groupJid':_0x8c3f37,'word':_0x24d8fc['toLowerCase']()},'defaults':{'groupJid':_0x8c3f37,'word':_0x24d8fc[_0x568481(0xef)]()}});if(_0x5942c4)_0x2b37f4++;}catch(_0x2def12){}}return _0x2b37f4;}async function addBadWord(_0xc44a01,_0x354940){const _0x541eb7=_0x2fb66f,_0x56e939=_0x354940['toLowerCase']()[_0x541eb7(0x12c)]();try{return await BadWordsDB[_0x541eb7(0xfa)]({'where':{'groupJid':_0xc44a01,'word':_0x56e939},'defaults':{'groupJid':_0xc44a01,'word':_0x56e939}}),!![];}catch(_0x3aab96){return![];}}async function removeBadWord(_0x34c235,_0x53cada){const _0x10819b=_0x2fb66f,_0x2d8210=_0x53cada['toLowerCase']()[_0x10819b(0x12c)](),_0x3c0b6a=await BadWordsDB[_0x10819b(0x127)]({'where':{'groupJid':_0x34c235,'word':_0x2d8210}});return _0x3c0b6a>0x0;}async function clearBadWords(_0x2c06ba){await BadWordsDB['destroy']({'where':{'groupJid':_0x2c06ba}});}async function initializeGroupSettings(){const _0x499750=_0x2fb66f;try{await GroupSettingsDB[_0x499750(0xf1)]({'alter':!![]}),await AntilinkWarningsDB[_0x499750(0xf1)]({'alter':!![]}),await AntibadWarningsDB[_0x499750(0xf1)]({'alter':!![]}),await AntiGroupMentionWarningsDB[_0x499750(0xf1)]({'alter':!![]}),await BadWordsDB[_0x499750(0xf1)]({'alter':!![]}),console[_0x499750(0x123)](_0x499750(0xeb));}catch(_0x3a2d31){if(_0x3a2d31[_0x499750(0x109)]?.[_0x499750(0xfc)]===_0x499750(0x11a)&&_0x3a2d31[_0x499750(0x109)]?.[_0x499750(0x10e)]?.[_0x499750(0xdf)](_0x499750(0xea)))console[_0x499750(0x123)](_0x499750(0xeb));else throw _0x3a2d31;}}function _0x3665(_0x3f3c3c,_0x2709c9){_0x3f3c3c=_0x3f3c3c-0xdf;const _0x301f93=_0x301f();let _0x366535=_0x301f93[_0x3f3c3c];return _0x366535;}async function getGroupSetting(_0x16cd31,_0x54cb73){const _0xd567b3=_0x2fb66f,_0x16ca61=await GroupSettingsDB[_0xd567b3(0x115)]({'where':{'groupJid':_0x16cd31,'key':_0x54cb73}});if(_0x16ca61)return _0x16ca61[_0xd567b3(0xff)];return GROUP_SETTING_DEFAULTS[_0x54cb73]||_0xd567b3(0x124);}async function setGroupSetting(_0x3bf6f9,_0x5097bd,_0x4af415){const _0x2be2d5=_0x2fb66f;try{const _0x1100f5=await GroupSettingsDB[_0x2be2d5(0x115)]({'where':{'groupJid':_0x3bf6f9,'key':_0x5097bd}});return _0x1100f5?(_0x1100f5['value']=_0x4af415,await _0x1100f5[_0x2be2d5(0x11d)]()):await GroupSettingsDB[_0x2be2d5(0x129)]({'groupJid':_0x3bf6f9,'key':_0x5097bd,'value':_0x4af415}),!![];}catch(_0x47640d){console[_0x2be2d5(0x11c)](_0x2be2d5(0x12d)+_0x47640d[_0x2be2d5(0x10e)]);throw _0x47640d;}}async function getAllGroupSettings(_0x49875e){const _0x49c369=_0x2fb66f,_0x51f175=await GroupSettingsDB[_0x49c369(0xf0)]({'where':{'groupJid':_0x49875e}}),_0x31c59b={...GROUP_SETTING_DEFAULTS};for(const _0x8d9482 of _0x51f175){_0x31c59b[_0x8d9482['key']]=_0x8d9482['value'];}return _0x31c59b;}async function resetGroupSetting(_0x16d2f3,_0x260b38){const _0x3a2170=GROUP_SETTING_DEFAULTS[_0x260b38];if(_0x3a2170!==undefined)return await setGroupSetting(_0x16d2f3,_0x260b38,_0x3a2170),_0x3a2170;return null;}async function getGroupsWithSettingEnabled(_0x79162f){const _0x320de2=_0x2fb66f,_0x580863=await GroupSettingsDB[_0x320de2(0xf0)]({'where':{'key':_0x79162f,'value':_0x320de2(0x10d)}});return _0x580863[_0x320de2(0x120)](_0x2978ad=>_0x2978ad[_0x320de2(0xe1)]);}async function getEnabledGroupSettings(){const _0xc3ba53=_0x2fb66f,_0x2ce87c={'WELCOME_MESSAGE':[],'GOODBYE_MESSAGE':[],'GROUP_EVENTS':[],'ANTILINK':[],'ANTIBAD':[],'ANTIGROUPMENTION':[],'ANTIPROMOTE':[],'ANTIDEMOTE':[]},_0x2e08f5=await GroupSettingsDB[_0xc3ba53(0xf0)]();for(const _0x25934d of _0x2e08f5){_0x2ce87c[_0x25934d['key']]!==undefined&&(_0x25934d['value']&&_0x25934d[_0xc3ba53(0xff)]!=='false'&&_0x25934d[_0xc3ba53(0xff)]!==_0xc3ba53(0xf2)&&_0x2ce87c[_0x25934d['key']][_0xc3ba53(0x128)](_0x25934d[_0xc3ba53(0xe1)]+'\x20('+_0x25934d['value']+')'));}return _0x2ce87c;}async function resetAllGroupSettings(_0x1c2ac6){const _0x1f42a2=_0x2fb66f;try{return await GroupSettingsDB[_0x1f42a2(0x127)]({'where':{'groupJid':_0x1c2ac6}}),await AntilinkWarningsDB['destroy']({'where':{'groupJid':_0x1c2ac6}}),await AntibadWarningsDB['destroy']({'where':{'groupJid':_0x1c2ac6}}),await AntiGroupMentionWarningsDB[_0x1f42a2(0x127)]({'where':{'groupJid':_0x1c2ac6}}),await BadWordsDB[_0x1f42a2(0x127)]({'where':{'groupJid':_0x1c2ac6}}),!![];}catch(_0x4c3daf){return console[_0x1f42a2(0x11c)](_0x1f42a2(0xee),_0x4c3daf),![];}}module[_0x2fb66f(0xe3)]={'GroupSettingsDB':GroupSettingsDB,'AntilinkWarningsDB':AntilinkWarningsDB,'AntibadWarningsDB':AntibadWarningsDB,'AntiGroupMentionWarningsDB':AntiGroupMentionWarningsDB,'BadWordsDB':BadWordsDB,'GROUP_SETTING_DEFAULTS':GROUP_SETTING_DEFAULTS,'initializeGroupSettings':initializeGroupSettings,'getGroupSetting':getGroupSetting,'setGroupSetting':setGroupSetting,'getAllGroupSettings':getAllGroupSettings,'resetGroupSetting':resetGroupSetting,'getGroupsWithSettingEnabled':getGroupsWithSettingEnabled,'getEnabledGroupSettings':getEnabledGroupSettings,'getAntilinkWarnings':getAntilinkWarnings,'addAntilinkWarning':addAntilinkWarning,'resetAntilinkWarnings':resetAntilinkWarnings,'getAntibadWarnings':getAntibadWarnings,'addAntibadWarning':addAntibadWarning,'resetAntibadWarnings':resetAntibadWarnings,'getAntiGroupMentionWarnings':getAntiGroupMentionWarnings,'addAntiGroupMentionWarning':addAntiGroupMentionWarning,'resetAntiGroupMentionWarnings':resetAntiGroupMentionWarnings,'getBadWords':getBadWords,'addBadWord':addBadWord,'removeBadWord':removeBadWord,'clearBadWords':clearBadWords,'initializeDefaultBadWords':initializeDefaultBadWords,'DEFAULT_BAD_WORDS':DEFAULT_BAD_WORDS,'resetAllGroupSettings':resetAllGroupSettings};
+const { DATABASE } = require("./database");
+const { DataTypes } = require("sequelize");
+
+const GroupSettingsDB = DATABASE.define(
+    "GroupSettings",
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        groupJid: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: false,
+        },
+        key: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: false,
+        },
+        value: {
+            type: DataTypes.TEXT,
+            allowNull: true,
+        },
+    },
+    {
+        tableName: "group_settings",
+        timestamps: true,
+    },
+);
+
+const GROUP_SETTING_DEFAULTS = {
+    WELCOME_MESSAGE: "false",
+    GOODBYE_MESSAGE: "false",
+    GROUP_EVENTS: "false",
+    ANTILINK: "false",
+    ANTILINK_WARN_COUNT: "5",
+    WELCOME_MESSAGE_TEXT: "",
+    GOODBYE_MESSAGE_TEXT: "",
+    ANTIBAD: "false",
+    ANTIBAD_WARN_COUNT: "5",
+    ANTIGROUPMENTION: "false",
+    ANTIGROUPMENTION_WARN_COUNT: "3",
+    ANTIPROMOTE: "false",
+    ANTIDEMOTE: "false",
+};
+
+const AntilinkWarningsDB = DATABASE.define(
+    "AntilinkWarnings",
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        groupJid: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        userJid: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        warnCount: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+        },
+    },
+    {
+        tableName: "antilink_warnings",
+        timestamps: true,
+        indexes: [
+            {
+                unique: true,
+                fields: ["groupJid", "userJid"],
+            },
+        ],
+    },
+);
+
+async function getAntilinkWarnings(groupJid, userJid) {
+    const record = await AntilinkWarningsDB.findOne({
+        where: { groupJid, userJid },
+    });
+    return record ? record.warnCount : 0;
+}
+
+async function addAntilinkWarning(groupJid, userJid) {
+    const [record, created] = await AntilinkWarningsDB.findOrCreate({
+        where: { groupJid, userJid },
+        defaults: { groupJid, userJid, warnCount: 1 },
+    });
+
+    if (!created) {
+        record.warnCount += 1;
+        await record.save();
+    }
+
+    return record.warnCount;
+}
+
+async function resetAntilinkWarnings(groupJid, userJid) {
+    await AntilinkWarningsDB.destroy({
+        where: { groupJid, userJid },
+    });
+}
+
+const AntibadWarningsDB = DATABASE.define(
+    "AntibadWarnings",
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        groupJid: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        userJid: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        warnCount: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+        },
+    },
+    {
+        tableName: "antibad_warnings",
+        timestamps: true,
+        indexes: [
+            {
+                unique: true,
+                fields: ["groupJid", "userJid"],
+            },
+        ],
+    },
+);
+
+const BadWordsDB = DATABASE.define(
+    "BadWords",
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        groupJid: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        word: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+    },
+    {
+        tableName: "bad_words",
+        timestamps: true,
+        indexes: [
+            {
+                unique: true,
+                fields: ["groupJid", "word"],
+            },
+        ],
+    },
+);
+
+async function getAntibadWarnings(groupJid, userJid) {
+    const record = await AntibadWarningsDB.findOne({
+        where: { groupJid, userJid },
+    });
+    return record ? record.warnCount : 0;
+}
+
+async function addAntibadWarning(groupJid, userJid) {
+    const [record, created] = await AntibadWarningsDB.findOrCreate({
+        where: { groupJid, userJid },
+        defaults: { groupJid, userJid, warnCount: 1 },
+    });
+
+    if (!created) {
+        record.warnCount += 1;
+        await record.save();
+    }
+
+    return record.warnCount;
+}
+
+async function resetAntibadWarnings(groupJid, userJid) {
+    await AntibadWarningsDB.destroy({
+        where: { groupJid, userJid },
+    });
+}
+
+const AntiGroupMentionWarningsDB = DATABASE.define(
+    "AntiGroupMentionWarnings",
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        groupJid: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        userJid: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        warnCount: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+        },
+    },
+    {
+        tableName: "antigroupmention_warnings",
+        timestamps: true,
+        indexes: [
+            {
+                unique: true,
+                fields: ["groupJid", "userJid"],
+            },
+        ],
+    },
+);
+
+async function getAntiGroupMentionWarnings(groupJid, userJid) {
+    const record = await AntiGroupMentionWarningsDB.findOne({
+        where: { groupJid, userJid },
+    });
+    return record ? record.warnCount : 0;
+}
+
+async function addAntiGroupMentionWarning(groupJid, userJid) {
+    const [record, created] = await AntiGroupMentionWarningsDB.findOrCreate({
+        where: { groupJid, userJid },
+        defaults: { groupJid, userJid, warnCount: 1 },
+    });
+
+    if (!created) {
+        record.warnCount += 1;
+        await record.save();
+    }
+
+    return record.warnCount;
+}
+
+async function resetAntiGroupMentionWarnings(groupJid, userJid) {
+    await AntiGroupMentionWarningsDB.destroy({
+        where: { groupJid, userJid },
+    });
+}
+
+const DEFAULT_BAD_WORDS = [
+    'fuck', 'shit', 'bitch', 'ass', 'asshole', 'bastard', 'damn', 'dick', 'pussy', 
+    'cunt', 'whore', 'slut', 'fag', 'nigga', 'nigger', 'retard', 'motherfucker',
+    'cock', 'prick', 'bullshit', 'jackass', 'dumbass', 'idiot', 'stupid',
+    'malaya', 'mkundu', 'matako', 'kumamako', 'kuma', 'fala', 'mjinga', 'pumbavu'
+];
+
+async function getBadWords(groupJid) {
+    const records = await BadWordsDB.findAll({
+        where: { groupJid },
+    });
+    return records.map(r => r.word.toLowerCase());
+}
+
+async function initializeDefaultBadWords(groupJid) {
+    let added = 0;
+    for (const word of DEFAULT_BAD_WORDS) {
+        try {
+            const [record, created] = await BadWordsDB.findOrCreate({
+                where: { groupJid, word: word.toLowerCase() },
+                defaults: { groupJid, word: word.toLowerCase() },
+            });
+            if (created) added++;
+        } catch (e) {}
+    }
+    return added;
+}
+
+async function addBadWord(groupJid, word) {
+    const normalizedWord = word.toLowerCase().trim();
+    try {
+        await BadWordsDB.findOrCreate({
+            where: { groupJid, word: normalizedWord },
+            defaults: { groupJid, word: normalizedWord },
+        });
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
+async function removeBadWord(groupJid, word) {
+    const normalizedWord = word.toLowerCase().trim();
+    const deleted = await BadWordsDB.destroy({
+        where: { groupJid, word: normalizedWord },
+    });
+    return deleted > 0;
+}
+
+async function clearBadWords(groupJid) {
+    await BadWordsDB.destroy({
+        where: { groupJid },
+    });
+}
+
+async function initializeGroupSettings() {
+    try {
+        await GroupSettingsDB.sync({ alter: true });
+        await AntilinkWarningsDB.sync({ alter: true });
+        await AntibadWarningsDB.sync({ alter: true });
+        await AntiGroupMentionWarningsDB.sync({ alter: true });
+        await BadWordsDB.sync({ alter: true });
+        console.log("✅ Group Settings Initialized.");
+    } catch (error) {
+        if (error.original?.code === 'SQLITE_ERROR' && error.original?.message?.includes('already exists')) {
+            console.log("✅ Group Settings Initialized.");
+        } else {
+            throw error;
+        }
+    }
+}
+
+async function getGroupSetting(groupJid, key) {
+    const record = await GroupSettingsDB.findOne({
+        where: { groupJid, key },
+    });
+
+    if (record) {
+        return record.value;
+    }
+
+    return GROUP_SETTING_DEFAULTS[key] || "false";
+}
+
+async function setGroupSetting(groupJid, key, value) {
+    try {
+        const existing = await GroupSettingsDB.findOne({ where: { groupJid, key } });
+        
+        if (existing) {
+            existing.value = value;
+            await existing.save();
+        } else {
+            await GroupSettingsDB.create({ groupJid, key, value });
+        }
+        
+        return true;
+    } catch (error) {
+        console.error(`[setGroupSetting] Error: ${error.message}`);
+        throw error;
+    }
+}
+
+async function getAllGroupSettings(groupJid) {
+    const records = await GroupSettingsDB.findAll({
+        where: { groupJid },
+    });
+
+    const settings = { ...GROUP_SETTING_DEFAULTS };
+    for (const record of records) {
+        settings[record.key] = record.value;
+    }
+    return settings;
+}
+
+async function resetGroupSetting(groupJid, key) {
+    const defaultValue = GROUP_SETTING_DEFAULTS[key];
+    if (defaultValue !== undefined) {
+        await setGroupSetting(groupJid, key, defaultValue);
+        return defaultValue;
+    }
+    return null;
+}
+
+async function getGroupsWithSettingEnabled(key) {
+    const records = await GroupSettingsDB.findAll({
+        where: { key, value: "true" },
+    });
+    return records.map((record) => record.groupJid);
+}
+
+async function getEnabledGroupSettings() {
+    const result = {
+        WELCOME_MESSAGE: [],
+        GOODBYE_MESSAGE: [],
+        GROUP_EVENTS: [],
+        ANTILINK: [],
+        ANTIBAD: [],
+        ANTIGROUPMENTION: [],
+        ANTIPROMOTE: [],
+        ANTIDEMOTE: [],
+    };
+
+    const records = await GroupSettingsDB.findAll();
+
+    for (const record of records) {
+        if (result[record.key] !== undefined) {
+            if (record.value && record.value !== 'false' && record.value !== 'off') {
+                result[record.key].push(`${record.groupJid} (${record.value})`);
+            }
+        }
+    }
+
+    return result;
+}
+
+async function resetAllGroupSettings(groupJid) {
+    try {
+        await GroupSettingsDB.destroy({ where: { groupJid } });
+        await AntilinkWarningsDB.destroy({ where: { groupJid } });
+        await AntibadWarningsDB.destroy({ where: { groupJid } });
+        await AntiGroupMentionWarningsDB.destroy({ where: { groupJid } });
+        await BadWordsDB.destroy({ where: { groupJid } });
+        return true;
+    } catch (error) {
+        console.error("[GROUP_SETTINGS][RESET_ALL_ERROR]:", error);
+        return false;
+    }
+}
+
+module.exports = {
+    GroupSettingsDB,
+    AntilinkWarningsDB,
+    AntibadWarningsDB,
+    AntiGroupMentionWarningsDB,
+    BadWordsDB,
+    GROUP_SETTING_DEFAULTS,
+    initializeGroupSettings,
+    getGroupSetting,
+    setGroupSetting,
+    getAllGroupSettings,
+    resetGroupSetting,
+    getGroupsWithSettingEnabled,
+    getEnabledGroupSettings,
+    getAntilinkWarnings,
+    addAntilinkWarning,
+    resetAntilinkWarnings,
+    getAntibadWarnings,
+    addAntibadWarning,
+    resetAntibadWarnings,
+    getAntiGroupMentionWarnings,
+    addAntiGroupMentionWarning,
+    resetAntiGroupMentionWarnings,
+    getBadWords,
+    addBadWord,
+    removeBadWord,
+    clearBadWords,
+    initializeDefaultBadWords,
+    DEFAULT_BAD_WORDS,
+    resetAllGroupSettings,
+};

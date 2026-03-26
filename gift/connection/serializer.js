@@ -1,1 +1,173 @@
-const _0x574b81=_0x243b;(function(_0x3ef197,_0x22c6a1){const _0x23c370=_0x243b,_0x435f63=_0x3ef197();while(!![]){try{const _0x2f9e6e=-parseInt(_0x23c370(0x156))/0x1*(-parseInt(_0x23c370(0x135))/0x2)+parseInt(_0x23c370(0x138))/0x3*(parseInt(_0x23c370(0x13b))/0x4)+-parseInt(_0x23c370(0x14d))/0x5*(parseInt(_0x23c370(0x158))/0x6)+parseInt(_0x23c370(0x140))/0x7+-parseInt(_0x23c370(0x15f))/0x8*(-parseInt(_0x23c370(0x13d))/0x9)+parseInt(_0x23c370(0x154))/0xa+parseInt(_0x23c370(0x147))/0xb*(-parseInt(_0x23c370(0x166))/0xc);if(_0x2f9e6e===_0x22c6a1)break;else _0x435f63['push'](_0x435f63['shift']());}catch(_0x439fd6){_0x435f63['push'](_0x435f63['shift']());}}}(_0xe559,0xe7302));const {getContentType,downloadContentFromMessage,downloadMediaMessage}=require(_0x574b81(0x12c)),{getLidMapping}=require(_0x574b81(0x150)),standardizeJid=_0x57eeee=>{const _0x38ad39=_0x574b81;if(!_0x57eeee)return'';try{_0x57eeee=typeof _0x57eeee==='string'?_0x57eeee:_0x57eeee[_0x38ad39(0x165)]?_0x57eeee[_0x38ad39(0x165)]():String(_0x57eeee),_0x57eeee=_0x57eeee['split'](':')[0x0][_0x38ad39(0x15b)]('/')[0x0];if(!_0x57eeee['includes']('@'))_0x57eeee+='@s.whatsapp.net';else{if(_0x57eeee[_0x38ad39(0x16f)](_0x38ad39(0x16c)))return _0x57eeee[_0x38ad39(0x159)]();}return _0x57eeee[_0x38ad39(0x159)]();}catch(_0x59ce89){return console[_0x38ad39(0x14c)](_0x38ad39(0x168),_0x59ce89),'';}},convertLidToJid=_0x14433d=>{const _0x1ddddc=_0x574b81;if(!_0x14433d)return'';if(!_0x14433d[_0x1ddddc(0x16f)](_0x1ddddc(0x16c)))return _0x14433d;const _0x258597=getLidMapping(_0x14433d);if(_0x258597)return _0x258597;return _0x14433d;},serializeMessage=async(_0x32f07f,_0x45a0f2,_0x27620d={})=>{const _0xe5256a=_0x574b81;if(!_0x32f07f?.[_0xe5256a(0x153)]||!_0x32f07f?.[_0xe5256a(0x162)])return null;const _0x49d97d=standardizeJid(_0x45a0f2[_0xe5256a(0x12d)]?.['id']),_0x22fe10=getContentType(_0x32f07f[_0xe5256a(0x153)]),_0xc7dd4a=_0x32f07f[_0xe5256a(0x153)]?.[_0xe5256a(0x146)]?.[_0xe5256a(0x16e)]?.[_0xe5256a(0x12e)]==='whatsapp'||_0x32f07f['message']?.[_0xe5256a(0x143)]?.[_0xe5256a(0x16e)]?.[_0xe5256a(0x12e)]===_0xe5256a(0x13e)||_0x32f07f[_0xe5256a(0x153)]?.[_0xe5256a(0x14a)]?.[_0xe5256a(0x16e)]?.[_0xe5256a(0x12e)]===_0xe5256a(0x13e)||_0x32f07f[_0xe5256a(0x153)]?.['documentMessage']?.[_0xe5256a(0x16e)]?.[_0xe5256a(0x12e)]==='whatsapp'||_0x32f07f[_0xe5256a(0x153)]?.[_0xe5256a(0x155)]?.[_0xe5256a(0x16e)]?.['entryPointConversionApp']===_0xe5256a(0x13e),_0x36c3d6=_0xc7dd4a&&_0x32f07f[_0xe5256a(0x162)][_0xe5256a(0x136)][_0xe5256a(0x16f)](_0xe5256a(0x16c))&&_0x32f07f[_0xe5256a(0x162)][_0xe5256a(0x163)],_0x408e71=_0x36c3d6?_0x49d97d:standardizeJid(_0x32f07f[_0xe5256a(0x162)]['remoteJid']),_0x1aa840=_0x408e71[_0xe5256a(0x16f)](_0xe5256a(0x12f)),_0x579ced=_0x32f07f[_0xe5256a(0x162)]['fromMe']?_0x45a0f2['user']['id']['split'](':')[0x0]+'@s.whatsapp.net'||_0x45a0f2[_0xe5256a(0x12d)]['id']:_0x32f07f[_0xe5256a(0x162)][_0xe5256a(0x13a)]||_0x32f07f[_0xe5256a(0x162)][_0xe5256a(0x16b)]||_0x32f07f[_0xe5256a(0x162)][_0xe5256a(0x15d)]||_0x32f07f[_0xe5256a(0x162)]['remoteJidAlt']||_0x32f07f[_0xe5256a(0x162)][_0xe5256a(0x136)]||_0x32f07f[_0xe5256a(0x162)]['participant'];let _0x59f469='',_0x23e5c8=![],_0x20bb2a=null;if(_0x32f07f[_0xe5256a(0x153)]?.[_0xe5256a(0x137)]){_0x23e5c8=!![];try{const _0x2c66e0=_0x32f07f['message'][_0xe5256a(0x137)]['nativeFlowResponseMessage']?.[_0xe5256a(0x141)];_0x2c66e0&&(_0x20bb2a=JSON[_0xe5256a(0x16a)](_0x2c66e0)?.['id']||null);}catch(_0x6300e1){_0x20bb2a=null;}!_0x20bb2a&&(_0x20bb2a=_0x32f07f[_0xe5256a(0x153)]['interactiveResponseMessage'][_0xe5256a(0x142)]||null),_0x59f469=_0x20bb2a||_0x32f07f['message'][_0xe5256a(0x137)]?.[_0xe5256a(0x16d)]?.[_0xe5256a(0x12b)]||'';}else{if(_0x32f07f[_0xe5256a(0x153)]?.[_0xe5256a(0x151)]?.['selectedButtonId'])_0x23e5c8=!![],_0x20bb2a=_0x32f07f['message'][_0xe5256a(0x151)][_0xe5256a(0x130)],_0x59f469=_0x20bb2a;else{if(_0x32f07f['message']?.[_0xe5256a(0x157)]?.[_0xe5256a(0x160)]?.[_0xe5256a(0x14f)])_0x23e5c8=!![],_0x20bb2a=_0x32f07f[_0xe5256a(0x153)][_0xe5256a(0x157)]['singleSelectReply'][_0xe5256a(0x14f)],_0x59f469=_0x20bb2a;else{if(_0x32f07f[_0xe5256a(0x153)]?.[_0xe5256a(0x161)]?.[_0xe5256a(0x13f)])_0x23e5c8=!![],_0x20bb2a=_0x32f07f[_0xe5256a(0x153)][_0xe5256a(0x161)][_0xe5256a(0x13f)],_0x59f469=_0x20bb2a;else{if(_0x22fe10===_0xe5256a(0x15a))_0x59f469=_0x32f07f[_0xe5256a(0x153)][_0xe5256a(0x15a)];else{if(_0x22fe10===_0xe5256a(0x146))_0x59f469=_0x32f07f[_0xe5256a(0x153)][_0xe5256a(0x146)][_0xe5256a(0x12b)];else{if(_0x22fe10==='imageMessage'&&_0x32f07f[_0xe5256a(0x153)][_0xe5256a(0x143)][_0xe5256a(0x144)])_0x59f469=_0x32f07f['message'][_0xe5256a(0x143)][_0xe5256a(0x144)];else _0x22fe10==='videoMessage'&&_0x32f07f['message'][_0xe5256a(0x14a)][_0xe5256a(0x144)]&&(_0x59f469=_0x32f07f[_0xe5256a(0x153)][_0xe5256a(0x14a)]['caption']);}}}}}}const _0x1a7893=_0x27620d[_0xe5256a(0x148)]||'.',_0x39ca92=_0x59f469['startsWith'](_0x1a7893),_0xef0517=_0x39ca92?_0x59f469[_0xe5256a(0x132)](_0x1a7893[_0xe5256a(0x131)])[_0xe5256a(0x169)]()[_0xe5256a(0x15b)]('\x20')[_0xe5256a(0x164)]()[_0xe5256a(0x159)]():'',_0x378e0d=typeof _0x59f469===_0xe5256a(0x133)?_0x59f469['trim']()[_0xe5256a(0x15b)](/\s+/)[_0xe5256a(0x132)](0x1):[],_0x1f6c78=_0x32f07f[_0xe5256a(0x153)]?.['extendedTextMessage']?.[_0xe5256a(0x16e)]?.[_0xe5256a(0x15c)]||null,_0x287c7b=_0x22fe10==_0xe5256a(0x146)&&_0x32f07f['message']['extendedTextMessage'][_0xe5256a(0x16e)]!=null?_0x32f07f[_0xe5256a(0x153)][_0xe5256a(0x146)][_0xe5256a(0x16e)]['quotedMessage']||[]:[],_0x5af9ee=(_0x32f07f[_0xe5256a(0x153)]?.[_0xe5256a(0x146)]?.[_0xe5256a(0x16e)]?.['mentionedJid']||[])[_0xe5256a(0x167)](standardizeJid),_0x69fc02=_0x32f07f[_0xe5256a(0x149)]===_0xe5256a(0x146)&&_0x32f07f[_0xe5256a(0x153)][_0xe5256a(0x146)]['contextInfo']!=null?_0x32f07f['message'][_0xe5256a(0x146)][_0xe5256a(0x16e)][_0xe5256a(0x14b)]:[],_0x462534=_0x32f07f['message']?.[_0xe5256a(0x146)]?.[_0xe5256a(0x16e)]||_0x32f07f[_0xe5256a(0x153)]?.[_0xe5256a(0x143)]?.['contextInfo']||_0x32f07f[_0xe5256a(0x153)]?.[_0xe5256a(0x14a)]?.[_0xe5256a(0x16e)]||_0x32f07f[_0xe5256a(0x153)]?.['audioMessage']?.[_0xe5256a(0x16e)]||_0x32f07f[_0xe5256a(0x153)]?.[_0xe5256a(0x15e)]?.[_0xe5256a(0x16e)]||_0x32f07f[_0xe5256a(0x153)]?.[_0xe5256a(0x139)]?.[_0xe5256a(0x16e)]||null,_0x58aaf3=_0x462534?.[_0xe5256a(0x15c)]||null,_0x3c17bb=_0x462534?.[_0xe5256a(0x152)]||_0x462534?.[_0xe5256a(0x136)],_0xb1822b=convertLidToJid(standardizeJid(_0x3c17bb)),_0x231610=convertLidToJid(standardizeJid(_0x462534?.[_0xe5256a(0x152)])),_0x29bed2=_0x462534?.['stanzaId']||null,_0x2d49a7=_0x29bed2?{'remoteJid':_0x408e71,'fromMe':_0x3c17bb===_0x49d97d||_0x462534?.[_0xe5256a(0x152)]===_0x49d97d,'id':_0x29bed2,'participant':_0x1aa840?_0x3c17bb:undefined}:null;let _0x2abf40=_0x1aa840?standardizeJid(_0x32f07f[_0xe5256a(0x162)][_0xe5256a(0x152)]||_0x32f07f['participant']||_0x408e71):_0x408e71;if(_0x32f07f[_0xe5256a(0x162)]['fromMe'])_0x2abf40=_0x49d97d;const _0xc3bd34=_0x5af9ee['length']>0x0?_0x5af9ee[0x0]:_0x1f6c78?_0x231610:'';return{'ms':_0x32f07f,'mek':_0x32f07f,'type':_0x22fe10,'from':_0x408e71,'isGroup':_0x1aa840,'sender':_0x579ced,'botId':_0x49d97d,'body':_0x59f469,'isCommand':_0x39ca92,'command':_0xef0517,'args':_0x378e0d,'q':_0x378e0d[_0xe5256a(0x134)]('\x20'),'pushName':_0x32f07f['pushName']||(_0x32f07f[_0xe5256a(0x162)]['fromMe']?_0x45a0f2[_0xe5256a(0x12d)]?.[_0xe5256a(0x13c)]:null)||_0xe5256a(0x14e),'quoted':_0x287c7b,'repliedMessage':_0x1f6c78,'mentionedJid':_0x5af9ee,'tagged':_0x69fc02,'quotedMsg':_0x58aaf3,'quotedKey':_0x2d49a7,'quotedUser':_0xb1822b,'repliedMessageAuthor':_0x231610,'messageAuthor':_0x2abf40,'user':_0xc3bd34,'prefix':_0x1a7893,'isButtonResponse':_0x23e5c8,'buttonId':_0x20bb2a};};module[_0x574b81(0x145)]={'standardizeJid':standardizeJid,'convertLidToJid':convertLidToJid,'serializeMessage':serializeMessage,'downloadMediaMessage':downloadMediaMessage};function _0x243b(_0xa61532,_0x574f6f){_0xa61532=_0xa61532-0x12b;const _0xe559a6=_0xe559();let _0x243b01=_0xe559a6[_0xa61532];return _0x243b01;}function _0xe559(){const _0x17d11f=['extendedTextMessage','11PlULMo','PREFIX','mtype','videoMessage','mentionedJid','error','2962645PAufjH','𝐁𝐋𝐀𝐂𝐊 𝐇𝐀𝐓 𝐌𝐃\x20User','selectedRowId','./groupCache','buttonsResponseMessage','participant','message','4442000swsqzc','audioMessage','1WPCyYe','listResponseMessage','6TRxwxD','toLowerCase','conversation','split','quotedMessage','participantAlt','documentMessage','75848dmeqpC','singleSelectReply','templateButtonReplyMessage','key','fromMe','shift','decodeJid','21976140yecJkY','map','JID\x20standardization\x20error:','trim','parse','participantPn','@lid','body','contextInfo','endsWith','text','gifted-baileys','user','entryPointConversionApp','@g.us','selectedButtonId','length','slice','string','join','1817954yATbPW','remoteJid','interactiveResponseMessage','40173xMIsaE','stickerMessage','senderPn','292BDkCXU','name','18lqybZv','whatsapp','selectedId','7147966GGwjKu','paramsJson','buttonId','imageMessage','caption','exports'];_0xe559=function(){return _0x17d11f;};return _0xe559();}
+const { getContentType, downloadContentFromMessage, downloadMediaMessage } = require('gifted-baileys');
+const { getLidMapping } = require('./groupCache');
+
+const standardizeJid = (jid) => {
+    if (!jid) return '';
+    try {
+        jid = typeof jid === 'string' ? jid : 
+            (jid.decodeJid ? jid.decodeJid() : String(jid));
+        jid = jid.split(':')[0].split('/')[0];
+        if (!jid.includes('@')) {
+            jid += '@s.whatsapp.net';
+        } else if (jid.endsWith('@lid')) {
+            return jid.toLowerCase();
+        }
+        return jid.toLowerCase();
+    } catch (e) {
+        console.error('JID standardization error:', e);
+        return '';
+    }
+};
+
+const convertLidToJid = (lid) => {
+    if (!lid) return '';
+    if (!lid.endsWith('@lid')) return lid;
+    const cached = getLidMapping(lid);
+    if (cached) return cached;
+    return lid;
+};
+
+const serializeMessage = async (ms, Gifted, settings = {}) => {
+    if (!ms?.message || !ms?.key) return null;
+
+    const botId = standardizeJid(Gifted.user?.id);
+    const type = getContentType(ms.message);
+    
+    const hasEntryPointContext = 
+        ms.message?.extendedTextMessage?.contextInfo?.entryPointConversionApp === 'whatsapp' ||
+        ms.message?.imageMessage?.contextInfo?.entryPointConversionApp === 'whatsapp' ||
+        ms.message?.videoMessage?.contextInfo?.entryPointConversionApp === 'whatsapp' ||
+        ms.message?.documentMessage?.contextInfo?.entryPointConversionApp === 'whatsapp' ||
+        ms.message?.audioMessage?.contextInfo?.entryPointConversionApp === 'whatsapp';
+
+    const isMessageYourself = hasEntryPointContext && ms.key.remoteJid.endsWith('@lid') && ms.key.fromMe;
+    const from = isMessageYourself ? botId : standardizeJid(ms.key.remoteJid);
+    const isGroup = from.endsWith('@g.us');
+    
+    const sendr = ms.key.fromMe 
+        ? (Gifted.user.id.split(':')[0] + '@s.whatsapp.net' || Gifted.user.id) 
+        : (ms.key.senderPn || ms.key.participantPn || ms.key.participantAlt || ms.key.remoteJidAlt || ms.key.remoteJid || ms.key.participant);
+    
+    let body = '';
+    let isButtonResponse = false;
+    let buttonId = null;
+    
+    if (ms.message?.interactiveResponseMessage) {
+        isButtonResponse = true;
+        try {
+            const paramsJson = ms.message.interactiveResponseMessage.nativeFlowResponseMessage?.paramsJson;
+            if (paramsJson) {
+                buttonId = JSON.parse(paramsJson)?.id || null;
+            }
+        } catch (e) {
+            buttonId = null;
+        }
+        if (!buttonId) {
+            buttonId = ms.message.interactiveResponseMessage.buttonId || null;
+        }
+        body = buttonId || ms.message.interactiveResponseMessage?.body?.text || '';
+    } else if (ms.message?.buttonsResponseMessage?.selectedButtonId) {
+        isButtonResponse = true;
+        buttonId = ms.message.buttonsResponseMessage.selectedButtonId;
+        body = buttonId;
+    } else if (ms.message?.listResponseMessage?.singleSelectReply?.selectedRowId) {
+        isButtonResponse = true;
+        buttonId = ms.message.listResponseMessage.singleSelectReply.selectedRowId;
+        body = buttonId;
+    } else if (ms.message?.templateButtonReplyMessage?.selectedId) {
+        isButtonResponse = true;
+        buttonId = ms.message.templateButtonReplyMessage.selectedId;
+        body = buttonId;
+    } else if (type === 'conversation') {
+        body = ms.message.conversation;
+    } else if (type === 'extendedTextMessage') {
+        body = ms.message.extendedTextMessage.text;
+    } else if (type === 'imageMessage' && ms.message.imageMessage.caption) {
+        body = ms.message.imageMessage.caption;
+    } else if (type === 'videoMessage' && ms.message.videoMessage.caption) {
+        body = ms.message.videoMessage.caption;
+    }
+
+    const botPrefix = settings.PREFIX || '.';
+    const isCommand = body.startsWith(botPrefix);
+    const command = isCommand ? body.slice(botPrefix.length).trim().split(' ').shift().toLowerCase() : '';
+    const args = typeof body === 'string' ? body.trim().split(/\s+/).slice(1) : [];
+
+    const repliedMessage = ms.message?.extendedTextMessage?.contextInfo?.quotedMessage || null;
+    const quoted = type == 'extendedTextMessage' && 
+        ms.message.extendedTextMessage.contextInfo != null 
+        ? ms.message.extendedTextMessage.contextInfo.quotedMessage || [] 
+        : [];
+    
+    const mentionedJid = (ms.message?.extendedTextMessage?.contextInfo?.mentionedJid || []).map(standardizeJid);
+    const tagged = ms.mtype === 'extendedTextMessage' && ms.message.extendedTextMessage.contextInfo != null
+        ? ms.message.extendedTextMessage.contextInfo.mentionedJid
+        : [];
+    
+    const contextInfo = ms.message?.extendedTextMessage?.contextInfo || 
+        ms.message?.imageMessage?.contextInfo ||
+        ms.message?.videoMessage?.contextInfo ||
+        ms.message?.audioMessage?.contextInfo ||
+        ms.message?.documentMessage?.contextInfo ||
+        ms.message?.stickerMessage?.contextInfo || null;
+    
+    const quotedMsg = contextInfo?.quotedMessage || null;
+    const rawQuotedUser = contextInfo?.participant || contextInfo?.remoteJid;
+    const quotedUser = convertLidToJid(standardizeJid(rawQuotedUser));
+    const repliedMessageAuthor = convertLidToJid(standardizeJid(contextInfo?.participant));
+    
+    const quotedStanzaId = contextInfo?.stanzaId || null;
+    const quotedKey = quotedStanzaId ? {
+        remoteJid: from,
+        fromMe: rawQuotedUser === botId || contextInfo?.participant === botId,
+        id: quotedStanzaId,
+        participant: isGroup ? rawQuotedUser : undefined
+    } : null;
+    
+    let messageAuthor = isGroup 
+        ? standardizeJid(ms.key.participant || ms.participant || from)
+        : from;
+    if (ms.key.fromMe) messageAuthor = botId;
+    
+    const user = mentionedJid.length > 0 
+        ? mentionedJid[0] 
+        : repliedMessage 
+            ? repliedMessageAuthor 
+            : '';
+
+    return {
+        ms,
+        mek: ms,
+        type,
+        from,
+        isGroup,
+        sender: sendr,
+        botId,
+        body,
+        isCommand,
+        command,
+        args,
+        q: args.join(' '),
+        pushName: ms.pushName || (ms.key.fromMe ? Gifted.user?.name : null) || '𝐁𝐋𝐀𝐂𝐊 𝐇𝐀𝐓-𝐌𝐃 User',
+        quoted,
+        repliedMessage,
+        mentionedJid,
+        tagged,
+        quotedMsg,
+        quotedKey,
+        quotedUser,
+        repliedMessageAuthor,
+        messageAuthor,
+        user,
+        prefix: botPrefix,
+        isButtonResponse,
+        buttonId
+    };
+};
+
+module.exports = {
+    standardizeJid,
+    convertLidToJid,
+    serializeMessage,
+    downloadMediaMessage
+};

@@ -1,1 +1,191 @@
-const _0x515321=_0x3ef7;function _0x3fbc(){const _0x3d1737=['text','\x27s\x20turn\x20(','split','4585800GjURUS','exports','symbol','2899758AFgFFC','\x0a——+——+——\x0a','participant',')\x20took\x20too\x20long\x20to\x20move!\x0a\x0a🏆\x20*WINNER:\x20@','toLowerCase','currentTurn','\x0a\x0a🤖\x20AI\x20wins!\x20Better\x20luck\x20next\x20time!','🎮\x20*TIC\x20TAC\x20TOE\x20-\x20DRAW!*\x0a\x0a','sendMessage','🎮\x20*TIC\x20TAC\x20TOE\x20-\x20GAME\x20OVER!*\x0a\x0a','parse','26zBpqix','\x27s\x20turn\x20(❌)\x0a\x0a*Reply\x20with\x20a\x20number\x20(1-9)\x20to\x20move!*\x0a⏰\x20_30\x20seconds\x20per\x20move_','⏰\x20*TIC\x20TAC\x20TOE\x20-\x20TIMEOUT*\x0a\x0a@','\x0a\x0a🤝\x20It\x27s\x20a\x20tie!\x20Good\x20game!','🎮\x20*TIC\x20TAC\x20TOE\x20vs\x20AI*\x0a\x0a','player2','\x20|\x20','remoteJid','message','board','🤖\x20AI\x20played\x20position\x20','conversation','\x0a\x0a🤖\x20AI\x20is\x20thinking...','4IVSeQR','\x20(⭕)\x0a\x0a','draw','game','60YbODLb','trim','keys','56GGVmli','461286OgMdOb','323770zFKfLn','120TxeMoe','delete','🎮\x20*TIC\x20TAC\x20TOE\x20-\x20GAME\x20STARTED!*\x0a\x0aPlayer\x201:\x20@','2976556dbNBak','*\x20by\x20timeout!\x0a\x0aStart\x20a\x20new\x20game\x20with\x20*.ttt*','player1','join','winner','key','\x0a\x0a@','18kQKXsR','participantPn','\x0a\x0aCongratulations!\x20🎉','\x20(❌)\x0aPlayer\x202:\x20@','🎮\x20*TIC\x20TAC\x20TOE*\x0a\x0aPlayer\x201:\x20@','1277164wNOIMn','./gameAI','43546wdEzcM','./database/games','🎮\x20*TIC\x20TAC\x20TOE\x20-\x20AI\x20WINS!*\x0a\x0a','set','isAiGame'];_0x3fbc=function(){return _0x3d1737;};return _0x3fbc();}(function(_0x1edf03,_0x1dd794){const _0x1be51c=_0x3ef7,_0x1fefb6=_0x1edf03();while(!![]){try{const _0x64d121=-parseInt(_0x1be51c(0x68))/0x1*(parseInt(_0x1be51c(0x9f))/0x2)+-parseInt(_0x1be51c(0x73))/0x3*(parseInt(_0x1be51c(0x8b))/0x4)+parseInt(_0x1be51c(0x94))/0x5*(parseInt(_0x1be51c(0x8f))/0x6)+parseInt(_0x1be51c(0x66))/0x7*(parseInt(_0x1be51c(0x92))/0x8)+parseInt(_0x1be51c(0x93))/0x9*(-parseInt(_0x1be51c(0x95))/0xa)+parseInt(_0x1be51c(0x98))/0xb+-parseInt(_0x1be51c(0x70))/0xc*(-parseInt(_0x1be51c(0x7e))/0xd);if(_0x64d121===_0x1dd794)break;else _0x1fefb6['push'](_0x1fefb6['shift']());}catch(_0x2a305b){_0x1fefb6['push'](_0x1fefb6['shift']());}}}(_0x3fbc,0xf0bc4));const {joinGame,getActiveGame,getWaitingGame,makeMove,endGame}=require(_0x515321(0x69)),{findBestTttMove,BOT_JID}=require(_0x515321(0x67)),gameTimeouts=new Map(),clearGameTimeout=_0x43553f=>{const _0x29b0c6=gameTimeouts['get'](_0x43553f);_0x29b0c6&&(clearTimeout(_0x29b0c6),gameTimeouts['delete'](_0x43553f));},getPlayerName=_0x42a31d=>{const _0x9861f9=_0x515321;return _0x42a31d[_0x9861f9(0x6f)]('@')[0x0];},renderBoard=_0x2fc837=>{const _0x4c8eb3=_0x515321,_0x16727b=_0x28a63a=>{if(_0x28a63a==='X')return'❌';if(_0x28a63a==='O')return'⭕';return _0x28a63a+'️⃣';};return _0x16727b(_0x2fc837[0x0])+'\x20|\x20'+_0x16727b(_0x2fc837[0x1])+'\x20|\x20'+_0x16727b(_0x2fc837[0x2])+'\x0a——+——+——\x0a'+_0x16727b(_0x2fc837[0x3])+'\x20|\x20'+_0x16727b(_0x2fc837[0x4])+'\x20|\x20'+_0x16727b(_0x2fc837[0x5])+_0x4c8eb3(0x74)+_0x16727b(_0x2fc837[0x6])+_0x4c8eb3(0x84)+_0x16727b(_0x2fc837[0x7])+'\x20|\x20'+_0x16727b(_0x2fc837[0x8]);},setMoveTimeout=(_0x829843,_0x17308f,_0x415e0f,_0x53d0dc,_0x7ce254)=>{const _0x1c6b34=_0x515321;clearGameTimeout(_0x829843);const _0x4ccc0c=setTimeout(async()=>{const _0x55d417=_0x3ef7,_0x4b2048=await getActiveGame(_0x829843);if(_0x4b2048&&_0x4b2048[_0x55d417(0x78)]===_0x415e0f){await endGame(_0x829843);const _0x35d1ad=_0x415e0f===_0x4b2048[_0x55d417(0x9a)]?'❌':'⭕';await _0x17308f[_0x55d417(0x7b)](_0x829843,{'text':_0x55d417(0x80)+getPlayerName(_0x415e0f)+'\x20('+_0x35d1ad+_0x55d417(0x76)+getPlayerName(_0x53d0dc)+_0x55d417(0x99),'mentions':[_0x415e0f,_0x53d0dc]});}gameTimeouts[_0x55d417(0x96)](_0x829843);},0x7530);gameTimeouts[_0x1c6b34(0x6b)](_0x829843,_0x4ccc0c);},handleTicTacToeMessage=async(_0xc58fb,_0x25cdfb)=>{const _0x4645b6=_0x515321;try{if(!_0x25cdfb?.[_0x4645b6(0x86)]||_0x25cdfb[_0x4645b6(0x9d)]['fromMe'])return;const _0xaeb9d4=_0x25cdfb[_0x4645b6(0x9d)]['remoteJid'],_0x42c3fd=_0x25cdfb[_0x4645b6(0x9d)][_0x4645b6(0xa0)]||_0x25cdfb[_0x4645b6(0x9d)][_0x4645b6(0x75)]||_0x25cdfb[_0x4645b6(0x75)]||_0x25cdfb[_0x4645b6(0x9d)][_0x4645b6(0x85)];if(!_0x42c3fd||_0x42c3fd['endsWith']('@g.us'))return;const _0x352789=Object[_0x4645b6(0x91)](_0x25cdfb['message'])[0x0],_0x197254=(_0x352789===_0x4645b6(0x89)?_0x25cdfb[_0x4645b6(0x86)]['conversation']:_0x25cdfb['message'][_0x352789]?.[_0x4645b6(0x6d)]||_0x25cdfb[_0x4645b6(0x86)][_0x352789]?.['caption']||'')[_0x4645b6(0x90)]();if(!_0x197254)return;const _0x510f70=_0x197254[_0x4645b6(0x77)]();if(_0x510f70===_0x4645b6(0x9b)){const _0x3f2df1=await getWaitingGame(_0xaeb9d4);if(!_0x3f2df1)return;const _0x510611=await joinGame(_0xaeb9d4,_0x42c3fd);if(!_0x510611||_0x510611['error'])return;clearGameTimeout(_0xaeb9d4);const _0x2b7bbb=JSON[_0x4645b6(0x7d)](_0x510611[_0x4645b6(0x87)]);await _0xc58fb[_0x4645b6(0x7b)](_0xaeb9d4,{'text':_0x4645b6(0x97)+getPlayerName(_0x510611[_0x4645b6(0x9a)])+'\x20(❌)\x0aPlayer\x202:\x20@'+getPlayerName(_0x510611[_0x4645b6(0x83)])+'\x20(⭕)\x0a\x0a'+renderBoard(_0x2b7bbb)+_0x4645b6(0x9e)+getPlayerName(_0x510611[_0x4645b6(0x78)])+_0x4645b6(0x7f),'mentions':[_0x510611['player1'],_0x510611[_0x4645b6(0x83)],_0x510611[_0x4645b6(0x78)]]}),setMoveTimeout(_0xaeb9d4,_0xc58fb,_0x510611['currentTurn'],_0x510611[_0x4645b6(0x83)],_0x510611['player1']);return;}const _0xb66718=parseInt(_0x197254);if(isNaN(_0xb66718)||_0xb66718<0x1||_0xb66718>0x9)return;const _0x5c78af=await getActiveGame(_0xaeb9d4);if(!_0x5c78af)return;if(_0x5c78af['player1']!==_0x42c3fd&&_0x5c78af['player2']!==_0x42c3fd)return;const _0x1d22d5=await makeMove(_0xaeb9d4,_0x42c3fd,_0xb66718);if(_0x1d22d5['error'])return;const _0x52cb68=JSON['parse'](_0x1d22d5[_0x4645b6(0x8e)][_0x4645b6(0x87)]);if(_0x1d22d5[_0x4645b6(0x9c)]){clearGameTimeout(_0xaeb9d4);const _0x47faf9=_0x1d22d5[_0x4645b6(0x72)]==='X'?'❌':'⭕';await _0xc58fb['sendMessage'](_0xaeb9d4,{'text':'🎮\x20*TIC\x20TAC\x20TOE\x20-\x20GAME\x20OVER!*\x0a\x0a'+renderBoard(_0x52cb68)+'\x0a\x0a🏆\x20*WINNER:\x20@'+getPlayerName(_0x1d22d5[_0x4645b6(0x9c)])+'*\x20'+_0x47faf9+_0x4645b6(0xa1),'mentions':[_0x1d22d5['winner']]});return;}if(_0x1d22d5[_0x4645b6(0x8d)]){clearGameTimeout(_0xaeb9d4),await _0xc58fb[_0x4645b6(0x7b)](_0xaeb9d4,{'text':_0x4645b6(0x7c)+renderBoard(_0x52cb68)+'\x0a\x0a🤝\x20*IT\x27S\x20A\x20DRAW!*\x0a\x0aGood\x20game!\x20Start\x20a\x20new\x20one\x20with\x20*.ttt*'});return;}const _0x17bffd=_0x1d22d5[_0x4645b6(0x8e)][_0x4645b6(0x78)]===_0x1d22d5[_0x4645b6(0x8e)][_0x4645b6(0x9a)]?'❌':'⭕',_0x52afd5=_0x1d22d5[_0x4645b6(0x8e)][_0x4645b6(0x78)]===_0x1d22d5[_0x4645b6(0x8e)][_0x4645b6(0x9a)]?_0x1d22d5[_0x4645b6(0x8e)][_0x4645b6(0x83)]:_0x1d22d5[_0x4645b6(0x8e)]['player1'];if(_0x5c78af[_0x4645b6(0x6c)]&&_0x1d22d5[_0x4645b6(0x8e)]['currentTurn']===BOT_JID){await _0xc58fb[_0x4645b6(0x7b)](_0xaeb9d4,{'text':_0x4645b6(0x82)+renderBoard(_0x52cb68)+_0x4645b6(0x8a)}),await handleAiTttMove(_0xaeb9d4,_0xc58fb,_0x1d22d5[_0x4645b6(0x8e)]);return;}await _0xc58fb[_0x4645b6(0x7b)](_0xaeb9d4,{'text':_0x4645b6(0x65)+getPlayerName(_0x1d22d5[_0x4645b6(0x8e)]['player1'])+_0x4645b6(0x64)+getPlayerName(_0x1d22d5[_0x4645b6(0x8e)][_0x4645b6(0x83)])+_0x4645b6(0x8c)+renderBoard(_0x52cb68)+'\x0a\x0a@'+getPlayerName(_0x1d22d5[_0x4645b6(0x8e)][_0x4645b6(0x78)])+_0x4645b6(0x6e)+_0x17bffd+')\x0a\x0a*Reply\x201-9\x20to\x20move*\x0a⏰\x20_30\x20seconds_','mentions':[_0x1d22d5[_0x4645b6(0x8e)][_0x4645b6(0x9a)],_0x1d22d5['game'][_0x4645b6(0x83)],_0x1d22d5[_0x4645b6(0x8e)][_0x4645b6(0x78)]]}),setMoveTimeout(_0xaeb9d4,_0xc58fb,_0x1d22d5['game'][_0x4645b6(0x78)],_0x52afd5,_0x1d22d5['game']['player1']);}catch(_0x515531){console['error']('TicTacToe\x20handler\x20error:',_0x515531);}};function _0x3ef7(_0x5a91b6,_0x44c3d8){_0x5a91b6=_0x5a91b6-0x64;const _0x3fbc54=_0x3fbc();let _0x3ef778=_0x3fbc54[_0x5a91b6];return _0x3ef778;}async function handleAiTttMove(_0x21c293,_0x109480,_0x34bfc8){const _0x154779=_0x515321,_0x16552a=JSON[_0x154779(0x7d)](_0x34bfc8[_0x154779(0x87)]),_0x4615b2=findBestTttMove(_0x16552a);if(_0x4615b2===-0x1)return;await new Promise(_0x4d1cdf=>setTimeout(_0x4d1cdf,0x3e8));const _0x46e199=await makeMove(_0x21c293,BOT_JID,_0x4615b2+0x1);if(_0x46e199[_0x154779(0x9c)]){clearGameTimeout(_0x21c293),await _0x109480[_0x154779(0x7b)](_0x21c293,{'text':_0x154779(0x6a)+renderBoard(JSON[_0x154779(0x7d)](_0x46e199['game'][_0x154779(0x87)]))+_0x154779(0x79)});return;}if(_0x46e199[_0x154779(0x8d)]){clearGameTimeout(_0x21c293),await _0x109480[_0x154779(0x7b)](_0x21c293,{'text':_0x154779(0x7a)+renderBoard(JSON[_0x154779(0x7d)](_0x46e199[_0x154779(0x8e)]['board']))+_0x154779(0x81)});return;}const _0x2ca2a0=JSON[_0x154779(0x7d)](_0x46e199[_0x154779(0x8e)][_0x154779(0x87)]);await _0x109480[_0x154779(0x7b)](_0x21c293,{'text':_0x154779(0x88)+(_0x4615b2+0x1)+'\x0a\x0a'+renderBoard(_0x2ca2a0)+'\x0a\x0a@'+getPlayerName(_0x46e199['game']['currentTurn'])+'\x27s\x20turn\x20(❌)\x0a\x0a⏰\x20_30\x20seconds_','mentions':[_0x46e199[_0x154779(0x8e)]['currentTurn']]}),setMoveTimeout(_0x21c293,_0x109480,_0x46e199['game'][_0x154779(0x78)],BOT_JID,_0x46e199[_0x154779(0x8e)][_0x154779(0x9a)]);}module[_0x515321(0x71)]={'handleTicTacToeMessage':handleTicTacToeMessage,'clearGameTimeout':clearGameTimeout,'setMoveTimeout':setMoveTimeout,'renderBoard':renderBoard,'getPlayerName':getPlayerName,'gameTimeouts':gameTimeouts};
+const {
+    joinGame,
+    getActiveGame,
+    getWaitingGame,
+    makeMove,
+    endGame,
+} = require("./database/games");
+
+const { findBestTttMove, BOT_JID } = require("./gameAI");
+
+const gameTimeouts = new Map();
+
+const clearGameTimeout = (chatJid) => {
+    const timeout = gameTimeouts.get(chatJid);
+    if (timeout) {
+        clearTimeout(timeout);
+        gameTimeouts.delete(chatJid);
+    }
+};
+
+const getPlayerName = (jid) => {
+    return jid.split("@")[0];
+};
+
+const renderBoard = (board) => {
+    const cell = (val) => {
+        if (val === "X") return "❌";
+        if (val === "O") return "⭕";
+        return `${val}️⃣`;
+    };
+    
+    return `${cell(board[0])} | ${cell(board[1])} | ${cell(board[2])}
+——+——+——
+${cell(board[3])} | ${cell(board[4])} | ${cell(board[5])}
+——+——+——
+${cell(board[6])} | ${cell(board[7])} | ${cell(board[8])}`;
+};
+
+const setMoveTimeout = (chatJid, Gifted, currentPlayer, otherPlayer, player1) => {
+    clearGameTimeout(chatJid);
+    const timeout = setTimeout(async () => {
+        const active = await getActiveGame(chatJid);
+        if (active && active.currentTurn === currentPlayer) {
+            await endGame(chatJid);
+            const currentSymbol = currentPlayer === active.player1 ? "❌" : "⭕";
+            await Gifted.sendMessage(chatJid, {
+                text: `⏰ *TIC TAC TOE - TIMEOUT*\n\n@${getPlayerName(currentPlayer)} (${currentSymbol}) took too long to move!\n\n🏆 *WINNER: @${getPlayerName(otherPlayer)}* by timeout!\n\nStart a new game with *.ttt*`,
+
+                mentions: [currentPlayer, otherPlayer],
+            });
+        }
+        gameTimeouts.delete(chatJid);
+    }, 30000);
+    gameTimeouts.set(chatJid, timeout);
+};
+
+const handleTicTacToeMessage = async (Gifted, message) => {
+    try {
+        if (!message?.message || message.key.fromMe) return;
+        
+        const from = message.key.remoteJid;
+        const sender = message.key.participantPn || message.key.participant || message.participant || message.key.remoteJid;
+        
+        if (!sender || sender.endsWith('@g.us')) return;
+        
+        const messageType = Object.keys(message.message)[0];
+        const body = (messageType === 'conversation'
+            ? message.message.conversation
+            : message.message[messageType]?.text || message.message[messageType]?.caption || '').trim();
+        
+        if (!body) return;
+        
+        const lowerBody = body.toLowerCase();
+        if (lowerBody === 'join') {
+            const waiting = await getWaitingGame(from);
+            if (!waiting) return;
+            
+            const result = await joinGame(from, sender);
+            if (!result || result.error) return;
+            
+            clearGameTimeout(from);
+            const board = JSON.parse(result.board);
+            await Gifted.sendMessage(from, {
+                text: `🎮 *TIC TAC TOE - GAME STARTED!*\n\nPlayer 1: @${getPlayerName(result.player1)} (❌)\nPlayer 2: @${getPlayerName(result.player2)} (⭕)\n\n${renderBoard(board)}\n\n@${getPlayerName(result.currentTurn)}'s turn (❌)\n\n*Reply with a number (1-9) to move!*\n⏰ _30 seconds per move_`,
+
+                mentions: [result.player1, result.player2, result.currentTurn],
+            });
+            setMoveTimeout(from, Gifted, result.currentTurn, result.player2, result.player1);
+            return;
+        }
+        
+        const num = parseInt(body);
+        if (isNaN(num) || num < 1 || num > 9) return;
+        
+        const game = await getActiveGame(from);
+        if (!game) return;
+        
+        if (game.player1 !== sender && game.player2 !== sender) return;
+        
+        const result = await makeMove(from, sender, num);
+        if (result.error) return;
+        
+        const board = JSON.parse(result.game.board);
+        
+        if (result.winner) {
+            clearGameTimeout(from);
+            const winnerSymbol = result.symbol === "X" ? "❌" : "⭕";
+            await Gifted.sendMessage(from, {
+                text: `🎮 *TIC TAC TOE - GAME OVER!*\n\n${renderBoard(board)}\n\n🏆 *WINNER: @${getPlayerName(result.winner)}* ${winnerSymbol}\n\nCongratulations! 🎉`,
+
+                mentions: [result.winner],
+            });
+            return;
+        }
+        
+        if (result.draw) {
+            clearGameTimeout(from);
+            await Gifted.sendMessage(from, {
+                text: `🎮 *TIC TAC TOE - GAME OVER!*\n\n${renderBoard(board)}\n\n🤝 *IT'S A DRAW!*\n\nGood game! Start a new one with *.ttt*`,
+
+            });
+            return;
+        }
+        
+        const currentSymbol = result.game.currentTurn === result.game.player1 ? "❌" : "⭕";
+        const otherPlayer = result.game.currentTurn === result.game.player1 ? result.game.player2 : result.game.player1;
+        
+        if (game.isAiGame && result.game.currentTurn === BOT_JID) {
+            await Gifted.sendMessage(from, {
+                text: `🎮 *TIC TAC TOE vs AI*\n\n${renderBoard(board)}\n\n🤖 AI is thinking...`,
+
+            });
+            
+            await handleAiTttMove(from, Gifted, result.game);
+            return;
+        }
+        
+        await Gifted.sendMessage(from, {
+            text: `🎮 *TIC TAC TOE*\n\nPlayer 1: @${getPlayerName(result.game.player1)} (❌)\nPlayer 2: @${getPlayerName(result.game.player2)} (⭕)\n\n${renderBoard(board)}\n\n@${getPlayerName(result.game.currentTurn)}'s turn (${currentSymbol})\n\n*Reply 1-9 to move*\n⏰ _30 seconds_`,
+            mentions: [result.game.player1, result.game.player2, result.game.currentTurn],
+        });
+        
+        setMoveTimeout(from, Gifted, result.game.currentTurn, otherPlayer, result.game.player1);
+    } catch (err) {
+        console.error('TicTacToe handler error:', err);
+    }
+};
+
+async function handleAiTttMove(from, Gifted, game) {
+    const board = JSON.parse(game.board);
+    const aiMove = findBestTttMove(board);
+    
+    if (aiMove === -1) return;
+    
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    const result = await makeMove(from, BOT_JID, aiMove + 1);
+    
+    if (result.winner) {
+        clearGameTimeout(from);
+        await Gifted.sendMessage(from, {
+            text: `🎮 *TIC TAC TOE - AI WINS!*\n\n${renderBoard(JSON.parse(result.game.board))}\n\n🤖 AI wins! Better luck next time!`,
+        });
+        return;
+    }
+    
+    if (result.draw) {
+        clearGameTimeout(from);
+        await Gifted.sendMessage(from, {
+            text: `🎮 *TIC TAC TOE - DRAW!*\n\n${renderBoard(JSON.parse(result.game.board))}\n\n🤝 It's a tie! Good game!`,
+        });
+        return;
+    }
+    
+    const newBoard = JSON.parse(result.game.board);
+    await Gifted.sendMessage(from, {
+        text: `🤖 AI played position ${aiMove + 1}\n\n${renderBoard(newBoard)}\n\n@${getPlayerName(result.game.currentTurn)}'s turn (❌)\n\n⏰ _30 seconds_`,
+        mentions: [result.game.currentTurn],
+    });
+    
+    setMoveTimeout(from, Gifted, result.game.currentTurn, BOT_JID, result.game.player1);
+}
+
+module.exports = { 
+    handleTicTacToeMessage, 
+    clearGameTimeout, 
+    setMoveTimeout,
+    renderBoard,
+    getPlayerName,
+    gameTimeouts
+};

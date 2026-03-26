@@ -1,1 +1,218 @@
-const _0x2e5f7f=_0x5e71;(function(_0x4943d4,_0xcf8df9){const _0x3682bb=_0x5e71,_0x3af830=_0x4943d4();while(!![]){try{const _0x2abc06=-parseInt(_0x3682bb(0x12d))/0x1*(-parseInt(_0x3682bb(0x11f))/0x2)+parseInt(_0x3682bb(0x134))/0x3+parseInt(_0x3682bb(0x11d))/0x4+-parseInt(_0x3682bb(0x124))/0x5*(parseInt(_0x3682bb(0x119))/0x6)+parseInt(_0x3682bb(0x13e))/0x7+-parseInt(_0x3682bb(0x117))/0x8+-parseInt(_0x3682bb(0x12b))/0x9;if(_0x2abc06===_0xcf8df9)break;else _0x3af830['push'](_0x3af830['shift']());}catch(_0x4d3e95){_0x3af830['push'](_0x3af830['shift']());}}}(_0x295c,0x5f6f4));const {DATABASE}=require(_0x2e5f7f(0x118)),{DataTypes}=require('sequelize'),GamesDB=DATABASE[_0x2e5f7f(0x12e)](_0x2e5f7f(0x11e),{'id':{'type':DataTypes[_0x2e5f7f(0x123)],'primaryKey':!![],'autoIncrement':!![]},'chatJid':{'type':DataTypes[_0x2e5f7f(0x132)],'allowNull':![]},'player1':{'type':DataTypes[_0x2e5f7f(0x132)],'allowNull':![]},'player2':{'type':DataTypes[_0x2e5f7f(0x132)],'allowNull':!![]},'board':{'type':DataTypes['TEXT'],'allowNull':![],'defaultValue':JSON[_0x2e5f7f(0x13a)]([0x1,0x2,0x3,0x4,0x5,0x6,0x7,0x8,0x9])},'currentTurn':{'type':DataTypes[_0x2e5f7f(0x132)],'allowNull':!![]},'status':{'type':DataTypes[_0x2e5f7f(0x130)](_0x2e5f7f(0x138),_0x2e5f7f(0x13d),_0x2e5f7f(0x139)),'defaultValue':'waiting'},'messageKey':{'type':DataTypes[_0x2e5f7f(0x11b)],'allowNull':!![]},'isAiGame':{'type':DataTypes[_0x2e5f7f(0x128)],'defaultValue':![]}},{'tableName':_0x2e5f7f(0x120),'timestamps':!![]});function _0x5e71(_0x2d0af9,_0x2780e6){_0x2d0af9=_0x2d0af9-0x116;const _0x295c0e=_0x295c();let _0x5e715e=_0x295c0e[_0x2d0af9];return _0x5e715e;}let gamesDbInitialized=![];async function initGamesDB(){const _0x19c36b=_0x2e5f7f;if(gamesDbInitialized)return;try{await GamesDB[_0x19c36b(0x116)](),gamesDbInitialized=!![];}catch(_0x3ec715){console[_0x19c36b(0x137)](_0x19c36b(0x12f),_0x3ec715['message']);}}async function createGame(_0x37bb15,_0x4dbb8c,_0x3f2d80=null,_0x3bd97b=![]){const _0x452a07=_0x2e5f7f;await initGamesDB(),await GamesDB['destroy']({'where':{'chatJid':_0x37bb15}});const _0x133d2c=await GamesDB[_0x452a07(0x13c)]({'chatJid':_0x37bb15,'player1':_0x4dbb8c,'player2':_0x3bd97b?_0x452a07(0x126):null,'board':JSON['stringify']([0x1,0x2,0x3,0x4,0x5,0x6,0x7,0x8,0x9]),'currentTurn':_0x4dbb8c,'status':_0x3bd97b?'active':_0x452a07(0x138),'messageKey':_0x3f2d80?JSON[_0x452a07(0x13a)](_0x3f2d80):null,'isAiGame':_0x3bd97b});return _0x133d2c;}async function joinGame(_0x3d53c1,_0x4e612b){const _0x271a4b=_0x2e5f7f;await initGamesDB();const _0x10c01f=await GamesDB['findOne']({'where':{'chatJid':_0x3d53c1,'status':_0x271a4b(0x138)}});if(!_0x10c01f)return null;if(_0x10c01f[_0x271a4b(0x129)]===_0x4e612b)return{'error':_0x271a4b(0x136)};return _0x10c01f[_0x271a4b(0x12a)]=_0x4e612b,_0x10c01f[_0x271a4b(0x12c)]=_0x271a4b(0x13d),_0x10c01f[_0x271a4b(0x135)]=_0x10c01f['player1'],await _0x10c01f[_0x271a4b(0x125)](),{'player1':_0x10c01f[_0x271a4b(0x129)],'player2':_0x10c01f[_0x271a4b(0x12a)],'board':_0x10c01f[_0x271a4b(0x11a)],'currentTurn':_0x10c01f['currentTurn']};}async function getActiveGame(_0x8df238){const _0x282082=_0x2e5f7f;return await initGamesDB(),await GamesDB[_0x282082(0x131)]({'where':{'chatJid':_0x8df238,'status':_0x282082(0x13d)}});}async function getWaitingGame(_0x36c67b){const _0x2e25e3=_0x2e5f7f;return await initGamesDB(),await GamesDB['findOne']({'where':{'chatJid':_0x36c67b,'status':_0x2e25e3(0x138)}});}function checkWinner(_0x1f47e5){const _0x5829da=[[0x0,0x1,0x2],[0x3,0x4,0x5],[0x6,0x7,0x8],[0x0,0x3,0x6],[0x1,0x4,0x7],[0x2,0x5,0x8],[0x0,0x4,0x8],[0x2,0x4,0x6]];for(const _0x1239f5 of _0x5829da){const [_0x4ef4c4,_0x3a311d,_0x174961]=_0x1239f5;if(_0x1f47e5[_0x4ef4c4]===_0x1f47e5[_0x3a311d]&&_0x1f47e5[_0x3a311d]===_0x1f47e5[_0x174961])return _0x1f47e5[_0x4ef4c4];}return null;}function _0x295c(){const _0x567616=['ENUM','findOne','STRING','parse','1673844WqnfmY','currentTurn','same_player','error','waiting','finished','stringify','destroy','create','active','3215450SNNWPd','sync','4533072vtuVSp','./database','6JpIBrr','board','TEXT','exports','330432PeojjB','TicTacToeGame','2778tGRlsp','tictactoe_games','not_your_turn','every','INTEGER','884045UdLJXg','save','AI_BOT@s.whatsapp.net','no_game','BOOLEAN','player1','player2','215109kycTBv','status','42IxPCHs','define','GamesDB\x20sync\x20error:'];_0x295c=function(){return _0x567616;};return _0x295c();}function checkDraw(_0x5d0862){const _0x29d762=_0x2e5f7f;return _0x5d0862[_0x29d762(0x122)](_0xe05823=>_0xe05823==='X'||_0xe05823==='O');}async function makeMove(_0x1660d4,_0x3abea9,_0x4d0aa8){const _0x578c28=_0x2e5f7f;await initGamesDB();const _0x18379c=await GamesDB[_0x578c28(0x131)]({'where':{'chatJid':_0x1660d4,'status':'active'}});if(!_0x18379c)return{'error':_0x578c28(0x127)};if(_0x18379c[_0x578c28(0x135)]!==_0x3abea9)return{'error':_0x578c28(0x121)};const _0x50fc86=JSON[_0x578c28(0x133)](_0x18379c['board']),_0x12553e=_0x4d0aa8-0x1;if(_0x50fc86[_0x12553e]==='X'||_0x50fc86[_0x12553e]==='O')return{'error':'cell_taken'};const _0x2fb0f6=_0x3abea9===_0x18379c[_0x578c28(0x129)]?'X':'O';_0x50fc86[_0x12553e]=_0x2fb0f6,_0x18379c[_0x578c28(0x11a)]=JSON['stringify'](_0x50fc86);const _0x1de0e7=checkWinner(_0x50fc86);if(_0x1de0e7)return _0x18379c['status']='finished',await _0x18379c['save'](),{'winner':_0x3abea9,'symbol':_0x2fb0f6,'game':{'player1':_0x18379c[_0x578c28(0x129)],'player2':_0x18379c[_0x578c28(0x12a)],'board':_0x18379c[_0x578c28(0x11a)],'currentTurn':_0x18379c[_0x578c28(0x135)]}};if(checkDraw(_0x50fc86))return _0x18379c[_0x578c28(0x12c)]=_0x578c28(0x139),await _0x18379c[_0x578c28(0x125)](),{'draw':!![],'game':{'player1':_0x18379c['player1'],'player2':_0x18379c[_0x578c28(0x12a)],'board':_0x18379c['board'],'currentTurn':_0x18379c[_0x578c28(0x135)]}};return _0x18379c[_0x578c28(0x135)]=_0x3abea9===_0x18379c[_0x578c28(0x129)]?_0x18379c[_0x578c28(0x12a)]:_0x18379c['player1'],await _0x18379c[_0x578c28(0x125)](),{'game':{'player1':_0x18379c[_0x578c28(0x129)],'player2':_0x18379c['player2'],'board':_0x18379c['board'],'currentTurn':_0x18379c[_0x578c28(0x135)]}};}async function endGame(_0x440f70){const _0x4da2fe=_0x2e5f7f;await initGamesDB(),await GamesDB[_0x4da2fe(0x13b)]({'where':{'chatJid':_0x440f70}});}module[_0x2e5f7f(0x11c)]={'initGamesDB':initGamesDB,'createGame':createGame,'joinGame':joinGame,'getActiveGame':getActiveGame,'getWaitingGame':getWaitingGame,'makeMove':makeMove,'endGame':endGame,'GamesDB':GamesDB};
+const { DATABASE } = require('./database');
+const { DataTypes } = require('sequelize');
+
+const GamesDB = DATABASE.define('TicTacToeGame', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    chatJid: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    player1: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    player2: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
+    board: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        defaultValue: JSON.stringify([1, 2, 3, 4, 5, 6, 7, 8, 9]),
+    },
+    currentTurn: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
+    status: {
+        type: DataTypes.ENUM('waiting', 'active', 'finished'),
+        defaultValue: 'waiting',
+    },
+    messageKey: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+    },
+    isAiGame: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+    },
+}, {
+    tableName: 'tictactoe_games',
+    timestamps: true,
+});
+
+let gamesDbInitialized = false;
+async function initGamesDB() {
+    if (gamesDbInitialized) return;
+    try {
+        await GamesDB.sync();
+        gamesDbInitialized = true;
+    } catch (error) {
+        console.error('GamesDB sync error:', error.message);
+    }
+}
+
+async function createGame(chatJid, player1, messageKey = null, isAiGame = false) {
+    await initGamesDB();
+    await GamesDB.destroy({ where: { chatJid } });
+    
+    const game = await GamesDB.create({
+        chatJid,
+        player1,
+        player2: isAiGame ? 'AI_BOT@s.whatsapp.net' : null,
+        board: JSON.stringify([1, 2, 3, 4, 5, 6, 7, 8, 9]),
+        currentTurn: player1,
+        status: isAiGame ? 'active' : 'waiting',
+        messageKey: messageKey ? JSON.stringify(messageKey) : null,
+        isAiGame,
+    });
+    
+    return game;
+}
+
+async function joinGame(chatJid, player2) {
+    await initGamesDB();
+    const game = await GamesDB.findOne({
+        where: { chatJid, status: 'waiting' }
+    });
+    
+    if (!game) return null;
+    
+    if (game.player1 === player2) {
+        return { error: 'same_player' };
+    }
+    
+    game.player2 = player2;
+    game.status = 'active';
+    game.currentTurn = game.player1;
+    await game.save();
+    
+    return {
+        player1: game.player1,
+        player2: game.player2,
+        board: game.board,
+        currentTurn: game.currentTurn,
+    };
+}
+
+async function getActiveGame(chatJid) {
+    await initGamesDB();
+    return await GamesDB.findOne({
+        where: { chatJid, status: 'active' }
+    });
+}
+
+async function getWaitingGame(chatJid) {
+    await initGamesDB();
+    return await GamesDB.findOne({
+        where: { chatJid, status: 'waiting' }
+    });
+}
+
+function checkWinner(board) {
+    const winPatterns = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
+    ];
+    
+    for (const pattern of winPatterns) {
+        const [a, b, c] = pattern;
+        if (board[a] === board[b] && board[b] === board[c]) {
+            return board[a];
+        }
+    }
+    return null;
+}
+
+function checkDraw(board) {
+    return board.every(cell => cell === 'X' || cell === 'O');
+}
+
+async function makeMove(chatJid, player, position) {
+    await initGamesDB();
+    const game = await GamesDB.findOne({
+        where: { chatJid, status: 'active' }
+    });
+    
+    if (!game) {
+        return { error: 'no_game' };
+    }
+    
+    if (game.currentTurn !== player) {
+        return { error: 'not_your_turn' };
+    }
+    
+    const board = JSON.parse(game.board);
+    const index = position - 1;
+    
+    if (board[index] === 'X' || board[index] === 'O') {
+        return { error: 'cell_taken' };
+    }
+    
+    const symbol = player === game.player1 ? 'X' : 'O';
+    board[index] = symbol;
+    game.board = JSON.stringify(board);
+    
+    const winner = checkWinner(board);
+    if (winner) {
+        game.status = 'finished';
+        await game.save();
+        return {
+            winner: player,
+            symbol,
+            game: {
+                player1: game.player1,
+                player2: game.player2,
+                board: game.board,
+                currentTurn: game.currentTurn,
+            }
+        };
+    }
+    
+    if (checkDraw(board)) {
+        game.status = 'finished';
+        await game.save();
+        return {
+            draw: true,
+            game: {
+                player1: game.player1,
+                player2: game.player2,
+                board: game.board,
+                currentTurn: game.currentTurn,
+            }
+        };
+    }
+    
+    game.currentTurn = player === game.player1 ? game.player2 : game.player1;
+    await game.save();
+    
+    return {
+        game: {
+            player1: game.player1,
+            player2: game.player2,
+            board: game.board,
+            currentTurn: game.currentTurn,
+        }
+    };
+}
+
+async function endGame(chatJid) {
+    await initGamesDB();
+    await GamesDB.destroy({ where: { chatJid } });
+}
+
+module.exports = {
+    initGamesDB,
+    createGame,
+    joinGame,
+    getActiveGame,
+    getWaitingGame,
+    makeMove,
+    endGame,
+    GamesDB,
+};

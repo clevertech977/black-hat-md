@@ -1,1 +1,670 @@
-const _0x1f9ddd=_0x4769;function _0x4769(_0x4223bd,_0x37419e){_0x4223bd=_0x4223bd-0x143;const _0x44669c=_0x4466();let _0x4769f0=_0x44669c[_0x4223bd];return _0x4769f0;}(function(_0x1816bd,_0xbf8cc7){const _0x1e7438=_0x4769,_0x2dc0d7=_0x1816bd();while(!![]){try{const _0x5e606e=-parseInt(_0x1e7438(0x178))/0x1*(-parseInt(_0x1e7438(0x1a2))/0x2)+parseInt(_0x1e7438(0x16e))/0x3+-parseInt(_0x1e7438(0x1aa))/0x4*(-parseInt(_0x1e7438(0x1af))/0x5)+-parseInt(_0x1e7438(0x170))/0x6+parseInt(_0x1e7438(0x17e))/0x7*(parseInt(_0x1e7438(0x1ad))/0x8)+parseInt(_0x1e7438(0x192))/0x9+-parseInt(_0x1e7438(0x1ab))/0xa*(parseInt(_0x1e7438(0x158))/0xb);if(_0x5e606e===_0xbf8cc7)break;else _0x2dc0d7['push'](_0x2dc0d7['shift']());}catch(_0x4b1770){_0x2dc0d7['push'](_0x2dc0d7['shift']());}}}(_0x4466,0x52578));const moment=require(_0x1f9ddd(0x199)),{getSetting}=require(_0x1f9ddd(0x181)),{getGroupSetting}=require(_0x1f9ddd(0x14e)),{getSudoNumbers}=require(_0x1f9ddd(0x189)),{sendButtons}=require(_0x1f9ddd(0x19f)),{cachedGroupMetadata,getLidMapping}=require(_0x1f9ddd(0x17a)),DEV_NUMBERS=[_0x1f9ddd(0x14a),'255794469700',_0x1f9ddd(0x1a7),_0x1f9ddd(0x17f),'255799980024',_0x1f9ddd(0x1b0)],isSuperUser=async(_0x4b4282,_0x16c974)=>{const _0x39eea8=_0x1f9ddd;if(!_0x4b4282)return![];const _0xd2cf6f=_0x4b4282[_0x39eea8(0x162)]('@')[0x0]['split'](':')[0x0],_0x2eddf7=await getSetting('OWNER_NUMBER'),_0x342fa3=_0x16c974['user']?.['id']?.[_0x39eea8(0x162)](':')[0x0];if(_0xd2cf6f===_0x2eddf7||_0xd2cf6f===_0x342fa3)return!![];if(DEV_NUMBERS[_0x39eea8(0x193)](_0xd2cf6f))return!![];const _0xd7c42d=await getSudoNumbers();return _0xd7c42d[_0x39eea8(0x193)](_0xd2cf6f);},DEFAULT_PLACEHOLDER=_0x1f9ddd(0x18c),getProfilePic=async(_0x2d22bc,_0x58a41b)=>{const _0x495183=_0x1f9ddd;try{return await _0x2d22bc[_0x495183(0x174)](_0x58a41b,'image');}catch{return DEFAULT_PLACEHOLDER;}},formatJid=_0x28c269=>{if(!_0x28c269)return'Unknown';return _0x28c269['split']('@')[0x0];},getJidFromLidUsingMetadata=(_0x455952,_0x28be9f)=>{const _0x247e21=_0x1f9ddd;if(!_0x455952||!_0x28be9f?.[_0x247e21(0x18b)])return null;for(const _0x94b41c of _0x28be9f[_0x247e21(0x18b)]){if(_0x94b41c['id']===_0x455952||_0x94b41c['lid']===_0x455952){const _0x5d84f9=_0x94b41c['pn']||_0x94b41c[_0x247e21(0x195)]||_0x94b41c[_0x247e21(0x1ae)];if(_0x5d84f9&&_0x5d84f9['endsWith'](_0x247e21(0x1a6)))return _0x5d84f9;}}return null;},getJidFromParticipant=async(_0x56a3a2,_0x57fe4d,_0x3f0840=null)=>{const _0x11bcf8=_0x1f9ddd;if(!_0x57fe4d)return _0x57fe4d;if(_0x57fe4d[_0x11bcf8(0x1a5)](_0x11bcf8(0x1a6)))return _0x57fe4d;if(_0x57fe4d[_0x11bcf8(0x1a5)](_0x11bcf8(0x17b))){const _0x34601d=getLidMapping(_0x57fe4d);if(_0x34601d)return _0x34601d;if(_0x3f0840?.[_0x11bcf8(0x18b)]){const _0x17e5eb=getJidFromLidUsingMetadata(_0x57fe4d,_0x3f0840);if(_0x17e5eb)return _0x17e5eb;}try{if(_0x56a3a2[_0x11bcf8(0x1a0)]){const _0x4de745=await _0x56a3a2['lidToJid'](_0x57fe4d);if(_0x4de745&&_0x4de745[_0x11bcf8(0x1a5)]('@s.whatsapp.net'))return _0x4de745;}}catch(_0x5a62d1){}try{if(_0x56a3a2[_0x11bcf8(0x175)]){const _0x5c3597=await _0x56a3a2[_0x11bcf8(0x175)](_0x57fe4d);if(_0x5c3597&&_0x5c3597[_0x11bcf8(0x1a5)]('@s.whatsapp.net'))return _0x5c3597;}}catch(_0x4cd45b){}return _0x57fe4d;}const _0x5eed23=_0x57fe4d['split']('@')[0x0];if(_0x5eed23&&/^\d+$/['test'](_0x5eed23))return _0x5eed23+_0x11bcf8(0x1a6);return _0x57fe4d;},getDisplayNumber=async(_0x5874a4,_0x56d340,_0x3d6e70=null)=>{const _0x126dd0=await getJidFromParticipant(_0x5874a4,_0x56d340,_0x3d6e70);return formatJid(_0x126dd0);},getFreshGroupMetadata=async(_0x1517a0,_0x164f6c)=>{const _0xe2bde5=_0x1f9ddd;try{return await _0x1517a0[_0xe2bde5(0x165)](_0x164f6c);}catch(_0x77562a){return null;}},processedEvents=new Map(),EVENT_DEDUP_INTERVAL=0x1388,getEventKey=(_0x690b40,_0x14e76b,_0x3a1962)=>{const _0x32f85c=_0x1f9ddd;return _0x690b40+':'+_0x14e76b+':'+_0x3a1962[_0x32f85c(0x196)]()[_0x32f85c(0x151)](',');},isDuplicateEvent=(_0x232fb9,_0x3f27a6,_0x307b9c)=>{const _0x4001d3=_0x1f9ddd,_0x15d203=getEventKey(_0x232fb9,_0x3f27a6,_0x307b9c),_0x5da19d=Date[_0x4001d3(0x187)](),_0x3af2f6=processedEvents['get'](_0x15d203);if(_0x3af2f6&&_0x5da19d-_0x3af2f6<EVENT_DEDUP_INTERVAL)return!![];processedEvents[_0x4001d3(0x1ac)](_0x15d203,_0x5da19d);for(const [_0x4f5aab,_0x526e0d]of processedEvents){_0x5da19d-_0x526e0d>EVENT_DEDUP_INTERVAL*0x2&&processedEvents[_0x4001d3(0x19c)](_0x4f5aab);}return![];},setupGroupEventsListeners=_0x5ad0be=>{const _0x1d071c=_0x1f9ddd;_0x5ad0be['ev']['on'](_0x1d071c(0x14c),async _0x394bab=>{const _0x481ad8=_0x1d071c;try{const {id:_0x50d31e,participants:_0x2bf0de,action:_0x3d1000,author:_0x29765b}=_0x394bab;if(!_0x50d31e||!_0x2bf0de||_0x2bf0de['length']===0x0)return;const _0x1c0bc0=_0x5ad0be[_0x481ad8(0x15e)]?.['id']?.['split'](':')[0x0]+_0x481ad8(0x1a6);if(_0x3d1000===_0x481ad8(0x1a4)||_0x3d1000===_0x481ad8(0x150)){if(_0x29765b){const _0x40d34e=_0x29765b['split']('@')[0x0]['split'](':')[0x0],_0x454209=_0x1c0bc0['split']('@')[0x0];if(_0x40d34e===_0x454209)return;}if(isDuplicateEvent(_0x50d31e,_0x3d1000,_0x2bf0de))return;}const _0x377c5b=await getSetting(_0x481ad8(0x16a))||_0x481ad8(0x18d),_0x5d2e08=await getSetting(_0x481ad8(0x1a1))||_0x481ad8(0x15d),_0x19fc24=await getSetting(_0x481ad8(0x15b))||_0x481ad8(0x183),_0x2b043f=await getSetting(_0x481ad8(0x163))||'',_0x52628e=moment()['tz'](_0x377c5b)['format'](_0x481ad8(0x161)),_0x50affd=moment()['tz'](_0x377c5b)['format'](_0x481ad8(0x194)),_0x3ebc0d=await getFreshGroupMetadata(_0x5ad0be,_0x50d31e);if(!_0x3ebc0d)return;const _0x566327=_0x3ebc0d['subject']||_0x481ad8(0x191),_0x29f63a=_0x3ebc0d[_0x481ad8(0x19e)]||_0x3ebc0d[_0x481ad8(0x18b)]?.['length']||0x0,_0x1a3552=(_0x473225=[])=>({'mentionedJid':_0x473225,'forwardingScore':0x1,'isForwarded':!![],'forwardedNewsletterMessageInfo':_0x2b043f?{'newsletterJid':_0x2b043f,'newsletterName':_0x5d2e08,'serverMessageId':0x8f}:undefined});switch(_0x3d1000){case _0x481ad8(0x1b2):{const _0x168414=await getGroupSetting(_0x50d31e,'WELCOME_MESSAGE'),_0x5f43c6=_0x168414&&['true','on','1',_0x481ad8(0x156)][_0x481ad8(0x193)](String(_0x168414)['toLowerCase']()[_0x481ad8(0x182)]());if(!_0x5f43c6)return;for(const _0x3a4f79 of _0x2bf0de){try{const _0xfdbf6=await getJidFromParticipant(_0x5ad0be,_0x3a4f79,_0x3ebc0d),_0x3a7ec5=formatJid(_0xfdbf6),_0x47b95d=await getProfilePic(_0x5ad0be,_0xfdbf6),_0x23ab02=_0x29f63a,_0x3e7a61=await getGroupSetting(_0x50d31e,_0x481ad8(0x176)),_0x1cf5b0=_0x3e7a61&&_0x3e7a61[_0x481ad8(0x182)]()&&_0x3e7a61!==_0x481ad8(0x179)?_0x3e7a61:_0x481ad8(0x198),_0x2dfe53=_0x481ad8(0x18f)+_0x3a7ec5+_0x481ad8(0x15f)+_0x566327+_0x481ad8(0x17d)+_0x23ab02+'/'+_0x29f63a+_0x481ad8(0x1a8)+_0x50affd+_0x481ad8(0x1a9)+_0x52628e+'\x0a\x0a'+_0x1cf5b0+_0x481ad8(0x16b)+_0x19fc24+'_';await _0x5ad0be[_0x481ad8(0x15c)](_0x50d31e,{'image':{'url':_0x47b95d},'caption':_0x2dfe53,'mentions':[_0xfdbf6],'contextInfo':_0x1a3552([_0xfdbf6])});}catch(_0x1d374a){console[_0x481ad8(0x19d)](_0x481ad8(0x177),_0x1d374a[_0x481ad8(0x19a)]);}}break;}case _0x481ad8(0x15a):{const _0x3f2f5f=await getGroupSetting(_0x50d31e,_0x481ad8(0x160)),_0x2149c9=await getGroupSetting(_0x50d31e,'GROUP_EVENTS'),_0x56e003=await cachedGroupMetadata(_0x50d31e);for(const _0x392d34 of _0x2bf0de){try{const _0x35decf=await getJidFromParticipant(_0x5ad0be,_0x392d34,_0x56e003||_0x3ebc0d),_0x2d8a55=formatJid(_0x35decf),_0x46d804=await getProfilePic(_0x5ad0be,_0x35decf),_0x597c40=_0x29765b&&_0x29765b!==_0x392d34,_0x5c8bab=_0x2149c9&&[_0x481ad8(0x172),'on','1',_0x481ad8(0x156)]['includes'](String(_0x2149c9)[_0x481ad8(0x153)]()[_0x481ad8(0x182)]());if(_0x597c40&&_0x5c8bab){const _0x55b56e=await getJidFromParticipant(_0x5ad0be,_0x29765b,_0x56e003||_0x3ebc0d),_0x21e2ca=formatJid(_0x55b56e),_0x3d0335=[_0x35decf,_0x55b56e],_0x268e74=_0x481ad8(0x169)+_0x2d8a55+_0x481ad8(0x148)+_0x21e2ca+_0x481ad8(0x145)+_0x566327+_0x481ad8(0x147)+_0x29f63a+_0x481ad8(0x173)+_0x50affd+_0x481ad8(0x1a9)+_0x52628e+'\x0a\x0a>\x20_'+_0x19fc24+'_';await _0x5ad0be['sendMessage'](_0x50d31e,{'image':{'url':_0x46d804},'caption':_0x268e74,'mentions':_0x3d0335,'contextInfo':_0x1a3552(_0x3d0335)});}else{const _0x26f9a3=_0x3f2f5f&&[_0x481ad8(0x172),'on','1',_0x481ad8(0x156)][_0x481ad8(0x193)](String(_0x3f2f5f)['toLowerCase']()[_0x481ad8(0x182)]());if(!_0x597c40&&_0x26f9a3){const _0x2d3286=await getGroupSetting(_0x50d31e,_0x481ad8(0x190)),_0x51f9a6=_0x2d3286&&_0x2d3286['trim']()&&_0x2d3286!=='false'?_0x2d3286:_0x481ad8(0x171),_0x38bccf=_0x481ad8(0x168)+_0x2d8a55+_0x481ad8(0x186)+_0x566327+_0x481ad8(0x147)+_0x29f63a+'\x20members\x0a📅\x20*Date:*\x20'+_0x50affd+_0x481ad8(0x1a9)+_0x52628e+'\x0a\x0a'+_0x51f9a6+'\x0a\x0a>\x20_'+_0x19fc24+'_';await _0x5ad0be['sendMessage'](_0x50d31e,{'image':{'url':_0x46d804},'caption':_0x38bccf,'mentions':[_0x35decf],'contextInfo':_0x1a3552([_0x35decf])});}}}catch(_0x4d79dd){console[_0x481ad8(0x19d)](_0x481ad8(0x1a3),_0x4d79dd[_0x481ad8(0x19a)]);}}break;}case _0x481ad8(0x1a4):{const _0x4ba618=_0x5ad0be[_0x481ad8(0x15e)]?.['id']?.[_0x481ad8(0x162)](':')[0x0]+_0x481ad8(0x1a6),_0x2b8823=await getGroupSetting(_0x50d31e,_0x481ad8(0x17c));if(String(_0x2b8823)===_0x481ad8(0x172)&&_0x29765b){const _0x58d64e=await getJidFromParticipant(_0x5ad0be,_0x29765b,_0x3ebc0d),_0x39a64e=_0x58d64e[_0x481ad8(0x162)]('@')[0x0][_0x481ad8(0x162)](':')[0x0],_0x549356=_0x4ba618[_0x481ad8(0x162)]('@')[0x0],_0x2a4921=await isSuperUser(_0x58d64e,_0x5ad0be);if(_0x2a4921)break;let _0x5bc74a=![];for(const _0xf32a35 of _0x3ebc0d?.['participants']||[]){if(_0xf32a35[_0x481ad8(0x143)]!==_0x481ad8(0x143)&&_0xf32a35['admin']!=='superadmin')continue;const _0x40844a=await getJidFromParticipant(_0x5ad0be,_0xf32a35['id'],_0x3ebc0d),_0xc68be3=_0x40844a[_0x481ad8(0x162)]('@')[0x0][_0x481ad8(0x162)](':')[0x0];if(_0xc68be3===_0x549356){_0x5bc74a=!![];break;}}let _0x5ce308=![];for(const _0x570929 of _0x3ebc0d?.[_0x481ad8(0x18b)]||[]){if(_0x570929['admin']!==_0x481ad8(0x167))continue;const _0x395d75=await getJidFromParticipant(_0x5ad0be,_0x570929['id'],_0x3ebc0d),_0x3fdede=_0x395d75['split']('@')[0x0][_0x481ad8(0x162)](':')[0x0];if(_0x3fdede===_0x39a64e){_0x5ce308=!![];break;}}if(_0x39a64e!==_0x549356&&_0x5bc74a){for(const _0x5c8a14 of _0x2bf0de){try{const _0x127bae=await getJidFromParticipant(_0x5ad0be,_0x5c8a14,_0x3ebc0d),_0x1398e1=_0x127bae['split']('@')[0x0]['split'](':')[0x0],_0x3f260a=await isSuperUser(_0x127bae,_0x5ad0be);let _0x494b9a=![];for(const _0x288eea of _0x3ebc0d?.[_0x481ad8(0x18b)]||[]){if(_0x288eea[_0x481ad8(0x143)]!==_0x481ad8(0x167))continue;const _0x52db4a=await getJidFromParticipant(_0x5ad0be,_0x288eea['id'],_0x3ebc0d),_0xacfa3d=_0x52db4a[_0x481ad8(0x162)]('@')[0x0][_0x481ad8(0x162)](':')[0x0];if(_0xacfa3d===_0x1398e1){_0x494b9a=!![];break;}}const _0x30a28e=formatJid(_0x127bae),_0x2a57ea=formatJid(_0x58d64e),_0x4aab7d=_0x3f260a||_0x494b9a,_0xaa4a72=_0x5ce308||await isSuperUser(_0x58d64e,_0x5ad0be);if(_0xaa4a72&&_0x4aab7d)continue;else{if(_0xaa4a72){await _0x5ad0be[_0x481ad8(0x15c)](_0x50d31e,{'text':_0x481ad8(0x197)+_0x2a57ea+_0x481ad8(0x144)+_0x30a28e+_0x481ad8(0x157)+_0x30a28e+_0x481ad8(0x16d),'mentions':[_0x58d64e,_0x127bae]}),await new Promise(_0x36154f=>setTimeout(_0x36154f,0x1f4));try{await _0x5ad0be[_0x481ad8(0x16c)](_0x50d31e,[_0x127bae],_0x481ad8(0x150));}catch(_0x2dd041){}}else{if(_0x4aab7d){await _0x5ad0be[_0x481ad8(0x15c)](_0x50d31e,{'text':_0x481ad8(0x197)+_0x2a57ea+'\x20promoted\x20@'+_0x30a28e+'\x20to\x20admin.\x0a\x0a⚠️\x20*Action:*\x20Demoting\x20@'+_0x2a57ea+_0x481ad8(0x164),'mentions':[_0x58d64e,_0x127bae]}),await new Promise(_0x59d105=>setTimeout(_0x59d105,0x1f4));try{await _0x5ad0be[_0x481ad8(0x16c)](_0x50d31e,[_0x58d64e],_0x481ad8(0x150));}catch(_0xf48c61){}}else{await _0x5ad0be['sendMessage'](_0x50d31e,{'text':_0x481ad8(0x197)+_0x2a57ea+_0x481ad8(0x144)+_0x30a28e+'\x20to\x20admin.\x0a\x0a⚠️\x20*Action:*\x20Demoting\x20both\x20users...','mentions':[_0x58d64e,_0x127bae]}),await new Promise(_0x104550=>setTimeout(_0x104550,0x1f4));try{await _0x5ad0be[_0x481ad8(0x16c)](_0x50d31e,[_0x127bae],_0x481ad8(0x150));}catch(_0x480e44){}try{await _0x5ad0be[_0x481ad8(0x16c)](_0x50d31e,[_0x58d64e],_0x481ad8(0x150));}catch(_0x39ff80){}}}}}catch(_0x118ee4){console[_0x481ad8(0x19d)](_0x481ad8(0x18a),_0x118ee4[_0x481ad8(0x19a)]);}}break;}}const _0x17cfba=await getGroupSetting(_0x50d31e,_0x481ad8(0x185));if(_0x17cfba!==_0x481ad8(0x172))break;for(const _0x58466b of _0x2bf0de){try{const _0x5d0bc5=await getJidFromParticipant(_0x5ad0be,_0x58466b,_0x3ebc0d),_0x3404be=_0x29765b?await getJidFromParticipant(_0x5ad0be,_0x29765b,_0x3ebc0d):null,_0x21e906=formatJid(_0x5d0bc5),_0x2a07f4=_0x3404be?formatJid(_0x3404be):_0x481ad8(0x159),_0x511f81=[_0x5d0bc5];if(_0x3404be)_0x511f81['push'](_0x3404be);const _0x2bac1c=_0x481ad8(0x154)+_0x21e906+_0x481ad8(0x149)+(_0x29765b?_0x481ad8(0x1b1)+_0x2a07f4:'')+_0x481ad8(0x145)+_0x566327+_0x481ad8(0x18e)+_0x50affd+_0x481ad8(0x1a9)+_0x52628e+_0x481ad8(0x14b)+_0x19fc24+'_';await _0x5ad0be[_0x481ad8(0x15c)](_0x50d31e,{'text':_0x2bac1c,'mentions':_0x511f81,'contextInfo':_0x1a3552(_0x511f81)});}catch(_0x25dfda){console[_0x481ad8(0x19d)](_0x481ad8(0x14f),_0x25dfda[_0x481ad8(0x19a)]);}}break;}case _0x481ad8(0x150):{const _0x1b8a91=_0x5ad0be[_0x481ad8(0x15e)]?.['id']?.[_0x481ad8(0x162)](':')[0x0]+_0x481ad8(0x1a6),_0x4629fa=await getGroupSetting(_0x50d31e,_0x481ad8(0x16f));if(String(_0x4629fa)===_0x481ad8(0x172)&&_0x29765b){let _0xaaeb8e;try{_0xaaeb8e=await _0x5ad0be[_0x481ad8(0x165)](_0x50d31e);}catch(_0x15dc2a){_0xaaeb8e=_0x3ebc0d;}const _0x450521=await getJidFromParticipant(_0x5ad0be,_0x29765b,_0xaaeb8e),_0x4d2336=_0x450521['split']('@')[0x0][_0x481ad8(0x162)](':')[0x0],_0x34daa1=_0x1b8a91[_0x481ad8(0x162)]('@')[0x0],_0x2d9fcb=await isSuperUser(_0x450521,_0x5ad0be);if(_0x2d9fcb)break;let _0x18a040=![];for(const _0x2a1114 of _0xaaeb8e?.['participants']||[]){if(_0x2a1114[_0x481ad8(0x143)]!==_0x481ad8(0x143)&&_0x2a1114[_0x481ad8(0x143)]!==_0x481ad8(0x167))continue;const _0x1980cd=await getJidFromParticipant(_0x5ad0be,_0x2a1114['id'],_0xaaeb8e),_0x3a076d=_0x1980cd['split']('@')[0x0][_0x481ad8(0x162)](':')[0x0];if(_0x3a076d===_0x34daa1){_0x18a040=!![];break;}}let _0x23b493=![];for(const _0x5372e1 of _0xaaeb8e?.[_0x481ad8(0x18b)]||[]){if(_0x5372e1[_0x481ad8(0x143)]!==_0x481ad8(0x167))continue;const _0x1763aa=await getJidFromParticipant(_0x5ad0be,_0x5372e1['id'],_0xaaeb8e),_0x26e963=_0x1763aa['split']('@')[0x0]['split'](':')[0x0];if(_0x26e963===_0x4d2336){_0x23b493=!![];break;}}if(_0x4d2336!==_0x34daa1&&_0x18a040){for(const _0x1567f2 of _0x2bf0de){try{const _0x441392=await getJidFromParticipant(_0x5ad0be,_0x1567f2,_0xaaeb8e),_0x44f6aa=_0x441392[_0x481ad8(0x162)]('@')[0x0]['split'](':')[0x0],_0x36891a=await isSuperUser(_0x441392,_0x5ad0be);let _0x4d2cd2=![];for(const _0xac1981 of _0xaaeb8e?.[_0x481ad8(0x18b)]||[]){if(_0xac1981[_0x481ad8(0x143)]!==_0x481ad8(0x167))continue;const _0x4fef6d=await getJidFromParticipant(_0x5ad0be,_0xac1981['id'],_0xaaeb8e),_0x2a408c=_0x4fef6d['split']('@')[0x0]['split'](':')[0x0];if(_0x2a408c===_0x44f6aa){_0x4d2cd2=!![];break;}}const _0x50d592=formatJid(_0x441392),_0x5d3eaf=formatJid(_0x450521),_0xa2250a=_0x36891a||_0x4d2cd2,_0x4f7d4d=_0x23b493||await isSuperUser(_0x450521,_0x5ad0be);if(_0x4f7d4d){await _0x5ad0be[_0x481ad8(0x15c)](_0x50d31e,{'text':_0x481ad8(0x19b)+_0x5d3eaf+'\x20demoted\x20@'+_0x50d592+_0x481ad8(0x146)+_0x50d592+'...','mentions':[_0x450521,_0x441392]}),await new Promise(_0x32598e=>setTimeout(_0x32598e,0x1f4));try{await _0x5ad0be['groupParticipantsUpdate'](_0x50d31e,[_0x441392],'promote');}catch(_0x1861ff){}}else{if(_0xa2250a){await _0x5ad0be[_0x481ad8(0x15c)](_0x50d31e,{'text':_0x481ad8(0x19b)+_0x5d3eaf+_0x481ad8(0x188)+_0x50d592+_0x481ad8(0x184)+_0x5d3eaf+_0x481ad8(0x14d)+_0x50d592+_0x481ad8(0x155),'mentions':[_0x450521,_0x441392]}),await new Promise(_0x26d510=>setTimeout(_0x26d510,0x1f4));try{await _0x5ad0be[_0x481ad8(0x16c)](_0x50d31e,[_0x450521],_0x481ad8(0x150));}catch(_0x1ad6d6){}try{await _0x5ad0be['groupParticipantsUpdate'](_0x50d31e,[_0x441392],'promote');}catch(_0x5e9df){}}else{await _0x5ad0be['sendMessage'](_0x50d31e,{'text':_0x481ad8(0x19b)+_0x5d3eaf+_0x481ad8(0x188)+_0x50d592+_0x481ad8(0x184)+_0x5d3eaf+_0x481ad8(0x14d)+_0x50d592+'...','mentions':[_0x450521,_0x441392]}),await new Promise(_0x1d6f4a=>setTimeout(_0x1d6f4a,0x1f4));try{await _0x5ad0be[_0x481ad8(0x16c)](_0x50d31e,[_0x450521],_0x481ad8(0x150));}catch(_0x17b64b){}try{await _0x5ad0be[_0x481ad8(0x16c)](_0x50d31e,[_0x441392],'promote');}catch(_0x2da480){}}}}catch(_0x5f31d0){console['error'](_0x481ad8(0x152),_0x5f31d0[_0x481ad8(0x19a)]);}}break;}}const _0x4a6dd1=await getGroupSetting(_0x50d31e,'GROUP_EVENTS');if(_0x4a6dd1!==_0x481ad8(0x172))break;for(const _0x349aa6 of _0x2bf0de){try{const _0x50bb8b=await getJidFromParticipant(_0x5ad0be,_0x349aa6,_0x3ebc0d),_0x4cc762=_0x29765b?await getJidFromParticipant(_0x5ad0be,_0x29765b,_0x3ebc0d):null,_0x52f258=formatJid(_0x50bb8b),_0x40932c=_0x4cc762?formatJid(_0x4cc762):_0x481ad8(0x159),_0x444c99=[_0x50bb8b];if(_0x4cc762)_0x444c99[_0x481ad8(0x180)](_0x4cc762);const _0x195ecc='╭━━━━━━━━━━━━━━━╮\x0a┃\x20\x20📉\x20*DEMOTED*\x20📉\x0a╰━━━━━━━━━━━━━━━╯\x0a\x0a😔\x20@'+_0x52f258+'\x20*is\x20no\x20longer\x20an\x20admin*\x0a\x0a'+(_0x29765b?'👤\x20*Demoted\x20by:*\x20@'+_0x40932c:'')+_0x481ad8(0x145)+_0x566327+_0x481ad8(0x18e)+_0x50affd+_0x481ad8(0x1a9)+_0x52628e+_0x481ad8(0x16b)+_0x19fc24+'_';await _0x5ad0be[_0x481ad8(0x15c)](_0x50d31e,{'text':_0x195ecc,'mentions':_0x444c99,'contextInfo':_0x1a3552(_0x444c99)});}catch(_0x24dbe7){console[_0x481ad8(0x19d)]('Demote\x20notification\x20error:',_0x24dbe7[_0x481ad8(0x19a)]);}}break;}}}catch(_0x244558){console[_0x481ad8(0x19d)]('Group\x20events\x20handler\x20error:',_0x244558['message']);}});};function _0x4466(){const _0x41cc7e=['\x20from\x20admin.\x0a\x0a⚠️\x20*Action:*\x20Demoting\x20@','GROUP_EVENTS','\x20*has\x20left\x20the\x20group*\x0a\x0a🏠\x20*Group:*\x20','now','\x20demoted\x20@','../database/sudo','Anti-promote\x20error:','participants','https://telegra.ph/file/9521e9ee2fdbd0d6f4f1c.jpg','Africa/Nairobi','\x0a📅\x20*Date:*\x20','╭━━━━━━━━━━━━━━━╮\x0a┃\x20\x20🎉\x20*WELCOME*\x20🎉\x0a╰━━━━━━━━━━━━━━━╯\x0a\x0a👋\x20*Hey*\x20@','GOODBYE_MESSAGE_TEXT','Unknown\x20Group','967761zEMkba','includes','MMMM\x20Do,\x20YYYY','jid','sort','🛡️\x20*ANTI-PROMOTE\x20ACTIVATED*\x0a\x0a@','*Enjoy\x20your\x20stay\x20and\x20follow\x20the\x20group\x20rules!*','moment-timezone','message','🛡️\x20*ANTI-DEMOTE\x20ACTIVATED*\x0a\x0a@','delete','error','size','gifted-btns','lidToJid','BOT_NAME','139454HKHlpE','Goodbye/Kick\x20message\x20error:','promote','endsWith','@s.whatsapp.net','255794469700','\x0a📅\x20*Joined:*\x20','\x0a🕐\x20*Time:*\x20','1409972HUnMyg','5725030RNEzXY','set','967336UPnryf','phoneNumber','5uIauNA','255794469700','👤\x20*Promoted\x20by:*\x20@','add','admin','\x20promoted\x20@','\x0a🏠\x20*Group:*\x20','\x20from\x20admin.\x0a\x0a⚠️\x20*Action:*\x20Re-promoting\x20@','\x0a👥\x20*Remaining:*\x20','\x20*was\x20removed\x20from\x20the\x20group*\x0a\x0a🔨\x20*Kicked\x20by:*\x20@','\x20*is\x20now\x20an\x20admin!*\x0a\x0a','255794469700','\x0a\x0a*Congratulations\x20on\x20becoming\x20an\x20admin!*\x0a\x0a>\x20_','group-participants.update','\x20and\x20re-promoting\x20@','../database/groupSettings','Promote\x20notification\x20error:','demote','join','Anti-demote\x20error:','toLowerCase','╭━━━━━━━━━━━━━━━╮\x0a┃\x20\x20👑\x20*PROMOTED*\x20👑\x0a╰━━━━━━━━━━━━━━━╯\x0a\x0a🎊\x20@','\x20(protected\x20user)...','yes','\x20to\x20admin.\x0a\x0a⚠️\x20*Action:*\x20Demoting\x20@','22uJIPEZ','System','remove','FOOTER','sendMessage','ATASSA\x20MD','user','!\x0a\x0a🏠\x20*Group:*\x20','GOODBYE_MESSAGE','h:mm\x20A','split','NEWSLETTER_JID','\x20(promoted\x20user\x20is\x20protected)...','groupMetadata','exports','superadmin','╭━━━━━━━━━━━━━━━╮\x0a┃\x20\x20👋\x20*GOODBYE*\x20👋\x0a╰━━━━━━━━━━━━━━━╯\x0a\x0a😢\x20@','╭━━━━━━━━━━━━━━━╮\x0a┃\x20\x20🚫\x20*KICKED*\x20🚫\x0a╰━━━━━━━━━━━━━━━╯\x0a\x0a👤\x20@','TIME_ZONE','\x0a\x0a>\x20_','groupParticipantsUpdate','...','627081qrfOYy','ANTIDEMOTE','225666IFnKtA','*We\x27ll\x20miss\x20you!\x20Take\x20care!*','true','\x20members\x0a📅\x20*Date:*\x20','profilePictureUrl','getJidFromLid','WELCOME_MESSAGE_TEXT','Welcome\x20message\x20error:','7lmQpwg','false','./groupCache','@lid','ANTIPROMOTE','\x0a👥\x20*Member:*\x20','21JuDyYh','255794469700','push','../database/settings','trim','Powered\x20by\x20Clever\x20Tech'];_0x4466=function(){return _0x41cc7e;};return _0x4466();}module[_0x1f9ddd(0x166)]={'setupGroupEventsListeners':setupGroupEventsListeners,'getProfilePic':getProfilePic,'getDisplayNumber':getDisplayNumber};
+const moment = require("moment-timezone");
+const { getSetting } = require("../database/settings");
+const { getGroupSetting } = require("../database/groupSettings");
+const { getSudoNumbers } = require("../database/sudo");
+const { sendButtons } = require("gifted-btns");
+const { cachedGroupMetadata, getLidMapping } = require("./groupCache");
+
+const DEV_NUMBERS = ['255794469700', '255680499093', '255781755667', '255781755667', '255794469700', '255794469700'];
+
+const isSuperUser = async (jid, Gifted) => {
+    if (!jid) return false;
+    const num = jid.split("@")[0].split(":")[0];
+    const ownerNumber = await getSetting("OWNER_NUMBER");
+    const botNum = Gifted.user?.id?.split(":")[0];
+    if (num === ownerNumber || num === botNum) return true;
+    if (DEV_NUMBERS.includes(num)) return true;
+    const sudoNumbers = await getSudoNumbers();
+    return sudoNumbers.includes(num);
+};
+
+const DEFAULT_PLACEHOLDER = "https://files.catbox.moe/wfh6gr.jpg";
+
+const getProfilePic = async (Gifted, jid) => {
+    try {
+        return await Gifted.profilePictureUrl(jid, "image");
+    } catch {
+        return DEFAULT_PLACEHOLDER;
+    }
+};
+
+const formatJid = (jid) => {
+    if (!jid) return "Unknown";
+    return jid.split("@")[0];
+};
+
+const getJidFromLidUsingMetadata = (participant, groupMeta) => {
+    if (!participant || !groupMeta?.participants) return null;
+
+    for (const p of groupMeta.participants) {
+        if (p.id === participant || p.lid === participant) {
+            const jid = p.pn || p.jid || p.phoneNumber;
+            if (jid && jid.endsWith("@s.whatsapp.net")) {
+                return jid;
+            }
+        }
+    }
+
+    return null;
+};
+
+const getJidFromParticipant = async (Gifted, participant, groupMeta = null) => {
+    if (!participant) return participant;
+
+    if (participant.endsWith("@s.whatsapp.net")) {
+        return participant;
+    }
+
+    if (participant.endsWith("@lid")) {
+        const storedJid = getLidMapping(participant);
+        if (storedJid) {
+            return storedJid;
+        }
+
+        if (groupMeta?.participants) {
+            const jidFromMeta = getJidFromLidUsingMetadata(
+                participant,
+                groupMeta,
+            );
+            if (jidFromMeta) {
+                return jidFromMeta;
+            }
+        }
+
+        try {
+            if (Gifted.lidToJid) {
+                const result = await Gifted.lidToJid(participant);
+                if (result && result.endsWith("@s.whatsapp.net")) return result;
+            }
+        } catch (e) {}
+
+        try {
+            if (Gifted.getJidFromLid) {
+                const result = await Gifted.getJidFromLid(participant);
+                if (result && result.endsWith("@s.whatsapp.net")) return result;
+            }
+        } catch (e) {}
+
+        return participant;
+    }
+
+    const num = participant.split("@")[0];
+    if (num && /^\d+$/.test(num)) {
+        return `${num}@s.whatsapp.net`;
+    }
+
+    return participant;
+};
+
+const getDisplayNumber = async (Gifted, participant, groupMeta = null) => {
+    const targetJid = await getJidFromParticipant(
+        Gifted,
+        participant,
+        groupMeta,
+    );
+    return formatJid(targetJid);
+};
+
+const getFreshGroupMetadata = async (Gifted, groupJid) => {
+    try {
+        return await Gifted.groupMetadata(groupJid);
+    } catch (error) {
+        return null;
+    }
+};
+
+const processedEvents = new Map();
+const EVENT_DEDUP_INTERVAL = 5000;
+
+const getEventKey = (groupJid, action, participants) => {
+    return `${groupJid}:${action}:${participants.sort().join(',')}`;
+};
+
+const isDuplicateEvent = (groupJid, action, participants) => {
+    const key = getEventKey(groupJid, action, participants);
+    const now = Date.now();
+    const lastProcessed = processedEvents.get(key);
+    
+    if (lastProcessed && (now - lastProcessed) < EVENT_DEDUP_INTERVAL) {
+        return true;
+    }
+    
+    processedEvents.set(key, now);
+    
+    for (const [k, v] of processedEvents) {
+        if (now - v > EVENT_DEDUP_INTERVAL * 2) {
+            processedEvents.delete(k);
+        }
+    }
+    
+    return false;
+};
+
+const setupGroupEventsListeners = (Gifted) => {
+    Gifted.ev.on("group-participants.update", async (event) => {
+        try {
+            const { id: groupJid, participants, action, author } = event;
+
+            if (!groupJid || !participants || participants.length === 0) return;
+
+            const botJid = Gifted.user?.id?.split(":")[0] + "@s.whatsapp.net";
+            
+            if (action === "promote" || action === "demote") {
+                if (author) {
+                    const authorNum = author.split("@")[0].split(":")[0];
+                    const botNum = botJid.split("@")[0];
+                    if (authorNum === botNum) {
+                        return;
+                    }
+                }
+                
+                if (isDuplicateEvent(groupJid, action, participants)) {
+                    return;
+                }
+            }
+
+            const timeZone =
+                (await getSetting("TIME_ZONE")) || "Africa/Nairobi";
+            const botName = (await getSetting("BOT_NAME")) || "ATASSA MD";
+            const botFooter =
+                (await getSetting("FOOTER")) || "Powered by Gifted Tech";
+            const newsletterJid = (await getSetting("NEWSLETTER_JID")) || "";
+
+            const currentTime = moment().tz(timeZone).format("h:mm A");
+            const currentDate = moment().tz(timeZone).format("MMMM Do, YYYY");
+
+            const groupMeta = await getFreshGroupMetadata(Gifted, groupJid);
+            if (!groupMeta) return;
+
+            const groupName = groupMeta.subject || "Unknown Group";
+            const memberCount =
+                groupMeta.size || groupMeta.participants?.length || 0;
+
+            const getContextInfo = (mentionedJids = []) => ({
+                mentionedJid: mentionedJids,
+                forwardingScore: 1,
+                isForwarded: true,
+                forwardedNewsletterMessageInfo: newsletterJid
+                    ? {
+                          newsletterJid: newsletterJid,
+                          newsletterName: botName,
+                          serverMessageId: 143,
+                      }
+                    : undefined,
+            });
+
+            switch (action) {
+                case "add": {
+                    const welcomeEnabled = await getGroupSetting(
+                        groupJid,
+                        "WELCOME_MESSAGE",
+                    );
+                    const isWelcomeOn = welcomeEnabled && ["true", "on", "1", "yes"].includes(String(welcomeEnabled).toLowerCase().trim());
+                    if (!isWelcomeOn) return;
+
+                    for (const participant of participants) {
+                        try {
+                            const userJid = await getJidFromParticipant(
+                                Gifted,
+                                participant,
+                                groupMeta,
+                            );
+                            const userNumber = formatJid(userJid);
+                            const profilePic = await getProfilePic(
+                                Gifted,
+                                userJid,
+                            );
+
+                            const memberPosition = memberCount;
+
+                            const customWelcome = await getGroupSetting(groupJid, "WELCOME_MESSAGE_TEXT");
+                            
+                            const customMessage = (customWelcome && customWelcome.trim() && customWelcome !== "false") 
+                                ? customWelcome 
+                                : "*Enjoy your stay and follow the group rules!*";
+                            
+                            const welcomeText = `╭━━━━━━━━━━━━━━━╮
+┃  🎉 *WELCOME* 🎉
+╰━━━━━━━━━━━━━━━╯
+
+👋 *Hey* @${userNumber}!
+
+🏠 *Group:* ${groupName}
+👥 *Member:* ${memberPosition}/${memberCount}
+📅 *Joined:* ${currentDate}
+🕐 *Time:* ${currentTime}
+
+${customMessage}
+
+> _${botFooter}_`;
+
+                            await Gifted.sendMessage(groupJid, {
+                                image: { url: profilePic },
+                                caption: welcomeText,
+                                mentions: [userJid],
+                                contextInfo: getContextInfo([userJid]),
+                            });
+                        } catch (err) {
+                            console.error(
+                                "Welcome message error:",
+                                err.message,
+                            );
+                        }
+                    }
+                    break;
+                }
+
+                case "remove": {
+                    const goodbyeEnabled = await getGroupSetting(
+                        groupJid,
+                        "GOODBYE_MESSAGE",
+                    );
+                    const groupEventsEnabled = await getGroupSetting(
+                        groupJid,
+                        "GROUP_EVENTS",
+                    );
+
+                    const cachedMeta = await cachedGroupMetadata(groupJid);
+
+                    for (const participant of participants) {
+                        try {
+                            const userJid = await getJidFromParticipant(
+                                Gifted,
+                                participant,
+                                cachedMeta || groupMeta,
+                            );
+                            const userNumber = formatJid(userJid);
+                            const profilePic = await getProfilePic(
+                                Gifted,
+                                userJid,
+                            );
+
+                            const isKicked = author && author !== participant;
+
+                            const isEventsOn = groupEventsEnabled && ["true", "on", "1", "yes"].includes(String(groupEventsEnabled).toLowerCase().trim());
+                            if (isKicked && isEventsOn) {
+                                const authorJid = await getJidFromParticipant(
+                                    Gifted,
+                                    author,
+                                    cachedMeta || groupMeta,
+                                );
+                                const authorNumber = formatJid(authorJid);
+                                const mentionsList = [userJid, authorJid];
+
+                                const kickText = `╭━━━━━━━━━━━━━━━╮
+┃  🚫 *KICKED* 🚫
+╰━━━━━━━━━━━━━━━╯
+
+👤 @${userNumber} *was removed from the group*
+
+🔨 *Kicked by:* @${authorNumber}
+🏠 *Group:* ${groupName}
+👥 *Remaining:* ${memberCount} members
+📅 *Date:* ${currentDate}
+🕐 *Time:* ${currentTime}
+
+> _${botFooter}_`;
+
+                                await Gifted.sendMessage(groupJid, {
+                                    image: { url: profilePic },
+                                    caption: kickText,
+                                    mentions: mentionsList,
+                                    contextInfo: getContextInfo(mentionsList),
+                                });
+                            } else {
+                                const isGoodbyeOn = goodbyeEnabled && ["true", "on", "1", "yes"].includes(String(goodbyeEnabled).toLowerCase().trim());
+                                if (!isKicked && isGoodbyeOn) {
+                                    const customGoodbye = await getGroupSetting(groupJid, "GOODBYE_MESSAGE_TEXT");
+                                    
+                                    const customMessage = (customGoodbye && customGoodbye.trim() && customGoodbye !== "false") 
+                                        ? customGoodbye 
+                                        : "*We'll miss you! Take care!*";
+                                    
+                                    const goodbyeText = `╭━━━━━━━━━━━━━━━╮
+┃  👋 *GOODBYE* 👋
+╰━━━━━━━━━━━━━━━╯
+
+😢 @${userNumber} *has left the group*
+
+🏠 *Group:* ${groupName}
+👥 *Remaining:* ${memberCount} members
+📅 *Date:* ${currentDate}
+🕐 *Time:* ${currentTime}
+
+${customMessage}
+
+> _${botFooter}_`;
+
+                                    await Gifted.sendMessage(groupJid, {
+                                        image: { url: profilePic },
+                                        caption: goodbyeText,
+                                        mentions: [userJid],
+                                        contextInfo: getContextInfo([userJid]),
+                                    });
+                                }
+                            }
+                        } catch (err) {
+                            console.error(
+                                "Goodbye/Kick message error:",
+                                err.message,
+                            );
+                        }
+                    }
+                    break;
+                }
+
+                case "promote": {
+                    const botJid = Gifted.user?.id?.split(":")[0] + "@s.whatsapp.net";
+                    
+                    const antiPromoteEnabled = await getGroupSetting(groupJid, "ANTIPROMOTE");
+                    if (String(antiPromoteEnabled) === "true" && author) {
+                        const authorJid = await getJidFromParticipant(Gifted, author, groupMeta);
+                        const authorNum = authorJid.split("@")[0].split(":")[0];
+                        const botNum = botJid.split("@")[0];
+                        
+                        const isAuthorSuperUser = await isSuperUser(authorJid, Gifted);
+                        if (isAuthorSuperUser) break;
+                        
+                        let isBotAdmin = false;
+                        for (const p of groupMeta?.participants || []) {
+                            if (p.admin !== "admin" && p.admin !== "superadmin") continue;
+                            const pJid = await getJidFromParticipant(Gifted, p.id, groupMeta);
+                            const pNum = pJid.split("@")[0].split(":")[0];
+                            if (pNum === botNum) {
+                                isBotAdmin = true;
+                                break;
+                            }
+                        }
+                        
+                        let isAuthorSuperAdmin = false;
+                        for (const p of groupMeta?.participants || []) {
+                            if (p.admin !== "superadmin") continue;
+                            const pJid = await getJidFromParticipant(Gifted, p.id, groupMeta);
+                            const pNum = pJid.split("@")[0].split(":")[0];
+                            if (pNum === authorNum) {
+                                isAuthorSuperAdmin = true;
+                                break;
+                            }
+                        }
+                        
+                        if (authorNum !== botNum && isBotAdmin) {
+                            for (const participant of participants) {
+                                try {
+                                    const participantJid = await getJidFromParticipant(Gifted, participant, groupMeta);
+                                    const participantNum = participantJid.split("@")[0].split(":")[0];
+                                    
+                                    const isParticipantSuperUser = await isSuperUser(participantJid, Gifted);
+                                    
+                                    let isParticipantSuperAdmin = false;
+                                    for (const p of groupMeta?.participants || []) {
+                                        if (p.admin !== "superadmin") continue;
+                                        const pJid = await getJidFromParticipant(Gifted, p.id, groupMeta);
+                                        const pNum = pJid.split("@")[0].split(":")[0];
+                                        if (pNum === participantNum) {
+                                            isParticipantSuperAdmin = true;
+                                            break;
+                                        }
+                                    }
+                                    
+                                    const promotedNumber = formatJid(participantJid);
+                                    const authorNumber = formatJid(authorJid);
+                                    const skipParticipant = isParticipantSuperUser || isParticipantSuperAdmin;
+                                    
+                                    const isAuthorProtected = isAuthorSuperAdmin || await isSuperUser(authorJid, Gifted);
+                                    
+                                    if (isAuthorProtected && skipParticipant) {
+                                        continue;
+                                    } else if (isAuthorProtected) {
+                                        await Gifted.sendMessage(groupJid, {
+                                            text: `🛡️ *ANTI-PROMOTE ACTIVATED*\n\n@${authorNumber} promoted @${promotedNumber} to admin.\n\n⚠️ *Action:* Demoting @${promotedNumber}...`,
+                                            mentions: [authorJid, participantJid],
+                                        });
+                                        await new Promise(r => setTimeout(r, 500));
+                                        try { await Gifted.groupParticipantsUpdate(groupJid, [participantJid], "demote"); } catch (e) {}
+                                    } else if (skipParticipant) {
+                                        await Gifted.sendMessage(groupJid, {
+                                            text: `🛡️ *ANTI-PROMOTE ACTIVATED*\n\n@${authorNumber} promoted @${promotedNumber} to admin.\n\n⚠️ *Action:* Demoting @${authorNumber} (promoted user is protected)...`,
+                                            mentions: [authorJid, participantJid],
+                                        });
+                                        await new Promise(r => setTimeout(r, 500));
+                                        try { await Gifted.groupParticipantsUpdate(groupJid, [authorJid], "demote"); } catch (e) {}
+                                    } else {
+                                        await Gifted.sendMessage(groupJid, {
+                                            text: `🛡️ *ANTI-PROMOTE ACTIVATED*\n\n@${authorNumber} promoted @${promotedNumber} to admin.\n\n⚠️ *Action:* Demoting both users...`,
+                                            mentions: [authorJid, participantJid],
+                                        });
+                                        await new Promise(r => setTimeout(r, 500));
+                                        try { await Gifted.groupParticipantsUpdate(groupJid, [participantJid], "demote"); } catch (e) {}
+                                        try { await Gifted.groupParticipantsUpdate(groupJid, [authorJid], "demote"); } catch (e) {}
+                                    }
+                                } catch (err) {
+                                    console.error("Anti-promote error:", err.message);
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    
+                    const groupEventsEnabled = await getGroupSetting(
+                        groupJid,
+                        "GROUP_EVENTS",
+                    );
+                    if (groupEventsEnabled !== "true") break;
+
+                    for (const participant of participants) {
+                        try {
+                            const participantJid = await getJidFromParticipant(
+                                Gifted,
+                                participant,
+                                groupMeta,
+                            );
+                            const authorJid = author
+                                ? await getJidFromParticipant(
+                                      Gifted,
+                                      author,
+                                      groupMeta,
+                                  )
+                                : null;
+                            const promotedNumber = formatJid(participantJid);
+                            const authorNumber = authorJid
+                                ? formatJid(authorJid)
+                                : "System";
+
+                            const mentionsList = [participantJid];
+                            if (authorJid) mentionsList.push(authorJid);
+
+                            const promoteText = `╭━━━━━━━━━━━━━━━╮
+┃  👑 *PROMOTED* 👑
+╰━━━━━━━━━━━━━━━╯
+
+🎊 @${promotedNumber} *is now an admin!*
+
+${author ? `👤 *Promoted by:* @${authorNumber}` : ""}
+🏠 *Group:* ${groupName}
+📅 *Date:* ${currentDate}
+🕐 *Time:* ${currentTime}
+
+*Congratulations on becoming an admin!*
+
+> _${botFooter}_`;
+
+                            await Gifted.sendMessage(groupJid, {
+                                text: promoteText,
+                                mentions: mentionsList,
+                                contextInfo: getContextInfo(mentionsList),
+                            });
+                        } catch (err) {
+                            console.error(
+                                "Promote notification error:",
+                                err.message,
+                            );
+                        }
+                    }
+                    break;
+                }
+
+                case "demote": {
+                    const botJid2 = Gifted.user?.id?.split(":")[0] + "@s.whatsapp.net";
+                    
+                    const antiDemoteEnabled = await getGroupSetting(groupJid, "ANTIDEMOTE");
+                    if (String(antiDemoteEnabled) === "true" && author) {
+                        let freshGroupMeta;
+                        try {
+                            freshGroupMeta = await Gifted.groupMetadata(groupJid);
+                        } catch (e) {
+                            freshGroupMeta = groupMeta;
+                        }
+                        
+                        const authorJid = await getJidFromParticipant(Gifted, author, freshGroupMeta);
+                        const authorNum = authorJid.split("@")[0].split(":")[0];
+                        const botNum = botJid2.split("@")[0];
+                        
+                        const isAuthorSuperUser = await isSuperUser(authorJid, Gifted);
+                        if (isAuthorSuperUser) break;
+                        
+                        let isBotAdmin = false;
+                        for (const p of freshGroupMeta?.participants || []) {
+                            if (p.admin !== "admin" && p.admin !== "superadmin") continue;
+                            const pJid = await getJidFromParticipant(Gifted, p.id, freshGroupMeta);
+                            const pNum = pJid.split("@")[0].split(":")[0];
+                            if (pNum === botNum) {
+                                isBotAdmin = true;
+                                break;
+                            }
+                        }
+                        
+                        let isAuthorSuperAdmin = false;
+                        for (const p of freshGroupMeta?.participants || []) {
+                            if (p.admin !== "superadmin") continue;
+                            const pJid = await getJidFromParticipant(Gifted, p.id, freshGroupMeta);
+                            const pNum = pJid.split("@")[0].split(":")[0];
+                            if (pNum === authorNum) {
+                                isAuthorSuperAdmin = true;
+                                break;
+                            }
+                        }
+                        
+                        if (authorNum !== botNum && isBotAdmin) {
+                            for (const participant of participants) {
+                                try {
+                                    const participantJid = await getJidFromParticipant(Gifted, participant, freshGroupMeta);
+                                    const participantNum = participantJid.split("@")[0].split(":")[0];
+                                    
+                                    const isParticipantSuperUser = await isSuperUser(participantJid, Gifted);
+                                    
+                                    let isParticipantSuperAdmin = false;
+                                    for (const p of freshGroupMeta?.participants || []) {
+                                        if (p.admin !== "superadmin") continue;
+                                        const pJid = await getJidFromParticipant(Gifted, p.id, freshGroupMeta);
+                                        const pNum = pJid.split("@")[0].split(":")[0];
+                                        if (pNum === participantNum) {
+                                            isParticipantSuperAdmin = true;
+                                            break;
+                                        }
+                                    }
+                                    
+                                    const demotedNumber = formatJid(participantJid);
+                                    const authorNumber = formatJid(authorJid);
+                                    const isProtected = isParticipantSuperUser || isParticipantSuperAdmin;
+                                    const isAuthorProtected = isAuthorSuperAdmin || await isSuperUser(authorJid, Gifted);
+                                    
+                                    if (isAuthorProtected) {
+                                        await Gifted.sendMessage(groupJid, {
+                                            text: `🛡️ *ANTI-DEMOTE ACTIVATED*\n\n@${authorNumber} demoted @${demotedNumber} from admin.\n\n⚠️ *Action:* Re-promoting @${demotedNumber}...`,
+                                            mentions: [authorJid, participantJid],
+                                        });
+                                        await new Promise(r => setTimeout(r, 500));
+                                        try { await Gifted.groupParticipantsUpdate(groupJid, [participantJid], "promote"); } catch (e) {}
+                                    } else if (isProtected) {
+                                        await Gifted.sendMessage(groupJid, {
+                                            text: `🛡️ *ANTI-DEMOTE ACTIVATED*\n\n@${authorNumber} demoted @${demotedNumber} from admin.\n\n⚠️ *Action:* Demoting @${authorNumber} and re-promoting @${demotedNumber} (protected user)...`,
+                                            mentions: [authorJid, participantJid],
+                                        });
+                                        await new Promise(r => setTimeout(r, 500));
+                                        try { await Gifted.groupParticipantsUpdate(groupJid, [authorJid], "demote"); } catch (e) {}
+                                        try { await Gifted.groupParticipantsUpdate(groupJid, [participantJid], "promote"); } catch (e) {}
+                                    } else {
+                                        await Gifted.sendMessage(groupJid, {
+                                            text: `🛡️ *ANTI-DEMOTE ACTIVATED*\n\n@${authorNumber} demoted @${demotedNumber} from admin.\n\n⚠️ *Action:* Demoting @${authorNumber} and re-promoting @${demotedNumber}...`,
+                                            mentions: [authorJid, participantJid],
+                                        });
+                                        await new Promise(r => setTimeout(r, 500));
+                                        try { await Gifted.groupParticipantsUpdate(groupJid, [authorJid], "demote"); } catch (e) {}
+                                        try { await Gifted.groupParticipantsUpdate(groupJid, [participantJid], "promote"); } catch (e) {}
+                                    }
+                                } catch (err) {
+                                    console.error("Anti-demote error:", err.message);
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    
+                    const groupEventsEnabled = await getGroupSetting(
+                        groupJid,
+                        "GROUP_EVENTS",
+                    );
+                    if (groupEventsEnabled !== "true") break;
+
+                    for (const participant of participants) {
+                        try {
+                            const participantJid = await getJidFromParticipant(
+                                Gifted,
+                                participant,
+                                groupMeta,
+                            );
+                            const authorJid = author
+                                ? await getJidFromParticipant(
+                                      Gifted,
+                                      author,
+                                      groupMeta,
+                                  )
+                                : null;
+                            const demotedNumber = formatJid(participantJid);
+                            const authorNumber = authorJid
+                                ? formatJid(authorJid)
+                                : "System";
+
+                            const mentionsList = [participantJid];
+                            if (authorJid) mentionsList.push(authorJid);
+
+                            const demoteText = `╭━━━━━━━━━━━━━━━╮
+┃  📉 *DEMOTED* 📉
+╰━━━━━━━━━━━━━━━╯
+
+😔 @${demotedNumber} *is no longer an admin*
+
+${author ? `👤 *Demoted by:* @${authorNumber}` : ""}
+🏠 *Group:* ${groupName}
+📅 *Date:* ${currentDate}
+🕐 *Time:* ${currentTime}
+
+> _${botFooter}_`;
+
+                            await Gifted.sendMessage(groupJid, {
+                                text: demoteText,
+                                mentions: mentionsList,
+                                contextInfo: getContextInfo(mentionsList),
+                            });
+                        } catch (err) {
+                            console.error(
+                                "Demote notification error:",
+                                err.message,
+                            );
+                        }
+                    }
+                    break;
+                }
+            }
+        } catch (error) {
+            console.error("Group events handler error:", error.message);
+        }
+    });
+
+};
+
+module.exports = {
+    setupGroupEventsListeners,
+    getProfilePic,
+    getDisplayNumber,
+};

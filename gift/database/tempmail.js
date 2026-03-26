@@ -1,1 +1,115 @@
-const _0x359df8=_0x4a21;(function(_0x2a494d,_0x1cee4b){const _0xc7fd77=_0x4a21,_0x40e6de=_0x2a494d();while(!![]){try{const _0x47a756=parseInt(_0xc7fd77(0x8b))/0x1+parseInt(_0xc7fd77(0x87))/0x2+-parseInt(_0xc7fd77(0x8e))/0x3+-parseInt(_0xc7fd77(0x99))/0x4*(parseInt(_0xc7fd77(0x8c))/0x5)+parseInt(_0xc7fd77(0x94))/0x6+-parseInt(_0xc7fd77(0x82))/0x7+parseInt(_0xc7fd77(0x97))/0x8;if(_0x47a756===_0x1cee4b)break;else _0x40e6de['push'](_0x40e6de['shift']());}catch(_0x5154ba){_0x40e6de['push'](_0x40e6de['shift']());}}}(_0x3c9b,0xc6d1a));const {DATABASE}=require(_0x359df8(0x8d)),{DataTypes,Op}=require(_0x359df8(0x93)),EXPIRY_MINUTES=0xa,TempMailDB=DATABASE[_0x359df8(0x92)](_0x359df8(0x85),{'id':{'type':DataTypes[_0x359df8(0x7e)],'primaryKey':!![],'autoIncrement':!![]},'userJid':{'type':DataTypes[_0x359df8(0x91)],'allowNull':![],'unique':!![]},'email':{'type':DataTypes[_0x359df8(0x91)],'allowNull':![]},'createdAt':{'type':DataTypes[_0x359df8(0x96)],'defaultValue':DataTypes[_0x359df8(0x83)]}},{'tableName':_0x359df8(0x95),'timestamps':!![]});async function initTempMailDB(){const _0x230b55=_0x359df8;await TempMailDB[_0x230b55(0x84)](),cleanupExpiredEmails();}async function cleanupExpiredEmails(){const _0x1daad9=_0x359df8;try{const _0x132fe5=new Date(Date[_0x1daad9(0x88)]()-EXPIRY_MINUTES*0x3c*0x3e8),_0x5784d7=await TempMailDB[_0x1daad9(0x86)]({'where':{'createdAt':{[Op['lt']]:_0x132fe5}}});_0x5784d7>0x0&&console[_0x1daad9(0x9d)](_0x1daad9(0x89)+_0x5784d7+_0x1daad9(0x81));}catch(_0x82023e){console[_0x1daad9(0x9c)]('[TempMail]\x20Cleanup\x20error:',_0x82023e[_0x1daad9(0x98)]);}}setInterval(cleanupExpiredEmails,0x3c*0x3e8);async function setUserEmail(_0x2b6101,_0x4514e4){const _0x14d0d9=_0x359df8;await initTempMailDB();const _0x70c839=await TempMailDB[_0x14d0d9(0x9a)]({'where':{'userJid':_0x2b6101}});if(_0x70c839)return _0x70c839[_0x14d0d9(0x9b)]=_0x4514e4,_0x70c839[_0x14d0d9(0x8f)]=new Date(),await _0x70c839['save'](),_0x70c839;return await TempMailDB[_0x14d0d9(0x7f)]({'userJid':_0x2b6101,'email':_0x4514e4});}async function getUserEmailWithExpiry(_0x3391e5){const _0x2c7496=_0x359df8;await initTempMailDB();const _0x55c41c=await TempMailDB[_0x2c7496(0x9a)]({'where':{'userJid':_0x3391e5}});if(!_0x55c41c)return null;const _0xe92b52=new Date(_0x55c41c[_0x2c7496(0x8f)]),_0x4b5ca7=new Date(_0xe92b52[_0x2c7496(0x80)]()+EXPIRY_MINUTES*0x3c*0x3e8),_0x3f11d9=new Date();if(_0x3f11d9>=_0x4b5ca7)return await TempMailDB[_0x2c7496(0x86)]({'where':{'userJid':_0x3391e5}}),null;const _0xafe5c8=_0x4b5ca7-_0x3f11d9,_0x6dcf9e=Math[_0x2c7496(0x90)](_0xafe5c8/0xea60),_0x3a3d9d=Math[_0x2c7496(0x90)](_0xafe5c8%0xea60/0x3e8);return{'email':_0x55c41c[_0x2c7496(0x9b)],'createdAt':_0xe92b52,'expiresAt':_0x4b5ca7,'remainingMs':_0xafe5c8,'remainingMins':_0x6dcf9e,'remainingSecs':_0x3a3d9d,'timeRemaining':_0x6dcf9e>0x0?_0x6dcf9e+'m\x20'+_0x3a3d9d+'s':_0x3a3d9d+'s'};}async function getUserEmail(_0x13fe5d){const _0x2c27ce=_0x359df8,_0x21aef8=await getUserEmailWithExpiry(_0x13fe5d);return _0x21aef8?_0x21aef8[_0x2c27ce(0x9b)]:null;}async function deleteUserEmail(_0x5e1adf){const _0x4f2163=_0x359df8;await initTempMailDB();const _0x1b3228=await TempMailDB[_0x4f2163(0x86)]({'where':{'userJid':_0x5e1adf}});return _0x1b3228>0x0;}function _0x4a21(_0x5e1b69,_0x196d78){_0x5e1b69=_0x5e1b69-0x7e;const _0x3c9bda=_0x3c9b();let _0x4a214a=_0x3c9bda[_0x5e1b69];return _0x4a214a;}module[_0x359df8(0x8a)]={'initTempMailDB':initTempMailDB,'setUserEmail':setUserEmail,'getUserEmail':getUserEmail,'getUserEmailWithExpiry':getUserEmailWithExpiry,'deleteUserEmail':deleteUserEmail,'cleanupExpiredEmails':cleanupExpiredEmails,'TempMailDB':TempMailDB,'EXPIRY_MINUTES':EXPIRY_MINUTES};function _0x3c9b(){const _0x3065a2=['sync','TempMail','destroy','1181098tNeype','now','[TempMail]\x20Auto-deleted\x20','exports','1063052CBcbaa','545020opgJho','./database','3497535kwxZim','createdAt','floor','STRING','define','sequelize','367320ZMTOrT','temp_mails','DATE','20904704EnEsyF','message','44ETOOhJ','findOne','email','error','log','INTEGER','create','getTime','\x20expired\x20email(s)','8040606SEyoMD','NOW'];_0x3c9b=function(){return _0x3065a2;};return _0x3c9b();}
+const { DATABASE } = require('./database');
+const { DataTypes, Op } = require('sequelize');
+
+const EXPIRY_MINUTES = 10;
+
+const TempMailDB = DATABASE.define('TempMail', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    userJid: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+    },
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+    },
+}, {
+    tableName: 'temp_mails',
+    timestamps: true,
+});
+
+async function initTempMailDB() {
+    await TempMailDB.sync();
+    cleanupExpiredEmails();
+}
+
+async function cleanupExpiredEmails() {
+    try {
+        const expiryTime = new Date(Date.now() - EXPIRY_MINUTES * 60 * 1000);
+        const deleted = await TempMailDB.destroy({
+            where: {
+                createdAt: { [Op.lt]: expiryTime }
+            }
+        });
+        if (deleted > 0) {
+            console.log(`[TempMail] Auto-deleted ${deleted} expired email(s)`);
+        }
+    } catch (e) {
+        console.error("[TempMail] Cleanup error:", e.message);
+    }
+}
+
+setInterval(cleanupExpiredEmails, 60 * 1000);
+
+async function setUserEmail(userJid, email) {
+    await initTempMailDB();
+    const existing = await TempMailDB.findOne({ where: { userJid } });
+    if (existing) {
+        existing.email = email;
+        existing.createdAt = new Date();
+        await existing.save();
+        return existing;
+    }
+    return await TempMailDB.create({ userJid, email });
+}
+
+async function getUserEmailWithExpiry(userJid) {
+    await initTempMailDB();
+    const record = await TempMailDB.findOne({ where: { userJid } });
+    
+    if (!record) return null;
+    
+    const createdAt = new Date(record.createdAt);
+    const expiresAt = new Date(createdAt.getTime() + EXPIRY_MINUTES * 60 * 1000);
+    const now = new Date();
+    
+    if (now >= expiresAt) {
+        await TempMailDB.destroy({ where: { userJid } });
+        return null;
+    }
+    
+    const remainingMs = expiresAt - now;
+    const remainingMins = Math.floor(remainingMs / 60000);
+    const remainingSecs = Math.floor((remainingMs % 60000) / 1000);
+    
+    return {
+        email: record.email,
+        createdAt: createdAt,
+        expiresAt: expiresAt,
+        remainingMs: remainingMs,
+        remainingMins: remainingMins,
+        remainingSecs: remainingSecs,
+        timeRemaining: remainingMins > 0 ? `${remainingMins}m ${remainingSecs}s` : `${remainingSecs}s`
+    };
+}
+
+async function getUserEmail(userJid) {
+    const data = await getUserEmailWithExpiry(userJid);
+    return data ? data.email : null;
+}
+
+async function deleteUserEmail(userJid) {
+    await initTempMailDB();
+    const result = await TempMailDB.destroy({ where: { userJid } });
+    return result > 0;
+}
+
+module.exports = {
+    initTempMailDB,
+    setUserEmail,
+    getUserEmail,
+    getUserEmailWithExpiry,
+    deleteUserEmail,
+    cleanupExpiredEmails,
+    TempMailDB,
+    EXPIRY_MINUTES,
+};

@@ -1,1 +1,149 @@
-function _0x4937(_0x1e62d7,_0xa5f95e){_0x1e62d7=_0x1e62d7-0x13a;const _0x132fa9=_0x132f();let _0x4937b1=_0x132fa9[_0x1e62d7];return _0x4937b1;}const _0x19f150=_0x4937;(function(_0x590d25,_0xec0d58){const _0xa6c351=_0x4937,_0x388763=_0x590d25();while(!![]){try{const _0x472004=-parseInt(_0xa6c351(0x13f))/0x1+-parseInt(_0xa6c351(0x152))/0x2*(-parseInt(_0xa6c351(0x13a))/0x3)+-parseInt(_0xa6c351(0x151))/0x4+parseInt(_0xa6c351(0x157))/0x5+-parseInt(_0xa6c351(0x15a))/0x6*(parseInt(_0xa6c351(0x148))/0x7)+-parseInt(_0xa6c351(0x142))/0x8*(parseInt(_0xa6c351(0x145))/0x9)+parseInt(_0xa6c351(0x13b))/0xa;if(_0x472004===_0xec0d58)break;else _0x388763['push'](_0x388763['shift']());}catch(_0x37bc81){_0x388763['push'](_0x388763['shift']());}}}(_0x132f,0xccae4));const {getSetting}=require('./database/settings'),originalConsoleInfo=console[_0x19f150(0x140)],originalConsoleLog=console['log'],originalConsoleError=console[_0x19f150(0x15e)],originalConsoleWarn=console[_0x19f150(0x13c)],suppressedPatterns=[/Closing session/i,/Closing open session/i,/in favor of incoming/i,/prekey bundle/i,/SessionEntry/i,/failed to decrypt/i,/Bad MAC/i,/Session error/i,/libsignal/i,/session_cipher/i,/_chains/i,/ephemeralKeyPair/i,/rootKey/i,/baseKey/i,/pendingPreKey/i,/verifyMAC/i,/decryptWithSessions/i,/doDecryptWhisperMessage/i,/_asyncQueueExecutor/i,/Interactive send/i],shouldSuppress=_0x16ce17=>{const _0xfde8b=_0x19f150,_0x57d9cb=_0x16ce17[_0xfde8b(0x13d)](_0x2d5074=>{const _0x353cde=_0xfde8b;if(typeof _0x2d5074===_0x353cde(0x155))return _0x2d5074;if(_0x2d5074 instanceof Error)return _0x2d5074[_0x353cde(0x144)]+'\x20'+_0x2d5074['stack'];return'';})[_0xfde8b(0x141)]('\x20');if(suppressedPatterns[_0xfde8b(0x14b)](_0x226f44=>_0x226f44[_0xfde8b(0x158)](_0x57d9cb)))return!![];if(_0x16ce17[0x0]&&typeof _0x16ce17[0x0]==='object'&&_0x16ce17[0x0][_0xfde8b(0x15b)])return!![];return![];};function setupConsoleFilters(){const _0x3502e5=_0x19f150;console['info']=(..._0x376bb4)=>{if(shouldSuppress(_0x376bb4))return;originalConsoleInfo['apply'](console,_0x376bb4);},console[_0x3502e5(0x159)]=(..._0x568c6a)=>{const _0x9b73df=_0x3502e5;if(shouldSuppress(_0x568c6a))return;originalConsoleLog[_0x9b73df(0x15d)](console,_0x568c6a);},console['error']=(..._0x319171)=>{const _0x5151a1=_0x3502e5;if(shouldSuppress(_0x319171))return;originalConsoleError[_0x5151a1(0x15d)](console,_0x319171);},console[_0x3502e5(0x13c)]=(..._0x52584c)=>{if(shouldSuppress(_0x52584c))return;originalConsoleWarn['apply'](console,_0x52584c);};}function _0x132f(){const _0x2fed7c=['Powered\x20by\x20Clever\x20Tech','apply','error','291XmRhwP','29438540hLYQKT','warn','map','BOT_PIC','15089JmGeBr','info','join','9294496Xektuc','BOT_NAME','message','9ATaceb','120363422524788798@newsletter','floor','322DKUdVU','random','sourceUrl','some','https://files.catbox.moe/wfh6gr.jpg','title','𝐁𝐋𝐀𝐂𝐊-𝐇𝐀𝐓\x20𝐌𝐃','https://whatsapp.com/channel/0029Vb73SRl1CYoLWtyr4u1X','body','4869236dHXEaj','2462Jkfzxg','NEWSLETTER_JID','Powered\x20by\x20CleverTech','string','mediaUrl','5020875BpalIR','test','log','108894xcnKMf','_chains'];_0x132f=function(){return _0x2fed7c;};return _0x132f();}setupConsoleFilters();const createContext=async(_0x3cd2cc,_0x4abadb={})=>{const _0x4f8455=_0x19f150,_0x1df1cf=await getSetting('BOT_NAME')||_0x4f8455(0x14e),_0x1a5bf6=await getSetting(_0x4f8455(0x13e))||_0x4f8455(0x14c),_0x39481a=await getSetting(_0x4f8455(0x153))||_0x4f8455(0x146),_0x30b80c=await getSetting('NEWSLETTER_URL')||_0x4f8455(0x14f);return{'contextInfo':{'mentionedJid':[_0x3cd2cc],'forwardingScore':0x1,'isForwarded':!![],'businessMessageForwardInfo':{'businessOwnerJid':_0x39481a},'forwardedNewsletterMessageInfo':{'newsletterJid':_0x39481a,'newsletterName':_0x1df1cf,'serverMessageId':Math['floor'](0x186a0+Math[_0x4f8455(0x149)]()*0xdbba0)},'externalAdReply':{'title':_0x4abadb['title']||_0x1df1cf,'body':_0x4abadb[_0x4f8455(0x150)]||_0x4f8455(0x154),'thumbnailUrl':_0x1a5bf6,'mediaType':0x1,'mediaUrl':_0x4abadb[_0x4f8455(0x156)]||_0x1a5bf6,'sourceUrl':_0x4abadb[_0x4f8455(0x14a)]||_0x30b80c,'showAdAttribution':!![],'renderLargerThumbnail':![]}}};},createContext2=async(_0x42f24c,_0x25ff43={})=>{const _0x26d68f=_0x19f150,_0x466f56=await getSetting(_0x26d68f(0x143))||'𝐁𝐋𝐀𝐂𝐊-𝐇𝐀𝐓\x20𝐌𝐃',_0x4db910=await getSetting('BOT_PIC')||_0x26d68f(0x14c),_0x121711=await getSetting(_0x26d68f(0x153))||'120363422524788798@newsletter';return{'contextInfo':{'mentionedJid':[_0x42f24c],'forwardingScore':0x1,'isForwarded':!![],'forwardedNewsletterMessageInfo':{'newsletterJid':_0x121711,'newsletterName':_0x466f56,'serverMessageId':Math[_0x26d68f(0x147)](0x186a0+Math[_0x26d68f(0x149)]()*0xdbba0)},'externalAdReply':{'title':_0x25ff43[_0x26d68f(0x14d)]||_0x466f56,'body':_0x25ff43[_0x26d68f(0x150)]||_0x26d68f(0x15c),'thumbnailUrl':_0x4db910,'mediaType':0x1,'showAdAttribution':!![],'renderLargerThumbnail':!![]}}};};module['exports']={'createContext':createContext,'createContext2':createContext2};
+const { getSetting } = require("./database/settings");
+
+const originalConsoleInfo = console.info;
+const originalConsoleLog = console.log;
+const originalConsoleError = console.error;
+const originalConsoleWarn = console.warn;
+const suppressedPatterns = [
+    /Closing session/i,
+    /Closing open session/i,
+    /Removing old closed session/i,
+    /Decrypted message with closed session/i,
+    /in favor of incoming/i,
+    /prekey bundle/i,
+    /SessionEntry/i,
+    /failed to decrypt/i,
+    /Bad MAC/i,
+    /Session error/i,
+    /libsignal/i,
+    /session_cipher/i,
+    /_chains/i,
+    /ephemeralKeyPair/i,
+    /rootKey/i,
+    /baseKey/i,
+    /pendingPreKey/i,
+    /indexInfo/i,
+    /currentRatchet/i,
+    /registrationId/i,
+    /remoteIdentityKey/i,
+    /lastRemoteEphemeralKey/i,
+    /verifyMAC/i,
+    /decryptWithSessions/i,
+    /doDecryptWhisperMessage/i,
+    /_asyncQueueExecutor/i,
+    /Interactive send/i,
+];
+
+const argToString = (a) => {
+    if (typeof a === "string") return a;
+    if (a instanceof Error) return a.message + " " + (a.stack || "");
+    if (a && typeof a === "object") {
+        try { return JSON.stringify(a); } catch (_) {}
+        try { return String(a); } catch (_) {}
+    }
+    return String(a ?? "");
+};
+
+const shouldSuppress = (args) => {
+    const str = args.map(argToString).join(" ");
+    if (suppressedPatterns.some((p) => p.test(str))) return true;
+    if (args.some((a) => a && typeof a === "object" && (a._chains || a.indexInfo || a.currentRatchet))) return true;
+    return false;
+};
+
+function setupConsoleFilters() {
+    console.info = (...args) => {
+        if (shouldSuppress(args)) return;
+        originalConsoleInfo.apply(console, args);
+    };
+
+    console.log = (...args) => {
+        if (shouldSuppress(args)) return;
+        originalConsoleLog.apply(console, args);
+    };
+
+    console.error = (...args) => {
+        if (shouldSuppress(args)) return;
+        originalConsoleError.apply(console, args);
+    };
+
+    console.warn = (...args) => {
+        if (shouldSuppress(args)) return;
+        originalConsoleWarn.apply(console, args);
+    };
+}
+
+setupConsoleFilters();
+
+const createContext = async (userJid, options = {}) => {
+    const botName = (await getSetting("BOT_NAME")) || "𝐁𝐋𝐀𝐂𝐊 𝐇𝐀𝐓-𝐌𝐃";
+    const botPic =
+        (await getSetting("BOT_PIC")) ||
+        "https://files.catbox.moe/wfh6gr.jpg";
+    const newsletterJid =
+        (await getSetting("NEWSLETTER_JID")) || "120363422524788798@newsletter";
+    const newsletterUrl =
+        (await getSetting("NEWSLETTER_URL")) ||
+        "https://whatsapp.com/channel/0029Vb73SRl1CYoLWtyr4u1X";
+
+    return {
+        contextInfo: {
+            mentionedJid: [userJid],
+            forwardingScore: 1,
+            isForwarded: true,
+            businessMessageForwardInfo: {
+                businessOwnerJid: newsletterJid,
+            },
+            forwardedNewsletterMessageInfo: {
+                newsletterJid: newsletterJid,
+                newsletterName: botName,
+                serverMessageId: Math.floor(100000 + Math.random() * 900000),
+            },
+            externalAdReply: {
+                title: options.title || botName,
+                body: options.body || "Powered by 𝑨𝒏𝒐𝒏𝒚𝒎𝒐𝒖𝒔 𝒖𝒔𝒆𝒓🥷",
+                thumbnailUrl: botPic,
+                mediaType: 1,
+                mediaUrl: options.mediaUrl || botPic,
+                sourceUrl: options.sourceUrl || newsletterUrl,
+                showAdAttribution: true,
+                renderLargerThumbnail: false,
+            },
+        },
+    };
+};
+
+const createContext2 = async (userJid, options = {}) => {
+    const botName = (await getSetting("BOT_NAME")) || "𝐁𝐋𝐀𝐂𝐊 𝐇𝐀𝐓-𝐌𝐃";
+    const botPic =
+        (await getSetting("BOT_PIC")) ||
+        "https://files.catbox.moe/wfh6gr.jpg";
+    const newsletterJid =
+        (await getSetting("NEWSLETTER_JID")) || "120363422524788798@newsletter";
+
+    return {
+        contextInfo: {
+            mentionedJid: [userJid],
+            forwardingScore: 1,
+            isForwarded: true,
+            forwardedNewsletterMessageInfo: {
+                newsletterJid: newsletterJid,
+                newsletterName: botName,
+                serverMessageId: Math.floor(100000 + Math.random() * 900000),
+            },
+            externalAdReply: {
+                title: options.title || botName,
+                body: options.body || "Powered by 𝑨𝒏𝒐𝒏𝒚𝒎𝒐𝒖𝒔 𝒖𝒔𝒆𝒓🥷",
+                thumbnailUrl: botPic,
+                mediaType: 1,
+                showAdAttribution: true,
+                renderLargerThumbnail: true,
+            },
+        },
+    };
+};
+
+module.exports = {
+    createContext,
+    createContext2,
+};

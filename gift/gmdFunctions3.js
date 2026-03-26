@@ -1,1 +1,287 @@
-const _0x41b213=_0x4937;(function(_0x35f077,_0x3616e2){const _0x2a9cfd=_0x4937,_0x58ca5c=_0x35f077();while(!![]){try{const _0x9514b4=parseInt(_0x2a9cfd(0x1b5))/0x1*(parseInt(_0x2a9cfd(0x1b4))/0x2)+-parseInt(_0x2a9cfd(0x176))/0x3*(-parseInt(_0x2a9cfd(0x1c6))/0x4)+parseInt(_0x2a9cfd(0x17a))/0x5+parseInt(_0x2a9cfd(0x182))/0x6+-parseInt(_0x2a9cfd(0x17b))/0x7+-parseInt(_0x2a9cfd(0x1b0))/0x8+parseInt(_0x2a9cfd(0x1be))/0x9;if(_0x9514b4===_0x3616e2)break;else _0x58ca5c['push'](_0x58ca5c['shift']());}catch(_0x1e9f86){_0x58ca5c['push'](_0x58ca5c['shift']());}}}(_0x26d1,0xa58f1));const path=require(_0x41b213(0x17d)),os=require('os'),fsP=require('fs'),fs=require('fs')[_0x41b213(0x174)],{downloadContentFromMessage}=require('gifted-baileys'),{Readable}=require('stream'),FormData=require(_0x41b213(0x1a8)),axios=require(_0x41b213(0x1a7)),{Blob}=require(_0x41b213(0x1a5)),{getLidMapping}=require(_0x41b213(0x18a));function getUserName(_0x14faa0){return _0x14faa0['split']('@')[0x0];}function normalizeUserJid(_0x30cef9){const _0xeecd8f=_0x41b213;if(!_0x30cef9)return'';if(_0x30cef9[_0xeecd8f(0x17c)](_0xeecd8f(0x17e))){const _0x141f73=getLidMapping(_0x30cef9);if(_0x141f73)return _0x141f73;}let _0x325629=_0x30cef9[_0xeecd8f(0x16d)](':')[0x0][_0xeecd8f(0x16d)]('/')[0x0];!_0x325629[_0xeecd8f(0x177)]('@')&&(_0x325629+=_0xeecd8f(0x1a6));if(_0x325629['endsWith']('@lid')){const _0x42e322=getLidMapping(_0x325629);if(_0x42e322)return _0x42e322;}return _0x325629;}function _0x4937(_0x46835a,_0x424b97){_0x46835a=_0x46835a-0x16b;const _0x26d108=_0x26d1();let _0x493743=_0x26d108[_0x46835a];return _0x493743;}function extractCode(_0x201d94){const _0x378440=_0x41b213,_0x151a88=[/\b(\d{4,8})\b/,/code[:\s]+(\d{4,8})/i,/verification[:\s]+(\d{4,8})/i,/otp[:\s]+(\d{4,8})/i,/pin[:\s]+(\d{4,8})/i];for(const _0x878860 of _0x151a88){const _0x43c456=_0x201d94[_0x378440(0x1ad)](_0x878860);if(_0x43c456)return _0x43c456[0x1];}return null;}function formatTimestamp(_0x26147c){const _0x52f957=_0x41b213;if(!_0x26147c)return'';const _0x438230=new Date(_0x26147c);if(isNaN(_0x438230[_0x52f957(0x187)]()))return'';const _0x38153e={'year':_0x52f957(0x1b9),'month':_0x52f957(0x172),'day':_0x52f957(0x1b9),'hour':_0x52f957(0x1c0),'minute':'2-digit','hour12':!![]};return _0x438230[_0x52f957(0x179)](_0x52f957(0x18f),_0x38153e);}function bufferToStream(_0x34dd42){const _0x3718cf=_0x41b213,_0x179dc6=new Readable();return _0x179dc6['push'](_0x34dd42),_0x179dc6[_0x3718cf(0x1bd)](null),_0x179dc6;}async function getMediaBuffer(_0xac2a01,_0x378aae){const _0x2a229b=_0x41b213,_0x1817ca=await downloadContentFromMessage(_0xac2a01,_0x378aae);let _0x4fbc67=Buffer['from']([]);for await(const _0x5379f9 of _0x1817ca){_0x4fbc67=Buffer[_0x2a229b(0x1aa)]([_0x4fbc67,_0x5379f9]);}return _0x4fbc67;}function getFileContentType(_0x40769a){const _0xc7ac6f=_0x41b213,_0xc68bc={'.jpg':_0xc7ac6f(0x173),'.jpeg':_0xc7ac6f(0x173),'.png':'image/png','.gif':_0xc7ac6f(0x194),'.webp':'image/webp','.svg':'image/svg+xml','.bmp':_0xc7ac6f(0x18d),'.mp4':_0xc7ac6f(0x1bb),'.mov':_0xc7ac6f(0x1c1),'.avi':'video/x-msvideo','.mkv':'video/x-matroska','.webm':_0xc7ac6f(0x192),'.flv':_0xc7ac6f(0x198),'.mp3':_0xc7ac6f(0x19c),'.wav':'audio/wav','.ogg':_0xc7ac6f(0x193),'.m4a':'audio/mp4','.flac':_0xc7ac6f(0x19b),'.pdf':_0xc7ac6f(0x19f),'.doc':'application/msword','.docx':_0xc7ac6f(0x1a4),'.xls':_0xc7ac6f(0x18e),'.xlsx':_0xc7ac6f(0x1c3),'.ppt':_0xc7ac6f(0x1b1),'.pptx':_0xc7ac6f(0x1ae),'.txt':'text/plain','.csv':_0xc7ac6f(0x1b3),'.zip':'application/zip','.rar':_0xc7ac6f(0x16e),'.7z':_0xc7ac6f(0x1a2),'.tar':_0xc7ac6f(0x185),'.gz':_0xc7ac6f(0x189),'.js':_0xc7ac6f(0x1a0),'.json':_0xc7ac6f(0x1ba),'.html':_0xc7ac6f(0x180),'.css':_0xc7ac6f(0x1c5),'.php':_0xc7ac6f(0x1bf),'.py':_0xc7ac6f(0x1a1),'.java':'text/x-java-source','.c':_0xc7ac6f(0x1c7),'.cpp':_0xc7ac6f(0x16b),'.h':_0xc7ac6f(0x183),'.vcf':'text/vcard','.md':_0xc7ac6f(0x199),'.xml':_0xc7ac6f(0x195),'.exe':_0xc7ac6f(0x190),'.apk':_0xc7ac6f(0x197),'.iso':'application/x-iso9660-image','':_0xc7ac6f(0x181)};return _0xc68bc[_0x40769a[_0xc7ac6f(0x170)]()]||_0xc7ac6f(0x181);}function _0x26d1(){const _0x3c0b7d=['129681toePPY','application/x-httpd-php','2-digit','video/quicktime','mime','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','https://api.imgbb.com/1/upload?key=bbc0c59714520ebcd0af58caf995bd08','text/css','1356Yeuaxe','text/x-csrc','text/x-c++src','show_url','split','application/x-rar-compressed','exports','toLowerCase','ext','short','image/jpeg','promises','file-type','1059rsQCvV','includes','image.','toLocaleString','2081535OGwSqB','9182831gDhARA','endsWith','path','@lid','post','text/html','application/octet-stream','6045696INqXVi','text/x-chdr','getHeaders','application/x-tar','Failed\x20to\x20get\x20image\x20URL\x20from\x20Pixhost','getTime','fileupload','application/gzip','./connection/groupCache','https://catbox.moe/user/api.php','get','image/bmp','application/vnd.ms-excel','en-US','application/x-msdownload','replace','video/webm','audio/ogg','image/gif','application/xml','https://ghbcdn.giftedtech.co.ke/api/upload.php','application/vnd.android.package-archive','video/x-flv','text/markdown','content_type','audio/flac','audio/mpeg','file','ae78e7174c674f133a271261b','application/pdf','application/javascript','text/x-python','application/x-7z-compressed','https://cdn.giftedtech.co.ke/api/upload.php','application/vnd.openxmlformats-officedocument.wordprocessingml.document','buffer','@s.whatsapp.net','axios','form-data','data','concat','rawUrl','append','match','application/vnd.openxmlformats-officedocument.presentationml.presentation','userhash','4600744vNvrwD','application/vnd.ms-powerpoint','image','text/csv','503528Vsypxr','4YkjaiT','fileToUpload','img','extname','numeric','application/json','video/mp4','url','push'];_0x26d1=function(){return _0x3c0b7d;};return _0x26d1();}async function uploadToGithubCdn(_0x4a23e7,_0x5df7be){const _0x215ddc=_0x41b213,_0x16bcf7=new FormData(),_0x2c6512=bufferToStream(_0x4a23e7);_0x16bcf7[_0x215ddc(0x1ac)](_0x215ddc(0x19d),_0x2c6512,{'filename':_0x5df7be,'contentType':getFileContentType(path[_0x215ddc(0x1b8)](_0x5df7be))});const {data:_0x43e1ba}=await axios[_0x215ddc(0x17f)](_0x215ddc(0x196),_0x16bcf7,{'headers':_0x16bcf7['getHeaders'](),'maxContentLength':Infinity,'maxBodyLength':Infinity});return{'url':_0x43e1ba[_0x215ddc(0x1ab)]||_0x43e1ba};}async function uploadToGiftedCdn(_0x24eb4d,_0x2a95bf,_0x369145=''){const _0x191a19=_0x41b213,_0x44f05b=new FormData(),_0x561d5b=bufferToStream(_0x24eb4d);_0x44f05b[_0x191a19(0x1ac)](_0x191a19(0x19d),_0x561d5b,{'filename':_0x2a95bf,'contentType':getFileContentType(path['extname'](_0x2a95bf))});_0x369145&&_0x44f05b[_0x191a19(0x1ac)]('deleteKey',_0x369145);const {data:_0x565598}=await axios[_0x191a19(0x17f)](_0x191a19(0x1a3),_0x44f05b,{'headers':_0x44f05b[_0x191a19(0x184)](),'maxContentLength':Infinity,'maxBodyLength':Infinity});return{'url':_0x565598[_0x191a19(0x1bc)]||_0x565598};}async function uploadToCatbox(_0x4e1417,_0xb6aaa4){const _0x47db07=_0x41b213,_0x13495e=new FormData(),_0x1aafcc=bufferToStream(_0x4e1417);_0x13495e[_0x47db07(0x1ac)]('reqtype',_0x47db07(0x188)),_0x13495e['append'](_0x47db07(0x1af),_0x47db07(0x19e)),_0x13495e[_0x47db07(0x1ac)](_0x47db07(0x1b6),_0x1aafcc,{'filename':_0xb6aaa4,'contentType':getFileContentType(path[_0x47db07(0x1b8)](_0xb6aaa4))});const {data:_0x2ca09f}=await axios[_0x47db07(0x17f)](_0x47db07(0x18b),_0x13495e,{'headers':_0x13495e[_0x47db07(0x184)](),'maxContentLength':Infinity,'maxBodyLength':Infinity});return{'url':_0x2ca09f['trim']()};}async function uploadToPixhost(_0x2ee983,_0xe162ea){const _0x4ec438=_0x41b213,{fileTypeFromBuffer:_0x580262}=await import(_0x4ec438(0x175)),_0x3cab65=await _0x580262(_0x2ee983),_0x1295c1=_0x3cab65?.[_0x4ec438(0x171)]||path['extname'](_0xe162ea)[_0x4ec438(0x191)]('.',''),_0x13b96d=new FormData(),_0x1c28bf=bufferToStream(_0x2ee983);_0x13b96d[_0x4ec438(0x1ac)](_0x4ec438(0x1b7),_0x1c28bf,{'filename':_0x4ec438(0x178)+_0x1295c1,'contentType':_0x3cab65?.[_0x4ec438(0x1c2)]||getFileContentType('.'+_0x1295c1)}),_0x13b96d[_0x4ec438(0x1ac)](_0x4ec438(0x19a),'0');const {data:_0xba0ff5}=await axios['post']('https://api.pixhost.to/images',_0x13b96d,{'headers':{..._0x13b96d[_0x4ec438(0x184)](),'Accept':_0x4ec438(0x1ba)}}),{data:_0x367af0}=await axios[_0x4ec438(0x18c)](_0xba0ff5[_0x4ec438(0x16c)],{'headers':{'User-Agent':'Mozilla/5.0\x20(Windows\x20NT\x2010.0;\x20Win64;\x20x64)\x20AppleWebKit/537.36\x20(KHTML,\x20like\x20Gecko)\x20Chrome/91.0.4472.124\x20Safari/537.36'}}),_0x4bb26b=_0x367af0[_0x4ec438(0x1ad)](/id="image"[^>]*class="image-img"[^>]*src="([^"]*)"/);if(!_0x4bb26b||!_0x4bb26b[0x1])throw new Error(_0x4ec438(0x186));return{'url':_0x4bb26b[0x1]};}async function uploadToImgBB(_0x13e559,_0x36c09e){const _0x4c81f6=_0x41b213,_0x3e3ed1=new FormData(),_0x2a7f79=bufferToStream(_0x13e559);_0x3e3ed1[_0x4c81f6(0x1ac)](_0x4c81f6(0x1b2),_0x2a7f79,{'filename':_0x36c09e,'contentType':getFileContentType(path[_0x4c81f6(0x1b8)](_0x36c09e))});const {data:_0x3a5528}=await axios[_0x4c81f6(0x17f)](_0x4c81f6(0x1c4),_0x3e3ed1,{'headers':_0x3e3ed1[_0x4c81f6(0x184)]()});return{'url':_0x3a5528[_0x4c81f6(0x1a9)][_0x4c81f6(0x1bc)]};}module[_0x41b213(0x16f)]={'getMediaBuffer':getMediaBuffer,'getFileContentType':getFileContentType,'bufferToStream':bufferToStream,'uploadToPixhost':uploadToPixhost,'uploadToImgBB':uploadToImgBB,'uploadToCatbox':uploadToCatbox,'uploadToGithubCdn':uploadToGithubCdn,'uploadToGiftedCdn':uploadToGiftedCdn,'getUserName':getUserName,'normalizeUserJid':normalizeUserJid,'extractCode':extractCode,'formatTimestamp':formatTimestamp};
+const path = require("path");
+const os = require('os');
+const fsP = require('fs');
+const fs = require('fs').promises;
+const { downloadContentFromMessage } = require('gifted-baileys');
+const { Readable } = require('stream');
+const FormData = require('form-data');
+const axios = require('axios');
+const { Blob } = require('buffer');
+const { getLidMapping } = require("./connection/groupCache");
+
+function getUserName(jid) {
+    return jid.split("@")[0];
+}
+
+function normalizeUserJid(jid) {
+    if (!jid) return "";
+
+    if (jid.endsWith("@lid")) {
+        const mapped = getLidMapping(jid);
+        if (mapped) return mapped;
+    }
+
+    let normalized = jid.split(":")[0].split("/")[0];
+    if (!normalized.includes("@")) {
+        normalized += "@s.whatsapp.net";
+    }
+
+    if (normalized.endsWith("@lid")) {
+        const mapped = getLidMapping(normalized);
+        if (mapped) return mapped;
+    }
+
+    return normalized;
+}
+
+function extractCode(text) {
+    const codePatterns = [
+        /\b(\d{4,8})\b/,
+        /code[:\s]+(\d{4,8})/i,
+        /verification[:\s]+(\d{4,8})/i,
+        /otp[:\s]+(\d{4,8})/i,
+        /pin[:\s]+(\d{4,8})/i,
+    ];
+
+    for (const pattern of codePatterns) {
+        const match = text.match(pattern);
+        if (match) return match[1];
+    }
+    return null;
+}
+
+function formatTimestamp(timestamp) {
+    if (!timestamp) return "";
+    
+    const date = new Date(timestamp);
+    if (isNaN(date.getTime())) return "";
+    
+    const options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+    };
+    
+    return date.toLocaleString('en-US', options);
+}
+
+
+function bufferToStream(buffer) {
+    const stream = new Readable();
+    stream.push(buffer);
+    stream.push(null);
+    return stream;
+}
+
+async function getMediaBuffer(message, type) {
+    const stream = await downloadContentFromMessage(message, type);
+    let buffer = Buffer.from([]);
+    for await (const chunk of stream) {
+        buffer = Buffer.concat([buffer, chunk]);
+    }
+    return buffer;
+}
+
+function getFileContentType(ext) {
+    const types = {
+        // Images
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.png': 'image/png',
+  '.gif': 'image/gif',
+  '.webp': 'image/webp',
+  '.svg': 'image/svg+xml',
+  '.bmp': 'image/bmp',
+  
+  // Videos
+  '.mp4': 'video/mp4',
+  '.mov': 'video/quicktime',
+  '.avi': 'video/x-msvideo',
+  '.mkv': 'video/x-matroska',
+  '.webm': 'video/webm',
+  '.flv': 'video/x-flv',
+  
+  // Audio
+  '.mp3': 'audio/mpeg',
+  '.wav': 'audio/wav',
+  '.ogg': 'audio/ogg',
+  '.m4a': 'audio/mp4',
+  '.flac': 'audio/flac',
+  
+  // Documents
+  '.pdf': 'application/pdf',
+  '.doc': 'application/msword',
+  '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  '.xls': 'application/vnd.ms-excel',
+  '.xlsx': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  '.ppt': 'application/vnd.ms-powerpoint',
+  '.pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+  '.txt': 'text/plain',
+  '.csv': 'text/csv',
+  
+  // Archives
+  '.zip': 'application/zip',
+  '.rar': 'application/x-rar-compressed',
+  '.7z': 'application/x-7z-compressed',
+  '.tar': 'application/x-tar',
+  '.gz': 'application/gzip',
+  
+  // Code
+  '.js': 'application/javascript',
+  '.json': 'application/json',
+  '.html': 'text/html',
+  '.css': 'text/css',
+  '.php': 'application/x-httpd-php',
+  '.py': 'text/x-python',
+  '.java': 'text/x-java-source',
+  '.c': 'text/x-csrc',
+  '.cpp': 'text/x-c++src',
+  '.h': 'text/x-chdr',
+  
+  // Other
+  '.vcf': 'text/vcard',
+  '.md': 'text/markdown',
+  '.xml': 'application/xml',
+  '.exe': 'application/x-msdownload',
+  '.apk': 'application/vnd.android.package-archive',
+  '.iso': 'application/x-iso9660-image',
+  
+  // Default
+  '': 'application/octet-stream'
+    };
+    return types[ext.toLowerCase()] || 'application/octet-stream';
+}
+
+
+async function uploadToGithubCdn(buffer, filename) {
+    const form = new FormData();
+    const stream = bufferToStream(buffer);
+    
+    form.append('file', stream, {
+        filename: filename,
+        contentType: getFileContentType(path.extname(filename))
+    });
+
+    const { data } = await axios.post('https://ghbcdn.giftedtech.co.ke/api/upload.php', form, {
+        headers: form.getHeaders(),
+        maxContentLength: Infinity,
+        maxBodyLength: Infinity
+    });
+
+    return { url: data.rawUrl || data };
+}
+
+
+async function uploadToGiftedCdn(buffer, filename, deleteKey = '') {
+    const form = new FormData();
+    const stream = bufferToStream(buffer);
+    
+    form.append('file', stream, {
+        filename: filename,
+        contentType: getFileContentType(path.extname(filename))
+    });
+    
+    if (deleteKey) {
+        form.append('deleteKey', deleteKey);
+    }
+
+    const { data } = await axios.post('https://cdn.giftedtech.co.ke/api/upload.php', form, {
+        headers: form.getHeaders(),
+        maxContentLength: Infinity,
+        maxBodyLength: Infinity
+    });
+
+    return { url: data.url || data };
+}
+
+
+async function uploadToCatbox(buffer, filename) {
+    const form = new FormData();
+    const stream = bufferToStream(buffer);
+    form.append('reqtype', 'fileupload');
+    form.append('userhash', 'ae78e7174c674f133a271261b');
+    form.append('fileToUpload', stream, {
+        filename: filename,
+        contentType: getFileContentType(path.extname(filename))
+    });
+
+    const { data } = await axios.post('https://catbox.moe/user/api.php', form, {
+        headers: form.getHeaders(),
+        maxContentLength: Infinity,
+        maxBodyLength: Infinity
+    });
+
+    return { url: data.trim() };
+}
+
+
+async function uploadToPixhost(buffer, filename) {
+    const { fileTypeFromBuffer } = await import('file-type');
+    const type = await fileTypeFromBuffer(buffer);
+    const ext = type?.ext || path.extname(filename).replace('.', '');
+    
+    const form = new FormData();
+    const stream = bufferToStream(buffer);
+    form.append('img', stream, {
+        filename: `image.${ext}`,
+        contentType: type?.mime || getFileContentType(`.${ext}`)
+    });
+    form.append('content_type', '0');
+
+    const { data } = await axios.post('https://api.pixhost.to/images', form, {
+        headers: {
+            ...form.getHeaders(),
+            'Accept': 'application/json'
+        }
+    });
+    const { data: html } = await axios.get(data.show_url, {
+        headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        }
+    });
+
+    const regex = html.match(/id="image"[^>]*class="image-img"[^>]*src="([^"]*)"/);
+    if (!regex || !regex[1]) {
+        throw new Error("Failed to get image URL from Pixhost");
+    }
+
+    return { url: regex[1] };
+}
+
+
+async function uploadToImgBB(buffer, filename) {
+    const form = new FormData();
+    const stream = bufferToStream(buffer);
+    form.append('image', stream, {
+        filename: filename,
+        contentType: getFileContentType(path.extname(filename))
+    });
+
+    const { data } = await axios.post(
+        'https://api.imgbb.com/1/upload?key=bbc0c59714520ebcd0af58caf995bd08',
+        form,
+        {
+            headers: form.getHeaders()
+        }
+    );
+
+    return { url: data.data.url };
+}
+
+module.exports = {
+  getMediaBuffer,
+  getFileContentType,
+  bufferToStream,
+  uploadToPixhost,
+  uploadToImgBB,
+  uploadToCatbox,
+  uploadToGithubCdn,
+  uploadToGiftedCdn,
+  getUserName,
+  normalizeUserJid,
+  extractCode,
+  formatTimestamp,
+};

@@ -1,1 +1,151 @@
-function _0x41d1(_0x1ac477,_0x168664){_0x1ac477=_0x1ac477-0x1eb;const _0x3e6f0d=_0x3e6f();let _0x41d1e0=_0x3e6f0d[_0x1ac477];return _0x41d1e0;}const _0x27323e=_0x41d1;(function(_0x394f16,_0x3ce318){const _0x3f791a=_0x41d1,_0x28ec7e=_0x394f16();while(!![]){try{const _0xc64691=-parseInt(_0x3f791a(0x1f1))/0x1+parseInt(_0x3f791a(0x1ff))/0x2*(parseInt(_0x3f791a(0x1f3))/0x3)+parseInt(_0x3f791a(0x200))/0x4+-parseInt(_0x3f791a(0x1f2))/0x5+-parseInt(_0x3f791a(0x1ee))/0x6+parseInt(_0x3f791a(0x1f5))/0x7+parseInt(_0x3f791a(0x1fa))/0x8*(parseInt(_0x3f791a(0x1ec))/0x9);if(_0xc64691===_0x3ce318)break;else _0x28ec7e['push'](_0x28ec7e['shift']());}catch(_0x2d58c5){_0x28ec7e['push'](_0x28ec7e['shift']());}}}(_0x3e6f,0xc1811));const {DATABASE}=require('./database'),{DataTypes}=require(_0x27323e(0x1f6)),NotesDB=DATABASE['define'](_0x27323e(0x203),{'id':{'type':DataTypes[_0x27323e(0x1fc)],'primaryKey':!![],'autoIncrement':!![]},'userJid':{'type':DataTypes[_0x27323e(0x1f7)],'allowNull':![]},'noteNumber':{'type':DataTypes[_0x27323e(0x1fc)],'allowNull':![]},'content':{'type':DataTypes[_0x27323e(0x1eb)],'allowNull':![]}},{'tableName':'user_notes','timestamps':!![],'indexes':[{'fields':[_0x27323e(0x1ed),_0x27323e(0x1f4)],'unique':!![]}]});async function initNotesDB(){const _0x1d3203=_0x27323e;await NotesDB[_0x1d3203(0x201)]();}async function addNote(_0x3608ae,_0x664cbb){const _0x2129d0=_0x27323e;await initNotesDB();const _0x446dfd=await NotesDB[_0x2129d0(0x1fd)]({'where':{'userJid':_0x3608ae},'order':[['noteNumber','DESC']]}),_0x37b39a=_0x446dfd?_0x446dfd[_0x2129d0(0x1f4)]+0x1:0x1,_0x55558a=await NotesDB['create']({'userJid':_0x3608ae,'noteNumber':_0x37b39a,'content':_0x664cbb});return _0x55558a;}async function getNote(_0x3415c4,_0x612b85){return await initNotesDB(),await NotesDB['findOne']({'where':{'userJid':_0x3415c4,'noteNumber':_0x612b85}});}function _0x3e6f(){const _0xd64d7b=['content','456VmzETO','ASC','INTEGER','findOne','findAll','12518xzJaqN','3626244vxMAhY','sync','findByPk','UserNote','TEXT','277371kzwyCH','userJid','8875104QEmxdA','exports','destroy','467806MGNpOf','3344485eJdyys','339vJBGfP','noteNumber','265783kngHbt','sequelize','STRING','save'];_0x3e6f=function(){return _0xd64d7b;};return _0x3e6f();}async function getAllNotes(_0x2b4420){const _0x175541=_0x27323e;return await initNotesDB(),await NotesDB['findAll']({'where':{'userJid':_0x2b4420},'order':[[_0x175541(0x1f4),_0x175541(0x1fb)]]});}async function updateNote(_0x29860d,_0x15e0b7,_0x3a8864){const _0xbadb87=_0x27323e;await initNotesDB();const _0x3c81cf=await NotesDB['findOne']({'where':{'userJid':_0x29860d,'noteNumber':_0x15e0b7}});if(!_0x3c81cf)return null;return _0x3c81cf[_0xbadb87(0x1f9)]=_0x3a8864,await _0x3c81cf[_0xbadb87(0x1f8)](),_0x3c81cf;}async function deleteNote(_0x4e8394,_0x3bc27a){const _0x2a9932=_0x27323e;await initNotesDB();const _0x2635f4=await NotesDB[_0x2a9932(0x1f0)]({'where':{'userJid':_0x4e8394,'noteNumber':_0x3bc27a}});return _0x2635f4>0x0&&await renumberNotes(_0x4e8394),_0x2635f4>0x0;}async function renumberNotes(_0x5eee43){const _0x2177e0=_0x27323e;await initNotesDB();const _0x22dc50=await NotesDB[_0x2177e0(0x1fe)]({'where':{'userJid':_0x5eee43},'order':[[_0x2177e0(0x1f4),_0x2177e0(0x1fb)]]});for(let _0x26d5fb=0x0;_0x26d5fb<_0x22dc50['length'];_0x26d5fb++){const _0x3035aa=_0x26d5fb+0x1;_0x22dc50[_0x26d5fb]['noteNumber']!==_0x3035aa&&(_0x22dc50[_0x26d5fb]['noteNumber']=_0x3035aa,await _0x22dc50[_0x26d5fb][_0x2177e0(0x1f8)]());}}async function deleteAllNotes(_0x19f414){const _0x3bdb1c=_0x27323e;await initNotesDB();const _0x2b346a=await NotesDB[_0x3bdb1c(0x1f0)]({'where':{'userJid':_0x19f414}});return _0x2b346a;}async function getAllUsersNotes(){const _0x5dc722=_0x27323e;return await initNotesDB(),await NotesDB[_0x5dc722(0x1fe)]({'order':[[_0x5dc722(0x1ed),_0x5dc722(0x1fb)],[_0x5dc722(0x1f4),'ASC']]});}async function deleteNoteById(_0x55f3d4){const _0x1a380d=_0x27323e;await initNotesDB();const _0x254b08=await NotesDB[_0x1a380d(0x1f0)]({'where':{'id':_0x55f3d4}});return _0x254b08>0x0;}async function updateNoteById(_0x5bada5,_0x342501){const _0x34bce8=_0x27323e;await initNotesDB();const _0x57b2b2=await NotesDB[_0x34bce8(0x202)](_0x5bada5);if(!_0x57b2b2)return null;return _0x57b2b2[_0x34bce8(0x1f9)]=_0x342501,await _0x57b2b2['save'](),_0x57b2b2;}module[_0x27323e(0x1ef)]={'initNotesDB':initNotesDB,'addNote':addNote,'getNote':getNote,'getAllNotes':getAllNotes,'updateNote':updateNote,'deleteNote':deleteNote,'deleteAllNotes':deleteAllNotes,'getAllUsersNotes':getAllUsersNotes,'deleteNoteById':deleteNoteById,'updateNoteById':updateNoteById,'NotesDB':NotesDB};
+const { DATABASE } = require('./database');
+const { DataTypes } = require('sequelize');
+
+const NotesDB = DATABASE.define('UserNote', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    userJid: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    noteNumber: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    content: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+    },
+}, {
+    tableName: 'user_notes',
+    timestamps: true,
+    indexes: [
+        { fields: ['userJid', 'noteNumber'], unique: true }
+    ]
+});
+
+async function initNotesDB() {
+    await NotesDB.sync();
+}
+
+async function addNote(userJid, content) {
+    await initNotesDB();
+    const lastNote = await NotesDB.findOne({
+        where: { userJid },
+        order: [['noteNumber', 'DESC']]
+    });
+    const noteNumber = lastNote ? lastNote.noteNumber + 1 : 1;
+    
+    const note = await NotesDB.create({
+        userJid,
+        noteNumber,
+        content
+    });
+    return note;
+}
+
+async function getNote(userJid, noteNumber) {
+    await initNotesDB();
+    return await NotesDB.findOne({
+        where: { userJid, noteNumber }
+    });
+}
+
+async function getAllNotes(userJid) {
+    await initNotesDB();
+    return await NotesDB.findAll({
+        where: { userJid },
+        order: [['noteNumber', 'ASC']]
+    });
+}
+
+async function updateNote(userJid, noteNumber, newContent) {
+    await initNotesDB();
+    const note = await NotesDB.findOne({
+        where: { userJid, noteNumber }
+    });
+    if (!note) return null;
+    
+    note.content = newContent;
+    await note.save();
+    return note;
+}
+
+async function deleteNote(userJid, noteNumber) {
+    await initNotesDB();
+    const result = await NotesDB.destroy({
+        where: { userJid, noteNumber }
+    });
+    
+    if (result > 0) {
+        await renumberNotes(userJid);
+    }
+    
+    return result > 0;
+}
+
+async function renumberNotes(userJid) {
+    await initNotesDB();
+    const notes = await NotesDB.findAll({
+        where: { userJid },
+        order: [['noteNumber', 'ASC']]
+    });
+    
+    for (let i = 0; i < notes.length; i++) {
+        const newNumber = i + 1;
+        if (notes[i].noteNumber !== newNumber) {
+            notes[i].noteNumber = newNumber;
+            await notes[i].save();
+        }
+    }
+}
+
+async function deleteAllNotes(userJid) {
+    await initNotesDB();
+    const result = await NotesDB.destroy({
+        where: { userJid }
+    });
+    return result;
+}
+
+async function getAllUsersNotes() {
+    await initNotesDB();
+    return await NotesDB.findAll({
+        order: [['userJid', 'ASC'], ['noteNumber', 'ASC']]
+    });
+}
+
+async function deleteNoteById(id) {
+    await initNotesDB();
+    const result = await NotesDB.destroy({
+        where: { id }
+    });
+    return result > 0;
+}
+
+async function updateNoteById(id, newContent) {
+    await initNotesDB();
+    const note = await NotesDB.findByPk(id);
+    if (!note) return null;
+    
+    note.content = newContent;
+    await note.save();
+    return note;
+}
+
+module.exports = {
+    initNotesDB,
+    addNote,
+    getNote,
+    getAllNotes,
+    updateNote,
+    deleteNote,
+    deleteAllNotes,
+    getAllUsersNotes,
+    deleteNoteById,
+    updateNoteById,
+    NotesDB,
+};

@@ -1,1 +1,35 @@
-function _0x1583(){const _0xe5cd73=['10242NUNZDt','response','430zMMgJu','6160440tNHBUP','length','25FQFwDH','162333FwUytQ','6oAkeiL','message','36RtjSNP','158oHqTRS','708788Smhvuf','https://api.dictionaryapi.dev/api/v2/entries/en/','isArray','1836934ZVNRsp','toLowerCase','axios','set','trim','status','5347370yXuPsI','get','data','log','1849647WOnZDU'];_0x1583=function(){return _0xe5cd73;};return _0x1583();}const _0x1d27c3=_0x5b77;(function(_0x5cdc9b,_0x2f1d79){const _0x16b395=_0x5b77,_0x42e9a0=_0x5cdc9b();while(!![]){try{const _0xe311a4=parseInt(_0x16b395(0x1cb))/0x1*(parseInt(_0x16b395(0x1bc))/0x2)+-parseInt(_0x16b395(0x1ca))/0x3+-parseInt(_0x16b395(0x1bd))/0x4*(parseInt(_0x16b395(0x1d0))/0x5)+-parseInt(_0x16b395(0x1b9))/0x6*(-parseInt(_0x16b395(0x1c6))/0x7)+parseInt(_0x16b395(0x1ce))/0x8+-parseInt(_0x16b395(0x1b8))/0x9*(parseInt(_0x16b395(0x1cd))/0xa)+-parseInt(_0x16b395(0x1c0))/0xb*(-parseInt(_0x16b395(0x1bb))/0xc);if(_0xe311a4===_0x2f1d79)break;else _0x42e9a0['push'](_0x42e9a0['shift']());}catch(_0x570486){_0x42e9a0['push'](_0x42e9a0['shift']());}}}(_0x1583,0x8a2b4));const axios=require(_0x1d27c3(0x1c2)),wordCache=new Map();async function isValidEnglishWord(_0x46b326){const _0x4e6e46=_0x1d27c3,_0xcfdd8b=_0x46b326[_0x4e6e46(0x1c1)]()[_0x4e6e46(0x1c4)]();if(_0xcfdd8b[_0x4e6e46(0x1cf)]<0x2)return![];if(wordCache['has'](_0xcfdd8b))return wordCache['get'](_0xcfdd8b);try{const _0x1e1c75=await axios[_0x4e6e46(0x1c7)](_0x4e6e46(0x1be)+encodeURIComponent(_0xcfdd8b),{'timeout':0x1388}),_0x5ac86a=_0x1e1c75[_0x4e6e46(0x1c5)]===0xc8&&Array[_0x4e6e46(0x1bf)](_0x1e1c75[_0x4e6e46(0x1c8)])&&_0x1e1c75[_0x4e6e46(0x1c8)][_0x4e6e46(0x1cf)]>0x0;return wordCache[_0x4e6e46(0x1c3)](_0xcfdd8b,_0x5ac86a),_0x5ac86a;}catch(_0x5c58e0){if(_0x5c58e0[_0x4e6e46(0x1cc)]&&_0x5c58e0['response'][_0x4e6e46(0x1c5)]===0x194)return wordCache[_0x4e6e46(0x1c3)](_0xcfdd8b,![]),![];return console[_0x4e6e46(0x1c9)]('Dictionary\x20API\x20error\x20for\x20\x22'+_0xcfdd8b+'\x22:',_0x5c58e0[_0x4e6e46(0x1ba)]),!![];}}function _0x5b77(_0x5c1f21,_0x556f31){_0x5c1f21=_0x5c1f21-0x1b8;const _0x158359=_0x1583();let _0x5b774e=_0x158359[_0x5c1f21];return _0x5b774e;}module['exports']={'isValidEnglishWord':isValidEnglishWord};
+const axios = require('axios');
+
+const wordCache = new Map();
+
+async function isValidEnglishWord(word) {
+    const cleanWord = word.toLowerCase().trim();
+    
+    if (cleanWord.length < 2) return false;
+    
+    if (wordCache.has(cleanWord)) {
+        return wordCache.get(cleanWord);
+    }
+    
+    try {
+        const response = await axios.get(
+            `https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(cleanWord)}`,
+            { timeout: 5000 }
+        );
+        
+        const isValid = response.status === 200 && Array.isArray(response.data) && response.data.length > 0;
+        wordCache.set(cleanWord, isValid);
+        return isValid;
+    } catch (error) {
+        if (error.response && error.response.status === 404) {
+            wordCache.set(cleanWord, false);
+            return false;
+        }
+        console.log(`Dictionary API error for "${cleanWord}":`, error.message);
+        return true;
+    }
+}
+
+module.exports = {
+    isValidEnglishWord
+};

@@ -1,1 +1,55 @@
-const _0x45f9b6=_0x12bc;(function(_0x253c14,_0x2690c0){const _0x26a9e8=_0x12bc,_0x1d8cd6=_0x253c14();while(!![]){try{const _0x89c5e5=parseInt(_0x26a9e8(0x13b))/0x1*(-parseInt(_0x26a9e8(0x142))/0x2)+-parseInt(_0x26a9e8(0x145))/0x3+parseInt(_0x26a9e8(0x144))/0x4*(-parseInt(_0x26a9e8(0x136))/0x5)+-parseInt(_0x26a9e8(0x149))/0x6*(parseInt(_0x26a9e8(0x140))/0x7)+parseInt(_0x26a9e8(0x143))/0x8+parseInt(_0x26a9e8(0x146))/0x9*(-parseInt(_0x26a9e8(0x13d))/0xa)+parseInt(_0x26a9e8(0x13c))/0xb;if(_0x89c5e5===_0x2690c0)break;else _0x1d8cd6['push'](_0x1d8cd6['shift']());}catch(_0x3242ba){_0x1d8cd6['push'](_0x1d8cd6['shift']());}}}(_0x3ca7,0x34ae8));function _0x12bc(_0x115835,_0x444b02){_0x115835=_0x115835-0x136;const _0x3ca736=_0x3ca7();let _0x12bc37=_0x3ca736[_0x115835];return _0x12bc37;}function _0x3ca7(){const _0x1dd7d5=['creds','./groupCache','49146NKFtLo','Ubuntu','silent','node-cache','10pCzcsF','22.04.4','keys','listMessage','templateMessage','1YozspG','16989588yzTFCb','135980hVziCn','exports','buttonsMessage','28rJWpXe','gifted-baileys','581062gSURVD','12272NYQlsC','838076ciusIX','866307DDWNVS','198cDyjYv'];_0x3ca7=function(){return _0x1dd7d5;};return _0x3ca7();}const pino=require('pino'),NodeCache=require(_0x45f9b6(0x14c)),{makeCacheableSignalKeyStore}=require(_0x45f9b6(0x141)),{cachedGroupMetadata}=require(_0x45f9b6(0x148)),_userDevicesCache=new NodeCache({'stdTTL':0x708,'useClones':![]}),createSocketConfig=(_0x5a764e,_0x4b4e42,_0x575859)=>{const _0x30d31a=_0x45f9b6;return{'version':_0x5a764e,'logger':pino({'level':_0x30d31a(0x14b)}),'browser':[_0x30d31a(0x14a),'Chrome',_0x30d31a(0x137)],'auth':{'creds':_0x4b4e42[_0x30d31a(0x147)],'keys':makeCacheableSignalKeyStore(_0x4b4e42[_0x30d31a(0x138)],_0x575859)},'cachedGroupMetadata':cachedGroupMetadata,'userDevicesCache':_userDevicesCache,'connectTimeoutMs':0x3a98,'defaultQueryTimeoutMs':0x4e20,'keepAliveIntervalMs':0x4e20,'fireInitQueries':![],'markOnlineOnConnect':!![],'syncFullHistory':![],'shouldSyncHistoryMessage':()=>![],'retryRequestDelayMs':0x32,'maxMsgRetryCount':0x2,'generateHighQualityLinkPreview':![],'getMessage':async()=>undefined,'emitOwnEvents':!![],'patchMessageBeforeSending':_0x29e84a=>{const _0x160a76=_0x30d31a,_0xd4dc19=!!(_0x29e84a[_0x160a76(0x13f)]||_0x29e84a[_0x160a76(0x13a)]||_0x29e84a[_0x160a76(0x139)]);return _0xd4dc19&&(_0x29e84a={'viewOnceMessage':{'message':{'messageContextInfo':{'deviceListMetadataVersion':0x2,'deviceListMetadata':{}},..._0x29e84a}}}),_0x29e84a;}};};module[_0x45f9b6(0x13e)]={'createSocketConfig':createSocketConfig};
+const pino = require('pino');
+const NodeCache = require('node-cache');
+const { makeCacheableSignalKeyStore } = require('gifted-baileys');
+const { cachedGroupMetadata } = require('./groupCache');
+
+const _userDevicesCache = new NodeCache({ stdTTL: 1800, useClones: false });
+
+const createSocketConfig = (version, state, logger) => {
+    return {
+        version,
+        logger: pino({ level: 'silent' }),
+        browser: ['Ubuntu', 'Chrome', '22.04.4'],
+        auth: {
+            creds: state.creds,
+            keys: makeCacheableSignalKeyStore(state.keys, logger)
+        },
+        cachedGroupMetadata,
+        userDevicesCache: _userDevicesCache,
+        connectTimeoutMs: 15000,
+        defaultQueryTimeoutMs: 20000,
+        keepAliveIntervalMs: 20000,
+        fireInitQueries: false,
+        markOnlineOnConnect: true,
+        syncFullHistory: false,
+        shouldSyncHistoryMessage: () => false,
+        retryRequestDelayMs: 50,
+        maxMsgRetryCount: 2,
+        generateHighQualityLinkPreview: false,
+        getMessage: async () => undefined,
+        emitOwnEvents: true,
+        patchMessageBeforeSending: (message) => {
+            const requiresPatch = !!(
+                message.buttonsMessage ||
+                message.templateMessage ||
+                message.listMessage
+            );
+            if (requiresPatch) {
+                message = {
+                    viewOnceMessage: {
+                        message: {
+                            messageContextInfo: {
+                                deviceListMetadataVersion: 2,
+                                deviceListMetadata: {},
+                            },
+                            ...message,
+                        },
+                    },
+                };
+            }
+            return message;
+        }
+    };
+};
+
+module.exports = { createSocketConfig };

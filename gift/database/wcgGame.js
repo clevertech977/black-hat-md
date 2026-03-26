@@ -1,1 +1,292 @@
-const _0x5e70ad=_0x1c8e;function _0x1c8e(_0x597f11,_0xb3bdab){_0x597f11=_0x597f11-0xbe;const _0x922666=_0x9226();let _0x1c8ef6=_0x922666[_0x597f11];return _0x1c8ef6;}(function(_0x174ae1,_0x2cb559){const _0x4e76b2=_0x1c8e,_0x36238a=_0x174ae1();while(!![]){try{const _0x4d38fb=-parseInt(_0x4e76b2(0xcf))/0x1+-parseInt(_0x4e76b2(0xe8))/0x2+parseInt(_0x4e76b2(0xed))/0x3+-parseInt(_0x4e76b2(0xbf))/0x4+parseInt(_0x4e76b2(0xdd))/0x5*(-parseInt(_0x4e76b2(0xe0))/0x6)+parseInt(_0x4e76b2(0xd8))/0x7*(parseInt(_0x4e76b2(0xd6))/0x8)+parseInt(_0x4e76b2(0xee))/0x9;if(_0x4d38fb===_0x2cb559)break;else _0x36238a['push'](_0x36238a['shift']());}catch(_0x325edf){_0x36238a['push'](_0x36238a['shift']());}}}(_0x9226,0x4c4b0));const {DATABASE}=require('./database'),{DataTypes}=require(_0x5e70ad(0xe3)),{isValidEnglishWord}=require('../dictionary'),WcgDB=DATABASE['define']('WordChainGame',{'id':{'type':DataTypes[_0x5e70ad(0xc4)],'primaryKey':!![],'autoIncrement':!![]},'chatJid':{'type':DataTypes['STRING'],'allowNull':![],'unique':!![]},'players':{'type':DataTypes[_0x5e70ad(0xd5)],'allowNull':![],'defaultValue':'[]'},'currentTurn':{'type':DataTypes[_0x5e70ad(0xef)],'allowNull':!![]},'lastWord':{'type':DataTypes[_0x5e70ad(0xef)],'allowNull':!![]},'usedWords':{'type':DataTypes[_0x5e70ad(0xd5)],'allowNull':![],'defaultValue':'[]'},'scores':{'type':DataTypes[_0x5e70ad(0xd5)],'allowNull':![],'defaultValue':'{}'},'status':{'type':DataTypes['ENUM'](_0x5e70ad(0xc1),_0x5e70ad(0xe1),_0x5e70ad(0xcd)),'defaultValue':_0x5e70ad(0xc1)},'minPlayers':{'type':DataTypes[_0x5e70ad(0xc4)],'defaultValue':0x2},'turnTimeLimit':{'type':DataTypes[_0x5e70ad(0xc4)],'defaultValue':0x1e},'isAiGame':{'type':DataTypes[_0x5e70ad(0xd9)],'defaultValue':![]}},{'tableName':_0x5e70ad(0xc9),'timestamps':!![]});let wcgDbInitialized=![];async function initWcgDB(){const _0x1ebf55=_0x5e70ad;if(wcgDbInitialized)return;try{await WcgDB[_0x1ebf55(0xc5)](),wcgDbInitialized=!![];}catch(_0x311ff9){console[_0x1ebf55(0xc7)](_0x1ebf55(0xc0),_0x311ff9[_0x1ebf55(0xda)]);}}async function createWcgGame(_0x9d20c7,_0x4c21b1){const _0x56bba8=_0x5e70ad;await initWcgDB(),await WcgDB[_0x56bba8(0xd0)]({'where':{'chatJid':_0x9d20c7}});const _0x4d957e={};_0x4d957e[_0x4c21b1]=0x0;const _0x195889=await WcgDB[_0x56bba8(0xd3)]({'chatJid':_0x9d20c7,'players':JSON['stringify']([_0x4c21b1]),'currentTurn':null,'lastWord':null,'usedWords':'[]','scores':JSON['stringify'](_0x4d957e),'status':_0x56bba8(0xc1)});return _0x195889;}async function joinWcgGame(_0x44d1ff,_0x3b0760){const _0x47f3ae=_0x5e70ad;await initWcgDB();const _0x26a082=await WcgDB['findOne']({'where':{'chatJid':_0x44d1ff,'status':_0x47f3ae(0xc1)}});if(!_0x26a082)return{'error':_0x47f3ae(0xf0)};const _0x300a5f=JSON[_0x47f3ae(0xde)](_0x26a082[_0x47f3ae(0xdc)]);if(_0x300a5f[0x0]===_0x3b0760)return{'error':'cant_join_own_game'};if(_0x300a5f[_0x47f3ae(0xdf)](_0x3b0760))return{'error':_0x47f3ae(0xeb)};_0x300a5f['push'](_0x3b0760);const _0x29f353=JSON[_0x47f3ae(0xde)](_0x26a082[_0x47f3ae(0xe2)]);return _0x29f353[_0x3b0760]=0x0,_0x26a082['players']=JSON['stringify'](_0x300a5f),_0x26a082[_0x47f3ae(0xe2)]=JSON['stringify'](_0x29f353),await _0x26a082[_0x47f3ae(0xdb)](),{'players':_0x300a5f,'game':_0x26a082};}async function startWcgGame(_0x1c4472){const _0x283f4c=_0x5e70ad;await initWcgDB();const _0x307244=await WcgDB[_0x283f4c(0xcb)]({'where':{'chatJid':_0x1c4472,'status':'waiting'}});if(!_0x307244)return{'error':_0x283f4c(0xf0)};const _0x5e40ae=JSON[_0x283f4c(0xde)](_0x307244[_0x283f4c(0xdc)]);if(_0x5e40ae[_0x283f4c(0xe6)]<0x2)return{'error':_0x283f4c(0xe9)};return _0x307244[_0x283f4c(0xe4)]=_0x283f4c(0xe1),_0x307244[_0x283f4c(0xbe)]=_0x5e40ae[0x0],await _0x307244[_0x283f4c(0xdb)](),{'players':_0x5e40ae,'currentTurn':_0x307244[_0x283f4c(0xbe)],'game':_0x307244};}async function getWcgGame(_0x147836){return await initWcgDB(),await WcgDB['findOne']({'where':{'chatJid':_0x147836}});}async function getActiveWcgGame(_0x37ffd8){const _0x49dc9d=_0x5e70ad;return await initWcgDB(),await WcgDB['findOne']({'where':{'chatJid':_0x37ffd8,'status':_0x49dc9d(0xe1)}});}function _0x9226(){const _0x21e2d8=['word_used','502650NdmNFo','8905392dbzJyP','STRING','no_game','currentTurn','2313200RpaJwk','WcgDB\x20sync\x20error:','waiting','splice','push','INTEGER','sync','not_your_turn','error','invalid_word','wcg_games','usedWords','findOne','slice','finished','player_not_found','151420JmfNrF','destroy','wrong_letter','toLowerCase','create','lastWord','TEXT','1816ManOCu','indexOf','9037HSUKWB','BOOLEAN','message','save','players','5UcvPqu','parse','includes','1880388IxoeCD','active','scores','sequelize','status','trim','length','stringify','188962QAsAvX','not_enough_players','too_short','already_joined'];_0x9226=function(){return _0x21e2d8;};return _0x9226();}async function getWaitingWcgGame(_0x4e887f){return await initWcgDB(),await WcgDB['findOne']({'where':{'chatJid':_0x4e887f,'status':'waiting'}});}async function submitWord(_0x504cd1,_0x5f7da5,_0x123625){const _0x5c0e82=_0x5e70ad;await initWcgDB();const _0x22ea10=await WcgDB[_0x5c0e82(0xcb)]({'where':{'chatJid':_0x504cd1,'status':_0x5c0e82(0xe1)}});if(!_0x22ea10)return{'error':_0x5c0e82(0xf0)};if(_0x22ea10[_0x5c0e82(0xbe)]!==_0x5f7da5)return{'error':_0x5c0e82(0xc6)};const _0x146081=_0x123625[_0x5c0e82(0xd2)]()[_0x5c0e82(0xe5)](),_0x46a44c=JSON['parse'](_0x22ea10['usedWords']);if(_0x46a44c[_0x5c0e82(0xdf)](_0x146081))return{'error':_0x5c0e82(0xec)};if(_0x22ea10[_0x5c0e82(0xd4)]){const _0x1a8b1f=_0x22ea10['lastWord'][_0x5c0e82(0xcc)](-0x1)[_0x5c0e82(0xd2)]();if(_0x146081[0x0]!==_0x1a8b1f)return{'error':_0x5c0e82(0xd1),'expected':_0x1a8b1f};}if(_0x146081[_0x5c0e82(0xe6)]<0x2)return{'error':_0x5c0e82(0xea)};const _0x2ff1eb=await isValidEnglishWord(_0x146081);if(!_0x2ff1eb)return{'error':_0x5c0e82(0xc8)};_0x46a44c[_0x5c0e82(0xc3)](_0x146081);const _0x10e03a=JSON[_0x5c0e82(0xde)](_0x22ea10[_0x5c0e82(0xe2)]);_0x10e03a[_0x5f7da5]=(_0x10e03a[_0x5f7da5]||0x0)+_0x146081['length'];const _0x49fd51=JSON[_0x5c0e82(0xde)](_0x22ea10['players']),_0x3b5d5a=_0x49fd51[_0x5c0e82(0xd7)](_0x5f7da5),_0x4bf287=(_0x3b5d5a+0x1)%_0x49fd51[_0x5c0e82(0xe6)],_0x1e393c=_0x49fd51[_0x4bf287];return _0x22ea10[_0x5c0e82(0xd4)]=_0x146081,_0x22ea10[_0x5c0e82(0xca)]=JSON[_0x5c0e82(0xe7)](_0x46a44c),_0x22ea10[_0x5c0e82(0xe2)]=JSON[_0x5c0e82(0xe7)](_0x10e03a),_0x22ea10[_0x5c0e82(0xbe)]=_0x1e393c,await _0x22ea10[_0x5c0e82(0xdb)](),{'word':_0x146081,'scores':_0x10e03a,'nextPlayer':_0x1e393c,'wordCount':_0x46a44c['length'],'game':_0x22ea10};}async function eliminatePlayer(_0x52ed56,_0x29aa9e){const _0x138ef9=_0x5e70ad;await initWcgDB();const _0x4a414f=await WcgDB[_0x138ef9(0xcb)]({'where':{'chatJid':_0x52ed56,'status':_0x138ef9(0xe1)}});if(!_0x4a414f)return{'error':_0x138ef9(0xf0)};const _0x3f710d=JSON['parse'](_0x4a414f[_0x138ef9(0xdc)]),_0x18949d=_0x3f710d[_0x138ef9(0xd7)](_0x29aa9e);if(_0x18949d===-0x1)return{'error':_0x138ef9(0xce)};_0x3f710d[_0x138ef9(0xc2)](_0x18949d,0x1);const _0x54d323=JSON['parse'](_0x4a414f['scores']);if(_0x3f710d['length']===0x0)return _0x4a414f[_0x138ef9(0xe4)]='finished',await _0x4a414f[_0x138ef9(0xdb)](),{'winner':null,'scores':_0x54d323,'finished':!![],'noWinner':!![]};if(_0x3f710d[_0x138ef9(0xe6)]===0x1)return _0x4a414f[_0x138ef9(0xe4)]=_0x138ef9(0xcd),await _0x4a414f[_0x138ef9(0xdb)](),{'winner':_0x3f710d[0x0],'scores':_0x54d323,'finished':!![]};const _0x57958a=_0x3f710d[_0x138ef9(0xd7)](_0x4a414f[_0x138ef9(0xbe)]),_0x538bcb=_0x57958a===-0x1?_0x3f710d[0x0]:_0x4a414f[_0x138ef9(0xbe)];return _0x4a414f[_0x138ef9(0xdc)]=JSON['stringify'](_0x3f710d),_0x4a414f['currentTurn']=_0x538bcb,await _0x4a414f[_0x138ef9(0xdb)](),{'eliminated':_0x29aa9e,'remainingPlayers':_0x3f710d,'nextPlayer':_0x538bcb,'scores':_0x54d323};}async function endWcgGame(_0x506e3f){const _0x26e1a0=_0x5e70ad;await initWcgDB();const _0x2fd834=await WcgDB[_0x26e1a0(0xcb)]({'where':{'chatJid':_0x506e3f}});if(_0x2fd834){const _0xbe4697=JSON[_0x26e1a0(0xde)](_0x2fd834[_0x26e1a0(0xe2)]);return await WcgDB[_0x26e1a0(0xd0)]({'where':{'chatJid':_0x506e3f}}),_0xbe4697;}return null;}module['exports']={'initWcgDB':initWcgDB,'createWcgGame':createWcgGame,'joinWcgGame':joinWcgGame,'startWcgGame':startWcgGame,'getWcgGame':getWcgGame,'getActiveWcgGame':getActiveWcgGame,'getWaitingWcgGame':getWaitingWcgGame,'submitWord':submitWord,'eliminatePlayer':eliminatePlayer,'endWcgGame':endWcgGame,'WcgDB':WcgDB};
+const { DATABASE } = require('./database');
+const { DataTypes } = require('sequelize');
+const { isValidEnglishWord } = require('../dictionary');
+
+const WcgDB = DATABASE.define('WordChainGame', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    chatJid: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+    },
+    players: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        defaultValue: '[]',
+    },
+    currentTurn: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
+    lastWord: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
+    usedWords: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        defaultValue: '[]',
+    },
+    scores: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        defaultValue: '{}',
+    },
+    status: {
+        type: DataTypes.ENUM('waiting', 'active', 'finished'),
+        defaultValue: 'waiting',
+    },
+    minPlayers: {
+        type: DataTypes.INTEGER,
+        defaultValue: 2,
+    },
+    turnTimeLimit: {
+        type: DataTypes.INTEGER,
+        defaultValue: 30,
+    },
+    isAiGame: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+    },
+}, {
+    tableName: 'wcg_games',
+    timestamps: true,
+});
+
+let wcgDbInitialized = false;
+async function initWcgDB() {
+    if (wcgDbInitialized) return;
+    try {
+        await WcgDB.sync();
+        wcgDbInitialized = true;
+    } catch (error) {
+        console.error('WcgDB sync error:', error.message);
+    }
+}
+
+async function createWcgGame(chatJid, hostPlayer) {
+    await initWcgDB();
+    await WcgDB.destroy({ where: { chatJid } });
+    
+    const scores = {};
+    scores[hostPlayer] = 0;
+    
+    const game = await WcgDB.create({
+        chatJid,
+        players: JSON.stringify([hostPlayer]),
+        currentTurn: null,
+        lastWord: null,
+        usedWords: '[]',
+        scores: JSON.stringify(scores),
+        status: 'waiting',
+    });
+    return game;
+}
+
+async function joinWcgGame(chatJid, player) {
+    await initWcgDB();
+    const game = await WcgDB.findOne({
+        where: { chatJid, status: 'waiting' }
+    });
+    
+    if (!game) return { error: 'no_game' };
+    
+    const players = JSON.parse(game.players);
+    
+    if (players[0] === player) {
+        return { error: 'cant_join_own_game' };
+    }
+    
+    if (players.includes(player)) {
+        return { error: 'already_joined' };
+    }
+    
+    players.push(player);
+    const scores = JSON.parse(game.scores);
+    scores[player] = 0;
+    
+    game.players = JSON.stringify(players);
+    game.scores = JSON.stringify(scores);
+    await game.save();
+    
+    return { players, game };
+}
+
+async function startWcgGame(chatJid) {
+    await initWcgDB();
+    const game = await WcgDB.findOne({
+        where: { chatJid, status: 'waiting' }
+    });
+    
+    if (!game) return { error: 'no_game' };
+    
+    const players = JSON.parse(game.players);
+    if (players.length < 2) {
+        return { error: 'not_enough_players' };
+    }
+    
+    game.status = 'active';
+    game.currentTurn = players[0];
+    await game.save();
+    
+    return {
+        players,
+        currentTurn: game.currentTurn,
+        game
+    };
+}
+
+async function getWcgGame(chatJid) {
+    await initWcgDB();
+    return await WcgDB.findOne({ where: { chatJid } });
+}
+
+async function getActiveWcgGame(chatJid) {
+    await initWcgDB();
+    return await WcgDB.findOne({
+        where: { chatJid, status: 'active' }
+    });
+}
+
+async function getWaitingWcgGame(chatJid) {
+    await initWcgDB();
+    return await WcgDB.findOne({
+        where: { chatJid, status: 'waiting' }
+    });
+}
+
+async function submitWord(chatJid, player, word) {
+    await initWcgDB();
+    const game = await WcgDB.findOne({
+        where: { chatJid, status: 'active' }
+    });
+    
+    if (!game) return { error: 'no_game' };
+    if (game.currentTurn !== player) return { error: 'not_your_turn' };
+    
+    const cleanWord = word.toLowerCase().trim();
+    const usedWords = JSON.parse(game.usedWords);
+    
+    if (usedWords.includes(cleanWord)) {
+        return { error: 'word_used' };
+    }
+    
+    if (game.lastWord) {
+        const lastChar = game.lastWord.slice(-1).toLowerCase();
+        if (cleanWord[0] !== lastChar) {
+            return { error: 'wrong_letter', expected: lastChar };
+        }
+    }
+    
+    if (cleanWord.length < 2) {
+        return { error: 'too_short' };
+    }
+    
+    const isValid = await isValidEnglishWord(cleanWord);
+    if (!isValid) {
+        return { error: 'invalid_word' };
+    }
+    
+    usedWords.push(cleanWord);
+    const scores = JSON.parse(game.scores);
+    scores[player] = (scores[player] || 0) + cleanWord.length;
+    
+    const players = JSON.parse(game.players);
+    const currentIndex = players.indexOf(player);
+    const nextIndex = (currentIndex + 1) % players.length;
+    const nextPlayer = players[nextIndex];
+    
+    game.lastWord = cleanWord;
+    game.usedWords = JSON.stringify(usedWords);
+    game.scores = JSON.stringify(scores);
+    game.currentTurn = nextPlayer;
+    await game.save();
+    
+    return {
+        word: cleanWord,
+        scores,
+        nextPlayer,
+        wordCount: usedWords.length,
+        game
+    };
+}
+
+async function eliminatePlayer(chatJid, player) {
+    await initWcgDB();
+    const game = await WcgDB.findOne({
+        where: { chatJid, status: 'active' }
+    });
+    
+    if (!game) return { error: 'no_game' };
+    
+    const players = JSON.parse(game.players);
+    const playerIndex = players.indexOf(player);
+    if (playerIndex === -1) return { error: 'player_not_found' };
+    
+    players.splice(playerIndex, 1);
+    const scores = JSON.parse(game.scores);
+    
+    if (players.length === 0) {
+        game.status = 'finished';
+        await game.save();
+        return { 
+            winner: null,
+            scores,
+            finished: true,
+            noWinner: true
+        };
+    }
+    
+    if (players.length === 1) {
+        game.status = 'finished';
+        await game.save();
+        return { 
+            winner: players[0],
+            scores,
+            finished: true
+        };
+    }
+    
+    const currentIndex = players.indexOf(game.currentTurn);
+    const nextPlayer = currentIndex === -1 ? players[0] : game.currentTurn;
+    
+    game.players = JSON.stringify(players);
+    game.currentTurn = nextPlayer;
+    await game.save();
+    
+    return {
+        eliminated: player,
+        remainingPlayers: players,
+        nextPlayer,
+        scores
+    };
+}
+
+async function endWcgGame(chatJid) {
+    await initWcgDB();
+    const game = await WcgDB.findOne({ where: { chatJid } });
+    if (game) {
+        const scores = JSON.parse(game.scores);
+        await WcgDB.destroy({ where: { chatJid } });
+        return scores;
+    }
+    return null;
+}
+
+module.exports = {
+    initWcgDB,
+    createWcgGame,
+    joinWcgGame,
+    startWcgGame,
+    getWcgGame,
+    getActiveWcgGame,
+    getWaitingWcgGame,
+    submitWord,
+    eliminatePlayer,
+    endWcgGame,
+    WcgDB,
+};

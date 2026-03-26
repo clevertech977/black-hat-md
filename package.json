@@ -1,7 +1,7 @@
 {
   "name": "black-hat-md",
   "version": "5.0.0",
-  "description": "black-hat-md, a Multi Device Whatsapp Bot built by clever Tech to Enhance Whatsapp Communication Experience",
+  "description": "black-hat-md, a Multi Device Whatsapp Bot built by Clever Tech to Enhance Whatsapp Communication Experience",
   "main": "./index.js",
   "type": "commonjs",
   "scripts": {
@@ -39,7 +39,7 @@
     "fs": "^0.0.1-security",
     "fs-extra": "^11.1.0",
     "gifted-baileys": "2.5.8",
-    "gifted-btns": "^1.0.0",
+    "gifted-btns": "^1.0.2",
     "gifted-dls": "*",
     "google-tts-api": "*",
     "jimp": "*",
@@ -64,7 +64,7 @@
     "url": "git+https://github.com/clevertech977/black-hat-md.git"
   },
   "bugs": {
-    "url": "https://github.com/clevertech977/atassa/black-hat-md"
+    "url": "https://github.com/clevertech977/black-hat-md/issues"
   },
   "homepage": "https://github.com/clevertech977/black-hat-md#readme"
 }

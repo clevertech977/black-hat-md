@@ -1,1 +1,96 @@
-const _0x58cf9d=_0x4ae1;function _0x4ae1(_0x176f90,_0x1e3a76){_0x176f90=_0x176f90-0x182;const _0x3804b4=_0x3804();let _0x4ae17d=_0x3804b4[_0x176f90];return _0x4ae17d;}(function(_0x93561b,_0x12233a){const _0x38a21b=_0x4ae1,_0xe47640=_0x93561b();while(!![]){try{const _0x203245=-parseInt(_0x38a21b(0x189))/0x1+parseInt(_0x38a21b(0x19b))/0x2*(parseInt(_0x38a21b(0x199))/0x3)+-parseInt(_0x38a21b(0x186))/0x4+parseInt(_0x38a21b(0x1a7))/0x5+-parseInt(_0x38a21b(0x1b3))/0x6*(-parseInt(_0x38a21b(0x197))/0x7)+-parseInt(_0x38a21b(0x182))/0x8+parseInt(_0x38a21b(0x1af))/0x9;if(_0x203245===_0x12233a)break;else _0xe47640['push'](_0xe47640['shift']());}catch(_0x440642){_0xe47640['push'](_0xe47640['shift']());}}}(_0x3804,0xe0bdc));const axios=require(_0x58cf9d(0x18a)),wordCache=new Map();async function findWcgWord(_0x303c8e,_0xf38733){const _0x350c48=_0x58cf9d,_0x46f340=_0x303c8e?_0x303c8e['slice'](-0x1)[_0x350c48(0x1b8)]():null;try{let _0x5406cb;if(wordCache[_0x350c48(0x193)](_0x46f340||_0x350c48(0x18d)))_0x5406cb=wordCache[_0x350c48(0x195)](_0x46f340||_0x350c48(0x18d));else{const _0x5cedeb=_0x46f340?_0x350c48(0x1ad)+_0x46f340+'*&max=200':_0x350c48(0x1b7),_0x9cc70c=await axios[_0x350c48(0x195)](_0x350c48(0x1a8)+_0x5cedeb,{'timeout':0x1388});_0x5406cb=_0x9cc70c['data']['map'](_0x5a3a3c=>_0x5a3a3c['word'][_0x350c48(0x1b8)]())[_0x350c48(0x194)](_0x73bf4e=>_0x73bf4e[_0x350c48(0x1a3)]>=0x3&&/^[a-z]+$/[_0x350c48(0x184)](_0x73bf4e)),wordCache[_0x350c48(0x19f)](_0x46f340||_0x350c48(0x18d),_0x5406cb);}const _0x4b4b6b=_0x5406cb[_0x350c48(0x194)](_0x4d0e87=>!_0xf38733[_0x350c48(0x19c)](_0x4d0e87));if(_0x4b4b6b[_0x350c48(0x1a3)]>0x0)return _0x4b4b6b[Math['floor'](Math[_0x350c48(0x188)]()*Math[_0x350c48(0x1b0)](_0x4b4b6b[_0x350c48(0x1a3)],0x32))];return null;}catch(_0x1b8a3e){return console['log'](_0x350c48(0x19e),_0x1b8a3e['message']),getFallbackWord(_0x46f340,_0xf38733);}}const FALLBACK_WORDS=[_0x58cf9d(0x18e),_0x58cf9d(0x1b4),_0x58cf9d(0x1ae),_0x58cf9d(0x183),_0x58cf9d(0x1ac),_0x58cf9d(0x1a6),_0x58cf9d(0x191),_0x58cf9d(0x18c),'snake','engine','error',_0x58cf9d(0x1b1),_0x58cf9d(0x1a2),'train',_0x58cf9d(0x1a4),_0x58cf9d(0x185),'radio',_0x58cf9d(0x1aa),_0x58cf9d(0x1a5),_0x58cf9d(0x19a),_0x58cf9d(0x190),_0x58cf9d(0x1b2),_0x58cf9d(0x196),_0x58cf9d(0x187),_0x58cf9d(0x18b),_0x58cf9d(0x1ab),_0x58cf9d(0x1a9),'east',_0x58cf9d(0x1a1),_0x58cf9d(0x198),_0x58cf9d(0x1b5),_0x58cf9d(0x18f)];function getFallbackWord(_0x4d55d7,_0x196d2e){const _0x1f77bb=_0x58cf9d,_0x33cf55=_0x4d55d7?FALLBACK_WORDS[_0x1f77bb(0x194)](_0x5dea0c=>_0x5dea0c[0x0]===_0x4d55d7&&!_0x196d2e[_0x1f77bb(0x19c)](_0x5dea0c)):FALLBACK_WORDS[_0x1f77bb(0x194)](_0x4e439f=>!_0x196d2e[_0x1f77bb(0x19c)](_0x4e439f));return _0x33cf55[_0x1f77bb(0x1a3)]>0x0?_0x33cf55[Math[_0x1f77bb(0x19d)](Math[_0x1f77bb(0x188)]()*_0x33cf55['length'])]:null;}function _0x3804(){const _0x121380=['random','1822260TsVAfZ','axios','turtle','house','all','apple','castle','window','earth','number','has','filter','get','room','941017AnsZrW','storm','3thFCTZ','yellow','1740586XjrCCW','includes','floor','AI\x20word\x20fetch\x20error:','set','some','tennis','rocket','length','night','energy','eagle','7044655tamTaf','https://api.datamuse.com/words?','tree','orange','escape','table','sp=','tiger','3194127hAYFbX','min','river','water','66FsSBPg','elephant','music','AI_BOT@s.whatsapp.net','max=200','toLowerCase','7899184bHTDEC','rabbit','test','tower','1530680cwOQBh','mother'];_0x3804=function(){return _0x121380;};return _0x3804();}function rollDice(){const _0x3505a3=_0x58cf9d;return Math[_0x3505a3(0x19d)](Math[_0x3505a3(0x188)]()*0x6)+0x1;}function findBestTttMove(_0x3a175d){const _0x884b40=_0x58cf9d,_0x7b030a=(_0x1ff297,_0x92127b)=>{const _0x5a6bc4=_0x4ae1,_0x32af27=[[0x0,0x1,0x2],[0x3,0x4,0x5],[0x6,0x7,0x8],[0x0,0x3,0x6],[0x1,0x4,0x7],[0x2,0x5,0x8],[0x0,0x4,0x8],[0x2,0x4,0x6]];return _0x32af27[_0x5a6bc4(0x1a0)](([_0x3dcbfb,_0xbc6084,_0x1b401e])=>_0x1ff297[_0x3dcbfb]===_0x92127b&&_0x1ff297[_0xbc6084]===_0x92127b&&_0x1ff297[_0x1b401e]===_0x92127b);},_0x1241bd=_0x3a175d['map']((_0x34159e,_0x4f057f)=>typeof _0x34159e===_0x884b40(0x192)?_0x4f057f:-0x1)[_0x884b40(0x194)](_0x21af09=>_0x21af09!==-0x1);if(_0x1241bd[_0x884b40(0x1a3)]===0x0)return-0x1;for(const _0x4a9baa of _0x1241bd){const _0x43f601=[..._0x3a175d];_0x43f601[_0x4a9baa]='O';if(_0x7b030a(_0x43f601,'O'))return _0x4a9baa;}for(const _0x162e16 of _0x1241bd){const _0x25424=[..._0x3a175d];_0x25424[_0x162e16]='X';if(_0x7b030a(_0x25424,'X'))return _0x162e16;}if(_0x1241bd[_0x884b40(0x19c)](0x4))return 0x4;const _0x29106e=[0x0,0x2,0x6,0x8][_0x884b40(0x194)](_0x3dffa0=>_0x1241bd[_0x884b40(0x19c)](_0x3dffa0));if(_0x29106e[_0x884b40(0x1a3)]>0x0)return _0x29106e[Math['floor'](Math[_0x884b40(0x188)]()*_0x29106e[_0x884b40(0x1a3)])];return _0x1241bd[Math[_0x884b40(0x19d)](Math[_0x884b40(0x188)]()*_0x1241bd['length'])];}const BOT_JID=_0x58cf9d(0x1b6);module['exports']={'findWcgWord':findWcgWord,'rollDice':rollDice,'findBestTttMove':findBestTttMove,'BOT_JID':BOT_JID};
+const axios = require('axios');
+
+const wordCache = new Map();
+
+async function findWcgWord(lastWord, usedWords) {
+    const startLetter = lastWord ? lastWord.slice(-1).toLowerCase() : null;
+    
+    try {
+        let words;
+        
+        if (wordCache.has(startLetter || 'all')) {
+            words = wordCache.get(startLetter || 'all');
+        } else {
+            const query = startLetter ? `sp=${startLetter}*&max=200` : 'max=200';
+            const response = await axios.get(
+                `https://api.datamuse.com/words?${query}`,
+                { timeout: 5000 }
+            );
+            
+            words = response.data
+                .map(w => w.word.toLowerCase())
+                .filter(w => w.length >= 3 && /^[a-z]+$/.test(w));
+            
+            wordCache.set(startLetter || 'all', words);
+        }
+        
+        const available = words.filter(w => !usedWords.includes(w));
+        
+        if (available.length > 0) {
+            return available[Math.floor(Math.random() * Math.min(available.length, 50))];
+        }
+        
+        return null;
+    } catch (error) {
+        console.log('AI word fetch error:', error.message);
+        return getFallbackWord(startLetter, usedWords);
+    }
+}
+
+const FALLBACK_WORDS = [
+    'apple', 'elephant', 'tiger', 'rabbit', 'table', 'eagle', 'earth', 'house',
+    'snake', 'engine', 'error', 'river', 'rocket', 'train', 'night', 'tower',
+    'radio', 'orange', 'energy', 'yellow', 'window', 'water', 'room', 'mother',
+    'turtle', 'escape', 'tree', 'east', 'tennis', 'storm', 'music', 'castle'
+];
+
+function getFallbackWord(startLetter, usedWords) {
+    const candidates = startLetter 
+        ? FALLBACK_WORDS.filter(w => w[0] === startLetter && !usedWords.includes(w))
+        : FALLBACK_WORDS.filter(w => !usedWords.includes(w));
+    
+    return candidates.length > 0 ? candidates[Math.floor(Math.random() * candidates.length)] : null;
+}
+
+function rollDice() {
+    return Math.floor(Math.random() * 6) + 1;
+}
+
+function findBestTttMove(board) {
+    const checkWin = (b, player) => {
+        const patterns = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+        return patterns.some(([a,b1,c]) => b[a] === player && b[b1] === player && b[c] === player);
+    };
+    
+    const emptyCells = board.map((cell, i) => typeof cell === 'number' ? i : -1).filter(i => i !== -1);
+    
+    if (emptyCells.length === 0) return -1;
+    
+    for (const i of emptyCells) {
+        const testBoard = [...board];
+        testBoard[i] = 'O';
+        if (checkWin(testBoard, 'O')) return i;
+    }
+    
+    for (const i of emptyCells) {
+        const testBoard = [...board];
+        testBoard[i] = 'X';
+        if (checkWin(testBoard, 'X')) return i;
+    }
+    
+    if (emptyCells.includes(4)) return 4;
+    
+    const corners = [0, 2, 6, 8].filter(c => emptyCells.includes(c));
+    if (corners.length > 0) return corners[Math.floor(Math.random() * corners.length)];
+    
+    return emptyCells[Math.floor(Math.random() * emptyCells.length)];
+}
+
+const BOT_JID = 'AI_BOT@s.whatsapp.net';
+
+module.exports = {
+    findWcgWord,
+    rollDice,
+    findBestTttMove,
+    BOT_JID
+};

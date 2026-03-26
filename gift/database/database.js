@@ -1,1 +1,67 @@
-const _0x3dc731=_0x48cf;(function(_0x285a8f,_0x31b5c0){const _0x316c3b=_0x48cf,_0x31d829=_0x285a8f();while(!![]){try{const _0x1c829f=-parseInt(_0x316c3b(0x19b))/0x1*(-parseInt(_0x316c3b(0x197))/0x2)+-parseInt(_0x316c3b(0x1a0))/0x3+-parseInt(_0x316c3b(0x1a6))/0x4*(-parseInt(_0x316c3b(0x19f))/0x5)+parseInt(_0x316c3b(0x196))/0x6*(parseInt(_0x316c3b(0x19c))/0x7)+-parseInt(_0x316c3b(0x198))/0x8+-parseInt(_0x316c3b(0x19e))/0x9*(parseInt(_0x316c3b(0x19d))/0xa)+parseInt(_0x316c3b(0x1a5))/0xb;if(_0x1c829f===_0x31b5c0)break;else _0x31d829['push'](_0x31d829['shift']());}catch(_0x1697a9){_0x31d829['push'](_0x31d829['shift']());}}}(_0x1832,0x2533c));const config=require(_0x3dc731(0x1a4)),Sequelize=require(_0x3dc731(0x19a)),fs=require('fs'),path=require(_0x3dc731(0x192));class DatabaseManager{static ['instance']=null;static[_0x3dc731(0x1a1)](){const _0x4ba5f1=_0x3dc731;if(!DatabaseManager[_0x4ba5f1(0x1a7)]){const _0x2a60c8=config[_0x4ba5f1(0x1a2)],_0x9e2da5='./gift/database/database.db';if(!_0x2a60c8){console[_0x4ba5f1(0x195)](_0x4ba5f1(0x191));const _0x571dc9=path['dirname'](_0x9e2da5);!fs[_0x4ba5f1(0x194)](_0x571dc9)&&fs[_0x4ba5f1(0x1a3)](_0x571dc9,{'recursive':!![]}),DatabaseManager[_0x4ba5f1(0x1a7)]=new Sequelize({'dialect':'sqlite','storage':_0x9e2da5,'logging':![],'pool':{'max':0x1,'min':0x0,'acquire':0x7530,'idle':0x2710},'retry':{'max':0x5},'dialectOptions':{'busyTimeout':0x7530}});}else DatabaseManager[_0x4ba5f1(0x1a7)]=new Sequelize(_0x2a60c8,{'dialect':_0x4ba5f1(0x193),'ssl':!![],'protocol':_0x4ba5f1(0x193),'dialectOptions':{'native':!![],'ssl':{'require':!![],'rejectUnauthorized':![]}},'logging':![]});}return DatabaseManager[_0x4ba5f1(0x1a7)];}}const DATABASE=DatabaseManager[_0x3dc731(0x1a1)]();function _0x48cf(_0x4fc92b,_0x3e49f4){_0x4fc92b=_0x4fc92b-0x191;const _0x183253=_0x1832();let _0x48cf5e=_0x183253[_0x4fc92b];return _0x48cf5e;}async function syncDatabase(){const _0x2d0d9b=_0x3dc731;try{await DATABASE['sync'](),console[_0x2d0d9b(0x195)]('✅\x20Database\x20Synchronized.');}catch(_0x48c8f0){console[_0x2d0d9b(0x199)]('Error\x20synchronizing\x20the\x20database:',_0x48c8f0);throw _0x48c8f0;}}function _0x1832(){const _0x4a3040=['getInstance','DATABASE_URL','mkdirSync','../../config','856119UkoNLm','2084EcwZzJ','instance','ℹ️\x20\x20DATABASE_URL\x20Empty,\x20Using\x20Path','path','postgres','existsSync','log','6aefSKb','22DZwUkV','2000760BRaBGF','error','sequelize','24127difJVR','1272635eXOdlq','10QSoZGq','1206hYFTiI','265eDeKOY','450105rGxAsX'];_0x1832=function(){return _0x4a3040;};return _0x1832();}module['exports']={'DATABASE':DATABASE,'syncDatabase':syncDatabase};
+const config = require("../../config");
+const Sequelize = require("sequelize");
+const fs = require("fs");
+const path = require("path");
+
+class DatabaseManager {
+    static instance = null;
+
+    static getInstance() {
+        if (!DatabaseManager.instance) {
+            const DATABASE_URL = config.DATABASE_URL;
+            const DEFAULT_SQLITE_PATH = path.join(__dirname, "database.db");
+
+            if (!DATABASE_URL) {
+                console.log("ℹ️  DATABASE_URL Empty, Using Path");
+                const dbDir = path.dirname(DEFAULT_SQLITE_PATH);
+                if (!fs.existsSync(dbDir)) {
+                    fs.mkdirSync(dbDir, { recursive: true });
+                }
+
+                DatabaseManager.instance = new Sequelize({
+                    dialect: "sqlite",
+                    storage: DEFAULT_SQLITE_PATH,
+                    logging: false,
+                    pool: {
+                        max: 1,
+                        min: 0,
+                        acquire: 30000,
+                        idle: 10000,
+                    },
+                    retry: {
+                        max: 5,
+                    },
+                    dialectOptions: {
+                        busyTimeout: 30000,
+                    },
+                });
+            } else {
+                DatabaseManager.instance = new Sequelize(DATABASE_URL, {
+                    dialect: "postgres",
+                    ssl: true,
+                    protocol: "postgres",
+                    dialectOptions: {
+                        native: true,
+                        ssl: { require: true, rejectUnauthorized: false },
+                    },
+                    logging: false,
+                });
+            }
+        }
+        return DatabaseManager.instance;
+    }
+}
+
+const DATABASE = DatabaseManager.getInstance();
+
+async function syncDatabase() {
+    try {
+        await DATABASE.sync();
+        console.log("✅ Database Synchronized.");
+    } catch (error) {
+        console.error("Error synchronizing the database:", error);
+        throw error;
+    }
+}
+
+module.exports = { DATABASE, syncDatabase };

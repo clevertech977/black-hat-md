@@ -1,1 +1,187 @@
-function _0x4dd7(_0xacaf68,_0x5e600a){_0xacaf68=_0xacaf68-0x16b;const _0x3ca578=_0x3ca5();let _0x4dd7ca=_0x3ca578[_0xacaf68];return _0x4dd7ca;}const _0x3f5059=_0x4dd7;(function(_0x13bd6d,_0x247b2e){const _0x1beb9a=_0x4dd7,_0x4b7905=_0x13bd6d();while(!![]){try{const _0x3f20c8=parseInt(_0x1beb9a(0x17b))/0x1*(-parseInt(_0x1beb9a(0x19b))/0x2)+-parseInt(_0x1beb9a(0x186))/0x3+parseInt(_0x1beb9a(0x183))/0x4*(-parseInt(_0x1beb9a(0x16e))/0x5)+-parseInt(_0x1beb9a(0x193))/0x6*(parseInt(_0x1beb9a(0x177))/0x7)+-parseInt(_0x1beb9a(0x16f))/0x8*(-parseInt(_0x1beb9a(0x188))/0x9)+-parseInt(_0x1beb9a(0x191))/0xa*(parseInt(_0x1beb9a(0x179))/0xb)+-parseInt(_0x1beb9a(0x18a))/0xc*(-parseInt(_0x1beb9a(0x18d))/0xd);if(_0x3f20c8===_0x247b2e)break;else _0x4b7905['push'](_0x4b7905['shift']());}catch(_0x47a66f){_0x4b7905['push'](_0x4b7905['shift']());}}}(_0x3ca5,0x2d421));const Database=require(_0x3f5059(0x197)),path=require(_0x3f5059(0x192)),fs=require('fs'),DB_PATH=path['join'](process[_0x3f5059(0x1a0)](),_0x3f5059(0x17e),_0x3f5059(0x196));function safeStringify(_0x23cc36){return JSON['stringify'](_0x23cc36,(_0x57350a,_0x1711c7)=>{const _0x3a322a=_0x4dd7;if(_0x1711c7 instanceof Uint8Array||Buffer[_0x3a322a(0x184)](_0x1711c7))return{'__type':_0x3a322a(0x198),'data':Buffer[_0x3a322a(0x1a3)](_0x1711c7)[_0x3a322a(0x194)]('base64')};return _0x1711c7;});}function _0x3ca5(){const _0x2a96a6=['originalSender','12FBWglm','get','findAD','10778963kyTsTi','exec','SELECT\x20data\x20FROM\x20antidelete_store\x20WHERE\x20jid\x20=\x20?\x20AND\x20id\x20=\x20?','cleanAD','193420sLJBkb','path','4530WklgUE','toString','cache_size\x20=\x20-10000','store.db','better-sqlite3','Buffer','pragma','cleanMsg','2FsXCBq','loadMessage','saveMessage','bind','[msgStore]\x20save:','cwd','delAD','saveAD','from','message','exports','originalPushName','2280pxvUsy','1179736BYgwiQ','synchronous\x20=\x20NORMAL','object','INSERT\x20OR\x20REPLACE\x20INTO\x20msg_store\x20(id,\x20jid,\x20data,\x20ts)\x20VALUES\x20(?,\x20?,\x20?,\x20unixepoch())','prepare','DELETE\x20FROM\x20antidelete_store\x20WHERE\x20jid\x20=\x20?\x20AND\x20id\x20=\x20?','[antiDeleteStore]\x20save:','data','1085yvnhWh','run','187krvhQi','key','349507Yschav','saveMsg','dirname','gift/session','base64','remoteJid','loadMsg','temp_store\x20=\x20memory','636yzxgHE','isBuffer','_handler','212574jyYcLE','INSERT\x20OR\x20REPLACE\x20INTO\x20antidelete_store\x20(id,\x20jid,\x20sender,\x20push_name,\x20data,\x20ts)\x20VALUES\x20(?,\x20?,\x20?,\x20?,\x20?,\x20unixepoch())','18Qmhdmi'];_0x3ca5=function(){return _0x2a96a6;};return _0x3ca5();}function safeParse(_0x585723){return JSON['parse'](_0x585723,(_0x44a74c,_0x46eeda)=>{const _0x56c505=_0x4dd7;if(_0x46eeda&&typeof _0x46eeda===_0x56c505(0x171)&&_0x46eeda['__type']==='Buffer'&&_0x46eeda[_0x56c505(0x176)])return Buffer[_0x56c505(0x1a3)](_0x46eeda[_0x56c505(0x176)],_0x56c505(0x17f));return _0x46eeda;});}let _db=null,_stmts={};function getDb(){const _0x300788=_0x3f5059;if(_db)return _db;return fs['mkdirSync'](path[_0x300788(0x17d)](DB_PATH),{'recursive':!![]}),_db=new Database(DB_PATH),_db[_0x300788(0x199)]('journal_mode\x20=\x20WAL'),_db['pragma'](_0x300788(0x170)),_db['pragma'](_0x300788(0x195)),_db[_0x300788(0x199)](_0x300788(0x182)),_db[_0x300788(0x18e)]('\x0a\x20\x20\x20\x20\x20\x20\x20\x20CREATE\x20TABLE\x20IF\x20NOT\x20EXISTS\x20msg_store\x20(\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20id\x20\x20\x20\x20\x20\x20TEXT\x20NOT\x20NULL,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20jid\x20\x20\x20\x20\x20TEXT\x20NOT\x20NULL,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20data\x20\x20\x20\x20TEXT\x20NOT\x20NULL,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20ts\x20\x20\x20\x20\x20\x20INTEGER\x20NOT\x20NULL\x20DEFAULT\x20(unixepoch()),\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20PRIMARY\x20KEY\x20(jid,\x20id)\x0a\x20\x20\x20\x20\x20\x20\x20\x20);\x0a\x20\x20\x20\x20\x20\x20\x20\x20CREATE\x20INDEX\x20IF\x20NOT\x20EXISTS\x20idx_msg_ts\x20ON\x20msg_store(ts);\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20CREATE\x20TABLE\x20IF\x20NOT\x20EXISTS\x20antidelete_store\x20(\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20id\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20TEXT\x20NOT\x20NULL,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20jid\x20\x20\x20\x20\x20\x20\x20\x20\x20TEXT\x20NOT\x20NULL,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20sender\x20\x20\x20\x20\x20\x20TEXT,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20push_name\x20\x20\x20TEXT,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20data\x20\x20\x20\x20\x20\x20\x20\x20TEXT\x20NOT\x20NULL,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20ts\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20INTEGER\x20NOT\x20NULL\x20DEFAULT\x20(unixepoch()),\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20PRIMARY\x20KEY\x20(jid,\x20id)\x0a\x20\x20\x20\x20\x20\x20\x20\x20);\x0a\x20\x20\x20\x20\x20\x20\x20\x20CREATE\x20INDEX\x20IF\x20NOT\x20EXISTS\x20idx_ad_jid_ts\x20ON\x20antidelete_store(jid,\x20ts);\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20CREATE\x20TRIGGER\x20IF\x20NOT\x20EXISTS\x20trim_msg_store\x20AFTER\x20INSERT\x20ON\x20msg_store\x0a\x20\x20\x20\x20\x20\x20\x20\x20BEGIN\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20DELETE\x20FROM\x20msg_store\x20WHERE\x20jid\x20=\x20NEW.jid\x20AND\x20id\x20NOT\x20IN\x20(\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20SELECT\x20id\x20FROM\x20msg_store\x20WHERE\x20jid\x20=\x20NEW.jid\x20ORDER\x20BY\x20ts\x20DESC\x20LIMIT\x20200\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20);\x0a\x20\x20\x20\x20\x20\x20\x20\x20END;\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20CREATE\x20TRIGGER\x20IF\x20NOT\x20EXISTS\x20trim_antidelete\x20AFTER\x20INSERT\x20ON\x20antidelete_store\x0a\x20\x20\x20\x20\x20\x20\x20\x20BEGIN\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20DELETE\x20FROM\x20antidelete_store\x20WHERE\x20jid\x20=\x20NEW.jid\x20AND\x20id\x20NOT\x20IN\x20(\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20SELECT\x20id\x20FROM\x20antidelete_store\x20WHERE\x20jid\x20=\x20NEW.jid\x20ORDER\x20BY\x20ts\x20DESC\x20LIMIT\x20100\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20);\x0a\x20\x20\x20\x20\x20\x20\x20\x20END;\x0a\x20\x20\x20\x20'),_stmts[_0x300788(0x17c)]=_db[_0x300788(0x173)](_0x300788(0x172)),_stmts[_0x300788(0x181)]=_db['prepare']('SELECT\x20data\x20FROM\x20msg_store\x20WHERE\x20jid\x20=\x20?\x20AND\x20id\x20=\x20?'),_stmts['saveAD']=_db[_0x300788(0x173)](_0x300788(0x187)),_stmts[_0x300788(0x18c)]=_db[_0x300788(0x173)](_0x300788(0x18f)),_stmts[_0x300788(0x1a1)]=_db[_0x300788(0x173)](_0x300788(0x174)),_stmts[_0x300788(0x190)]=_db['prepare']('DELETE\x20FROM\x20antidelete_store\x20WHERE\x20ts\x20<\x20unixepoch()\x20-\x2086400'),_stmts[_0x300788(0x19a)]=_db[_0x300788(0x173)]('DELETE\x20FROM\x20msg_store\x20WHERE\x20ts\x20<\x20unixepoch()\x20-\x20604800'),_db;}function s(_0x5663b7){const _0x5617a3=_0x3f5059;if(!_stmts[_0x5663b7])_stmts[_0x5663b7]=getDb()[_0x5617a3(0x173)](_0x5663b7);return _stmts[_0x5663b7];}function saveMsg(_0x599b30,_0x53a909){const _0x1fd2a4=_0x3f5059;try{getDb(),_stmts['saveMsg']['run'](_0x53a909[_0x1fd2a4(0x17a)]['id'],_0x599b30,safeStringify(_0x53a909));}catch(_0x14f79c){console['error'](_0x1fd2a4(0x19f),_0x14f79c['message']);}}function loadMsg(_0x63486b,_0xa60368){const _0x5e9efc=_0x3f5059;try{getDb();const _0x2edf97=_stmts[_0x5e9efc(0x181)][_0x5e9efc(0x18b)](_0x63486b,_0xa60368);return _0x2edf97?safeParse(_0x2edf97[_0x5e9efc(0x176)]):null;}catch(_0x4026d2){return null;}}function saveAntiDelete(_0x1cc7fb,_0x259936){const _0x22f0d5=_0x3f5059;try{getDb(),_stmts[_0x22f0d5(0x1a2)][_0x22f0d5(0x178)](_0x259936[_0x22f0d5(0x17a)]['id'],_0x1cc7fb,_0x259936[_0x22f0d5(0x189)]||null,_0x259936[_0x22f0d5(0x16d)]||null,safeStringify(_0x259936));}catch(_0x416ded){console['error'](_0x22f0d5(0x175),_0x416ded[_0x22f0d5(0x16b)]);}}function findAntiDelete(_0x25f88f,_0x3cf13d){const _0xb953c8=_0x3f5059;try{getDb();const _0x3d9abc=_stmts['findAD'][_0xb953c8(0x18b)](_0x25f88f,_0x3cf13d);return _0x3d9abc?safeParse(_0x3d9abc['data']):null;}catch(_0x4cc387){return null;}}function removeAntiDelete(_0x5365a3,_0x30e45e){const _0x39af07=_0x3f5059;try{getDb(),_stmts[_0x39af07(0x1a1)][_0x39af07(0x178)](_0x5365a3,_0x30e45e);}catch(_0x25ec13){}}function startCleanup(){setInterval(()=>{const _0x41a920=_0x4dd7;try{getDb(),_stmts[_0x41a920(0x190)][_0x41a920(0x178)](),_stmts[_0x41a920(0x19a)]['run']();}catch(_0x2b91e6){}},0x493e0);}class SQLiteStore{constructor(){getDb();}[_0x3f5059(0x19c)](_0x65466e,_0x3cc6ce){return loadMsg(_0x65466e,_0x3cc6ce);}[_0x3f5059(0x19d)](_0x495123,_0x3ef567){saveMsg(_0x495123,_0x3ef567);}[_0x3f5059(0x19e)](_0x9484e8){const _0x3bca63=_0x3f5059;this[_0x3bca63(0x185)]=({messages:_0x4c8491})=>{setImmediate(()=>{const _0x35c7c3=_0x4dd7;for(const _0x4b2ef9 of _0x4c8491){_0x4b2ef9['key']?.[_0x35c7c3(0x180)]&&_0x4b2ef9[_0x35c7c3(0x17a)]?.['id']&&this[_0x35c7c3(0x19d)](_0x4b2ef9['key'][_0x35c7c3(0x180)],_0x4b2ef9);}});},_0x9484e8['on']('messages.upsert',this[_0x3bca63(0x185)]);}['destroy'](){}}module[_0x3f5059(0x16c)]={'saveMsg':saveMsg,'loadMsg':loadMsg,'saveAntiDelete':saveAntiDelete,'findAntiDelete':findAntiDelete,'removeAntiDelete':removeAntiDelete,'startCleanup':startCleanup,'SQLiteStore':SQLiteStore};
+const Database = require('better-sqlite3');
+const path = require('path');
+const fs = require('fs');
+
+const DB_PATH = path.join(process.cwd(), 'gift/session', 'store.db');
+
+function safeStringify(obj) {
+    return JSON.stringify(obj, (_, v) => {
+        if (v instanceof Uint8Array || Buffer.isBuffer(v)) {
+            return { __type: 'Buffer', data: Buffer.from(v).toString('base64') };
+        }
+        return v;
+    });
+}
+
+function safeParse(str) {
+    return JSON.parse(str, (_, v) => {
+        if (v && typeof v === 'object' && v.__type === 'Buffer' && v.data) {
+            return Buffer.from(v.data, 'base64');
+        }
+        return v;
+    });
+}
+
+let _db = null;
+let _stmts = {};
+
+function getDb() {
+    if (_db) return _db;
+    fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
+    _db = new Database(DB_PATH);
+    _db.pragma('journal_mode = WAL');
+    _db.pragma('synchronous = NORMAL');
+    _db.pragma('cache_size = -10000');
+    _db.pragma('temp_store = memory');
+    _db.exec(`
+        CREATE TABLE IF NOT EXISTS msg_store (
+            id      TEXT NOT NULL,
+            jid     TEXT NOT NULL,
+            data    TEXT NOT NULL,
+            ts      INTEGER NOT NULL DEFAULT (unixepoch()),
+            PRIMARY KEY (jid, id)
+        );
+        CREATE INDEX IF NOT EXISTS idx_msg_ts ON msg_store(ts);
+
+        CREATE TABLE IF NOT EXISTS antidelete_store (
+            id          TEXT NOT NULL,
+            jid         TEXT NOT NULL,
+            sender      TEXT,
+            push_name   TEXT,
+            data        TEXT NOT NULL,
+            ts          INTEGER NOT NULL DEFAULT (unixepoch()),
+            PRIMARY KEY (jid, id)
+        );
+        CREATE INDEX IF NOT EXISTS idx_ad_jid_ts ON antidelete_store(jid, ts);
+
+        CREATE TRIGGER IF NOT EXISTS trim_msg_store AFTER INSERT ON msg_store
+        BEGIN
+            DELETE FROM msg_store WHERE jid = NEW.jid AND id NOT IN (
+                SELECT id FROM msg_store WHERE jid = NEW.jid ORDER BY ts DESC LIMIT 200
+            );
+        END;
+
+        CREATE TRIGGER IF NOT EXISTS trim_antidelete AFTER INSERT ON antidelete_store
+        BEGIN
+            DELETE FROM antidelete_store WHERE jid = NEW.jid AND id NOT IN (
+                SELECT id FROM antidelete_store WHERE jid = NEW.jid ORDER BY ts DESC LIMIT 100
+            );
+        END;
+    `);
+
+    _stmts.saveMsg    = _db.prepare('INSERT OR REPLACE INTO msg_store (id, jid, data, ts) VALUES (?, ?, ?, unixepoch())');
+    _stmts.loadMsg    = _db.prepare('SELECT data FROM msg_store WHERE jid = ? AND id = ?');
+    _stmts.saveAD     = _db.prepare('INSERT OR REPLACE INTO antidelete_store (id, jid, sender, push_name, data, ts) VALUES (?, ?, ?, ?, ?, unixepoch())');
+    _stmts.findAD     = _db.prepare('SELECT data FROM antidelete_store WHERE jid = ? AND id = ?');
+    _stmts.delAD      = _db.prepare('DELETE FROM antidelete_store WHERE jid = ? AND id = ?');
+    _stmts.cleanAD    = _db.prepare('DELETE FROM antidelete_store WHERE ts < unixepoch() - 86400');
+    _stmts.cleanMsg   = _db.prepare('DELETE FROM msg_store WHERE ts < unixepoch() - 604800');
+
+    return _db;
+}
+
+function s(sql) {
+    if (!_stmts[sql]) _stmts[sql] = getDb().prepare(sql);
+    return _stmts[sql];
+}
+
+function saveMsg(jid, message) {
+    try {
+        getDb();
+        _stmts.saveMsg.run(message.key.id, jid, safeStringify(message));
+    } catch (e) {
+        console.error('[msgStore] save:', e.message);
+    }
+}
+
+function loadMsg(jid, id) {
+    try {
+        getDb();
+        const row = _stmts.loadMsg.get(jid, id);
+        return row ? safeParse(row.data) : null;
+    } catch (e) {
+        return null;
+    }
+}
+
+function saveAntiDelete(jid, message) {
+    try {
+        getDb();
+        _stmts.saveAD.run(
+            message.key.id,
+            jid,
+            message.originalSender || null,
+            message.originalPushName || null,
+            safeStringify(message)
+        );
+    } catch (e) {
+        console.error('[antiDeleteStore] save:', e.message);
+    }
+}
+
+function findAntiDelete(jid, id) {
+    try {
+        getDb();
+        const row = _stmts.findAD.get(jid, id);
+        return row ? safeParse(row.data) : null;
+    } catch (e) {
+        return null;
+    }
+}
+
+function removeAntiDelete(jid, id) {
+    try {
+        getDb();
+        _stmts.delAD.run(jid, id);
+    } catch (e) {}
+}
+
+function startCleanup() {
+    setInterval(() => {
+        try {
+            getDb();
+            _stmts.cleanAD.run();
+            _stmts.cleanMsg.run();
+        } catch (e) {}
+    }, 300000);
+}
+
+class SQLiteStore {
+    constructor() {
+        getDb();
+    }
+
+    loadMessage(jid, id) {
+        return loadMsg(jid, id);
+    }
+
+    saveMessage(jid, message) {
+        saveMsg(jid, message);
+    }
+
+    bind(ev) {
+        this._handler = ({ messages }) => {
+            setImmediate(() => {
+                for (const msg of messages) {
+                    if (msg.key?.remoteJid && msg.key?.id) {
+                        this.saveMessage(msg.key.remoteJid, msg);
+                    }
+                }
+            });
+        };
+        ev.on('messages.upsert', this._handler);
+    }
+
+    destroy() {
+    }
+}
+
+module.exports = {
+    saveMsg,
+    loadMsg,
+    saveAntiDelete,
+    findAntiDelete,
+    removeAntiDelete,
+    startCleanup,
+    SQLiteStore,
+};

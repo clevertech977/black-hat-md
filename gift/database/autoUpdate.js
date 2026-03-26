@@ -1,1 +1,52 @@
-const _0x347686=_0x4c1e;function _0x5e6a(){const _0x3a060c=['findByPk','define','forEach','237158WVwuoa','STRING','1615464FpawfV','120oeLiEr','230trJDgb','exports','commitHash','162STOKGV','update_info','INTEGER','3486042IEzYTO','87282LfmHjl','8727aQvxoe','3343360KhPajv','9426TLPKYp','unknown'];_0x5e6a=function(){return _0x3a060c;};return _0x5e6a();}(function(_0x3da092,_0x25caed){const _0x1032a9=_0x4c1e,_0xa2e0a2=_0x3da092();while(!![]){try{const _0x3806f2=-parseInt(_0x1032a9(0x19f))/0x1+-parseInt(_0x1032a9(0x1a6))/0x2*(-parseInt(_0x1032a9(0x198))/0x3)+parseInt(_0x1032a9(0x1a1))/0x4+parseInt(_0x1032a9(0x1a3))/0x5*(-parseInt(_0x1032a9(0x19a))/0x6)+parseInt(_0x1032a9(0x196))/0x7+-parseInt(_0x1032a9(0x199))/0x8+parseInt(_0x1032a9(0x197))/0x9*(-parseInt(_0x1032a9(0x1a2))/0xa);if(_0x3806f2===_0x25caed)break;else _0xa2e0a2['push'](_0xa2e0a2['shift']());}catch(_0x16725f){_0xa2e0a2['push'](_0xa2e0a2['shift']());}}}(_0x5e6a,0x47b95));const {DATABASE}=require('./database'),{DataTypes}=require('sequelize'),UpdateDB=DATABASE[_0x347686(0x19d)]('UpdateInfo',{'id':{'type':DataTypes[_0x347686(0x195)],'primaryKey':!![],'autoIncrement':![],'defaultValue':0x1},'commitHash':{'type':DataTypes[_0x347686(0x1a0)],'allowNull':![]}},{'tableName':_0x347686(0x1a7),'timestamps':![],'hooks':{'beforeCreate':_0x2c3b3c=>{_0x2c3b3c['id']=0x1;},'beforeBulkCreate':_0x14e3fb=>{const _0x1f720b=_0x347686;_0x14e3fb[_0x1f720b(0x19e)](_0x2fc351=>{_0x2fc351['id']=0x1;});}}});async function initializeUpdateDB(){const _0x163454=_0x347686;await UpdateDB['sync']();const [_0x4be1e0,_0x4cae53]=await UpdateDB['findOrCreate']({'where':{'id':0x1},'defaults':{'commitHash':_0x163454(0x19b)}});return _0x4be1e0;}async function setCommitHash(_0x20e12f){const _0x32c860=_0x347686;await initializeUpdateDB();const _0x10f305=await UpdateDB[_0x32c860(0x19c)](0x1);_0x10f305[_0x32c860(0x1a5)]=_0x20e12f,await _0x10f305['save']();}async function getCommitHash(){const _0x3404f6=_0x347686;await initializeUpdateDB();const _0x2ced4c=await UpdateDB[_0x3404f6(0x19c)](0x1);return _0x2ced4c?_0x2ced4c[_0x3404f6(0x1a5)]:_0x3404f6(0x19b);}function _0x4c1e(_0x34cdbf,_0x2f54f8){_0x34cdbf=_0x34cdbf-0x195;const _0x5e6ab3=_0x5e6a();let _0x4c1e58=_0x5e6ab3[_0x34cdbf];return _0x4c1e58;}module[_0x347686(0x1a4)]={'UpdateDB':UpdateDB,'setCommitHash':setCommitHash,'getCommitHash':getCommitHash};
+const { DATABASE } = require('./database');
+const { DataTypes } = require('sequelize');
+
+const UpdateDB = DATABASE.define('UpdateInfo', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: false,
+        defaultValue: 1,
+    },
+    commitHash: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+}, {
+    tableName: 'update_info',
+    timestamps: false,
+    hooks: {
+        beforeCreate: (record) => { record.id = 1; },
+        beforeBulkCreate: (records) => {
+            records.forEach(record => { record.id = 1; });
+        },
+    },
+});
+
+async function initializeUpdateDB() {
+    await UpdateDB.sync();
+    const [record, created] = await UpdateDB.findOrCreate({
+        where: { id: 1 },
+        defaults: { commitHash: 'unknown' },
+    });
+    return record;
+}
+
+async function setCommitHash(hash) {
+    await initializeUpdateDB();
+    const record = await UpdateDB.findByPk(1);
+    record.commitHash = hash;
+    await record.save();
+}
+
+async function getCommitHash() {
+    await initializeUpdateDB();
+    const record = await UpdateDB.findByPk(1);
+    return record ? record.commitHash : 'unknown';
+}
+
+module.exports = {
+    UpdateDB,
+    setCommitHash,
+    getCommitHash,
+};

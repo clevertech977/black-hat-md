@@ -1,1 +1,162 @@
-const _0x1d8005=_0x5a23;(function(_0x3adfc3,_0x331fe1){const _0x3ddaef=_0x5a23,_0xfb37bb=_0x3adfc3();while(!![]){try{const _0x1de6e8=-parseInt(_0x3ddaef(0xc9))/0x1+-parseInt(_0x3ddaef(0xd8))/0x2+parseInt(_0x3ddaef(0xc8))/0x3*(-parseInt(_0x3ddaef(0xe3))/0x4)+parseInt(_0x3ddaef(0xd0))/0x5+parseInt(_0x3ddaef(0xd9))/0x6+parseInt(_0x3ddaef(0xcc))/0x7*(parseInt(_0x3ddaef(0xd5))/0x8)+parseInt(_0x3ddaef(0xd6))/0x9;if(_0x1de6e8===_0x331fe1)break;else _0xfb37bb['push'](_0xfb37bb['shift']());}catch(_0x24f240){_0xfb37bb['push'](_0xfb37bb['shift']());}}}(_0x5a70,0x4be32));const NodeCache=require(_0x1d8005(0xe0)),groupCache=new NodeCache({'stdTTL':0x5*0x3c,'useClones':![],'checkperiod':0x3c}),lidToJidStore=new NodeCache({'stdTTL':0x18*0x3c*0x3c,'useClones':![],'checkperiod':0x12c}),storeLidMapping=(_0x14a6ef,_0x5fb54e)=>{const _0x449e9e=_0x1d8005;_0x14a6ef&&_0x5fb54e&&_0x14a6ef[_0x449e9e(0xce)](_0x449e9e(0xe8))&&_0x5fb54e['endsWith']('@s.whatsapp.net')&&lidToJidStore[_0x449e9e(0xc6)](_0x14a6ef,_0x5fb54e);},getLidMapping=_0x36abf0=>{const _0x596a18=_0x1d8005;return lidToJidStore[_0x596a18(0xd4)](_0x36abf0);},updateLidMappingsFromMetadata=_0x5090e5=>{const _0xd918b5=_0x1d8005;if(!_0x5090e5?.[_0xd918b5(0xea)])return;for(const _0x551740 of _0x5090e5[_0xd918b5(0xea)]){const _0xb8ce4d=_0x551740[_0xd918b5(0xeb)]||_0x551740['id'],_0xb3f79e=_0x551740['pn']||_0x551740[_0xd918b5(0xde)];_0xb8ce4d&&_0xb3f79e&&storeLidMapping(_0xb8ce4d,_0xb3f79e);}},isExpectedError=_0xf2e282=>{const _0x54a724=_0x1d8005,_0x23e9f2=[_0x54a724(0xd2),_0x54a724(0xe9),'not-authorized',_0x54a724(0xe1)];return _0x23e9f2[_0x54a724(0xe6)](_0x353650=>_0xf2e282?.[_0x54a724(0xcf)]()[_0x54a724(0xdc)](_0x353650));},getGroupMetadata=async(_0x24c3b2,_0x357ac4)=>{const _0x37c174=_0x1d8005;if(!_0x357ac4||!_0x357ac4[_0x37c174(0xce)](_0x37c174(0xd7)))return null;try{const _0x5eeae9=groupCache[_0x37c174(0xd4)](_0x357ac4);if(_0x5eeae9)return updateLidMappingsFromMetadata(_0x5eeae9),_0x5eeae9;const _0x1051fb=await _0x24c3b2[_0x37c174(0xdd)](_0x357ac4);return _0x1051fb&&(groupCache['set'](_0x357ac4,_0x1051fb),updateLidMappingsFromMetadata(_0x1051fb)),_0x1051fb;}catch(_0x244820){return!isExpectedError(_0x244820['message'])&&console[_0x37c174(0xe4)](_0x37c174(0xcb)+_0x357ac4+':',_0x244820[_0x37c174(0xc7)]),null;}},updateGroupCache=(_0x4ec572,_0x2cec88)=>{const _0x1e871d=_0x1d8005;_0x4ec572&&_0x2cec88&&(groupCache[_0x1e871d(0xc6)](_0x4ec572,_0x2cec88),updateLidMappingsFromMetadata(_0x2cec88));},deleteGroupCache=_0x46ca81=>{const _0x40b45e=_0x1d8005;groupCache[_0x40b45e(0xe5)](_0x46ca81);},clearGroupCache=()=>{groupCache['flushAll']();},setupGroupCacheListeners=_0x30a024=>{const _0x2ff83c=_0x1d8005;_0x30a024['ev']['on'](_0x2ff83c(0xdb),async([_0x2d8614])=>{const _0x2e2ed6=_0x2ff83c;try{if(_0x2d8614?.['id']){const _0x32f454=await _0x30a024['groupMetadata'](_0x2d8614['id']);updateGroupCache(_0x2d8614['id'],_0x32f454);}}catch(_0x58e4dc){deleteGroupCache(_0x2d8614?.['id']),!isExpectedError(_0x58e4dc[_0x2e2ed6(0xc7)])&&console[_0x2e2ed6(0xe4)](_0x2e2ed6(0xda),_0x58e4dc[_0x2e2ed6(0xc7)]);}}),_0x30a024['ev']['on']('group-participants.update',async _0x2ee1df=>{const _0x43e6ae=_0x2ff83c;try{if(_0x2ee1df?.['id']){const _0x9136e8=groupCache[_0x43e6ae(0xd4)](_0x2ee1df['id']);_0x9136e8&&updateLidMappingsFromMetadata(_0x9136e8);const _0x154990=await _0x30a024['groupMetadata'](_0x2ee1df['id']);updateGroupCache(_0x2ee1df['id'],_0x154990);}}catch(_0x1abda6){deleteGroupCache(_0x2ee1df?.['id']),!isExpectedError(_0x1abda6[_0x43e6ae(0xc7)])&&console[_0x43e6ae(0xe4)](_0x43e6ae(0xdf),_0x1abda6[_0x43e6ae(0xc7)]);}});},cachedGroupMetadata=async _0x450080=>{const _0x49c1f5=_0x1d8005;return groupCache[_0x49c1f5(0xd4)](_0x450080);},initializeLidStore=async _0x4d1cb0=>{const _0x59f9f2=_0x1d8005;try{const _0x4af043=await _0x4d1cb0[_0x59f9f2(0xe7)]();if(_0x4af043){for(const _0x1db5eb of Object[_0x59f9f2(0xe2)](_0x4af043)){const _0x24397e=_0x4af043[_0x1db5eb];_0x24397e?.[_0x59f9f2(0xea)]&&(updateLidMappingsFromMetadata(_0x24397e),groupCache[_0x59f9f2(0xc6)](_0x1db5eb,_0x24397e));}console['log'](_0x59f9f2(0xca)+lidToJidStore['keys']()['length']+'\x20Mappings\x20from\x20'+Object[_0x59f9f2(0xe2)](_0x4af043)[_0x59f9f2(0xcd)]+_0x59f9f2(0xd3));}}catch(_0x4fe297){console[_0x59f9f2(0xe4)](_0x59f9f2(0xd1),_0x4fe297['message']);}};function _0x5a23(_0x4aef91,_0x2659b7){_0x4aef91=_0x4aef91-0xc6;const _0x5a7032=_0x5a70();let _0x5a23f2=_0x5a7032[_0x4aef91];return _0x5a23f2;}function _0x5a70(){const _0x3f59c3=['3700319IFEEJf','length','endsWith','toLowerCase','2662715vNuetX','Failed\x20to\x20initialize\x20LID\x20store:','forbidden','\x20Groups','get','8kaXort','4772655LLtOWj','@g.us','833850Roeczr','1655862sOyGqd','Group\x20cache\x20update\x20failed:','groups.update','includes','groupMetadata','jid','Participant\x20cache\x20update\x20failed:','node-cache','gone','keys','5036eIAVrq','error','del','some','groupFetchAllParticipating','@lid','item-not-found','participants','lid','set','message','1257wGqQmq','612152HLCITb','✅\x20LID\x20store\x20initialized\x20=>\x20','Failed\x20to\x20get\x20group\x20metadata\x20for\x20'];_0x5a70=function(){return _0x3f59c3;};return _0x5a70();}module['exports']={'groupCache':groupCache,'getGroupMetadata':getGroupMetadata,'updateGroupCache':updateGroupCache,'deleteGroupCache':deleteGroupCache,'clearGroupCache':clearGroupCache,'setupGroupCacheListeners':setupGroupCacheListeners,'cachedGroupMetadata':cachedGroupMetadata,'getLidMapping':getLidMapping,'storeLidMapping':storeLidMapping,'updateLidMappingsFromMetadata':updateLidMappingsFromMetadata,'initializeLidStore':initializeLidStore};
+const NodeCache = require("node-cache");
+
+const groupCache = new NodeCache({
+    stdTTL: 5 * 60,
+    useClones: false,
+    checkperiod: 60,
+});
+
+const lidToJidStore = new NodeCache({
+    stdTTL: 24 * 60 * 60,
+    useClones: false,
+    checkperiod: 300,
+});
+
+const storeLidMapping = (lid, jid) => {
+    if (lid && jid && lid.endsWith("@lid") && jid.endsWith("@s.whatsapp.net")) {
+        lidToJidStore.set(lid, jid);
+    }
+};
+
+const getLidMapping = (lid) => {
+    return lidToJidStore.get(lid);
+};
+
+const updateLidMappingsFromMetadata = (metadata) => {
+    if (!metadata?.participants) return;
+    for (const p of metadata.participants) {
+        const lid = p.lid || p.id;
+        const jid = p.pn || p.jid;
+        if (lid && jid) {
+            storeLidMapping(lid, jid);
+        }
+    }
+};
+
+const isExpectedError = (errorMsg) => {
+    const expectedErrors = [
+        "forbidden",
+        "item-not-found",
+        "not-authorized",
+        "gone",
+    ];
+    return expectedErrors.some((e) => errorMsg?.toLowerCase().includes(e));
+};
+
+const getGroupMetadata = async (Gifted, jid) => {
+    if (!jid || !jid.endsWith("@g.us")) return null;
+
+    try {
+        const cached = groupCache.get(jid);
+        if (cached) {
+            updateLidMappingsFromMetadata(cached);
+            return cached;
+        }
+
+        const metadata = await Gifted.groupMetadata(jid);
+        if (metadata) {
+            groupCache.set(jid, metadata);
+            updateLidMappingsFromMetadata(metadata);
+        }
+        return metadata;
+    } catch (error) {
+        if (!isExpectedError(error.message)) {
+            console.error(
+                `Failed to get group metadata for ${jid}:`,
+                error.message,
+            );
+        }
+        return null;
+    }
+};
+
+const updateGroupCache = (jid, metadata) => {
+    if (jid && metadata) {
+        groupCache.set(jid, metadata);
+        updateLidMappingsFromMetadata(metadata);
+    }
+};
+
+const deleteGroupCache = (jid) => {
+    groupCache.del(jid);
+};
+
+const clearGroupCache = () => {
+    groupCache.flushAll();
+};
+
+const setupGroupCacheListeners = (Gifted) => {
+    Gifted.ev.on("groups.update", async ([event]) => {
+        try {
+            if (event?.id) {
+                const metadata = await Gifted.groupMetadata(event.id);
+                updateGroupCache(event.id, metadata);
+            }
+        } catch (error) {
+            deleteGroupCache(event?.id);
+            if (!isExpectedError(error.message)) {
+                console.error("Group cache update failed:", error.message);
+            }
+        }
+    });
+
+    Gifted.ev.on("group-participants.update", async (event) => {
+        try {
+            if (event?.id) {
+                const cachedMeta = groupCache.get(event.id);
+                if (cachedMeta) {
+                    updateLidMappingsFromMetadata(cachedMeta);
+                }
+
+                const metadata = await Gifted.groupMetadata(event.id);
+                updateGroupCache(event.id, metadata);
+            }
+        } catch (error) {
+            deleteGroupCache(event?.id);
+            if (!isExpectedError(error.message)) {
+                console.error(
+                    "Participant cache update failed:",
+                    error.message,
+                );
+            }
+        }
+    });
+};
+
+const cachedGroupMetadata = async (jid) => {
+    return groupCache.get(jid);
+};
+
+const initializeLidStore = async (Gifted) => {
+    try {
+        const groups = await Gifted.groupFetchAllParticipating();
+        if (groups) {
+            for (const groupJid of Object.keys(groups)) {
+                const meta = groups[groupJid];
+                if (meta?.participants) {
+                    updateLidMappingsFromMetadata(meta);
+                    groupCache.set(groupJid, meta);
+                }
+            }
+            console.log(
+                `✅ LID store initialized => ${lidToJidStore.keys().length} Mappings from ${Object.keys(groups).length} Groups`,
+            );
+        }
+    } catch (error) {
+        console.error("Failed to initialize LID store:", error.message);
+    }
+};
+
+module.exports = {
+    groupCache,
+    getGroupMetadata,
+    updateGroupCache,
+    deleteGroupCache,
+    clearGroupCache,
+    setupGroupCacheListeners,
+    cachedGroupMetadata,
+    getLidMapping,
+    storeLidMapping,
+    updateLidMappingsFromMetadata,
+    initializeLidStore,
+};

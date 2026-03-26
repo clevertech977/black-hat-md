@@ -1,1 +1,49 @@
-(function(_0x5cdc55,_0x4387a7){const _0x1a8350=_0x3f5e,_0x2c996d=_0x5cdc55();while(!![]){try{const _0x770261=parseInt(_0x1a8350(0x1fc))/0x1+-parseInt(_0x1a8350(0x1f8))/0x2*(parseInt(_0x1a8350(0x1ec))/0x3)+parseInt(_0x1a8350(0x1e9))/0x4+-parseInt(_0x1a8350(0x1f0))/0x5*(parseInt(_0x1a8350(0x1ee))/0x6)+-parseInt(_0x1a8350(0x1ea))/0x7+parseInt(_0x1a8350(0x1f1))/0x8*(parseInt(_0x1a8350(0x1f3))/0x9)+-parseInt(_0x1a8350(0x1f5))/0xa*(-parseInt(_0x1a8350(0x1f7))/0xb);if(_0x770261===_0x4387a7)break;else _0x2c996d['push'](_0x2c996d['shift']());}catch(_0xf53b52){_0x2c996d['push'](_0x2c996d['shift']());}}}(_0x91c2,0x1aaa7));const wcgTimeouts=new Map(),wcgJoinTimeouts=new Map();function clearWcgTimeout(_0x338ddc){const _0x4d322=_0x3f5e;wcgTimeouts[_0x4d322(0x1ed)](_0x338ddc)&&(clearTimeout(wcgTimeouts[_0x4d322(0x1f6)](_0x338ddc)),wcgTimeouts[_0x4d322(0x1f2)](_0x338ddc));}function clearWcgJoinTimeout(_0x35d6c0){const _0x473f59=_0x3f5e;wcgJoinTimeouts['has'](_0x35d6c0)&&(clearTimeout(wcgJoinTimeouts[_0x473f59(0x1f6)](_0x35d6c0)),wcgJoinTimeouts[_0x473f59(0x1f2)](_0x35d6c0));}function setWcgJoinTimeout(_0x48168e,_0xd8d2c5){const _0x136bdc=_0x3f5e;clearWcgJoinTimeout(_0x48168e);const _0x4c1a6c=setTimeout(_0xd8d2c5,0x7530);wcgJoinTimeouts[_0x136bdc(0x1f9)](_0x48168e,_0x4c1a6c);}function getPlayerName(_0x30ee20){const _0x4808b2=_0x3f5e;return _0x30ee20[_0x4808b2(0x1f4)]('@')[0x0];}function _0x91c2(){const _0x206892=['40nVlWCE','delete','282519qiTUgA','split','10tiMFtI','get','1437073gCJblS','256268nbDzIk','set','.\x20@','entries','142142IFylQQ','\x20pts','553756LRHHmR','1306655LRWJLU','sort','3aksOwJ','has','1014SJRnqD','map','4265syfaMg'];_0x91c2=function(){return _0x206892;};return _0x91c2();}function formatScores(_0x1a7df2){const _0x59d925=_0x3f5e;return Object[_0x59d925(0x1fb)](_0x1a7df2)[_0x59d925(0x1eb)]((_0x1f8d89,_0x4aca3f)=>_0x4aca3f[0x1]-_0x1f8d89[0x1])[_0x59d925(0x1ef)](([_0xb36703,_0xc4d761],_0x26d3ae)=>_0x26d3ae+0x1+_0x59d925(0x1fa)+getPlayerName(_0xb36703)+':\x20'+_0xc4d761+_0x59d925(0x1fd))['join']('\x0a');}function _0x3f5e(_0xfc4054,_0x48db1b){_0xfc4054=_0xfc4054-0x1e9;const _0x91c296=_0x91c2();let _0x3f5ee7=_0x91c296[_0xfc4054];return _0x3f5ee7;}function getDiceEmoji(_0x5b9716){const _0x25fad0=['⚀','⚁','⚂','⚃','⚄','⚅'];return _0x25fad0[_0x5b9716-0x1]||'🎲';}module['exports']={'wcgTimeouts':wcgTimeouts,'wcgJoinTimeouts':wcgJoinTimeouts,'clearWcgTimeout':clearWcgTimeout,'clearWcgJoinTimeout':clearWcgJoinTimeout,'setWcgJoinTimeout':setWcgJoinTimeout,'getPlayerName':getPlayerName,'formatScores':formatScores,'getDiceEmoji':getDiceEmoji};
+const wcgTimeouts = new Map();
+const wcgJoinTimeouts = new Map();
+
+function clearWcgTimeout(chatJid) {
+    if (wcgTimeouts.has(chatJid)) {
+        clearTimeout(wcgTimeouts.get(chatJid));
+        wcgTimeouts.delete(chatJid);
+    }
+}
+
+function clearWcgJoinTimeout(chatJid) {
+    if (wcgJoinTimeouts.has(chatJid)) {
+        clearTimeout(wcgJoinTimeouts.get(chatJid));
+        wcgJoinTimeouts.delete(chatJid);
+    }
+}
+
+function setWcgJoinTimeout(chatJid, callback) {
+    clearWcgJoinTimeout(chatJid);
+    const timeout = setTimeout(callback, 30000);
+    wcgJoinTimeouts.set(chatJid, timeout);
+}
+
+function getPlayerName(jid) {
+    return jid.split('@')[0];
+}
+
+function formatScores(scores) {
+    return Object.entries(scores)
+        .sort((a, b) => b[1] - a[1])
+        .map(([jid, score], i) => `${i + 1}. @${getPlayerName(jid)}: ${score} pts`)
+        .join('\n');
+}
+
+function getDiceEmoji(value) {
+    const diceEmojis = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
+    return diceEmojis[value - 1] || '🎲';
+}
+
+module.exports = {
+    wcgTimeouts,
+    wcgJoinTimeouts,
+    clearWcgTimeout,
+    clearWcgJoinTimeout,
+    setWcgJoinTimeout,
+    getPlayerName,
+    formatScores,
+    getDiceEmoji,
+};
