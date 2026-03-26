@@ -1,1 +1,988 @@
-const _0x54bdc4=_0x2bff;(function(_0xd816c8,_0x413ac6){const _0xcf8bc7=_0x2bff,_0x48dd39=_0xd816c8();while(!![]){try{const _0x298436=parseInt(_0xcf8bc7(0x224))/0x1+parseInt(_0xcf8bc7(0x1b9))/0x2+-parseInt(_0xcf8bc7(0x1f7))/0x3*(-parseInt(_0xcf8bc7(0x1ed))/0x4)+parseInt(_0xcf8bc7(0x1cc))/0x5+-parseInt(_0xcf8bc7(0x1ea))/0x6+parseInt(_0xcf8bc7(0x1e0))/0x7+-parseInt(_0xcf8bc7(0x236))/0x8;if(_0x298436===_0x413ac6)break;else _0x48dd39['push'](_0x48dd39['shift']());}catch(_0x3b057e){_0x48dd39['push'](_0x48dd39['shift']());}}}(_0x5bf2,0x683e0),require(_0x54bdc4(0x18e))[_0x54bdc4(0x1ee)][_0x54bdc4(0x198)]=0x3c0,require(_0x54bdc4(0x22f)));const {default:giftedConnect,isJidGroup,jidNormalizedUser,isJidBroadcast,downloadMediaMessage,downloadContentFromMessage,getContentType,fetchLatestWaWebVersion}=require(_0x54bdc4(0x213)),{evt,logger,emojis,commands,setSudo,delSudo,GiftedTechApi,GiftedApiKey,GiftedAutoReact,GiftedAntiLink,GiftedAntibad,GiftedAntiGroupMention,GiftedAutoBio,handleGameMessage,GiftedChatBot,loadSession,useSQLiteAuthState,getMediaBuffer,getSudoNumbers,getFileContentType,bufferToStream,uploadToPixhost,uploadToImgBB,setCommitHash,getCommitHash,gmdBuffer,gmdJson,formatAudio,formatVideo,toAudio,uploadToGithubCdn,uploadToGiftedCdn,uploadToCatbox,GiftedAnticall,createContext,createContext2,verifyJidState,GiftedPresence,GiftedAntiDelete,GiftedAntiEdit,syncDatabase,initializeSettings,initializeGroupSettings,getAllSettings,DEFAULT_SETTINGS,standardizeJid,serializeMessage,loadPlugins,findCommand,findBodyCommand,createHelpers,getGroupInfo,buildSuperUsers,getGroupMetadata,createSocketConfig,safeNewsletterFollow,safeGroupAcceptInvite,setupConnectionHandler,setupGroupEventsListeners,initializeLidStore}=require(_0x54bdc4(0x1ad)),{saveAntiDelete,findAntiDelete,removeAntiDelete,startCleanup,SQLiteStore}=require(_0x54bdc4(0x1de)),config=require('./config'),googleTTS=require(_0x54bdc4(0x1dd)),fs=require('fs-extra'),path=require('path'),axios=require(_0x54bdc4(0x1d9)),express=require(_0x54bdc4(0x22a));async function resolveRealJid(_0x19dc7d,_0x2ad653){const _0x2b12da=_0x54bdc4;if(!_0x2ad653)return null;if(!_0x2ad653[_0x2b12da(0x21e)]('@lid'))return _0x2ad653;const {getLidMapping:_0x592f47}=require(_0x2b12da(0x225)),_0xbb3055=_0x592f47(_0x2ad653);if(_0xbb3055)return _0xbb3055;try{const _0x199d1d=await _0x19dc7d[_0x2b12da(0x23b)](_0x2ad653);if(_0x199d1d&&!_0x199d1d['endsWith'](_0x2b12da(0x220)))return _0x199d1d;}catch(_0x1a5ebf){}return _0x2ad653;}const {SESSION_ID:sessionId}=config,PORT=process.env.PORT||0x1388,app=express();let Gifted,store;logger['level']=_0x54bdc4(0x1fe),app['use'](express['static'](_0x54bdc4(0x1df))),app[_0x54bdc4(0x1cb)]('/',(_0x2a4dee,_0x3897b2)=>_0x3897b2[_0x54bdc4(0x1cf)](__dirname+_0x54bdc4(0x1c0))),app[_0x54bdc4(0x1cb)]('/health',(_0x31e6c6,_0x36f23a)=>_0x36f23a['status'](0xc8)['json']({'status':_0x54bdc4(0x1a1),'uptime':process[_0x54bdc4(0x23a)]()})),app[_0x54bdc4(0x239)](PORT,()=>console[_0x54bdc4(0x1b1)](_0x54bdc4(0x1f8)+PORT)),setInterval(()=>{const _0x382391=_0x54bdc4,_0x585a2c=process[_0x382391(0x1f6)]();if(_0x585a2c['heapUsed']>0x190*0x400*0x400){if(global['gc'])global['gc']();}},0xea60),setInterval(async()=>{const _0x56dbb2=_0x54bdc4;try{const _0x3a219c=require('http');_0x3a219c[_0x56dbb2(0x1cb)](_0x56dbb2(0x1e2)+PORT+_0x56dbb2(0x21c),()=>{});}catch(_0x17232f){}},0x3a980);const sessionDir=path[_0x54bdc4(0x1a4)](__dirname,_0x54bdc4(0x1df),_0x54bdc4(0x1b5)),pluginsPath=path[_0x54bdc4(0x1a4)](__dirname,_0x54bdc4(0x191));loadSession();let botSettings={};async function loadBotSettings(){return await syncDatabase(),await initializeSettings(),await initializeGroupSettings(),botSettings=await getAllSettings(),botSettings;}startCleanup();async function startGifted(){const _0x421946=_0x54bdc4;try{const {version:_0x38a5a}=await fetchLatestWaWebVersion(),_0x26d617=path['join'](sessionDir,_0x421946(0x1e5)),{state:_0x1648ed,saveCreds:_0x415c67}=await useSQLiteAuthState(_0x26d617);if(store)store[_0x421946(0x197)]();store=new SQLiteStore();const _0x4dacbe=createSocketConfig(_0x38a5a,_0x1648ed,logger);_0x4dacbe[_0x421946(0x221)]=async _0x35cd72=>{const _0x14de09=_0x421946;if(store){const _0x286807=await store[_0x14de09(0x247)](_0x35cd72['remoteJid'],_0x35cd72['id']);return _0x286807?.['message']||undefined;}return{'conversation':_0x14de09(0x22e)};},Gifted=giftedConnect(_0x4dacbe),store[_0x421946(0x222)](Gifted['ev']),Gifted['ev'][_0x421946(0x242)](async _0x81de79=>{const _0x4d6b7a=_0x421946;if(_0x81de79[_0x4d6b7a(0x1fa)])await _0x415c67();}),setupAutoReact(Gifted),setupAntiDelete(Gifted),setupAutoBio(Gifted),setupAntiCall(Gifted),setupNewsletterReact(Gifted),setupPresence(Gifted),setupChatBotAndAntiLink(Gifted),setupAntiEdit(Gifted),setupStatusHandlers(Gifted),setupGroupEventsListeners(Gifted),loadPlugins(pluginsPath),setupCommandHandler(Gifted),setupConnectionHandler(Gifted,sessionDir,startGifted,{'onOpen':async _0x571d07=>{const _0xf77633=_0x421946,_0x82afea=await getAllSettings();await safeNewsletterFollow(_0x571d07,_0x82afea[_0xf77633(0x21d)]),await safeGroupAcceptInvite(_0x571d07,_0x82afea['GC_JID']),await initializeLidStore(_0x571d07),setTimeout(async()=>{const _0x511c7a=_0xf77633;try{const _0x226082=commands['filter'](_0x21a13c=>_0x21a13c['pattern']&&!_0x21a13c['dontAddCommandList'])['length'];console[_0x511c7a(0x1b1)]('💜\x20Connected\x20to\x20Whatsapp,\x20Active!');if(_0x82afea['STARTING_MESSAGE']===_0x511c7a(0x1fb)){const _0x1397ce=DEFAULT_SETTINGS,_0xa0a826=_0x82afea['MODE']===_0x511c7a(0x193)?_0x511c7a(0x193):'private',_0x5c7ab3='\x0a*'+(_0x82afea[_0x511c7a(0x24a)]||_0x1397ce[_0x511c7a(0x24a)])+'\x20𝐂𝐎𝐍𝐍𝐄𝐂𝐓𝐄𝐃*\x0a\x0a𝐏𝐫𝐞𝐟𝐢𝐱\x20\x20\x20\x20\x20\x20\x20:\x20*[\x20'+(_0x82afea[_0x511c7a(0x1ef)]||_0x1397ce[_0x511c7a(0x1ef)])+_0x511c7a(0x237)+_0x226082+_0x511c7a(0x205)+_0xa0a826+_0x511c7a(0x1b7)+(_0x82afea[_0x511c7a(0x194)]||_0x1397ce[_0x511c7a(0x194)])+_0x511c7a(0x240)+(_0x82afea['YT']||_0x1397ce['YT'])+_0x511c7a(0x1bb)+(_0x82afea[_0x511c7a(0x249)]||_0x1397ce[_0x511c7a(0x249)])+'*\x0a\x0a𝐍𝐨𝐭𝐞:\x20\x20Bot\x20may\x20take\x20some\x20few\x20seconds/minutes\x20to\x20sync\x20before\x20being\x20ready\x20to\x20use.\x0a\x0a>\x20*'+(_0x82afea[_0x511c7a(0x1c4)]||_0x1397ce[_0x511c7a(0x1c4)])+'*';await _0x571d07[_0x511c7a(0x20c)](_0x571d07['user']['id'],{'text':_0x5c7ab3,...await createContext(_0x82afea[_0x511c7a(0x24a)]||_0x1397ce[_0x511c7a(0x24a)],{'title':_0x511c7a(0x211),'body':_0x511c7a(0x190)})},{'disappearingMessagesInChat':!![],'ephemeralExpiration':0x12c});}}catch(_0x268348){console[_0x511c7a(0x1a8)]('Post-connection\x20setup\x20error:',_0x268348);}},0x1388);}}),process['on']('SIGINT',()=>store?.[_0x421946(0x197)]()),process['on'](_0x421946(0x192),()=>store?.[_0x421946(0x197)]());}catch(_0x45cec4){console[_0x421946(0x1a8)](_0x421946(0x1b2),_0x45cec4),setTimeout(()=>startGifted(),0x1388);}}function setupAutoReact(_0x4b6567){const _0x5cc124=_0x54bdc4;_0x4b6567['ev']['on'](_0x5cc124(0x22c),async _0x4565ea=>{const _0x59e836=_0x5cc124;try{const _0x49e4d6=_0x4565ea[_0x59e836(0x1b6)][0x0],_0x503132=await getAllSettings(),_0x9d1026=_0x503132['AUTO_REACT']||_0x59e836(0x1c9);if(_0x9d1026===_0x59e836(0x1c9)||_0x9d1026===_0x59e836(0x1e4)||_0x49e4d6['key'][_0x59e836(0x228)]||!_0x49e4d6[_0x59e836(0x1ab)])return;const _0x5cfdb3=_0x49e4d6['key']['remoteJid'],_0x1780d4=_0x5cfdb3?.[_0x59e836(0x21e)](_0x59e836(0x1d7)),_0x937595=_0x5cfdb3?.[_0x59e836(0x21e)](_0x59e836(0x1ac));let _0x2d278b=![];if(_0x9d1026===_0x59e836(0x1b4)||_0x9d1026==='true')_0x2d278b=!![];else{if(_0x9d1026==='dm'&&_0x937595)_0x2d278b=!![];else _0x9d1026===_0x59e836(0x1e9)&&_0x1780d4&&(_0x2d278b=!![]);}if(!_0x2d278b)return;const _0x338317=emojis[Math['floor'](Math[_0x59e836(0x1a3)]()*emojis[_0x59e836(0x246)])];await GiftedAutoReact(_0x338317,_0x49e4d6,_0x4b6567);}catch(_0x5f2987){console[_0x59e836(0x1a8)](_0x59e836(0x1e1),_0x5f2987);}});}function setupAntiDelete(_0x178d3e){const _0x4ce7f6=_0x54bdc4,_0x3169e4=_0x178d3e[_0x4ce7f6(0x20e)]?.['id']['split'](':')[0x0]+'@s.whatsapp.net',_0x3efd1a=_0x3169e4,_0x5bf960=_0x12550a=>{const _0xf0aee8=_0x4ce7f6,_0x39965c=_0x12550a[_0xf0aee8(0x1ca)],_0x3c9c5f=_0x3c4211=>_0x3c4211&&!_0x3c4211[_0xf0aee8(0x21e)](_0xf0aee8(0x220))?_0x3c4211:null;return _0x3c9c5f(_0x39965c['participantPn'])||_0x3c9c5f(_0x39965c[_0xf0aee8(0x204)])||_0x3c9c5f(_0x12550a['senderPn'])||_0x3c9c5f(_0x39965c[_0xf0aee8(0x20b)])||_0x3c9c5f(_0x12550a[_0xf0aee8(0x20b)])||_0x39965c[_0xf0aee8(0x20d)]||_0x39965c['participant']||_0x12550a[_0xf0aee8(0x20b)]||(_0x39965c[_0xf0aee8(0x1a5)]?.['endsWith'](_0xf0aee8(0x1d7))?null:_0x3c9c5f(_0x39965c[_0xf0aee8(0x1a5)])||_0x39965c[_0xf0aee8(0x1a5)]);},_0x291111=_0x2a2994=>{const _0x3edff2=_0x4ce7f6;return _0x2a2994['pushName']||_0x2a2994[_0x3edff2(0x1ca)]?.[_0x3edff2(0x217)]||_0x2a2994[_0x3edff2(0x1e3)]||'Unknown';},_0xec9de9=_0x53f091=>{const _0x4aec38=_0x4ce7f6;return _0x53f091[_0x4aec38(0x1ab)]?.[_0x4aec38(0x234)]||_0x53f091[_0x4aec38(0x1ab)]?.[_0x4aec38(0x1af)]?.[_0x4aec38(0x1ab)]?.['protocolMessage']||_0x53f091[_0x4aec38(0x1ab)]?.[_0x4aec38(0x245)]?.[_0x4aec38(0x1ab)]?.[_0x4aec38(0x234)]||_0x53f091[_0x4aec38(0x1ab)]?.[_0x4aec38(0x201)]?.[_0x4aec38(0x1ab)]?.[_0x4aec38(0x234)];},_0x4e3ea2=_0x109f1e=>{const _0x1d7a51=_0x4ce7f6;return _0x109f1e[_0x1d7a51(0x1ab)]?.[_0x1d7a51(0x234)]||_0x109f1e['message']?.[_0x1d7a51(0x1af)]?.['message']?.[_0x1d7a51(0x234)]||_0x109f1e[_0x1d7a51(0x1ab)]?.[_0x1d7a51(0x245)]?.[_0x1d7a51(0x1ab)]?.[_0x1d7a51(0x234)]||_0x109f1e[_0x1d7a51(0x1ab)]?.[_0x1d7a51(0x201)]?.[_0x1d7a51(0x1ab)]?.['protocolMessage'];},_0x4ac978=_0x363942=>{const _0x2895e5=_0x4ce7f6,_0x4e5a5c=_0x363942[_0x2895e5(0x1ab)];if(!_0x4e5a5c)return null;return _0x4e5a5c[_0x2895e5(0x1af)]?.[_0x2895e5(0x1ab)]||_0x4e5a5c[_0x2895e5(0x245)]?.['message']||_0x4e5a5c[_0x2895e5(0x201)]?.['message']||_0x4e5a5c[_0x2895e5(0x1c8)]?.[_0x2895e5(0x1ab)]||_0x4e5a5c;};_0x178d3e['ev']['on'](_0x4ce7f6(0x22c),async({messages:_0x5c2944})=>{const _0x39453d=_0x4ce7f6;for(const _0xe83bf6 of _0x5c2944){try{if(!_0xe83bf6?.[_0x39453d(0x1ab)])continue;const {key:_0x147d37}=_0xe83bf6;if(!_0x147d37?.[_0x39453d(0x1a5)]||_0x147d37[_0x39453d(0x228)]||_0x147d37['remoteJid']==='status@broadcast')continue;const _0x40fe7f=_0x4e3ea2(_0xe83bf6);if(_0x40fe7f?.['type']===0x0){const _0x35b43e=_0x40fe7f[_0x39453d(0x1ca)],_0x4fc072=_0x35b43e?.['id'],_0x190a38=_0x147d37['remoteJid'];if(!_0x4fc072)continue;const _0x4af589=findAntiDelete(_0x190a38,_0x4fc072);if(!_0x4af589?.[_0x39453d(0x1ab)])continue;const _0x495c91=_0x5bf960(_0xe83bf6)||_0x147d37['remoteJid'],_0x39ab95=_0x291111(_0xe83bf6);if(_0x495c91===_0x3169e4||_0x495c91===_0x3efd1a)continue;await GiftedAntiDelete(_0x178d3e,_0x4af589,_0x147d37,_0x495c91,_0x4af589['originalSender'],_0x3efd1a,_0x39ab95,_0x4af589[_0x39453d(0x1d4)]),removeAntiDelete(_0x190a38,_0x4fc072);continue;}if(_0xec9de9(_0xe83bf6))continue;const _0x642434=_0x4ac978(_0xe83bf6);if(!_0x642434)continue;const _0x1af4a1=_0x5bf960(_0xe83bf6),_0x53b373=_0x291111(_0xe83bf6);if(!_0x1af4a1||_0x1af4a1===_0x3169e4||_0x1af4a1===_0x3efd1a)continue;const _0x22003b=_0x147d37['remoteJid'],_0x2ef328={..._0xe83bf6,'message':_0x642434,'originalSender':_0x1af4a1,'originalPushName':_0x53b373,'timestamp':Date[_0x39453d(0x1c5)]()};setImmediate(()=>saveAntiDelete(_0x22003b,_0x2ef328));}catch(_0x370457){logger[_0x39453d(0x1a8)]('Anti-delete\x20system\x20error:',_0x370457);}}});}function setupAutoBio(_0x1aa900){((async()=>{const _0x4ef18e=_0x2bff,_0x303f42=await getAllSettings();_0x303f42[_0x4ef18e(0x207)]==='true'&&(setTimeout(()=>GiftedAutoBio(_0x1aa900),0x3e8),setInterval(()=>GiftedAutoBio(_0x1aa900),0x3e8*0x3c));})());}function setupAntiCall(_0xae9cb7){const _0x41f5ab=_0x54bdc4;_0xae9cb7['ev']['on'](_0x41f5ab(0x1ce),async _0x545b3b=>{await GiftedAnticall(_0x545b3b,_0xae9cb7);});}let _newsletterCache=null,_newsletterCacheAt=0x0;const NEWSLETTER_TTL=0x2*0x3c*0x3e8;async function _getNewsletters(){const _0x13238b=_0x54bdc4;if(_newsletterCache&&Date[_0x13238b(0x1c5)]()-_newsletterCacheAt<NEWSLETTER_TTL)return _newsletterCache;const _0x48b232=Buffer[_0x13238b(0x1f3)]('aHR0cHM6Ly9maWxlcy5naWZ0ZWR0ZWNoLmNvLmtlL2ZpbGUvY2hKaWRzLmpzb24=',_0x13238b(0x1db))[_0x13238b(0x1a2)](),_0x251ee8=await axios['get'](_0x48b232,{'timeout':0x1f40});return _newsletterCache=_0x251ee8[_0x13238b(0x215)],_newsletterCacheAt=Date['now'](),_newsletterCache;}function setupNewsletterReact(_0x2036cc){const _0x2cf751=_0x54bdc4,_0x39f5d1=['❤️','💛','👍','💜','😮','🤍','💙'];_0x2036cc['ev']['on'](_0x2cf751(0x22c),async _0x3cb8b7=>{const _0x583d85=_0x2cf751;try{const _0xb5050=_0x3cb8b7[_0x583d85(0x1b6)][0x0];if(!_0xb5050?.[_0x583d85(0x1ab)]||!_0xb5050?.['key']?.[_0x583d85(0x233)])return;const _0x3ebeaf=await _getNewsletters();if(!_0x3ebeaf[_0x583d85(0x21a)](_0xb5050['key'][_0x583d85(0x1a5)]))return;const _0x3022c0=_0x39f5d1[Math[_0x583d85(0x19e)](Math[_0x583d85(0x1a3)]()*_0x39f5d1['length'])];await _0x2036cc[_0x583d85(0x1ec)](_0xb5050['key']['remoteJid'],_0xb5050['key'][_0x583d85(0x233)][_0x583d85(0x1a2)](),_0x3022c0);}catch(_0x456b56){(_0x456b56?.[_0x583d85(0x1a7)]==='ECONNRESET'||_0x456b56?.['code']===_0x583d85(0x1f2)||_0x456b56?.[_0x583d85(0x1a7)]===_0x583d85(0x206))&&(_newsletterCache=null);}});}function setupPresence(_0xe33833){_0xe33833['ev']['on']('messages.upsert',async({messages:_0x3b5726})=>{const _0x1df7be=_0x2bff;_0x3b5726?.['length']>0x0&&await GiftedPresence(_0xe33833,_0x3b5726[0x0][_0x1df7be(0x1ca)][_0x1df7be(0x1a5)]);}),_0xe33833['ev']['on']('connection.update',({connection:_0x2be64e})=>{const _0x58cdaa=_0x2bff;_0x2be64e===_0x58cdaa(0x241)&&GiftedPresence(_0xe33833,'status@broadcast');});}function setupChatBotAndAntiLink(_0xba9e91){const _0x263bca=_0x54bdc4;_0xba9e91['ev']['on'](_0x263bca(0x22c),async({messages:_0x40e0cc,type:_0x2dc5b1})=>{const _0x292c8b=_0x263bca;if(_0x2dc5b1===_0x292c8b(0x227))return;const _0x335cb7=_0x40e0cc[0x0];if(_0x335cb7?.['message']){const _0x26a38c=await getAllSettings();(_0x26a38c[_0x292c8b(0x218)]===_0x292c8b(0x1fb)||_0x26a38c[_0x292c8b(0x218)]===_0x292c8b(0x210))&&GiftedChatBot(_0xba9e91,_0x26a38c[_0x292c8b(0x218)],_0x26a38c[_0x292c8b(0x212)]||_0x292c8b(0x19a),createContext,createContext2,googleTTS);}for(const _0x3589e2 of _0x40e0cc){if(!_0x3589e2?.[_0x292c8b(0x1ab)])continue;const _0x750e4c=_0x3589e2[_0x292c8b(0x1ca)]?.['remoteJid']||'';if(_0x3589e2['key'][_0x292c8b(0x228)]&&!_0x750e4c[_0x292c8b(0x21e)](_0x292c8b(0x1d7)))continue;_0x750e4c['endsWith']('@g.us')&&(await GiftedAntiLink(_0xba9e91,_0x3589e2,getGroupMetadata),await GiftedAntibad(_0xba9e91,_0x3589e2,getGroupMetadata)),await GiftedAntiGroupMention(_0xba9e91,_0x3589e2,getGroupMetadata),await handleGameMessage(_0xba9e91,_0x3589e2);}});}function _0x5bf2(){const _0x4a3486=['isSuperAdmin','inbox','Error\x20sending\x20error\x20message:','lid','phoneNumber','floor','AUTO_BLOCK','isSuperUser','alive','toString','random','join','remoteJid','Command\x20error\x20[','code','error','getLidFromJid','updateBlockStatus','message','@s.whatsapp.net','./gift','AUTO_LIKE_STATUS','ephemeralMessage','participants','log','Socket\x20initialization\x20error:','replace','all','session','messages','*\x0a𝐎𝐰𝐧𝐞𝐫\x20\x20\x20\x20\x20\x20\x20:\x20*','fileTypeFromBuffer','494694VoPCmk','STATUS_LIKE_EMOJIS','*\x0a𝐔𝐩𝐝𝐚𝐭𝐞𝐬\x20\x20\x20\x20\x20\x20:\x20*','mp4','edit','video','args','/gift/gifted.html','jpg','msg','quotedKey','CAPTION','now','🚨\x20Command\x20failed:\x20','messages.update','documentWithCaptionMessage','off','key','get','3044295GEkErp','split','call','sendFile','AUTO_REACT','update','image','BOT_PIC','originalPushName','isAdmin','downloadAndSaveMediaMessage','@g.us','Error\x20Processing\x20Status\x20Actions:','axios','isCommand','base64','MODE','google-tts-api','./gift/database/messageStore','gift','1400749ttnSIA','Error\x20during\x20auto\x20reaction:','http://localhost:','verifiedBizName','false','session.db','status@broadcast','bin','Block\x20error:','groups','1777926AGlpeS','groupName','newsletterReactMessage','8VwnBNd','EventEmitter','PREFIX','ext','react','ECONNREFUSED','from','TIME_ZONE','output','memoryUsage','292044MLAYLN','✅\x20Server\x20Running\x20on\x20Port:\x20','writeFile','creds.update','true','BOT_REPO','FOOTER','silent','Command\x20execution\x20failed','💛,❤️,💜,🤍,💙','viewOnceMessageV2','add','sender','senderPn','*\x0a𝐌𝐨𝐝𝐞\x20\x20\x20\x20\x20\x20\x20\x20:\x20*','ETIMEDOUT','AUTO_BIO','messageTimestamp','AUTO_READ_STATUS','PACK_NAME','participant','sendMessage','participantPn','user','OWNER_NAME','audio','BOT\x20INTEGRATED','CHATBOT_MODE','gifted-baileys','isBotAdmin','data','Body\x20command\x20error:','pushName','CHATBOT','Anti-edit\x20handler\x20error:','includes','find','/health','NEWSLETTER_JID','endsWith','quotedUser','@lid','getMessage','bind','jid','821715lscwCJ','./connection/groupCache','toLowerCase','append','fromMe','command','express','messageAuthor','messages.upsert','reply','Error\x20occurred','./gift/gmdHelpers','function','Error\x20in\x20downloadAndSaveMediaMessage:','quoted','server_id','protocolMessage','Connection\x20Closed','10795416fTAgju','\x20]*\x0a𝐏𝐥𝐮𝐠𝐢𝐧𝐬\x20\x20\x20\x20\x20\x20:\x20*','isGroup','listen','uptime','getJidFromLid','map','block','body','commands','*\x0a𝐓𝐮𝐭𝐨𝐫𝐢𝐚𝐥𝐬\x20\x20\x20\x20\x20:\x20*','open','process','filter','PACK_AUTHOR','viewOnceMessage','length','loadMessage','del','NEWSLETTER_URL','BOT_NAME','events','STATUS_REPLY_TEXT','Status:\x20Ready\x20for\x20Use','gifted','SIGTERM','public','OWNER_NUMBER','private','trim','destroy','defaultMaxListeners'];_0x5bf2=function(){return _0x4a3486;};return _0x5bf2();}function setupAntiEdit(_0x204896){const _0xd3f5a7=_0x54bdc4;_0x204896['ev']['on'](_0xd3f5a7(0x1c7),async _0x325a22=>{const _0x36d1e5=_0xd3f5a7;for(const _0x57ce19 of _0x325a22){try{if(!_0x57ce19?.[_0x36d1e5(0x1d1)]?.[_0x36d1e5(0x1ab)])continue;if(_0x57ce19[_0x36d1e5(0x1ca)]?.[_0x36d1e5(0x228)])continue;if(_0x57ce19[_0x36d1e5(0x1ca)]?.[_0x36d1e5(0x1a5)]===_0x36d1e5(0x1e6))continue;await GiftedAntiEdit(_0x204896,_0x57ce19,findAntiDelete);}catch(_0x4fb379){console[_0x36d1e5(0x1a8)](_0x36d1e5(0x219),_0x4fb379[_0x36d1e5(0x1ab)]);}}});}function setupStatusHandlers(_0x4a792d){const _0x18a1fd=_0x54bdc4;_0x4a792d['ev']['on'](_0x18a1fd(0x22c),async _0x165413=>{const _0x56a2e4=_0x18a1fd;try{_0x165413=_0x165413[_0x56a2e4(0x1b6)][0x0];if(!_0x165413||!_0x165413[_0x56a2e4(0x1ab)])return;_0x165413[_0x56a2e4(0x1ab)]=getContentType(_0x165413[_0x56a2e4(0x1ab)])===_0x56a2e4(0x1af)?_0x165413[_0x56a2e4(0x1ab)][_0x56a2e4(0x1af)][_0x56a2e4(0x1ab)]:_0x165413[_0x56a2e4(0x1ab)];if(_0x165413[_0x56a2e4(0x1ca)]?.[_0x56a2e4(0x1a5)]!=='status@broadcast')return;const _0xd6b7bb=await getAllSettings(),_0x25a4d3=_0x165413['participant']||_0x165413['key'][_0x56a2e4(0x20d)]||_0x165413[_0x56a2e4(0x1ca)]['participant'],_0x5d4d1c=await resolveRealJid(_0x4a792d,_0x25a4d3),_0x4059ec=_0xd6b7bb[_0x56a2e4(0x209)]===_0x56a2e4(0x1fb),_0xe114ac=_0x5d4d1c&&_0x5d4d1c!==_0x165413[_0x56a2e4(0x1ca)]['participant']?{..._0x165413['key'],'participant':_0x5d4d1c}:_0x165413[_0x56a2e4(0x1ca)];_0x4059ec&&await _0x4a792d['readMessages']([_0xe114ac]);if(_0x4059ec&&_0xd6b7bb[_0x56a2e4(0x1ae)]==='true'&&_0x5d4d1c){const _0x3f2206=(_0xd6b7bb[_0x56a2e4(0x1ba)]||_0x56a2e4(0x200))[_0x56a2e4(0x1cd)](',')[_0x56a2e4(0x23c)](_0x233577=>_0x233577[_0x56a2e4(0x196)]())[_0x56a2e4(0x243)](Boolean),_0x381ecc=_0x3f2206[Math[_0x56a2e4(0x19e)](Math[_0x56a2e4(0x1a3)]()*_0x3f2206[_0x56a2e4(0x246)])],_0x5d7a87={..._0x165413[_0x56a2e4(0x1ca)],'participant':_0x5d4d1c};await _0x4a792d[_0x56a2e4(0x20c)](_0x56a2e4(0x1e6),{'react':{'text':_0x381ecc,'key':_0x5d7a87}},{'statusJidList':[_0x5d4d1c]});}_0x4059ec&&_0xd6b7bb['AUTO_REPLY_STATUS']===_0x56a2e4(0x1fb)&&!_0x165413['key'][_0x56a2e4(0x228)]&&_0x5d4d1c&&await _0x4a792d[_0x56a2e4(0x20c)](_0x5d4d1c,{'text':_0xd6b7bb[_0x56a2e4(0x18f)]||DEFAULT_SETTINGS['STATUS_REPLY_TEXT']},{'quoted':_0x165413});}catch(_0x1c991e){if(_0x1c991e?.[_0x56a2e4(0x1f5)]?.['statusCode']===0x1ac||_0x1c991e?.['message']===_0x56a2e4(0x235))return;console[_0x56a2e4(0x1a8)](_0x56a2e4(0x1d8),_0x1c991e);}});}const processedMessages=new Set(),BOT_START_TIME=Date[_0x54bdc4(0x1c5)]();function _0x2bff(_0x194751,_0x1d3352){_0x194751=_0x194751-0x18e;const _0x5bf2cb=_0x5bf2();let _0x2bffb9=_0x5bf2cb[_0x194751];return _0x2bffb9;}function setupCommandHandler(_0x4870a3){const _0x3f5256=_0x54bdc4;_0x4870a3['ev']['on'](_0x3f5256(0x22c),async({messages:_0x45f7f6,type:_0x585800})=>{const _0x1600ad=_0x3f5256;if(_0x585800===_0x1600ad(0x227))return;const _0x4c3e9c=_0x45f7f6[0x0];if(!_0x4c3e9c?.[_0x1600ad(0x1ab)]||!_0x4c3e9c?.[_0x1600ad(0x1ca)])return;const _0x934d29=_0x4c3e9c['key']['id'];if(processedMessages['has'](_0x934d29))return;processedMessages[_0x1600ad(0x202)](_0x934d29),setTimeout(()=>processedMessages['delete'](_0x934d29),0xea60);const _0x28f57=(_0x4c3e9c[_0x1600ad(0x208)]?.['low']||_0x4c3e9c[_0x1600ad(0x208)])*0x3e8;if(_0x28f57&&_0x28f57<BOT_START_TIME-0x1388)return;const _0x57357b=await getAllSettings(),_0x525f22=standardizeJid(_0x4870a3['user']?.['id']),_0x4c29ae=await serializeMessage(_0x4c3e9c,_0x4870a3,_0x57357b);if(!_0x4c29ae)return;const {from:_0x545a07,isGroup:_0x247d5a,body:_0x387eca,isCommand:_0x8c7811,command:_0x38ec0f,args:_0x54acdf,sender:_0x28d442,messageAuthor:_0x10c629,user:_0x548975,pushName:_0x3e355c,quoted:_0x167d15,repliedMessage:_0x51333e,mentionedJid:_0x2100a9,tagged:_0x4cb91a,quotedMsg:_0x4e08f8,quotedKey:_0x24b527,quotedUser:_0x47cf2a}=_0x4c29ae,_0x2147b9=await getGroupInfo(_0x4870a3,_0x545a07,_0x525f22,_0x28d442),{groupInfo:_0x14b2f6,groupName:_0xe11e1b,participants:_0x2200bd,groupAdmins:_0x3c01ad,groupSuperAdmins:_0x164f9d,isBotAdmin:_0x1dd5ff,isAdmin:_0x19957d,isSuperAdmin:_0x114861,sender:_0x1fdf58}=_0x2147b9,_0x30d2af=await buildSuperUsers(_0x57357b,getSudoNumbers,_0x525f22,_0x57357b['OWNER_NUMBER']||''),_0xca7559=_0x30d2af[_0x1600ad(0x21a)](_0x1fdf58);if(_0x57357b[_0x1600ad(0x19f)]&&_0x1fdf58&&!_0xca7559&&!_0x247d5a){const _0x24bffb=_0x57357b[_0x1600ad(0x19f)][_0x1600ad(0x1cd)](',')[_0x1600ad(0x23c)](_0x3057ae=>_0x3057ae[_0x1600ad(0x196)]());if(_0x24bffb['some'](_0x7d80e4=>_0x1fdf58['startsWith'](_0x7d80e4)))try{await _0x4870a3[_0x1600ad(0x1aa)](_0x1fdf58,_0x1600ad(0x23d));}catch(_0x25a877){console['error'](_0x1600ad(0x1e8),_0x25a877);}}const _0x47c7c2=_0x57357b['AUTO_READ_MESSAGES']||_0x1600ad(0x1c9);let _0x61de73=![];if(_0x47c7c2===_0x1600ad(0x1b4)||_0x47c7c2===_0x1600ad(0x1fb))_0x61de73=!![];else{if(_0x47c7c2==='dm'&&!_0x247d5a)_0x61de73=!![];else{if(_0x47c7c2===_0x1600ad(0x1e9)&&_0x247d5a)_0x61de73=!![];else _0x47c7c2===_0x1600ad(0x23f)&&_0x8c7811&&(_0x61de73=!![]);}}if(_0x61de73)await _0x4870a3['readMessages']([_0x4c3e9c['key']]);const _0x2ba90f=findBodyCommand(_0x387eca);if(_0x2ba90f&&_0x2ba90f[_0x1600ad(0x230)]){if(_0x57357b[_0x1600ad(0x1dc)]?.[_0x1600ad(0x226)]()===_0x1600ad(0x195)&&!_0xca7559)return;try{const _0x4267b9=createHelpers(_0x4870a3,_0x4c3e9c,_0x545a07),_0x2aa24c=buildContext(_0x4c3e9c,_0x57357b,_0x4267b9,{'from':_0x545a07,'isGroup':_0x247d5a,'groupInfo':_0x14b2f6,'groupName':_0xe11e1b,'participants':_0x2200bd,'groupAdmins':_0x3c01ad,'groupSuperAdmins':_0x164f9d,'isBotAdmin':_0x1dd5ff,'isAdmin':_0x19957d,'isSuperAdmin':_0x114861,'sender':_0x1fdf58,'superUser':_0x30d2af,'isSuperUser':_0xca7559,'messageAuthor':_0x10c629,'user':_0x548975,'pushName':_0x3e355c,'args':_0x54acdf,'quoted':_0x167d15,'repliedMessage':_0x51333e,'mentionedJid':_0x2100a9,'tagged':_0x4cb91a,'quotedMsg':_0x4e08f8,'quotedKey':_0x24b527,'quotedUser':_0x47cf2a,'Gifted':_0x4870a3,'botId':_0x525f22,'body':_0x387eca,'command':_0x38ec0f});await _0x2ba90f[_0x1600ad(0x230)](_0x545a07,_0x4870a3,_0x2aa24c);}catch(_0x2184c9){console[_0x1600ad(0x1a8)](_0x1600ad(0x216),_0x2184c9);}}if(_0x8c7811&&_0x38ec0f){const _0x411837=findCommand(_0x38ec0f);if(!_0x411837)return;if(_0x57357b[_0x1600ad(0x1dc)]?.[_0x1600ad(0x226)]()==='private'&&!_0xca7559)return;try{const _0x1533e2=createHelpers(_0x4870a3,_0x4c3e9c,_0x545a07);if(_0x57357b[_0x1600ad(0x1d0)]==='commands'){const _0x3d9c21=emojis[Math[_0x1600ad(0x19e)](Math[_0x1600ad(0x1a3)]()*emojis[_0x1600ad(0x246)])];await _0x4870a3['sendMessage'](_0x545a07,{'react':{'key':_0x4c3e9c[_0x1600ad(0x1ca)],'text':_0x3d9c21}});}else _0x411837[_0x1600ad(0x1f1)]&&await _0x4870a3[_0x1600ad(0x20c)](_0x545a07,{'react':{'key':_0x4c3e9c[_0x1600ad(0x1ca)],'text':_0x411837[_0x1600ad(0x1f1)]}});setupGiftedHelpers(_0x4870a3,_0x545a07);const _0x418b95=buildContext(_0x4c3e9c,_0x57357b,_0x1533e2,{'from':_0x545a07,'isGroup':_0x247d5a,'groupInfo':_0x14b2f6,'groupName':_0xe11e1b,'participants':_0x2200bd,'groupAdmins':_0x3c01ad,'groupSuperAdmins':_0x164f9d,'isBotAdmin':_0x1dd5ff,'isAdmin':_0x19957d,'isSuperAdmin':_0x114861,'sender':_0x1fdf58,'superUser':_0x30d2af,'isSuperUser':_0xca7559,'messageAuthor':_0x10c629,'user':_0x548975,'pushName':_0x3e355c,'args':_0x54acdf,'quoted':_0x167d15,'repliedMessage':_0x51333e,'mentionedJid':_0x2100a9,'tagged':_0x4cb91a,'quotedMsg':_0x4e08f8,'quotedKey':_0x24b527,'quotedUser':_0x47cf2a,'Gifted':_0x4870a3,'botId':_0x525f22,'body':_0x387eca,'command':_0x38ec0f});await _0x411837[_0x1600ad(0x230)](_0x545a07,_0x4870a3,_0x418b95);}catch(_0x51c09a){console['error'](_0x1600ad(0x1a6)+_0x38ec0f+']:',_0x51c09a);try{await _0x4870a3[_0x1600ad(0x20c)](_0x545a07,{'text':_0x1600ad(0x1c6)+_0x51c09a[_0x1600ad(0x1ab)],...await createContext(_0x10c629,{'title':'Error','body':_0x1600ad(0x1ff)})},{'quoted':_0x4c3e9c});}catch(_0x5a1a32){console['error'](_0x1600ad(0x19b),_0x5a1a32);}}}});}function setupGiftedHelpers(_0x25bdba,_0x1ff009){const _0x4b3a65=_0x54bdc4;_0x25bdba[_0x4b3a65(0x23b)]=async _0x5ede33=>{const _0x136572=_0x4b3a65,_0x4f1daa=await getGroupMetadata(_0x25bdba,_0x1ff009);if(!_0x4f1daa)return null;const _0x3c0f52=_0x4f1daa[_0x136572(0x1b0)][_0x136572(0x21b)](_0x38d0b4=>_0x38d0b4[_0x136572(0x19c)]===_0x5ede33||_0x38d0b4['id']===_0x5ede33);return _0x3c0f52?.['pn']||_0x3c0f52?.[_0x136572(0x19d)]||null;},_0x25bdba[_0x4b3a65(0x1a9)]=async _0x2af0fb=>{const _0x5a79a8=_0x4b3a65,_0x3efea4=await getGroupMetadata(_0x25bdba,_0x1ff009);if(!_0x3efea4)return null;const _0x399c39=_0x3efea4[_0x5a79a8(0x1b0)][_0x5a79a8(0x21b)](_0x4a29cc=>_0x4a29cc[_0x5a79a8(0x223)]===_0x2af0fb||_0x4a29cc['pn']===_0x2af0fb||_0x4a29cc[_0x5a79a8(0x19d)]===_0x2af0fb||_0x4a29cc['id']===_0x2af0fb);return _0x399c39?.['lid']||null;};let _0x188a1e;((async()=>{_0x188a1e=await import('file-type');})()),_0x25bdba[_0x4b3a65(0x1d6)]=async(_0x2096f4,_0x301734,_0x1c1620=!![])=>{const _0x4763b7=_0x4b3a65;try{let _0x30e349=_0x2096f4['msg']?_0x2096f4[_0x4763b7(0x1c2)]:_0x2096f4,_0x2e56ed=(_0x2096f4[_0x4763b7(0x1c2)]||_0x2096f4)['mimetype']||'',_0x50be2b=_0x2096f4['mtype']?_0x2096f4['mtype'][_0x4763b7(0x1b3)](/Message/gi,''):_0x2e56ed['split']('/')[0x0];const _0x164351=await downloadContentFromMessage(_0x30e349,_0x50be2b);let _0x46dec2=Buffer[_0x4763b7(0x1f3)]([]);for await(const _0x3fb5ed of _0x164351){_0x46dec2=Buffer['concat']([_0x46dec2,_0x3fb5ed]);}let _0xc26819;try{_0xc26819=await _0x188a1e[_0x4763b7(0x1b8)](_0x46dec2);}catch(_0x14dbd9){}const _0x11a6dd=_0xc26819?.[_0x4763b7(0x1f0)]||_0x2e56ed[_0x4763b7(0x1cd)]('/')[0x1]||(_0x50be2b===_0x4763b7(0x1d2)?_0x4763b7(0x1c1):_0x50be2b===_0x4763b7(0x1be)?_0x4763b7(0x1bc):_0x50be2b==='audio'?'mp3':_0x4763b7(0x1e7)),_0x2a4aea=_0x1c1620?_0x301734+'.'+_0x11a6dd:_0x301734;return await fs[_0x4763b7(0x1f9)](_0x2a4aea,_0x46dec2),_0x2a4aea;}catch(_0x59cdfb){console[_0x4763b7(0x1a8)](_0x4763b7(0x231),_0x59cdfb);throw _0x59cdfb;}};}function buildContext(_0x53d251,_0x12e4fc,_0x4278cd,_0x557c1c){const _0xe302c6=_0x54bdc4;return{'m':_0x53d251,'mek':_0x53d251,'body':_0x557c1c[_0xe302c6(0x23e)]||'','edit':_0x4278cd[_0xe302c6(0x1bd)],'react':_0x4278cd[_0xe302c6(0x1f1)],'del':_0x4278cd[_0xe302c6(0x248)],'args':_0x557c1c[_0xe302c6(0x1bf)],'arg':_0x557c1c[_0xe302c6(0x1bf)],'quoted':_0x557c1c[_0xe302c6(0x232)],'isCmd':_0x557c1c[_0xe302c6(0x1da)]!==undefined?_0x557c1c[_0xe302c6(0x1da)]:!![],'command':_0x557c1c[_0xe302c6(0x229)]||'','isAdmin':_0x557c1c[_0xe302c6(0x1d5)],'isBotAdmin':_0x557c1c[_0xe302c6(0x214)],'sender':_0x557c1c[_0xe302c6(0x203)],'pushName':_0x557c1c[_0xe302c6(0x217)],'setSudo':setSudo,'delSudo':delSudo,'q':_0x557c1c[_0xe302c6(0x1bf)][_0xe302c6(0x1a4)]('\x20'),'reply':_0x4278cd[_0xe302c6(0x22d)],'config':config,'superUser':_0x557c1c['superUser'],'tagged':_0x557c1c['tagged'],'mentionedJid':_0x557c1c['mentionedJid'],'isGroup':_0x557c1c['isGroup'],'groupInfo':_0x557c1c['groupInfo'],'groupName':_0x557c1c[_0xe302c6(0x1eb)],'getSudoNumbers':getSudoNumbers,'authorMessage':_0x557c1c[_0xe302c6(0x22b)],'user':_0x557c1c[_0xe302c6(0x20e)]||'','gmdBuffer':gmdBuffer,'gmdJson':gmdJson,'formatAudio':formatAudio,'formatVideo':formatVideo,'toAudio':toAudio,'groupMember':_0x557c1c[_0xe302c6(0x238)]?_0x557c1c['messageAuthor']:'','from':_0x557c1c[_0xe302c6(0x1f3)],'groupAdmins':_0x557c1c['groupAdmins'],'participants':_0x557c1c[_0xe302c6(0x1b0)],'repliedMessage':_0x557c1c['repliedMessage'],'quotedMsg':_0x557c1c['quotedMsg'],'quotedKey':_0x557c1c[_0xe302c6(0x1c3)],'quotedUser':_0x557c1c[_0xe302c6(0x21f)],'isSuperUser':_0x557c1c[_0xe302c6(0x1a0)],'botMode':_0x12e4fc[_0xe302c6(0x1dc)],'botPic':_0x12e4fc[_0xe302c6(0x1d3)],'botFooter':_0x12e4fc[_0xe302c6(0x1fd)],'botCaption':_0x12e4fc[_0xe302c6(0x1c4)],'botVersion':_0x12e4fc['VERSION'],'ownerNumber':_0x12e4fc['OWNER_NUMBER'],'ownerName':_0x12e4fc[_0xe302c6(0x20f)],'botName':_0x12e4fc[_0xe302c6(0x24a)],'giftedRepo':_0x12e4fc[_0xe302c6(0x1fc)],'packName':_0x12e4fc[_0xe302c6(0x20a)],'packAuthor':_0x12e4fc[_0xe302c6(0x244)],'isSuperAdmin':_0x557c1c[_0xe302c6(0x199)],'getMediaBuffer':getMediaBuffer,'getFileContentType':getFileContentType,'bufferToStream':bufferToStream,'uploadToPixhost':uploadToPixhost,'uploadToImgBB':uploadToImgBB,'setCommitHash':setCommitHash,'getCommitHash':getCommitHash,'uploadToGithubCdn':uploadToGithubCdn,'uploadToGiftedCdn':uploadToGiftedCdn,'uploadToCatbox':uploadToCatbox,'newsletterUrl':_0x12e4fc['NEWSLETTER_URL'],'newsletterJid':_0x12e4fc['NEWSLETTER_JID'],'GiftedTechApi':GiftedTechApi,'GiftedApiKey':GiftedApiKey,'botPrefix':_0x12e4fc['PREFIX'],'timeZone':_0x12e4fc[_0xe302c6(0x1f4)]};}((async()=>{await loadBotSettings(),startGifted();})());
+require("events").EventEmitter.defaultMaxListeners = 960;
+require("./gift/gmdHelpers");
+
+const {
+    default: giftedConnect,
+    isJidGroup,
+    jidNormalizedUser,
+    isJidBroadcast,
+    downloadMediaMessage,
+    downloadContentFromMessage,
+    getContentType,
+    fetchLatestWaWebVersion,
+} = require("gifted-baileys");
+
+const {
+    evt,
+    logger,
+    emojis,
+    commands,
+    setSudo,
+    delSudo,
+    GiftedTechApi,
+    GiftedApiKey,
+    GiftedAutoReact,
+    GiftedAntiLink,
+    GiftedAntibad,
+    GiftedAntiGroupMention,
+    GiftedAutoBio,
+    handleGameMessage,
+    GiftedChatBot,
+    loadSession,
+    useSQLiteAuthState,
+    getMediaBuffer,
+    getSudoNumbers,
+    getFileContentType,
+    bufferToStream,
+    uploadToPixhost,
+    uploadToImgBB,
+    setCommitHash,
+    getCommitHash,
+    gmdBuffer,
+    gmdJson,
+    formatAudio,
+    formatVideo,
+    toAudio,
+    uploadToGithubCdn,
+    uploadToGiftedCdn,
+    uploadToCatbox,
+    GiftedAnticall,
+    createContext,
+    createContext2,
+    verifyJidState,
+    GiftedPresence,
+    GiftedAntiDelete,
+    GiftedAntiEdit,
+    syncDatabase,
+    initializeSettings,
+    initializeGroupSettings,
+    getAllSettings,
+    DEFAULT_SETTINGS,
+    standardizeJid,
+    serializeMessage,
+    loadPlugins,
+    findCommand,
+    findBodyCommand,
+    createHelpers,
+    getGroupInfo,
+    buildSuperUsers,
+    getGroupMetadata,
+    createSocketConfig,
+    safeNewsletterFollow,
+    safeGroupAcceptInvite,
+    setupConnectionHandler,
+    setupGroupEventsListeners,
+    initializeLidStore,
+} = require("./gift");
+
+const {
+    saveAntiDelete,
+    findAntiDelete,
+    removeAntiDelete,
+    startCleanup,
+    SQLiteStore,
+} = require('./gift/database/messageStore');
+
+const config = require("./config");
+const googleTTS = require("google-tts-api");
+const fs = require("fs-extra");
+const path = require("path");
+const axios = require('axios');
+const express = require("express");
+
+/**
+ * Resolves any JID to a real phone JID (@s.whatsapp.net).
+ * Returns the original jid unchanged if it is already a real JID.
+ * Returns null only when jid itself is null/undefined.
+ * When a LID cannot be resolved it returns the original LID as a best-effort
+ * fallback so the operation still fires rather than being silently skipped.
+ */
+async function resolveRealJid(Gifted, jid) {
+    if (!jid) return null;
+    if (!jid.endsWith('@lid')) return jid;   // already real
+    try {
+        const { getLidMapping } = require('./gift/connection/groupCache');
+        const cached = getLidMapping(jid);
+        if (cached) return cached;
+    } catch (_) {}
+    try {
+        const resolved = await Gifted.getJidFromLid(jid);
+        if (resolved && !resolved.endsWith('@lid')) return resolved;
+    } catch (_) {}
+    try {
+        const { getLidMappingFromDb } = require('./gift/database/lidMapping');
+        const fromDb = await getLidMappingFromDb(jid);
+        if (fromDb) return fromDb;
+    } catch (_) {}
+    return jid;   // best effort — return original LID so the operation still fires
+}
+
+const { SESSION_ID: sessionId } = config;
+const PORT = process.env.PORT || 5000;
+const app = express();
+let Gifted;
+let store;
+
+logger.level = "silent";
+app.use(express.static("gift"));
+app.get("/", (req, res) => res.sendFile(__dirname + "/gift/gifted.html"));
+app.get("/health", (req, res) =>
+    res.status(200).json({ status: "alive", uptime: process.uptime() }),
+);
+app.listen(PORT, () => console.log(`✅ Server Running on Port: ${PORT}`));
+
+setInterval(() => {
+    const used = process.memoryUsage();
+    if (used.heapUsed > 400 * 1024 * 1024) {
+        if (global.gc) global.gc();
+    }
+}, 60000);
+
+setInterval(async () => {
+    try {
+        const http = require("http");
+        http.get(`http://localhost:${PORT}/health`, () => {});
+    } catch (e) {}
+}, 240000);
+
+const sessionDir = path.join(__dirname, "gift", "session");
+const pluginsPath = path.join(__dirname, "gifted");
+
+let botSettings = {};
+async function loadBotSettings() {
+    await syncDatabase();
+    await initializeSettings();
+    await initializeGroupSettings();
+    botSettings = await getAllSettings();
+    return botSettings;
+}
+
+startCleanup();
+
+async function startGifted() {
+    try {
+        const { version } = await fetchLatestWaWebVersion();
+        const sessionDbPath = path.join(sessionDir, "session.db");
+        const { state, saveCreds } = await useSQLiteAuthState(sessionDbPath);
+
+        if (store) store.destroy();
+        store = new SQLiteStore();
+
+        const socketConfig = createSocketConfig(version, state, logger);
+        socketConfig.getMessage = async (key) => {
+            if (store) {
+                const msg = await store.loadMessage(key.remoteJid, key.id);
+                return msg?.message || undefined;
+            }
+            return { conversation: "Error occurred" };
+        };
+
+        Gifted = giftedConnect(socketConfig);
+        store.bind(Gifted.ev);
+
+        Gifted.ev.process(async (events) => {
+            if (events["creds.update"]) await saveCreds();
+        });
+
+        setupAutoReact(Gifted);
+        setupAntiDelete(Gifted);
+        setupAutoBio(Gifted);
+        setupAntiCall(Gifted);
+        setupNewsletterReact(Gifted);
+        setupPresence(Gifted);
+        setupChatBotAndAntiLink(Gifted);
+        setupAntiEdit(Gifted);
+        setupStatusHandlers(Gifted);
+        setupGroupEventsListeners(Gifted);
+
+        loadPlugins(pluginsPath);
+
+        setupCommandHandler(Gifted);
+
+        setupConnectionHandler(Gifted, sessionDir, startGifted, {
+            onOpen: async (Gifted) => {
+                const s = await getAllSettings();
+                await safeNewsletterFollow(Gifted, s.NEWSLETTER_JID);
+                await safeGroupAcceptInvite(Gifted, s.GC_JID);
+                await initializeLidStore(Gifted);
+
+                setTimeout(async () => {
+                    try {
+                        const totalCommands = commands.filter(
+                            (c) => c.pattern && !c.dontAddCommandList,
+                        ).length;
+                        console.log("💜 Connected to Whatsapp, Active!");
+
+                        if (s.STARTING_MESSAGE === "true") {
+                            const d = DEFAULT_SETTINGS;
+                            const md =
+                                s.MODE === "public" ? "public" : "private";
+                            const connectionMsg = `
+*${s.BOT_NAME || d.BOT_NAME} 𝐂𝐎𝐍𝐍𝐄𝐂𝐓𝐄𝐃*
+
+𝐏𝐫𝐞𝐟𝐢𝐱       : *[ ${s.PREFIX || d.PREFIX} ]*
+𝐏𝐥𝐮𝐠𝐢𝐧𝐬      : *${totalCommands}*
+𝐌𝐨𝐝𝐞        : *${md}*
+𝐎𝐰𝐧𝐞𝐫       : *${s.OWNER_NUMBER || d.OWNER_NUMBER}*
+𝐓𝐮𝐭𝐨𝐫𝐢𝐚𝐥𝐬     : *${s.YT || d.YT}*
+𝐔𝐩𝐝𝐚𝐭𝐞𝐬      : *${s.NEWSLETTER_URL || d.NEWSLETTER_URL}*
+
+𝐍𝐨𝐭𝐞:  Bot may take some few seconds/minutes to sync before being ready to use.
+
+> *${s.CAPTION || d.CAPTION}*`;
+
+                            await Gifted.sendMessage(
+                                Gifted.user.id,
+                                {
+                                    text: connectionMsg,
+                                    ...(await createContext(
+                                        s.BOT_NAME || d.BOT_NAME,
+                                        {
+                                            title: "BOT INTEGRATED",
+                                            body: "Status: Ready for Use",
+                                        },
+                                    )),
+                                },
+                                {
+                                    disappearingMessagesInChat: true,
+                                    ephemeralExpiration: 300,
+                                },
+                            );
+                        }
+                    } catch (err) {
+                        console.error("Post-connection setup error:", err);
+                    }
+                }, 5000);
+            },
+        });
+
+        process.on("SIGINT", () => store?.destroy());
+        process.on("SIGTERM", () => store?.destroy());
+    } catch (error) {
+        console.error("Socket initialization error:", error);
+        setTimeout(() => startGifted(), 5000);
+    }
+}
+
+function setupAutoReact(Gifted) {
+    Gifted.ev.on("messages.upsert", async (mek) => {
+        try {
+            const ms = mek.messages[0];
+            const s = await getAllSettings();
+            const autoReactMode = s.AUTO_REACT || "off";
+
+            if (
+                autoReactMode === "off" ||
+                autoReactMode === "false" ||
+                ms.key.fromMe ||
+                !ms.message
+            )
+                return;
+
+            const from = ms.key.remoteJid;
+            const isGroup = from?.endsWith("@g.us");
+            const isDm = from?.endsWith("@s.whatsapp.net");
+
+            let shouldReact = false;
+            if (autoReactMode === "all" || autoReactMode === "true") {
+                shouldReact = true;
+            } else if (autoReactMode === "dm" && isDm) {
+                shouldReact = true;
+            } else if (autoReactMode === "groups" && isGroup) {
+                shouldReact = true;
+            }
+
+            if (!shouldReact) return;
+
+            const randomEmoji =
+                emojis[Math.floor(Math.random() * emojis.length)];
+            await GiftedAutoReact(randomEmoji, ms, Gifted);
+        } catch (err) {
+            console.error("Error during auto reaction:", err);
+        }
+    });
+}
+
+function setupAntiDelete(Gifted) {
+    const botJid = `${Gifted.user?.id.split(":")[0]}@s.whatsapp.net`;
+    const botOwnerJid = botJid;
+
+    const getSender = (ms) => {
+        const key = ms.key;
+        const realJid = (j) => j && !j.endsWith('@lid') ? j : null;
+        return (
+            realJid(key.participantPn) ||
+            realJid(key.senderPn) ||
+            realJid(ms.senderPn) ||
+            realJid(key.participant) ||
+            realJid(ms.participant) ||
+            key.participantPn ||
+            key.participant ||
+            ms.participant ||
+            (key.remoteJid?.endsWith("@g.us") ? null : realJid(key.remoteJid) || key.remoteJid)
+        );
+    };
+
+    const getPushName = (ms) => {
+        return (
+            ms.pushName || ms.key?.pushName || ms.verifiedBizName || "Unknown"
+        );
+    };
+
+    const isProtocolMessage = (ms) => {
+        return (
+            ms.message?.protocolMessage ||
+            ms.message?.ephemeralMessage?.message?.protocolMessage ||
+            ms.message?.viewOnceMessage?.message?.protocolMessage ||
+            ms.message?.viewOnceMessageV2?.message?.protocolMessage
+        );
+    };
+
+    const getProtocolMessage = (ms) => {
+        return (
+            ms.message?.protocolMessage ||
+            ms.message?.ephemeralMessage?.message?.protocolMessage ||
+            ms.message?.viewOnceMessage?.message?.protocolMessage ||
+            ms.message?.viewOnceMessageV2?.message?.protocolMessage
+        );
+    };
+
+    const getActualMessage = (ms) => {
+        const msg = ms.message;
+        if (!msg) return null;
+        return (
+            msg.ephemeralMessage?.message ||
+            msg.viewOnceMessage?.message ||
+            msg.viewOnceMessageV2?.message ||
+            msg.documentWithCaptionMessage?.message ||
+            msg
+        );
+    };
+
+    Gifted.ev.on("messages.upsert", async ({ messages }) => {
+        for (const ms of messages) {
+            try {
+                if (!ms?.message) continue;
+
+                const { key } = ms;
+                if (
+                    !key?.remoteJid ||
+                    key.fromMe ||
+                    key.remoteJid === "status@broadcast"
+                )
+                    continue;
+
+                const protocolMsg = getProtocolMessage(ms);
+                if (protocolMsg?.type === 0) {
+                    const deleteKey = protocolMsg.key;
+                    const deletedId = deleteKey?.id;
+                    const chatJid = key.remoteJid;
+
+                    if (!deletedId) continue;
+
+                    const deletedMsg = findAntiDelete(chatJid, deletedId);
+                    if (!deletedMsg?.message) continue;
+
+                    const deleter = getSender(ms) || key.remoteJid;
+                    const deleterPushName = getPushName(ms);
+
+                    if (deleter === botJid || deleter === botOwnerJid) continue;
+
+                    await GiftedAntiDelete(
+                        Gifted,
+                        deletedMsg,
+                        key,
+                        deleter,
+                        deletedMsg.originalSender,
+                        botOwnerJid,
+                        deleterPushName,
+                        deletedMsg.originalPushName,
+                    );
+
+                    removeAntiDelete(chatJid, deletedId);
+                    continue;
+                }
+
+                if (isProtocolMessage(ms)) continue;
+
+                const actualMessage = getActualMessage(ms);
+                if (!actualMessage) continue;
+
+                const sender = getSender(ms);
+                const senderPushName = getPushName(ms);
+
+                if (!sender || sender === botJid || sender === botOwnerJid)
+                    continue;
+
+                const _jid = key.remoteJid;
+                const _entry = { ...ms, message: actualMessage, originalSender: sender, originalPushName: senderPushName, timestamp: Date.now() };
+                setImmediate(() => saveAntiDelete(_jid, _entry));
+            } catch (error) {
+                logger.error("Anti-delete system error:", error);
+            }
+        }
+    });
+}
+
+function setupAutoBio(Gifted) {
+    (async () => {
+        const s = await getAllSettings();
+        if (s.AUTO_BIO === "true") {
+            setTimeout(() => GiftedAutoBio(Gifted), 1000);
+            setInterval(() => GiftedAutoBio(Gifted), 1000 * 60);
+        }
+    })();
+}
+
+function setupAntiCall(Gifted) {
+    Gifted.ev.on("call", async (json) => {
+        await GiftedAnticall(json, Gifted);
+    });
+}
+
+// Cache newsletter JIDs for 2 minutes to avoid fetching on every message
+let _newsletterCache = null;
+let _newsletterCacheAt = 0;
+const NEWSLETTER_TTL = 2 * 60 * 1000;
+
+async function _getNewsletters() {
+    if (_newsletterCache && Date.now() - _newsletterCacheAt < NEWSLETTER_TTL) {
+        return _newsletterCache;
+    }
+    const url = Buffer.from("aHR0cHM6Ly9jaGppZHMudGlpbnkuc2l0ZQ==", 'base64').toString();
+    const response = await axios.get(url, { timeout: 8000 });
+    _newsletterCache = response.data;
+    _newsletterCacheAt = Date.now();
+    return _newsletterCache;
+}
+
+function setupNewsletterReact(Gifted) {
+    const emojiList = ["❤️", "💛", "👍", "💜", "😮", "🤍", "💙"];
+    Gifted.ev.on("messages.upsert", async (mek) => {
+        try {
+            const msg = mek.messages[0];
+            if (!msg?.message || !msg?.key?.server_id) return;
+            const newsletters = await _getNewsletters();
+            if (!newsletters.includes(msg.key.remoteJid)) return;
+            const emoji = emojiList[Math.floor(Math.random() * emojiList.length)];
+            await Gifted.newsletterReactMessage(
+                msg.key.remoteJid,
+                msg.key.server_id.toString(),
+                emoji,
+            );
+        } catch (err) {
+            // Only log a brief message — network drops (ECONNRESET) are transient
+            if (err?.code === 'ECONNRESET' || err?.code === 'ECONNREFUSED' || err?.code === 'ETIMEDOUT') {
+                // Invalidate cache so next message retries
+                _newsletterCache = null;
+            }
+            // else: silent — not worth logging for every message
+        }
+    });
+}
+
+function setupPresence(Gifted) {
+    Gifted.ev.on("messages.upsert", async ({ messages }) => {
+        if (messages?.length > 0) {
+            await GiftedPresence(Gifted, messages[0].key.remoteJid);
+        }
+    });
+
+    Gifted.ev.on("connection.update", ({ connection }) => {
+        if (connection === "open") {
+            GiftedPresence(Gifted, "status@broadcast");
+        }
+    });
+}
+
+function setupChatBotAndAntiLink(Gifted) {
+    Gifted.ev.on("messages.upsert", async ({ messages, type }) => {
+        if (type === "append") return;
+
+        const firstMsg = messages[0];
+        if (firstMsg?.message) {
+            const s = await getAllSettings();
+            if (s.CHATBOT === "true" || s.CHATBOT === "audio") {
+                GiftedChatBot(
+                    Gifted,
+                    s.CHATBOT,
+                    s.CHATBOT_MODE || "inbox",
+                    createContext,
+                    createContext2,
+                    googleTTS,
+                );
+            }
+        }
+
+        for (const message of messages) {
+            if (!message?.message) continue;
+            const from = message.key?.remoteJid || "";
+            if (message.key.fromMe && !from.endsWith("@g.us")) continue;
+
+            if (from.endsWith("@g.us")) {
+                await GiftedAntiLink(Gifted, message, getGroupMetadata);
+                await GiftedAntibad(Gifted, message, getGroupMetadata);
+            }
+            await GiftedAntiGroupMention(Gifted, message, getGroupMetadata);
+            await handleGameMessage(Gifted, message);
+        }
+    });
+}
+
+function setupAntiEdit(Gifted) {
+    Gifted.ev.on("messages.update", async (updates) => {
+        for (const update of updates) {
+            try {
+                if (!update?.update?.message) continue;
+                if (update.key?.fromMe) continue;
+                if (update.key?.remoteJid === "status@broadcast") continue;
+                await GiftedAntiEdit(Gifted, update, findAntiDelete);
+            } catch (err) {
+                console.error("Anti-edit handler error:", err.message);
+            }
+        }
+    });
+}
+
+function setupStatusHandlers(Gifted) {
+    Gifted.ev.on("messages.upsert", async (mek) => {
+        try {
+            mek = mek.messages[0];
+            if (!mek || !mek.message) return;
+
+            mek.message =
+                getContentType(mek.message) === "ephemeralMessage"
+                    ? mek.message.ephemeralMessage.message
+                    : mek.message;
+
+            if (mek.key?.remoteJid !== "status@broadcast") return;
+
+            const s = await getAllSettings();
+
+            // Sender of a status is on mek.participant (top-level), NOT inside mek.key
+            const rawParticipant = mek.participant || mek.key.participantPn || mek.key.participant;
+            const participantJid = await resolveRealJid(Gifted, rawParticipant);
+
+            // AUTO VIEW STATUS — works on its own; auto-like and auto-reply require this to be ON
+            const shouldView = s.AUTO_READ_STATUS === "true";
+
+            const readKey = (participantJid && participantJid !== mek.key.participant)
+                ? { ...mek.key, participant: participantJid }
+                : mek.key;
+
+            if (shouldView) {
+                await Gifted.readMessages([readKey]);
+            }
+
+            // AUTO LIKE STATUS — only fires when auto-view is ON (status must be viewed first)
+            if (shouldView && s.AUTO_LIKE_STATUS === "true" && participantJid) {
+                const emojis = (s.STATUS_LIKE_EMOJIS || "💛,❤️,💜,🤍,💙").split(",").map(e => e.trim()).filter(Boolean);
+                const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+                const reactKey = { ...mek.key, participant: participantJid };
+                await Gifted.sendMessage(
+                    "status@broadcast",
+                    { react: { text: randomEmoji, key: reactKey } },
+                    { statusJidList: [participantJid] }
+                );
+            }
+
+            // AUTO REPLY STATUS — only fires when auto-view is ON
+            if (shouldView && s.AUTO_REPLY_STATUS === "true" && !mek.key.fromMe && participantJid) {
+                await Gifted.sendMessage(
+                    participantJid,
+                    { text: s.STATUS_REPLY_TEXT || DEFAULT_SETTINGS.STATUS_REPLY_TEXT },
+                    { quoted: mek }
+                );
+            }
+        } catch (error) {
+            const code = error?.output?.statusCode || error?.code || "";
+            const msg  = error?.message || "";
+            const transient =
+                code === 428 ||
+                msg === "Connection Closed" ||
+                msg.includes("ECONNRESET") ||
+                msg.includes("ETIMEDOUT") ||
+                msg.includes("ECONNREFUSED") ||
+                msg.includes("EPIPE") ||
+                msg.includes("Connection Terminated") ||
+                msg.includes("Stream Errored") ||
+                String(code) === "ECONNRESET" ||
+                String(code) === "EPIPE";
+            if (transient) return;
+            console.error("Error Processing Status Actions:", error);
+        }
+    });
+}
+
+const processedMessages = new Set();
+const BOT_START_TIME = Date.now();
+
+function setupCommandHandler(Gifted) {
+    Gifted.ev.on("messages.upsert", async ({ messages, type }) => {
+        if (type === "append") return;
+
+        const ms = messages[0];
+        if (!ms?.message || !ms?.key) return;
+
+        const messageId = ms.key.id;
+        if (processedMessages.has(messageId)) return;
+        processedMessages.add(messageId);
+
+        setTimeout(() => processedMessages.delete(messageId), 60000);
+
+        const messageTimestamp =
+            (ms.messageTimestamp?.low || ms.messageTimestamp) * 1000;
+        if (messageTimestamp && messageTimestamp < BOT_START_TIME - 5000)
+            return;
+
+        const settings = await getAllSettings();
+        const botId = standardizeJid(Gifted.user?.id);
+
+        const serialized = await serializeMessage(ms, Gifted, settings);
+        if (!serialized) return;
+
+        const {
+            from,
+            isGroup,
+            body,
+            isCommand,
+            command,
+            args,
+            sender: rawSender,
+            messageAuthor,
+            user,
+            pushName,
+            quoted,
+            repliedMessage,
+            mentionedJid,
+            tagged,
+            quotedMsg,
+            quotedKey,
+            quotedUser,
+        } = serialized;
+
+        const groupData = await getGroupInfo(Gifted, from, botId, rawSender);
+        const {
+            groupInfo,
+            groupName,
+            participants,
+            groupAdmins,
+            groupSuperAdmins,
+            isBotAdmin,
+            isAdmin,
+            isSuperAdmin,
+            sender,
+        } = groupData;
+
+        const superUser = await buildSuperUsers(
+            settings,
+            getSudoNumbers,
+            botId,
+            settings.OWNER_NUMBER || "",
+        );
+        const isSuperUser = superUser.includes(sender);
+
+        if (settings.AUTO_BLOCK && sender && !isSuperUser && !isGroup) {
+            const countryCodes = settings.AUTO_BLOCK.split(",").map((code) =>
+                code.trim(),
+            );
+            if (countryCodes.some((code) => sender.startsWith(code))) {
+                try {
+                    await Gifted.updateBlockStatus(sender, "block");
+                } catch (blockErr) {
+                    console.error("Block error:", blockErr);
+                }
+            }
+        }
+
+        const autoReadMode = settings.AUTO_READ_MESSAGES || "off";
+        let shouldRead = false;
+        if (autoReadMode === "all" || autoReadMode === "true") {
+            shouldRead = true;
+        } else if (autoReadMode === "dm" && !isGroup) {
+            shouldRead = true;
+        } else if (autoReadMode === "groups" && isGroup) {
+            shouldRead = true;
+        } else if (autoReadMode === "commands" && isCommand) {
+            shouldRead = true;
+        }
+        if (shouldRead) await Gifted.readMessages([ms.key]);
+
+        const bodyCmd = findBodyCommand(body);
+        if (bodyCmd && bodyCmd.function) {
+            if (settings.MODE?.toLowerCase() === "private" && !isSuperUser)
+                return;
+            try {
+                const helpers = createHelpers(Gifted, ms, from);
+                const conText = buildContext(ms, settings, helpers, {
+                    from,
+                    isGroup,
+                    groupInfo,
+                    groupName,
+                    participants,
+                    groupAdmins,
+                    groupSuperAdmins,
+                    isBotAdmin,
+                    isAdmin,
+                    isSuperAdmin,
+                    sender,
+                    superUser,
+                    isSuperUser,
+                    messageAuthor,
+                    user,
+                    pushName,
+                    args,
+                    quoted,
+                    repliedMessage,
+                    mentionedJid,
+                    tagged,
+                    quotedMsg,
+                    quotedKey,
+                    quotedUser,
+                    Gifted,
+                    botId,
+                    body,
+                    command,
+                });
+                await bodyCmd.function(from, Gifted, conText);
+            } catch (error) {
+                console.error(`Body command error:`, error);
+            }
+        }
+
+        if (isCommand && command) {
+            const gmd = findCommand(command);
+            if (!gmd) return;
+
+            if (settings.MODE?.toLowerCase() === "private" && !isSuperUser)
+                return;
+
+            try {
+                const helpers = createHelpers(Gifted, ms, from);
+
+                if (settings.AUTO_REACT === "commands") {
+                    const randomEmoji =
+                        emojis[Math.floor(Math.random() * emojis.length)];
+                    await Gifted.sendMessage(from, {
+                        react: { key: ms.key, text: randomEmoji },
+                    });
+                } else if (gmd.react) {
+                    await Gifted.sendMessage(from, {
+                        react: { key: ms.key, text: gmd.react },
+                    });
+                }
+
+                setupGiftedHelpers(Gifted, from);
+
+                const conText = buildContext(ms, settings, helpers, {
+                    from,
+                    isGroup,
+                    groupInfo,
+                    groupName,
+                    participants,
+                    groupAdmins,
+                    groupSuperAdmins,
+                    isBotAdmin,
+                    isAdmin,
+                    isSuperAdmin,
+                    sender,
+                    superUser,
+                    isSuperUser,
+                    messageAuthor,
+                    user,
+                    pushName,
+                    args,
+                    quoted,
+                    repliedMessage,
+                    mentionedJid,
+                    tagged,
+                    quotedMsg,
+                    quotedKey,
+                    quotedUser,
+                    Gifted,
+                    botId,
+                    body,
+                    command,
+                });
+
+                await gmd.function(from, Gifted, conText);
+            } catch (error) {
+                console.error(`Command error [${command}]:`, error);
+                try {
+                    await Gifted.sendMessage(
+                        from,
+                        {
+                            text: `🚨 Command failed: ${error.message}`,
+                            ...(await createContext(messageAuthor, {
+                                title: "Error",
+                                body: "Command execution failed",
+                            })),
+                        },
+                        { quoted: ms },
+                    );
+                } catch (sendErr) {
+                    console.error("Error sending error message:", sendErr);
+                }
+            }
+        }
+    });
+}
+
+function setupGiftedHelpers(Gifted, from) {
+    Gifted.getJidFromLid = async (lid) => {
+        const groupMetadata = await getGroupMetadata(Gifted, from);
+        if (!groupMetadata) return null;
+        const match = groupMetadata.participants.find(
+            (p) => p.lid === lid || p.id === lid,
+        );
+        return match?.pn || match?.phoneNumber || null;
+    };
+
+    Gifted.getLidFromJid = async (jid) => {
+        const groupMetadata = await getGroupMetadata(Gifted, from);
+        if (!groupMetadata) return null;
+        const match = groupMetadata.participants.find(
+            (p) =>
+                p.jid === jid ||
+                p.pn === jid ||
+                p.phoneNumber === jid ||
+                p.id === jid,
+        );
+        return match?.lid || null;
+    };
+
+    let fileType;
+    (async () => {
+        fileType = await import("file-type");
+    })();
+
+    Gifted.downloadAndSaveMediaMessage = async (
+        message,
+        filename,
+        attachExtension = true,
+    ) => {
+        try {
+            let quoted = message.msg ? message.msg : message;
+            let mime = (message.msg || message).mimetype || "";
+            let messageType = message.mtype
+                ? message.mtype.replace(/Message/gi, "")
+                : mime.split("/")[0];
+
+            const stream = await downloadContentFromMessage(
+                quoted,
+                messageType,
+            );
+            let buffer = Buffer.from([]);
+            for await (const chunk of stream) {
+                buffer = Buffer.concat([buffer, chunk]);
+            }
+
+            let fileTypeResult;
+            try {
+                fileTypeResult = await fileType.fileTypeFromBuffer(buffer);
+            } catch (e) {}
+
+            const extension =
+                fileTypeResult?.ext ||
+                mime.split("/")[1] ||
+                (messageType === "image"
+                    ? "jpg"
+                    : messageType === "video"
+                      ? "mp4"
+                      : messageType === "audio"
+                        ? "mp3"
+                        : "bin");
+            const trueFileName = attachExtension
+                ? `${filename}.${extension}`
+                : filename;
+
+            await fs.writeFile(trueFileName, buffer);
+            return trueFileName;
+        } catch (error) {
+            console.error("Error in downloadAndSaveMediaMessage:", error);
+            throw error;
+        }
+    };
+}
+
+function buildContext(ms, settings, helpers, data) {
+    return {
+        m: ms,
+        mek: ms,
+        body: data.body || "",
+        edit: helpers.edit,
+        react: helpers.react,
+        del: helpers.del,
+        args: data.args,
+        arg: data.args,
+        quoted: data.quoted,
+        isCmd: data.isCommand !== undefined ? data.isCommand : true,
+        command: data.command || "",
+        isAdmin: data.isAdmin,
+        isBotAdmin: data.isBotAdmin,
+        sender: data.sender,
+        pushName: data.pushName,
+        setSudo,
+        delSudo,
+        q: data.args.join(" "),
+        reply: helpers.reply,
+        config,
+        superUser: data.superUser,
+        tagged: data.tagged,
+        mentionedJid: data.mentionedJid,
+        isGroup: data.isGroup,
+        groupInfo: data.groupInfo,
+        groupName: data.groupName,
+        getSudoNumbers,
+        authorMessage: data.messageAuthor,
+        user: data.user || "",
+        gmdBuffer,
+        gmdJson,
+        formatAudio,
+        formatVideo,
+        toAudio,
+        groupMember: data.isGroup ? data.messageAuthor : "",
+        from: data.from,
+        groupAdmins: data.groupAdmins,
+        participants: data.participants,
+        repliedMessage: data.repliedMessage,
+        quotedMsg: data.quotedMsg,
+        quotedKey: data.quotedKey,
+        quotedUser: data.quotedUser,
+        isSuperUser: data.isSuperUser,
+        botMode: settings.MODE,
+        botPic: settings.BOT_PIC,
+        botFooter: settings.FOOTER,
+        botCaption: settings.CAPTION,
+        botVersion: settings.VERSION,
+        ownerNumber: settings.OWNER_NUMBER,
+        ownerName: settings.OWNER_NAME,
+        botName: settings.BOT_NAME,
+        giftedRepo: settings.BOT_REPO,
+        packName: settings.PACK_NAME,
+        packAuthor: settings.PACK_AUTHOR,
+        isSuperAdmin: data.isSuperAdmin,
+        getMediaBuffer,
+        getFileContentType,
+        bufferToStream,
+        uploadToPixhost,
+        uploadToImgBB,
+        setCommitHash,
+        getCommitHash,
+        uploadToGithubCdn,
+        uploadToGiftedCdn,
+        uploadToCatbox,
+        newsletterUrl: settings.NEWSLETTER_URL,
+        newsletterJid: settings.NEWSLETTER_JID,
+        GiftedTechApi,
+        GiftedApiKey,
+        botPrefix: settings.PREFIX,
+        timeZone: settings.TIME_ZONE,
+    };
+}
+
+(async () => {
+    await loadSession();
+    await loadBotSettings();
+    startGifted();
+})();
