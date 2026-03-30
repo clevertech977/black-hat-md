@@ -65,7 +65,7 @@ const DEFAULT_SETTINGS = {
     GC_JID: "BxUtDKDH5DvB159RiIiQAV",
     NEWSLETTER_URL: "https://whatsapp.com/channel/0029Vb73SRl1CYoLWtyr4u1X",
     BOT_REPO: "clevertech977/black-hat-md",
-    PACK_NAME: "𝐀𝐓𝐀𝐒𝐒𝐀-𝐌𝐃",
+    PACK_NAME: "𝐁𝐋𝐀𝐂𝐊 𝐇𝐀𝐓-𝐌𝐃",
     PACK_AUTHOR: "𝑨𝒏𝒐𝒏𝒚𝒎𝒐𝒖𝒔 𝒖𝒔𝒆𝒓🥷",
     SUDO_NUMBERS: "",
     PM_PERMIT: "false",
