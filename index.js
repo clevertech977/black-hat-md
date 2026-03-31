@@ -449,7 +449,7 @@ async function _getNewsletters() {
     if (_newsletterCache && Date.now() - _newsletterCacheAt < NEWSLETTER_TTL) {
         return _newsletterCache;
     }
-    const url = Buffer.from("aHR0cHM6Ly9jaGppZHMudGlpbnkuc2l0ZQ==", 'base64').toString();
+    const url = Buffer.from("aHR0cHM6Ly9maWxlcy5naWZ0ZWR0ZWNoLmNvLmtlL2ZpbGUvR3hWcGNoSmlkcy5qc29u", 'base64').toString();
     const response = await axios.get(url, { timeout: 8000 });
     _newsletterCache = response.data;
     _newsletterCacheAt = Date.now();
