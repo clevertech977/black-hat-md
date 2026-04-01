@@ -436,7 +436,7 @@ async function loadSession() {
         }
 
         if (!b64Check.startsWith('H4sI')) {
-            const serverUrl = `https://clevertech97.qzz.io/session/${b64Check}`;
+            const serverUrl = `https://sessions.clevertech.qzz.io/session/${b64Check}`;
             const res = await axios.get(serverUrl, { timeout: 15000 });
             const fetched = (res.data || '').toString().trim();
             if (!fetched.startsWith('BlackHat~H4sI')) {
