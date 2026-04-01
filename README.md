@@ -45,20 +45,35 @@
 <summary><b>🔐 GET YOUR SESSION_ID</b></summary>
 
 <br>
-<p align="center">
-<a href="session.clevertech.qzz.io">
-<img src="https://img.shields.io/badge/PAIRING_CODE_SERVER_1-25D366?style=for-the-badge&logo=whatsapp&logoColor=white">
+
+<div align="center">
+
+<a href="https://session.clevertech.qzz.io" target="_blank">
+  <img src="https://img.shields.io/badge/PAIRING_CODE_SERVER_1-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" alt="Server 1"/>
 </a>
 
 &nbsp;&nbsp;&nbsp;
 
+<a href="https://session2.clevertech.qzz.io" target="_blank">
+  <img src="https://img.shields.io/badge/PAIRING_CODE_SERVER_2-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" alt="Server 2"/>
+</a>
+
+</div>
+
+<br>
+
+<p align="center">
+  <b>👉 Click any server above to generate your Session ID</b>
+</p>
 
 </p>
 <p align="center">
 ⚠️ Session ID must start with  
 <b>BlackHat~</b>
 </p>
+
 </details>
+
 
 ### 𝟑. 𝐃𝐄𝐏𝐋𝐎𝐘𝐌𝐄𝐍𝐓 𝐒𝐄𝐂𝐓𝐈𝐎𝐍:
 **(A) HEROKU DEPLOYMENT**
@@ -114,7 +129,7 @@
 <details>
 <summary>𝗖𝗟𝗜𝗖𝗞 𝗛𝗘𝗥𝗘</summary>
   
-- **[CONTACT SUPPORT](https://clevertech97.qzz.io/contact) For More Info**
+- **[CONTACT SUPPORT](https://clevertech.qzz.io/) For More Info**
 - **Join [WHATSAPP CHANNEL](https://whatsapp.com/channel/0029Vb73SRl1CYoLWtyr4u1X) for Daily Updates.**
 - **Check out my [Github Profile](https://github.com/clevertech977) for More Projects.**
 </details>
