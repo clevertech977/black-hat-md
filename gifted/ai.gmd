@@ -32,7 +32,7 @@ gmd(
     filename: __filename,
   },
   async (from, Gifted, conText) => {
-    await queryAI("ai", conText.q || "What's your model?", conText);
+    await queryAI("ai", conText.q || "say gray black hat hacker", conText);
   },
 );
 
