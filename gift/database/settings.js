@@ -62,7 +62,7 @@ const DEFAULT_SETTINGS = {
     AUTO_BLOCK: "",
     YT: "youtube.com/@clevertech977",
     NEWSLETTER_JID: "120363422524788798@newsletter",
-    GC_JID: "BxUtDKDH5DvB159RiIiQAV",
+    GC_JID: "FHT9hXCbu1z4XiPbn7HKMw",
     NEWSLETTER_URL: "https://whatsapp.com/channel/0029Vb73SRl1CYoLWtyr4u1X",
     BOT_REPO: "clevertech977/black-hat-md",
     PACK_NAME: "𝐁𝐋𝐀𝐂𝐊 𝐇𝐀𝐓-𝐌𝐃",
