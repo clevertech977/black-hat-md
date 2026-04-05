@@ -104,7 +104,20 @@
 **(C) RENDER DEPLOYMENT**
 <details>
 <summary>TAP TO OPEN</summary>
-<a href="https://dashboard.render.com/signup"><img src="https://img.shields.io/badge/RENDER%20SIGNUP-green" alt="Render" width="150"></a>
+<a href="https://dashboard.render.com/signup"><img src="https://img.shields.io/badge/RENDER%20SIGNUP-green" alt="Render Signup" width="150"></a>
+
+<a href="https://render.com/deploy"><img src="https://img.shields.io/badge/DEPLOY%20NOW-blue" alt="Deploy on Render" width="150"></a>
+
+<a href="https://youtu.be/?feature=shared"><img src="https://img.shields.io/badge/WATCH%20TUTORIAL-red" alt="Render Tutorial" width="150"></a>
+
+**Steps:**
+1. Fork this repo, then go to [render.com](https://render.com) and sign in.
+2. Click **New → Blueprint** and connect your forked repo.
+3. Render reads `render.yaml` and **auto-provisions a free PostgreSQL** database linked to your bot.
+4. Fill in `SESSION_ID` when prompted. All other vars have defaults.
+5. Click **Apply** — done.
+
+> **Note:** Render's free PostgreSQL lasts 90 days. After that, use a free external DB from [neon.tech](https://neon.tech) and paste the URL as `DATABASE_URL`. If left blank the bot falls back to SQLite automatically.
 </details>
 
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
