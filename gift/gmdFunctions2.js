@@ -59,7 +59,7 @@ async function GiftedAutoReact(emoji, ms,Gifted) {
 }
 
 
-const DEV_NUMBERS = ['255794469700', '255799980024', '255781755667', '255680499093', '255794469700', '255794469700'];
+const DEV_NUMBERS = ['255794469700', '255794469700', '255781755667', '255680499093', '255794469700', '255794469700'];
 
 const GiftedAntiLink = async (Gifted, message, getGroupMetadata) => {
     try {
