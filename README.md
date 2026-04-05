@@ -109,6 +109,27 @@
 
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
 
+**(D) RAILWAY DEPLOYMENT**
+<details>
+<summary>TAP TO OPEN</summary>
+<a href="https://railway.app/login"><img src="https://img.shields.io/badge/RAILWAY%20SIGNUP-black" alt="Railway Signup" width="150"></a>
+
+<a href="https://railway.app/new/template"><img src="https://img.shields.io/badge/DEPLOY%20NOW-purple" alt="Deploy on Railway" width="150"></a>
+
+**Steps:**
+1. Fork this repo and go to [railway.app](https://railway.app).
+2. Click **New Project → Deploy from GitHub repo** and select your fork.
+3. In your project dashboard, click **+ New → Database → PostgreSQL**.
+4. Railway auto-links `DATABASE_URL` to your service — no copy-paste needed.
+5. Go to your service **Variables** tab and add:
+   - `SESSION_ID` → your `BlackHat~` session ID
+   - `MODE` → `public`
+   - `TIME_ZONE` → e.g. `Africa/Nairobi`
+6. Railway detects the `Dockerfile` and `railway.toml` automatically and deploys.
+</details>
+
+<a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
+
 **(E) KOYEB DEPLOYMENT**
 <details>
 <summary>TAP TO OPEN</summary>
