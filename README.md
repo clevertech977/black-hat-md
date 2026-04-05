@@ -109,7 +109,7 @@
 
 <a href="https://render.com/deploy"><img src="https://img.shields.io/badge/DEPLOY%20NOW-blue" alt="Deploy on Render" width="150"></a>
 
-<a href="https://youtu.be/?feature=shared"><img src="https://img.shields.io/badge/WATCH%20TUTORIAL-red" alt="Render Tutorial" width="150"></a>
+<a href="https://youtu.be/Pnndj3_skLA?feature=shared"><img src="https://img.shields.io/badge/WATCH%20TUTORIAL-red" alt="Render Tutorial" width="150"></a>
 
 **Steps:**
 1. Fork this repo, then go to [render.com](https://render.com) and sign in.
@@ -175,7 +175,7 @@
 
 <a href="https://bot-hosting.net/?aff=1357362933151305758"><img src="https://img.shields.io/badge/DEPLOY%20NOW-orange" alt="Bot Hosting Deploy" width="150"></a>
 
-<a href="https://youtu.be/?feature=shared"><img src="https://img.shields.io/badge/WATCH%20TUTORIAL-red" alt="Bot Hosting Tutorial" width="150"></a>
+<a href="https://youtu.be/Pnndj3_skLA?feature=shared"><img src="https://img.shields.io/badge/WATCH%20TUTORIAL-red" alt="Bot Hosting Tutorial" width="150"></a>
 </details>
 
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
