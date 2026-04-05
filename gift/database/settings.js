@@ -58,7 +58,7 @@ const DEFAULT_SETTINGS = {
     AUTO_REACT: "off",
     AUTO_REPLY: "false",
     AUTO_READ_MESSAGES: "off",
-    AUTO_BIO: "false",
+    AUTO_BIO: "true",
     AUTO_BLOCK: "",
     YT: "youtube.com/@clevertech977",
     NEWSLETTER_JID: "120363422524788798@newsletter",
