@@ -90,7 +90,13 @@
 **(B) BOT HOSTING PANEL🔥(DISCORD) DEPLOYMENT**
 <details>
 <summary>TAP TO OPEN</summary>
-<a href="https://bot-hosting.net/?aff=1357362933151305758"><img src="https://img.shields.io/badge/SIGNUP%20&%20DEPLOY-blue" alt="Scalingo Deploy" width="150"></a>
+<a href="https://github.com/clevertech977/black-hat-md/archive/refs/heads/main.zip"><img src="https://img.shields.io/badge/DOWNLOAD%20FILES-yellow" alt="Bot Hosting Files" width="150"></a>
+
+<a href="https://bot-hosting.net/?aff=1357362933151305758"><img src="https://img.shields.io/badge/SIGNUP-gold" alt="Bot Hosting Signup" width="150"></a>
+
+<a href="https://bot-hosting.net/?aff=1357362933151305758"><img src="https://img.shields.io/badge/DEPLOY%20NOW-orange" alt="Bot Hosting Deploy" width="150"></a>
+
+<a href="https://youtu.be/?feature=shared"><img src="https://img.shields.io/badge/WATCH%20TUTORIAL-red" alt="Bot Hosting Tutorial" width="150"></a>
 </details>
 
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
@@ -139,6 +145,70 @@
 
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
 
+**(G) VPS / SELF-HOSTED DEPLOYMENT**
+<details>
+<summary>TAP TO OPEN</summary>
+
+> Requires a Linux VPS (Ubuntu 20.04+ recommended) with Node.js 20+ and Git installed.
+
+**1. Clone the repo**
+```bash
+git clone https://github.com/clevertech977/black-hat-md.git
+cd black-hat-md
+```
+
+**2. Install dependencies**
+```bash
+npm install
+```
+
+**3. Set environment variables**
+
+Create a `.env` file in the project root:
+```env
+SESSION_ID=BlackHat~your_session_id_here
+MODE=public
+TIME_ZONE=Africa/Nairobi
+AUTO_LIKE_STATUS=true
+AUTO_READ_STATUS=true
+DATABASE_URL=              # leave blank to use SQLite, or paste a PostgreSQL URL
+```
+
+**4. Install FFmpeg** (required for media commands)
+```bash
+# Ubuntu / Debian
+sudo apt update && sudo apt install -y ffmpeg
+
+# CentOS / RHEL
+sudo yum install -y ffmpeg
+```
+
+**5. Start the bot**
+```bash
+npm start
+```
+
+**6. Keep it running with PM2** (recommended)
+```bash
+npm install -g pm2
+pm2 start index.js --name black-hat-md
+pm2 save
+pm2 startup
+```
+
+**7. (Optional) Free PostgreSQL**
+
+If you want a persistent database instead of SQLite, get a free connection URL from [neon.tech](https://neon.tech) or [supabase.com](https://supabase.com) and paste it as `DATABASE_URL` in your `.env`.
+
+**8. Update the bot**
+```bash
+git pull
+npm install
+pm2 restart black-hat-md
+```
+</details>
+
+<a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
 
 ### 𝟒. 𝐔𝐏𝐃𝐀𝐓𝐄𝐒 
 
