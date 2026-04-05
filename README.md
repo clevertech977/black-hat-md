@@ -76,13 +76,14 @@
 
 
 ### 𝟑. 𝐃𝐄𝐏𝐋𝐎𝐘𝐌𝐄𝐍𝐓 𝐒𝐄𝐂𝐓𝐈𝐎𝐍:
-**(A) HEROKU DEPLOYMENT**
-
 <details>
 <summary>TAP TO OPEN</summary>
-<a href="https://signup.heroku.com/login"><img src="https://img.shields.io/badge/HEROKU%20SIGNUP-white" alt="Pairing Code" width="150"></a>
+<a href="https://signup.heroku.com/login"><img src="https://img.shields.io/badge/HEROKU%20SIGNUP-white" alt="Heroku Signup" width="150"></a>
   
-<a href="https://dashboard.heroku.com/new?template=https://github.com/clevertech977/black-hat-md"><img src="https://img.shields.io/badge/DEPLOY%20NOW-red" alt="Deploy BlackHat" width="150"></a>
+<a href="https://dashboard.heroku.com/new?template=https://github.com/clevertech977/black-hat-md"><img src="https://img.shields.io/badge/DEPLOY%20NOW-red" alt="Deploy on Heroku" width="150"></a>
+
+- PostgreSQL is **auto-provisioned** via the `heroku-postgresql:essential-0` addon — no manual setup needed.
+- All environment variables are pre-filled from `app.json`. Just add your `SESSION_ID`.
 </details>
 
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
