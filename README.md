@@ -103,23 +103,39 @@
 
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
 
-**(D) KOYEB DEPLOYMENT**
+**(E) KOYEB DEPLOYMENT**
 <details>
 <summary>TAP TO OPEN</summary>
-<a href="https://app.koyeb.com/auth/signup"><img src="https://img.shields.io/badge/KOYEB%20SIGNUP-purple" alt="Koyeb" width="150"></a>
+<a href="https://app.koyeb.com/auth/signup"><img src="https://img.shields.io/badge/KOYEB%20SIGNUP-purple" alt="Koyeb Signup" width="150"></a>
 
-<a href="https://app.koyeb.com/services/deploy/?type=git&repository=github.com%2Fclevertech977%2Fblack-hat-md&branch=main&name=black-hat-md&builder=dockerfile&env%5BAUTO_BLOCK=false%5D=&env%5BSESSION_ID%5D=your%20sessionid%20here"><img src="https://img.shields.io/badge/DEPLOY%20NOW-black" alt="Koyeb Tutorial" width="150"></a>
+<a href="https://app.koyeb.com/services/deploy/?type=git&repository=github.com%2Fmauricegift%2Fatassa&branch=main&name=atassa-md&builder=dockerfile&env%5BSESSION_ID%5D=your%20sessionid%20here"><img src="https://img.shields.io/badge/DEPLOY%20NOW-black" alt="Deploy on Koyeb" width="150"></a>
+
+**Steps:**
+1. Fork this repo and sign in to [koyeb.com](https://koyeb.com).
+2. Click **Deploy Now** above (or Create App → GitHub → select your fork).
+3. Koyeb has no built-in database — get a **free PostgreSQL** from one of:
+   - [neon.tech](https://neon.tech) ← recommended
+   - [supabase.com](https://supabase.com)
+4. Paste the connection URL as `DATABASE_URL` in your Koyeb service environment variables.
+5. Set `SESSION_ID`, `MODE`, `TIME_ZONE` in the same env vars section.
+6. Koyeb uses the `Dockerfile` and `koyeb.yaml` config automatically.
+
+> **Tip:** If you skip `DATABASE_URL` the bot will use SQLite on the local disk — data resets on each redeploy. Use a remote DB for persistence.
 </details>
 
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
 
-**(E) BOT HOSTING PANEL🔥(DISCORD) DEPLOYMENT**
+**(F) BOT HOSTING PANEL🔥(DISCORD) DEPLOYMENT**
 <details>
 <summary>TAP TO OPEN</summary>
-<a href="https://github.com/mauricegift/atassa/archive/refs/heads/main.zip"><img src="https://img.shields.io/badge/DOWNLOAD%20FILES-yellow" alt="Rainhost Files" width="150"></a>
-  
-<a href="https://bot-hosting.net/?aff=1357362933151305758"><img src="https://img.shields.io/badge/SIGNUP%20&%20DEPLOY-blue" alt="Scalingo Deploy" width="150"></a>
-</details
+<a href="https://github.com/clevertech977/black-hat-md/archive/refs/heads/main.zip"><img src="https://img.shields.io/badge/DOWNLOAD%20FILES-yellow" alt="Bot Hosting Files" width="150"></a>
+
+<a href="https://bot-hosting.net/?aff=1357362933151305758"><img src="https://img.shields.io/badge/SIGNUP-gold" alt="Bot Hosting Signup" width="150"></a>
+
+<a href="https://bot-hosting.net/?aff=1357362933151305758"><img src="https://img.shields.io/badge/DEPLOY%20NOW-orange" alt="Bot Hosting Deploy" width="150"></a>
+
+<a href="https://youtu.be/?feature=shared"><img src="https://img.shields.io/badge/WATCH%20TUTORIAL-red" alt="Bot Hosting Tutorial" width="150"></a>
+</details>
 
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
 
